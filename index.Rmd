@@ -1,7 +1,7 @@
 ---
 title: "Statistical methods for archaeological<br>data analysis I: Basic methods"
 author: "Martin Hinz"
-date: "FS 2019"
+date: "FS 2021"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 output:
   xaringan::moon_reader:
