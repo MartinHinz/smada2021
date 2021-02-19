@@ -1,0 +1,68 @@
+---
+title: "Statistical methods for archaeological<br>data analysis I: Basic methods"
+author: "Martin Hinz"
+date: "FS 2019"
+institute: "Institut für Archäologische Wissenschaften, Universität Bern"
+output:
+  xaringan::moon_reader:
+    keep_md: true
+    chakra: libs/remark-latest.min.js
+    css: ["libs/default.css", "libs/default-fonts.css", "libs/customize.css"]
+    lib_dir: libs
+    seal: false
+    nature:
+      beforeInit: "libs/macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      fig_caption: yes
+---
+class: title-slide
+```{r, echo = FALSE}
+# https://stackoverflow.com/questions/25646333/code-chunk-font-size-in-rmarkdown-with-knitr-and-latex
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$size != "normalsize", paste0("\\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+})
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('## ', rmarkdown::metadata$title)
+```
+.small[
+```{r, echo = FALSE, results="asis"}
+cat('#### ', rmarkdown::metadata$author)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat(rmarkdown::metadata$institute)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat(rmarkdown::metadata$date)
+```
+
+### Presentations
+
+- [01. Session: Introduction](01_session/session_1_introduction.html) | 24.02.2021
+- 02\. Session: Introduction into R | 03.03.2021
+- 03\. Session: Explorative Statistics/Graph. Display | 10.03.2021
+- 04\. Session: Descriptive Statistics | 17.03.2021
+- 05\. Session: Nonparametric Tests | 24.03.2021
+- 06\. Session: Chi-square test | 31.03.2021
+- 07\. Session: Probability Theory and Distributions | 14.04.2021
+- 08\. Session: Distributions | 21.04.2021
+- 09\. Session: Parametric Tests | 28.04.2021
+- 10\. Session: Regression & Correlation | 05.05.2021
+- 11\. Session: Cluster Analysis | 12.05.2021
+- 12\. Session: Correspondence Analysis | 26.05.2021
+- Test | 02.06.2021
+
+]
+
+.footnote[
+.small[
+<sup>\*</sup> You can find the **code of this presentations** at the [github repository](https://github.com/MartinHinz/smada2021). You might also like to check out the **video tutorials** in [english](https://tube.switch.ch/channels/b191ef92) or [german](http://vitutr.archaeological.science/).
+]
+]

@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistical methods for archaeological data analysis I: Basic methods</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Martin Hinz" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../libs/default.css" type="text/css" />
+    <link rel="stylesheet" href="../libs/default-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../libs/customize.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: title-slide, center, middle
+
+
+#  Statistical methods for archaeological data analysis I: Basic methods
+
+##  01 - Introduction
+
+###  Martin Hinz
+
+####  Institut für Archäologische Wissenschaften, Universität Bern
+
+20.02.2019
+
+---
+
+## Synopsis
+
+.pull-left[
+![](../images/01_session/snape.png)
+]
+
+.pull-right[
+&gt; "There will be no foolish wand-waving or silly incantations in this class. As such, I don't expect many of you to appreciate the subtle science and exact art that is statistics."
+]
+---
+
+## Why statistics at all...
+
+### For you:
+Statistics are used! If you want to understand them, you have to learn it!
+
+### For archaeology/science as discipline
+Statistics make everything easier!
+
+- Statements become more understandable and especially replicable
+- Statistical statements are right or wrong no matter what reputation the scientist has
+- Statements and data become comparable
+- Getting the Knowledge of all the material for intuitive understanding of scientific/archaeological relations takes decades, learning statistics only months
+
+---
+
+## Figures don't lie, but liars figure.
+Samuel Clemens (alias Mark Twain)
+
+### Statistics are only correct if question, approach and method are correct
+
+e.g.: is social stratification observable on metal grave goods? Or on
+jewellery? What if this depends on the (not observed) sex of the
+deceased...
+
+### Measuring and especially coding of measurements requires subjective decisions all the time:
+
+Reasons for the decisions are often not understandable → subjective influence
+
+### Statistics for statistics sake?
+A logic (archaeologic) meaning have to be behind an analysis. And the results of analyses have to be logical (archaeological) testable.
+
+---
+
+## Statistic tool R: history (after Theus)
+
+R is the successor of S resp. S-Plus
+
+- S history:
+  - 1976-1980: S-Version 1; (development by AT&amp;T Labs) collection of Fortran routines
+  - 1980-1984: S-Version 2 Porting to UNIX, definition of the command language
+  - 1988-1991: S-Version 3 Porting to C, object-oriented, models
+  - 1999-today:
+
+S-Version 4 improved object-orientation (parallel the commercial version S-Plus)
+
+- R history
+  - early 90th: Development in New Zealand (R. Ihaka, R. Gentleman) Lisp based, only platform was Mac
+  - middle 90th: expansion onto other platforms
+  - end 90th: distributed development by the R-Core-Team
+
+- R-Core-Team: 17 developers all over the world
+- R-”specialists”: ca. 50 contributer
+- developers of R-packages: hundreds, daily more
+
+---
+
+## Why R?
+
+### Open Source
+
+- Free accessible source code: transparency of the program
+- Free to distribute: you don't have to pay horrific prices or make illegal copies
+
+### Reference of the used algorithms
+
+- Scientific citable
+
+### Power
+
+- The tool can do everything! Really! Exept making coffee...
+
+### Spread
+
+- Runs on all (major) operating systems
+- Is widely used in the scientific field
+
+---
+
+## Why R?
+
+### Disadvantages
+
+- Command line: unfamiliar (new/old way to work with a computer)
+- GUIs look different
+- Knowledge of the english language is helpful
+- Names of functions and parameters have to be kept in mind: is it col.names, colnames or header?
+- Documentation is partly not very intuitiv: you should know what you are searching for
+
+---
+
+## Basic literature
+
+### Stephan Shennan, Quantifying Archaeology.
+
+The textbook for this course.
+
+### David L. Carlson, Quantitative Methods in Archaeology Using R
+
+A archaeology specific R textbook
+
+### Dubravko Dolić, Statistik mit R.
+### John Verzani, Using R for Introductory Statistics.
+
+R-specific (introductory) statistical books
+
+---
+
+## More literature
+
+- M. Fletcher/G. R. Lock, Digging Numbers: Elementary Statistics for Archaeologists. Oxford Univ. Comm. Arch. Monogr. 332 (Oxford 2005).
+-  M. J. Baxter, Exploratory Multivariate Analysis in Archaeology (Edinburgh 1994).
+-  M. Baxter, Statistics in Archaeology (London 2003).
+-  P. Ihm, Statistik in der Archäologie: Probleme der Anwendung, allgemeine Methoden, Seriation und Klassifikation. Archaeo-Physika 9 (Köln 1978).
+- J. Bortz, Statistik für Sozialwissenschaftler4 (Berlin u. a. 1993).
+
+---
+
+## Schedule
+
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; topic &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; chapt. Shennan &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 24.02.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Introduction](01_session/session_1_introduction.html) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 01 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 03.03.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Introduction into R &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 02 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 10.03.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Explorative Statistics/Graph. Display &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 03 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 17.03.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Descriptive Statistics &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 04 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 24.03.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Nonparametric Tests &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 05 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 31.03.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Chi-square test &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 06 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 14.04.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Probability Theory and Distributions &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 07 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 21.04.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Distributions &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 08 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 28.04.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Parametric Tests &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 09 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 05.05.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Regression &amp;amp; Correlation &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 12.05.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Cluster Analysis &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 26.05.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Session: Correspondence Analysis &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 02.06.2021 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Test &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Flavours of statistics
+
+### Descriptive statistics
+- Summary and description of data by using parameters (mean, standard deviation etc.)
+
+### (graphical display)
+- Summary and description of data by using graphs (bar charts, pie charts etc.)
+- Useful for pattern detection and description, therefore intermediate position
+
+### Explorative statistics
+- Summary and description of data for pattern detection (e.g. correspondence analysis)
+
+### Statistical inference or statistical induction
+- testing of hypothesis on data (e.g. chi-squared test)
+
+---
+
+## Data, variables, values
+
+- Variable:
+  - What ist measured or analysed.
+  - e.g. height
+- item:
+  - That whichs variable is measure
+  - e.g. me as „possessor“ of a height, graves, persons...
+- values:
+  - The actual measurement.
+  - e.g. my height is 1.81 m.
+- discrete variable:
+  - Variable which can take only certain values without intermediate values
+  - e.g. income, counts of ceramic objects, sex (?)
+- continuous Variablen:
+  - Variable which can take all value and intermediate value
+  - e.g. height, temperature, proportion value
+
+---
+
+## Flavours of Statistics 2
+
+### univariate statistics:
+- Only on variable is involved
+- e.g. weight of bronze axes
+
+### bivariate statistics:
+- Two variables are involved, of interest is their relation
+- e.g. relationship of length and width of bronze axes
+
+### multivariate statistik:
+- More than two variables are involved, of interest is their relation
+- e.g. place of finding of axes (grave, depot, settlement) in relation to their chemical composition (proportion of copper, tin, arsenic, lead etc.)
+
+---
+
+## Independent – dependent variable
+
+### Independent Variable:
+- The assumed cause of a relationship
+
+### Dependent variable:
+- The assumed effect of the independent variable in a relationship
+
+### example:
+- Number of pearls in a grave (Dependent) vs.
+- sex of the deceased (independent)
+- Hypothesis: The number of pearls in a grave depends on the sex of the deceased
+
+### Can (have to be) not always to be defined
+- e.g.: volume and height of a vessel...
+
+---
+
+## Sample and Population
+
+### Population:
+- Amount of all items of relevance for an analysis.
+
+### Sample
+- Selection of items on basis of certain criteria (e.g. representativity) which
+- will be analysed instead of the population
+
+### Example opinion poll
+- Population: all federal citizens who have a meaning
+- Sample: the citizens who are polled by the polling organization
+
+*complete record of all the values ↔ sampling*
+
+**In archaeology only sampling is possible! The population can never be investigated!**
+
+---
+
+## Levels of measurement
+
+- nominal:
+  - Categories which do not have a defined relationship among each other, only counting is possible (e.g. sex)
+- ordinal:
+  - Categories which are comparable and differ from each other in their characteristic [size/power/intensity]; their rank is determinable (e.g.
+  - preservation conditions – bad, medium, good)
+- metric:
+  - Variable has a defined system of measurement, all calculations are possible. To distinguish are
+
+1. interval: The variable has an arbitrary choosen neutral point (°C)
+2. ratio: The variable has an absolute neutral point (°K)
+
+- Sometimes also used: absolut scale
+  - counts (number of inhabitans)
+
+---
+
+## Levels of measurement
+
+![](../images/01_session/scales_of_measurements.png)
+
+---
+
+## Levels of measurement
+
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; scale &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Meaningful statements &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Examples &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; nominal &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; equality, inequality &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Telephon numbers, illnesses, ceramic types &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ordinal &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; bigger-smaller-relationship &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Wind forces, academic ranks, classes of wealth, stratigraphic relations &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; interval &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Equality of differences &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Temperature in °C, calender age &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ratio &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Equality of ratios &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Measurement of lengths, weight, height of a vessel &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+.caption[after Bortz 2005]
+
+---
+
+## Levels of measurement
+
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; scale &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; count &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; sort &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; difference &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; quotient &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; nominal &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ordinal &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; interval &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ratio &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+.caption[after Bortz 2005]
+
+---
+
+## Levels of measurement
+
+Change of the level
+
+### downscaling:
+- Always possible.
+- e.g. classification of measurements (small-medium-big)
+- But: leads to loss of information
+
+### upscaling:
+- Sometimes possible
+- e.g.: instead of classification of ceramics in coarse-fine ware measurement of grain size
+- But: leads to larger data volume and higher complexity of measurement
+
+### Conclusion:
+- For analysis should the best fitting level of measurement be choosen.
+- Because there can always occure a change in the requirements, rule of thumb: take one level finer than you think you will need in the end (as said, just a rule of thumb...)
+
+---
+
+## Data collection: list
+
+Simple list of the data
+
+example:
+
+```
+##  [1] 154 167 187 165 190 176 167 156 154 165 167 171 154
+```
+
+---
+
+## data preparation: matrix of data
+Table of multiple values each item
+
+example:
+.tiny[
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; height &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; sex &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Hannah &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 154 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2(female) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Leon &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 167 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1(male) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Lukas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 187 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Leonie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Luka &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 190 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Lea &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 176 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Lena &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 167 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mia &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 156 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Tim &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 154 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Fynn &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Anna &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 167 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Emily &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 171 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Felix &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 154 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+---
+
+## data preparation: “tally sheet” / frequency table
+
+Table of multiple items each value
+example:
+
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Tally marks &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; counts &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 154 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ||| &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 156 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; | &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 167 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ||| &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; || &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 171 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; | &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 176 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; | &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 187 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; | &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 190 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; | &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## data preparation: classification
+
+Table of multiple items each class of value
+
+example:
+
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Tally marks &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; counts &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; &amp;lt;150 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 150-159 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; |||| &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 160-169 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ||||| &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 170-179 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; || &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 180-189 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; | &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; &amp;gt;190 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; | &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Class width here 10 cm
+
+Rule of thumb: ca. 8 – 12 classes or
+
+Number of classes `\(k ≈ \sqrt{n}\)`, here therefore `\(k ≈ \sqrt{13} = 3.6055513 ≈ 4\)`
+
+---
+
+## Equations &amp; symbols
+
+| meaning | symbol |
+|-|-|
+| ca. | `\(a≈b\)` |
+| count | `\(n\)` |
+| sum | `\(\sum_{i=1}^n x_i\)` |
+| This means | `\(x_1 =0, x_2 =4, x_3 =5, x_4 =2, x_5 =1, x_6 =1 ; n=6\)`
+|  | `\(x_1 + x_2 + x_3 + x_4 + x_5 + x_6 =\sum_{i=1}^n x_i\)` |
+| Product the same way | `\(\prod_{i=1}^n x_i = x_1 ∗x_2 ∗x_3 ∗x_4 ∗x_5 ∗x_6 = 0\)` |
+
+---
+
+## Example arithm. mean
+
+Equations are recipes
+
+$$ \bar{x}=\frac{\sum_{i=1}^n x_i} n $$
+
+observations : `\(x_i\)` ={154, 167, 187, 165, 190, 176, 167, 156, 154, 165, 167, 171, 154}
+
+number of observations : n=13
+
+$$ \bar{x}=\frac{154 + 167 + 187 + 165 + 190 + 176 + 167 + 156 + 154 + 165 + 167 + 171 + 154} {13} \\\\
+\bar{x}=\frac{2173} {13} \\\\
+\bar{x}=167.1538462 $$
+.right[
+![:width 15%](../images/01_session/cake.jpeg)
+
+.caption[.tiny[@charlesetoroma - unsplash]]
+]
+---
+class: inverse
+## exercise: description of the participants
+
+**Make 5 groups and carry out a data collection about the participants**
+
+Data to collect for the groups
+
+- A) Email, number of the computer in front of you
+- B) Sex, Age
+- C) laptop yes/no, foot size
+- D) actual cash in your purse, height
+- E) homecountry, operation system used at home
+
+Collect the data matrix, determine the level of measurement of each variable and present your results in 10 min.
+
+---
+class: inverse
+
+## exercise: description of the participants
+
+### Conclusion:
+Data collection needs a systematic. This will be best developed with a small sample ('pilot study'). After this the whole planned data collection should be carried out according to the developed scheme equal for all items.
+
+Information can be of very varying kind (level of measurement)
+
+For all kinds of information there are different ways of presenting them...
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../libs/remark-latest.min.js"></script>
+<script src="../libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"fig_caption": true,
+"ratio": "16:10"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
