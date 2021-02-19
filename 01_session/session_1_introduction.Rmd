@@ -517,9 +517,9 @@ $$ \bar{x}=\frac{154 + 167 + 187 + 165 + 190 + 176 + 167 + 156 + 154 + 165 + 167
 ]
 ---
 class: inverse
-## exercise: description of the participants
+## Homework: description of the participants
 
-**Make 5 groups and carry out a data collection about the participants**
+**Choose one of the following five groups and collect the data about the participants accordingly**
 
 Data to collect for the groups
 
@@ -529,16 +529,4 @@ Data to collect for the groups
 - D) actual cash in your purse, height
 - E) homecountry, operation system used at home
 
-Collect the data matrix, determine the level of measurement of each variable and present your results in 10 min.
-
----
-class: inverse
-
-## exercise: description of the participants
-
-### Conclusion:
-Data collection needs a systematic. This will be best developed with a small sample ('pilot study'). After this the whole planned data collection should be carried out according to the developed scheme equal for all items.
-
-Information can be of very varying kind (level of measurement)
-
-For all kinds of information there are different ways of presenting them...
+Collect the data matrix, determine the level of measurement of each variable and send me your data collection via email until weekend.
