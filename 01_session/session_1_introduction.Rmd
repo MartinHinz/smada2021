@@ -4,7 +4,7 @@ subtitle: "01 - Introduction"
 author: "Martin Hinz"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 fontsize: 9pt
-date: "20.02.2019"
+date: "24.02.2021"
 output:
   xaringan::moon_reader:
     chakra: "../libs/remark-latest.min.js"
@@ -186,18 +186,18 @@ library(magrittr)
 library(kableExtra)
 
 schedule <- c(
-  "24.02.2021", "Session: Introduction](01_session/session_1_introduction.html)", "01",
-"03.03.2021", "Session: Introduction into R", "02",
-"10.03.2021", "Session: Explorative Statistics/Graph. Display", "03",
-"17.03.2021", "Session: Descriptive Statistics", "04",
-"24.03.2021", "Session: Nonparametric Tests", "05",
-"31.03.2021", "Session: Chi-square test", "06",
-"14.04.2021", "Session: Probability Theory and Distributions", "07",
-"21.04.2021", "Session: Distributions", "08",
-"28.04.2021", "Session: Parametric Tests", "09",
-"05.05.2021", "Session: Regression & Correlation", "10",
+  "24.02.2021", "Session: Introduction](01_session/session_1_introduction.html)", "1+2",
+"03.03.2021", "Session: Introduction into R", "-",
+"10.03.2021", "Session: Explorative Statistics/Graph. Display", "3",
+"17.03.2021", "Session: Descriptive Statistics", "4",
+"24.03.2021", "Session: Nonparametric Tests", "5",
+"31.03.2021", "Session: Chi-square test", "7",
+"14.04.2021", "Session: Probability Theory and Distributions", "5",
+"21.04.2021", "Session: Distributions", "6",
+"28.04.2021", "Session: Parametric Tests", "6",
+"05.05.2021", "Session: Regression & Correlation", "8",
 "12.05.2021", "Session: Cluster Analysis", "11",
-"26.05.2021", "Session: Correspondence Analysis", "12",
+"26.05.2021", "Session: Correspondence Analysis", "13",
 "02.06.2021",  "Test", "-"
 )
 
