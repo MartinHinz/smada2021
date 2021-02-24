@@ -237,77 +237,6 @@ R-specific (introductory) statistical books
 
 ---
 
-## Flavours of statistics
-
-### Descriptive statistics
-- Summary and description of data by using parameters (mean, standard deviation etc.)
-
-### (graphical display)
-- Summary and description of data by using graphs (bar charts, pie charts etc.)
-- Useful for pattern detection and description, therefore intermediate position
-
-### Explorative statistics
-- Summary and description of data for pattern detection (e.g. correspondence analysis)
-
-### Statistical inference or statistical induction
-- testing of hypothesis on data (e.g. chi-squared test)
-
----
-
-## Data, variables, values
-
-- Variable:
-  - What ist measured or analysed.
-  - e.g. height
-- item:
-  - That whichs variable is measure
-  - e.g. me as „possessor“ of a height, graves, persons...
-- values:
-  - The actual measurement.
-  - e.g. my height is 1.81 m.
-- discrete variable:
-  - Variable which can take only certain values without intermediate values
-  - e.g. income, counts of ceramic objects, sex (?)
-- continuous Variablen:
-  - Variable which can take all value and intermediate value
-  - e.g. height, temperature, proportion value
-
----
-
-## Flavours of Statistics 2
-
-### univariate statistics:
-- Only on variable is involved
-- e.g. weight of bronze axes
-
-### bivariate statistics:
-- Two variables are involved, of interest is their relation
-- e.g. relationship of length and width of bronze axes
-
-### multivariate statistik:
-- More than two variables are involved, of interest is their relation
-- e.g. place of finding of axes (grave, depot, settlement) in relation to their chemical composition (proportion of copper, tin, arsenic, lead etc.)
-
----
-
-## Independent – dependent variable
-
-### Independent Variable:
-- The assumed cause of a relationship
-
-### Dependent variable:
-- The assumed effect of the independent variable in a relationship
-
-### example:
-- Number of pearls in a grave (Dependent) vs.
-- sex of the deceased (independent)
-- Hypothesis: The number of pearls in a grave depends on the sex of the deceased
-
-### Can (have to be) not always to be defined
-- e.g.: volume and height of a vessel...
-
----
-
 ## Sample and Population
 
 ### Population:
@@ -327,14 +256,127 @@ R-specific (introductory) statistical books
 
 ---
 
+## Flavours of statistics
+
+### Descriptive statistics
+- Summary and description of data by using parameters (mean, standard deviation etc.)
+
+### (graphical display)
+- Summary and description of data by using graphs (bar charts, pie charts etc.)
+- Useful for pattern detection and description, therefore intermediate position
+
+### Explorative statistics
+- Summary and description of data for pattern detection (e.g. correspondence analysis)
+
+### Statistical inference or statistical induction
+- testing of hypothesis on data (e.g. chi-squared test)
+
+---
+
+## Data, variables, values
+
+.pull-left[
+- variable:
+  - What ist measured or analysed.
+  - e.g. height
+- item:
+  - That whichs variable is measure
+  - e.g. me as „possessor“ of a height, graves, persons...
+- values:
+  - The actual measurement.
+  - e.g. my height is 1.81 m.
+]
+
+.pull-right[
+![](../images/01_session/variable_item_value.png)
+]
+---
+
+## Flavours of Statistics 2: Troll math
+
+.pull-left[
+### one: univariate statistics:
+- Only on variable is involved
+- e.g. weight of bronze axes
+
+### two: bivariate statistics:
+- Two variables are involved, of interest is their relation
+- e.g. relationship of length and width of bronze axes
+]
+
+.pull-right[
+![:width 50%](../images/01_session/troll.png)
+]
+
+### many: multivariate statistik:
+- More than two variables are involved, of interest is their relation
+- e.g. place of finding of axes (grave, depot, settlement) in relation to their chemical composition (proportion of copper, tin, arsenic, lead etc.)
+---
+
+## More than one variable
+
+### Independent Variable:
+- The assumed cause of a relationship
+
+### Dependent variable:
+- The assumed effect of the independent variable in a relationship
+
+### example:
+- Number of pearls in a grave (Dependent) vs.
+- sex of the deceased (independent)
+- Hypothesis: The number of pearls in a grave depends on the sex of the deceased
+
+### Can (have to be) not always to be defined
+- e.g.: volume and height of a vessel...
+
+---
+
+## continuous vs. discrete
+
+.pull-left[
+### discrete variable:
+  - Variable which can take only certain values without intermediate values
+  - e.g. income, counts of ceramic objects, sex (?)
+  - 'counted'
+  
+### continuous variables:
+  - Variable which can take all value and intermediate value
+  - e.g. height, temperature, proportion value
+  - 'measured'
+]
+
+.pull-right[
+![](../images/01_session/quantitative-data.jpg)
+
+.caption[Source: https://statsthewayilikeit.com]
+]
+---
+
 ## Levels of measurement
 
-- nominal:
+![](../images/01_session/categorical-data.jpg)
+
+### nominal or categorical:
+  - You can only decide if something belongs to a category
   - Categories which do not have a defined relationship among each other, only counting is possible (e.g. sex)
-- ordinal:
-  - Categories which are comparable and differ from each other in their characteristic [size/power/intensity]; their rank is determinable (e.g.
-  - preservation conditions – bad, medium, good)
-- metric:
+  
+---
+
+## Levels of measurement
+
+![:width 70%](../images/01_session/ordinal_chilis.png)
+
+### ordinal:
+  - Categories which are comparable and differ from each other in their characteristic [size/power/intensity]
+  - their rank is determinable (e.g. preservation conditions – bad &lt; medium &lt; good)
+
+---
+
+## Levels of measurement
+
+![:width 70%](../images/01_session/Kelvin_og_Celsius_temperaturskalaer.png)
+
+### metric:
   - Variable has a defined system of measurement, all calculations are possible. To distinguish are
 
 1. interval: The variable has an arbitrary choosen neutral point (°C)
@@ -381,54 +423,6 @@ R-specific (introductory) statistical books
    &lt;td style="text-align:left;"&gt; ratio &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; Equality of ratios &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; Measurement of lengths, weight, height of a vessel &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-.caption[after Bortz 2005]
-
----
-
-## Levels of measurement
-
-&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; scale &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; count &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; sort &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; difference &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; quotient &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; nominal &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ordinal &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; interval &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ratio &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -714,6 +708,8 @@ Data to collect for the groups
 - E) homecountry, operation system used at home
 
 Collect the data matrix, determine the level of measurement of each variable and send me your data collection via email until weekend.
+
+**Make it a group work! organise yourself! No one is an island!**
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="../libs/remark-latest.min.js"></script>
