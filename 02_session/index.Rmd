@@ -45,6 +45,13 @@ cat('#### ', rmarkdown::metadata$institute)
 cat(rmarkdown::metadata$date)
 ```
 
+.footnote[
+.right[
+.tiny[
+You can download a [pdf of this presentation](smada02.pdf).
+]
+]
+]
 ---
 ## Start R-Studio
 
@@ -667,13 +674,6 @@ Read with rownames
 kursdaten.loaded <- read.csv2("kursdaten.csv",row.names = 1)
 ```
 
-.footnote[
-.right[
-.tiny[
-You can download a [pdf of this presentation](smada02.pdf).
-]
-]
-]
 ---
 
 ## R <-> Excel

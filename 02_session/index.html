@@ -25,6 +25,13 @@ class: title-slide, center, middle
 
 03.03.2021
 
+.footnote[
+.right[
+.tiny[
+You can download a [pdf of this presentation](smada02.pdf).
+]
+]
+]
 ---
 ## Start R-Studio
 
@@ -882,19 +889,19 @@ kursmatrix
 
 ```
 ##       [,1] [,2]
-##  [1,]  168   23
-##  [2,]  167   22
-##  [3,]  187   18
-##  [4,]  165   18
-##  [5,]  190   19
-##  [6,]  176   24
-##  [7,]  167   23
-##  [8,]  156   20
-##  [9,]  181   22
-## [10,]  165   20
-## [11,]  167   24
-## [12,]  171   21
-## [13,]  154   22
+##  [1,]  168   21
+##  [2,]  167   25
+##  [3,]  187   22
+##  [4,]  165   24
+##  [5,]  190   24
+##  [6,]  176   20
+##  [7,]  167   24
+##  [8,]  156   23
+##  [9,]  181   24
+## [10,]  165   18
+## [11,]  167   20
+## [12,]  171   20
+## [13,]  154   18
 ## [14,]   NA   NA
 ```
 ]
@@ -908,19 +915,19 @@ kursmatrix
 
 ```
 ##        height age
-## Hannah    168  23
-## Leon      167  22
-## Lukas     187  18
-## Leonie    165  18
-## Luka      190  19
-## Lea       176  24
-## Lena      167  23
-## Mia       156  20
-## Tim       181  22
-## Fynn      165  20
-## Anna      167  24
-## Emily     171  21
-## Felix     154  22
+## Hannah    168  21
+## Leon      167  25
+## Lukas     187  22
+## Leonie    165  24
+## Luka      190  24
+## Lea       176  20
+## Lena      167  24
+## Mia       156  23
+## Tim       181  24
+## Fynn      165  18
+## Anna      167  20
+## Emily     171  20
+## Felix     154  18
 ## Martin     NA  NA
 ```
 
@@ -939,19 +946,19 @@ kursmatrix / 100
 
 ```
 ##        height  age
-## Hannah   1.68 0.23
-## Leon     1.67 0.22
-## Lukas    1.87 0.18
-## Leonie   1.65 0.18
-## Luka     1.90 0.19
-## Lea      1.76 0.24
-## Lena     1.67 0.23
-## Mia      1.56 0.20
-## Tim      1.81 0.22
-## Fynn     1.65 0.20
-## Anna     1.67 0.24
-## Emily    1.71 0.21
-## Felix    1.54 0.22
+## Hannah   1.68 0.21
+## Leon     1.67 0.25
+## Lukas    1.87 0.22
+## Leonie   1.65 0.24
+## Luka     1.90 0.24
+## Lea      1.76 0.20
+## Lena     1.67 0.24
+## Mia      1.56 0.23
+## Tim      1.81 0.24
+## Fynn     1.65 0.18
+## Anna     1.67 0.20
+## Emily    1.71 0.20
+## Felix    1.54 0.18
 ## Martin     NA   NA
 ```
 ]
@@ -975,19 +982,19 @@ kursmatrix / c(1:14, rep(2, 14))
 
 ```
 ##           height  age
-## Hannah 168.00000 11.5
-## Leon    83.50000 11.0
-## Lukas   62.33333  9.0
-## Leonie  41.25000  9.0
-## Luka    38.00000  9.5
-## Lea     29.33333 12.0
-## Lena    23.85714 11.5
-## Mia     19.50000 10.0
-## Tim     20.11111 11.0
-## Fynn    16.50000 10.0
-## Anna    15.18182 12.0
-## Emily   14.25000 10.5
-## Felix   11.84615 11.0
+## Hannah 168.00000 10.5
+## Leon    83.50000 12.5
+## Lukas   62.33333 11.0
+## Leonie  41.25000 12.0
+## Luka    38.00000 12.0
+## Lea     29.33333 10.0
+## Lena    23.85714 12.0
+## Mia     19.50000 11.5
+## Tim     20.11111 12.0
+## Fynn    16.50000  9.0
+## Anna    15.18182 10.0
+## Emily   14.25000 10.0
+## Felix   11.84615  9.0
 ## Martin        NA   NA
 ```
 ]
@@ -1007,19 +1014,19 @@ kursdata
 
 ```
 ##        age height sex
-## Hannah  23    168   f
-## Leon    22    167   m
-## Lukas   18    187   m
-## Leonie  18    165   f
-## Luka    19    190   m
-## Lea     24    176   f
-## Lena    23    167   f
-## Mia     20    156   f
-## Tim     22    181   m
-## Fynn    20    165   m
-## Anna    24    167   f
-## Emily   21    171   f
-## Felix   22    154   m
+## Hannah  21    168   f
+## Leon    25    167   m
+## Lukas   22    187   m
+## Leonie  24    165   f
+## Luka    24    190   m
+## Lea     20    176   f
+## Lena    24    167   f
+## Mia     23    156   f
+## Tim     24    181   m
+## Fynn    18    165   m
+## Anna    20    167   f
+## Emily   20    171   f
+## Felix   18    154   m
 ## Martin  NA     NA   m
 ```
 ]
@@ -1031,7 +1038,7 @@ kursdata[,"age"]
 ```
 
 ```
-##  [1] 23 22 18 18 19 24 23 20 22 20 24 21 22 NA
+##  [1] 21 25 22 24 24 20 24 23 24 18 20 20 18 NA
 ```
 
 ```r
@@ -1039,7 +1046,7 @@ kursdata$age
 ```
 
 ```
-##  [1] 23 22 18 18 19 24 23 20 22 20 24 21 22 NA
+##  [1] 21 25 22 24 24 20 24 23 24 18 20 20 18 NA
 ```
 
 ]
@@ -1068,9 +1075,9 @@ summary(kursdata)
 ##  Min.   :18.00   Min.   :154.0   f:7  
 ##  1st Qu.:20.00   1st Qu.:165.0   m:7  
 ##  Median :22.00   Median :167.0        
-##  Mean   :21.23   Mean   :170.3        
-##  3rd Qu.:23.00   3rd Qu.:176.0        
-##  Max.   :24.00   Max.   :190.0        
+##  Mean   :21.77   Mean   :170.3        
+##  3rd Qu.:24.00   3rd Qu.:176.0        
+##  Max.   :25.00   Max.   :190.0        
 ##  NA's   :1       NA's   :1
 ```
 
@@ -1194,13 +1201,6 @@ Read with rownames
 kursdaten.loaded &lt;- read.csv2("kursdaten.csv",row.names = 1)
 ```
 
-.footnote[
-.right[
-.tiny[
-You can download a [pdf of this presentation](smada02.pdf).
-]
-]
-]
 ---
 
 ## R &lt;-&gt; Excel
