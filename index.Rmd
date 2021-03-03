@@ -46,7 +46,7 @@ cat(rmarkdown::metadata$date)
 ### Presentations
 
 - [01. Session: Introduction](01_session/session_1_introduction.html) | 24.02.2021
-- 02\. Session: Introduction into R | 03.03.2021
+- [02. Session: Introduction into R](02_session/index.html) | 03.03.2021
 - 03\. Session: Explorative Statistics/Graph. Display | 10.03.2021
 - 04\. Session: Descriptive Statistics | 17.03.2021
 - 05\. Session: Nonparametric Tests | 24.03.2021
