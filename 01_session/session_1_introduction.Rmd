@@ -49,6 +49,13 @@ cat('#### ', rmarkdown::metadata$institute)
 cat(rmarkdown::metadata$date)
 ```
 
+.footnote[
+.right[
+.tiny[
+You can download a [pdf of this presentation](smada01.pdf).
+]
+]
+]
 ---
 
 ## Synopsis
