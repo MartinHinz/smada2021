@@ -244,6 +244,36 @@ mtcars
 
 
 ---
+## Data import through reading of files
+
+remember:
+```{r eval=F}
+getwd()
+setwd("my/location/of/my/working/directory")
+```
+
+Simple text file:
+```{r}
+kursmatrix <- matrix(scan("kursmatrix.txt"),ncol=2)
+```
+
+Data frame as simple text file:
+```{r}
+kursdata <- read.table("kursdata.txt")
+```
+
+Data frame as csv file:
+```{r}
+kursdata <- read.csv2("kursdata.csv")
+```
+ 
+Read with rownames
+```{r}
+kursdaten <- read.csv2("kursdaten.csv",row.names = 1)
+```
+
+
+---
 
 ## Using c() for data entry
 
@@ -274,13 +304,6 @@ places
 ## Functions on vectors [1]
 
 ### Data:
-```{r echo=F}
-
-participants<-c("Hannah", "Leon", "Lukas", "Leonie", "Luka", "Lea", "Lena", "Mia", "Tim", "Fynn", "Anna", "Emily", "Felix")
-height<-c(154, 167, 187, 165, 190, 176, 167, 156, 154, 165, 167, 171, 154)
-names(height)<-participants
-save(height, file="height.RData")
-```
 .pull-left[
 ```{r echo=F}
 options(width = 30)
@@ -345,7 +368,7 @@ height.in.m
 but:
 
 ```{r}
-test<-c(1,2,3,4,5,6,7,8,9,11,12,13,14)
+test<-c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
 height.in.m + test
 ```
 
@@ -413,7 +436,7 @@ height[-(1:3)]
 Access by name:
 
 ```{r}
-height["Hannah"]
+height["Clara"]
 ```
 ]
 
@@ -431,7 +454,7 @@ height
 
 Entry by name:
 ```{r}
-height["Tim"] <- 181
+height["Till"] <- 181
 height
 ```
 ]
@@ -444,8 +467,6 @@ true/false-values:
 ```{r}
 pi>4
 height > 175
-
-
 ```
 
 ---
@@ -463,7 +484,8 @@ sum(height>175)/length(height)
 # Factors
 For encoding nominal values:
 ```{r}
-sex <- factor(c("f", "m", "m", "f", "m", "f", "f", "f", "m", "m", "f", "f", "m", "m"))
+sex <- factor(c("m", "m", "m", "f", "m", "f", "f",
+                "f", "f", "m", "m", "f", "m", "f", "f"))
 
 sex
 
@@ -476,7 +498,7 @@ sex
 Problem: values are missing
 
 ```{r}
-height["Martin"] <- 0
+height["Marlen"] <- 0
 
 mean(height)
 
@@ -485,7 +507,7 @@ sum(height)/13
 
 therefore: code as N(ot)A(vailable)
 ```{r}
-height["Martin"] <- NA
+height["Marlen"] <- NA
 
 mean(height)
 
@@ -496,17 +518,10 @@ mean(height, na.rm=T)
 
 ---
 
-```{r echo=F}
-kursmatrix <- cbind(height,c(sample(18:25,13, replace = T),NA))
-colnames(kursmatrix) <- NULL
-rownames(kursmatrix) <- NULL
-save(kursmatrix, file = "kursmatrix.RData")
-```
 ## matrices [1]
 Data of the same kind (numbers, factors...)
 .pull-left[
 ```{r}
-load("kursmatrix.RData")
 kursmatrix
 ```
 ]
@@ -535,7 +550,7 @@ kursmatrix[, 1] / 100
 ```
 
 ```{r}
-kursmatrix / c(1:14, rep(2, 14))
+kursmatrix / c(1:15, rep(2, 15))
 ```
 ]
 
@@ -614,27 +629,25 @@ Orange                  Growth of Orange Trees
 ## Data export through save
 
 Simple text file:
-```{r}
+```{r, eval=F}
 write(kursmatrix,"kursmatrix.txt")
 ```
 
 Data frame as simple text file:
 
-```{r}
+```{r, eval=F}
 write.table(kursdata,"kursdata.txt")
 ```
 
 Data frame as csv file:
 
-```{r}
+```{r, eval=F}
 write.csv2(kursdata,"kursdata.csv")
 ```
 
-
 Attention: decimal separator is . not ,
-```{r}
+```{r, eval=F}
 kursdata$height <- kursdata$height/100
-
 write.csv(kursdata,"kursdata.csv")
 ```
 
@@ -642,36 +655,6 @@ problems with importing such csv into e.g. Excel
 therefore:
 ```{r}
 write.csv2(kursdata,"kursdata.csv")
-```
-
----
-
-## Data import through reading of files
-
-remember:
-```{r eval=F}
-getwd()
-setwd("my/location/of/my/working/directory")
-```
-
-Simple text file:
-```{r}
-kursmatrix.loaded <- matrix(scan("kursmatrix.txt"),ncol=2)
-```
-
-Data frame as simple text file:
-```{r}
-kursdata.loaded <- read.table("kursdata.txt")
-```
-
-Data frame as csv file:
-```{r}
-kursdata.loaded <- read.csv2("kursdata.csv")
-```
- 
-Read with rownames
-```{r}
-kursdaten.loaded <- read.csv2("kursdaten.csv",row.names = 1)
 ```
 
 ---

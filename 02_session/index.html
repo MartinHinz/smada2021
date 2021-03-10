@@ -4,6 +4,7 @@
     <title>Statistical methods for archaeological data analysis I: Basic methods</title>
     <meta charset="utf-8" />
     <meta name="author" content="Martin Hinz" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
     <link rel="stylesheet" href="../libs/default.css" type="text/css" />
     <link rel="stylesheet" href="../libs/default-fonts.css" type="text/css" />
     <link rel="stylesheet" href="../libs/customize.css" type="text/css" />
@@ -381,6 +382,41 @@ mtcars
 
 
 ---
+## Data import through reading of files
+
+remember:
+
+```r
+getwd()
+setwd("my/location/of/my/working/directory")
+```
+
+Simple text file:
+
+```r
+kursmatrix &lt;- matrix(scan("kursmatrix.txt"),ncol=2)
+```
+
+Data frame as simple text file:
+
+```r
+kursdata &lt;- read.table("kursdata.txt")
+```
+
+Data frame as csv file:
+
+```r
+kursdata &lt;- read.csv2("kursdata.csv")
+```
+ 
+Read with rownames
+
+```r
+kursdaten &lt;- read.csv2("kursdaten.csv",row.names = 1)
+```
+
+
+---
 
 ## Using c() for data entry
 
@@ -429,7 +465,6 @@ places
 ## Functions on vectors [1]
 
 ### Data:
-
 .pull-left[
 
 
@@ -439,14 +474,16 @@ height
 ```
 
 ```
-## Hannah   Leon  Lukas Leonie 
-##    154    167    187    165 
-##   Luka    Lea   Lena    Mia 
-##    190    176    167    156 
-##    Tim   Fynn   Anna  Emily 
-##    154    165    167    171 
-##  Felix 
-##    154
+## Matthias  Jannick  Nicolas 
+##      181      170      185 
+##   Silvia     Till     Anna 
+##      163      175      163 
+##   Ilaria    Sarah    Clara 
+##      162      172      172 
+##    Alain   Adrian   Marlen 
+##      180      187      158 
+##  Michael   Helena  Nephele 
+##      184      156      168
 ```
 
 ]
@@ -460,7 +497,7 @@ sum(height)
 ```
 
 ```
-## [1] 2173
+## [1] 2576
 ```
 
 ```r
@@ -469,7 +506,7 @@ length(height)
 ```
 
 ```
-## [1] 13
+## [1] 15
 ```
 
 ```r
@@ -478,7 +515,7 @@ sum(height)/length(height)
 ```
 
 ```
-## [1] 167.1538
+## [1] 171.7333
 ```
 
 ```r
@@ -487,7 +524,7 @@ mean(height)
 ```
 
 ```
-## [1] 167.1538
+## [1] 171.7333
 ```
 ]
 ]
@@ -503,10 +540,10 @@ sort(height)
 ```
 
 ```
-## Hannah    Tim  Felix    Mia Leonie   Fynn   Leon   Lena   Anna  Emily    Lea 
-##    154    154    154    156    165    165    167    167    167    171    176 
-##  Lukas   Luka 
-##    187    190
+##   Helena   Marlen   Ilaria   Silvia     Anna  Nephele  Jannick    Sarah 
+##      156      158      162      163      163      168      170      172 
+##    Clara     Till    Alain Matthias  Michael  Nicolas   Adrian 
+##      172      175      180      181      184      185      187
 ```
 
 ```r
@@ -515,7 +552,7 @@ min(height)
 ```
 
 ```
-## [1] 154
+## [1] 156
 ```
 
 ```r
@@ -524,7 +561,7 @@ max(height)
 ```
 
 ```
-## [1] 190
+## [1] 187
 ```
 
 ```r
@@ -533,7 +570,7 @@ range(height)
 ```
 
 ```
-## [1] 154 190
+## [1] 156 187
 ```
 ]
 
@@ -550,25 +587,25 @@ height.in.m
 ```
 
 ```
-## Hannah   Leon  Lukas Leonie   Luka    Lea   Lena    Mia    Tim   Fynn   Anna 
-##   1.54   1.67   1.87   1.65   1.90   1.76   1.67   1.56   1.54   1.65   1.67 
-##  Emily  Felix 
-##   1.71   1.54
+## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
+##     1.81     1.70     1.85     1.63     1.75     1.63     1.62     1.72 
+##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
+##     1.72     1.80     1.87     1.58     1.84     1.56     1.68
 ```
 
 but:
 
 
 ```r
-test&lt;-c(1,2,3,4,5,6,7,8,9,11,12,13,14)
+test&lt;-c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
 height.in.m + test
 ```
 
 ```
-## Hannah   Leon  Lukas Leonie   Luka    Lea   Lena    Mia    Tim   Fynn   Anna 
-##   2.54   3.67   4.87   5.65   6.90   7.76   8.67   9.56  10.54  12.65  13.67 
-##  Emily  Felix 
-##  14.71  15.54
+## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
+##     2.81     3.70     4.85     5.63     6.75     7.63     8.62     9.72 
+##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
+##    10.72    11.80    12.87    13.58    14.84    15.56    16.68
 ```
 
 ---
@@ -668,8 +705,8 @@ height[1]
 ```
 
 ```
-## Hannah 
-##    154
+## Matthias 
+##      181
 ```
 
 ```r
@@ -677,8 +714,8 @@ height[5]
 ```
 
 ```
-## Luka 
-##  190
+## Till 
+##  175
 ```
 
 ```r
@@ -686,8 +723,8 @@ height[1:3]
 ```
 
 ```
-## Hannah   Leon  Lukas 
-##    154    167    187
+## Matthias  Jannick  Nicolas 
+##      181      170      185
 ```
 
 ```r
@@ -695,20 +732,22 @@ height[-(1:3)]
 ```
 
 ```
-## Leonie   Luka    Lea   Lena    Mia    Tim   Fynn   Anna  Emily  Felix 
-##    165    190    176    167    156    154    165    167    171    154
+##  Silvia    Till    Anna  Ilaria   Sarah   Clara   Alain  Adrian  Marlen Michael 
+##     163     175     163     162     172     172     180     187     158     184 
+##  Helena Nephele 
+##     156     168
 ```
 
 Access by name:
 
 
 ```r
-height["Hannah"]
+height["Clara"]
 ```
 
 ```
-## Hannah 
-##    154
+## Clara 
+##   172
 ```
 ]
 
@@ -723,10 +762,10 @@ height
 ```
 
 ```
-## Hannah   Leon  Lukas Leonie   Luka    Lea   Lena    Mia    Tim   Fynn   Anna 
-##    154    167    187    165    190    176    167    156    154    165    167 
-##  Emily  Felix 
-##    171    154
+## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
+##      181      170      185      163      175      163      162      172 
+##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
+##      172      180      187      158      184      156      168
 ```
 
 ```r
@@ -735,25 +774,25 @@ height
 ```
 
 ```
-## Hannah   Leon  Lukas Leonie   Luka    Lea   Lena    Mia    Tim   Fynn   Anna 
-##    168    167    187    165    190    176    167    156    154    165    167 
-##  Emily  Felix 
-##    171    154
+## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
+##      168      170      185      163      175      163      162      172 
+##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
+##      172      180      187      158      184      156      168
 ```
 
 
 Entry by name:
 
 ```r
-height["Tim"] &lt;- 181
+height["Till"] &lt;- 181
 height
 ```
 
 ```
-## Hannah   Leon  Lukas Leonie   Luka    Lea   Lena    Mia    Tim   Fynn   Anna 
-##    168    167    187    165    190    176    167    156    181    165    167 
-##  Emily  Felix 
-##    171    154
+## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
+##      168      170      185      163      181      163      162      172 
+##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
+##      172      180      187      158      184      156      168
 ```
 ]
 
@@ -776,10 +815,10 @@ height &gt; 175
 ```
 
 ```
-## Hannah   Leon  Lukas Leonie   Luka    Lea   Lena    Mia    Tim   Fynn   Anna 
-##  FALSE  FALSE   TRUE  FALSE   TRUE   TRUE  FALSE  FALSE   TRUE  FALSE  FALSE 
-##  Emily  Felix 
-##  FALSE  FALSE
+## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
+##    FALSE    FALSE     TRUE    FALSE     TRUE    FALSE    FALSE    FALSE 
+##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
+##    FALSE     TRUE     TRUE    FALSE     TRUE    FALSE    FALSE
 ```
 
 ---
@@ -792,8 +831,8 @@ height[height&gt;175]
 ```
 
 ```
-## Lukas  Luka   Lea   Tim 
-##   187   190   176   181
+## Nicolas    Till   Alain  Adrian Michael 
+##     185     181     180     187     184
 ```
 
 ```r
@@ -801,8 +840,8 @@ which(height&gt;175)
 ```
 
 ```
-## Lukas  Luka   Lea   Tim 
-##     3     5     6     9
+## Nicolas    Till   Alain  Adrian Michael 
+##       3       5      10      11      13
 ```
 
 ```r
@@ -810,7 +849,7 @@ sum(height&gt;175)/length(height)
 ```
 
 ```
-## [1] 0.3076923
+## [1] 0.3333333
 ```
 
 ---
@@ -819,13 +858,14 @@ sum(height&gt;175)/length(height)
 For encoding nominal values:
 
 ```r
-sex &lt;- factor(c("f", "m", "m", "f", "m", "f", "f", "f", "m", "m", "f", "f", "m", "m"))
+sex &lt;- factor(c("m", "m", "m", "f", "m", "f", "f",
+                "f", "f", "m", "m", "f", "m", "f", "f"))
 
 sex
 ```
 
 ```
-##  [1] f m m f m f f f m m f f m m
+##  [1] m m m f m f f f f m m f m f f
 ## Levels: f m
 ```
 
@@ -837,13 +877,13 @@ Problem: values are missing
 
 
 ```r
-height["Martin"] &lt;- 0
+height["Marlen"] &lt;- 0
 
 mean(height)
 ```
 
 ```
-## [1] 158.1429
+## [1] 160.7333
 ```
 
 ```r
@@ -851,13 +891,13 @@ sum(height)/13
 ```
 
 ```
-## [1] 170.3077
+## [1] 185.4615
 ```
 
 therefore: code as N(ot)A(vailable)
 
 ```r
-height["Martin"] &lt;- NA
+height["Marlen"] &lt;- NA
 
 mean(height)
 ```
@@ -871,38 +911,37 @@ mean(height, na.rm=T)
 ```
 
 ```
-## [1] 170.3077
+## [1] 172.2143
 ```
 ]
 
 ---
-
 
 ## matrices [1]
 Data of the same kind (numbers, factors...)
 .pull-left[
 
 ```r
-load("kursmatrix.RData")
 kursmatrix
 ```
 
 ```
 ##       [,1] [,2]
-##  [1,]  168   21
-##  [2,]  167   25
-##  [3,]  187   22
-##  [4,]  165   24
-##  [5,]  190   24
-##  [6,]  176   20
-##  [7,]  167   24
-##  [8,]  156   23
-##  [9,]  181   24
-## [10,]  165   18
-## [11,]  167   20
-## [12,]  171   20
-## [13,]  154   18
-## [14,]   NA   NA
+##  [1,]   39  181
+##  [2,]   34  170
+##  [3,]   23  185
+##  [4,]   38  163
+##  [5,]   23  175
+##  [6,]   21  163
+##  [7,]   23  162
+##  [8,]   31  172
+##  [9,]   25  172
+## [10,]   31  180
+## [11,]   24  187
+## [12,]   23  158
+## [13,]   23  184
+## [14,]   39  156
+## [15,]   21  168
 ```
 ]
 .pull-right[
@@ -914,21 +953,22 @@ kursmatrix
 ```
 
 ```
-##        height age
-## Hannah    168  21
-## Leon      167  25
-## Lukas     187  22
-## Leonie    165  24
-## Luka      190  24
-## Lea       176  20
-## Lena      167  24
-## Mia       156  23
-## Tim       181  24
-## Fynn      165  18
-## Anna      167  20
-## Emily     171  20
-## Felix     154  18
-## Martin     NA  NA
+##          height age
+## Matthias     39 181
+## Jannick      34 170
+## Nicolas      23 185
+## Silvia       38 163
+## Till         23 175
+## Anna         21 163
+## Ilaria       23 162
+## Sarah        31 172
+## Clara        25 172
+## Alain        31 180
+## Adrian       24 187
+## Marlen       23 158
+## Michael      23 184
+## Helena       39 156
+## Nephele      21 168
 ```
 
 ]
@@ -945,21 +985,22 @@ kursmatrix / 100
 ```
 
 ```
-##        height  age
-## Hannah   1.68 0.21
-## Leon     1.67 0.25
-## Lukas    1.87 0.22
-## Leonie   1.65 0.24
-## Luka     1.90 0.24
-## Lea      1.76 0.20
-## Lena     1.67 0.24
-## Mia      1.56 0.23
-## Tim      1.81 0.24
-## Fynn     1.65 0.18
-## Anna     1.67 0.20
-## Emily    1.71 0.20
-## Felix    1.54 0.18
-## Martin     NA   NA
+##          height  age
+## Matthias   0.39 1.81
+## Jannick    0.34 1.70
+## Nicolas    0.23 1.85
+## Silvia     0.38 1.63
+## Till       0.23 1.75
+## Anna       0.21 1.63
+## Ilaria     0.23 1.62
+## Sarah      0.31 1.72
+## Clara      0.25 1.72
+## Alain      0.31 1.80
+## Adrian     0.24 1.87
+## Marlen     0.23 1.58
+## Michael    0.23 1.84
+## Helena     0.39 1.56
+## Nephele    0.21 1.68
 ```
 ]
 .pull-right[
@@ -969,33 +1010,34 @@ kursmatrix[, 1] / 100
 ```
 
 ```
-## Hannah   Leon  Lukas Leonie   Luka    Lea   Lena    Mia    Tim   Fynn   Anna 
-##   1.68   1.67   1.87   1.65   1.90   1.76   1.67   1.56   1.81   1.65   1.67 
-##  Emily  Felix Martin 
-##   1.71   1.54     NA
+## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
+##     0.39     0.34     0.23     0.38     0.23     0.21     0.23     0.31 
+##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
+##     0.25     0.31     0.24     0.23     0.23     0.39     0.21
 ```
 
 
 ```r
-kursmatrix / c(1:14, rep(2, 14))
+kursmatrix / c(1:15, rep(2, 15))
 ```
 
 ```
-##           height  age
-## Hannah 168.00000 10.5
-## Leon    83.50000 12.5
-## Lukas   62.33333 11.0
-## Leonie  41.25000 12.0
-## Luka    38.00000 12.0
-## Lea     29.33333 10.0
-## Lena    23.85714 12.0
-## Mia     19.50000 11.5
-## Tim     20.11111 12.0
-## Fynn    16.50000  9.0
-## Anna    15.18182 10.0
-## Emily   14.25000 10.0
-## Felix   11.84615  9.0
-## Martin        NA   NA
+##             height  age
+## Matthias 39.000000 90.5
+## Jannick  17.000000 85.0
+## Nicolas   7.666667 92.5
+## Silvia    9.500000 81.5
+## Till      4.600000 87.5
+## Anna      3.500000 81.5
+## Ilaria    3.285714 81.0
+## Sarah     3.875000 86.0
+## Clara     2.777778 86.0
+## Alain     3.100000 90.0
+## Adrian    2.181818 93.5
+## Marlen    1.916667 79.0
+## Michael   1.769231 92.0
+## Helena    2.785714 78.0
+## Nephele   1.400000 84.0
 ```
 ]
 
@@ -1013,21 +1055,22 @@ kursdata
 ```
 
 ```
-##        age height sex
-## Hannah  21    168   f
-## Leon    25    167   m
-## Lukas   22    187   m
-## Leonie  24    165   f
-## Luka    24    190   m
-## Lea     20    176   f
-## Lena    24    167   f
-## Mia     23    156   f
-## Tim     24    181   m
-## Fynn    18    165   m
-## Anna    20    167   f
-## Emily   20    171   f
-## Felix   18    154   m
-## Martin  NA     NA   m
+##          age height sex
+## Matthias 181     39   m
+## Jannick  170     34   m
+## Nicolas  185     23   m
+## Silvia   163     38   f
+## Till     175     23   m
+## Anna     163     21   f
+## Ilaria   162     23   f
+## Sarah    172     31   f
+## Clara    172     25   f
+## Alain    180     31   m
+## Adrian   187     24   m
+## Marlen   158     23   f
+## Michael  184     23   m
+## Helena   156     39   f
+## Nephele  168     21   f
 ```
 ]
 
@@ -1038,7 +1081,7 @@ kursdata[,"age"]
 ```
 
 ```
-##  [1] 21 25 22 24 24 20 24 23 24 18 20 20 18 NA
+##  [1] 181 170 185 163 175 163 162 172 172 180 187 158 184 156 168
 ```
 
 ```r
@@ -1046,7 +1089,7 @@ kursdata$age
 ```
 
 ```
-##  [1] 21 25 22 24 24 20 24 23 24 18 20 20 18 NA
+##  [1] 181 170 185 163 175 163 162 172 172 180 187 158 184 156 168
 ```
 
 ]
@@ -1063,7 +1106,7 @@ kursdata$height / 100
 ```
 
 ```
-##  [1] 1.68 1.67 1.87 1.65 1.90 1.76 1.67 1.56 1.81 1.65 1.67 1.71 1.54   NA
+##  [1] 0.39 0.34 0.23 0.38 0.23 0.21 0.23 0.31 0.25 0.31 0.24 0.23 0.23 0.39 0.21
 ```
 
 ```r
@@ -1072,13 +1115,12 @@ summary(kursdata)
 
 ```
 ##       age            height      sex  
-##  Min.   :18.00   Min.   :154.0   f:7  
-##  1st Qu.:20.00   1st Qu.:165.0   m:7  
-##  Median :22.00   Median :167.0        
-##  Mean   :21.77   Mean   :170.3        
-##  3rd Qu.:24.00   3rd Qu.:176.0        
-##  Max.   :25.00   Max.   :190.0        
-##  NA's   :1       NA's   :1
+##  Min.   :156.0   Min.   :21.00   f:8  
+##  1st Qu.:163.0   1st Qu.:23.00   m:7  
+##  Median :172.0   Median :24.00        
+##  Mean   :171.7   Mean   :27.87        
+##  3rd Qu.:180.5   3rd Qu.:32.50        
+##  Max.   :187.0   Max.   :39.00
 ```
 
 ```r
@@ -1087,7 +1129,7 @@ tapply(kursdata$height, kursdata$sex, mean, na.rm=T)
 
 ```
 ##        f        m 
-## 167.1429 174.0000
+## 27.62500 28.14286
 ```
 
 ---
@@ -1150,12 +1192,10 @@ Data frame as csv file:
 write.csv2(kursdata,"kursdata.csv")
 ```
 
-
 Attention: decimal separator is . not ,
 
 ```r
 kursdata$height &lt;- kursdata$height/100
-
 write.csv(kursdata,"kursdata.csv")
 ```
 
@@ -1164,41 +1204,6 @@ therefore:
 
 ```r
 write.csv2(kursdata,"kursdata.csv")
-```
-
----
-
-## Data import through reading of files
-
-remember:
-
-```r
-getwd()
-setwd("my/location/of/my/working/directory")
-```
-
-Simple text file:
-
-```r
-kursmatrix.loaded &lt;- matrix(scan("kursmatrix.txt"),ncol=2)
-```
-
-Data frame as simple text file:
-
-```r
-kursdata.loaded &lt;- read.table("kursdata.txt")
-```
-
-Data frame as csv file:
-
-```r
-kursdata.loaded &lt;- read.csv2("kursdata.csv")
-```
- 
-Read with rownames
-
-```r
-kursdaten.loaded &lt;- read.csv2("kursdaten.csv",row.names = 1)
 ```
 
 ---

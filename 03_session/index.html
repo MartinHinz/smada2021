@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistical methods for archaeological data analysis I: Basic methods</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Martin Hinz" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
+    <link rel="stylesheet" href="../libs/default.css" type="text/css" />
+    <link rel="stylesheet" href="../libs/default-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../libs/customize.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: title-slide, center, middle
+
+
+
+#  Statistical methods for archaeological data analysis I: Basic methods
+
+##  03 - Explorative statistics &amp; graphical display
+
+###  Martin Hinz
+
+####  Institut für Archäologische Wissenschaften, Universität Bern
+
+10.03.2021
+
+---
+
+## Loading data for the following steps
+
+### Read the Data on Muensingen Fibulae
+
+
+```r
+muensingen &lt;- read.csv2("muensingen_fib.csv")
+head(muensingen)
+```
+
+```
+##    X Grave Mno FL BH BFA FA CD BRA ED FEL  C   BW  BT FEW Coils Length
+## 1  1   121 348 28 17   1 10 10   2  8   6 20  2.5 2.6 2.2     4     53
+## 2  2   130 545 29 15   3  8  6   3  6  10 17 11.7 3.9 6.4     6     47
+## 3  3   130 549 22 15   3  8  7   3 13   1 17  5.0 4.6 2.5    10     47
+## 4  8   157  85 23 13   3  8  6   2 10   7 15  5.2 2.7 5.4    12     41
+## 5 11   181 212 94 15   7 10 12   5 11  31 50  4.3 4.3  NA     6    128
+## 6 12   193 611 68 18   7  9  9   7  3  50 18  9.3 6.5  NA     4    110
+##   fibula_scheme
+## 1             B
+## 2             B
+## 3             B
+## 4             B
+## 5             C
+## 6             C
+```
+
+---
+
+## Cross tables (contingency tables)
+
+### For summary of data:
+
+
+```r
+my_table &lt;- table(muensingen$fibula_scheme, muensingen$Grave) 
+my_table
+```
+
+```
+##    
+##     6 23 31 44 48 49 61 68 80 91 121 130 157 181 193
+##   A 1  1  1  1  0  0  0  0  0  0   0   0   0   0   0
+##   B 0  0  0  0  1  1  2  1  1  1   1   2   1   0   0
+##   C 0  0  0  0  0  0  0  0  0  0   0   0   0   1   1
+```
+
+```r
+addmargins(my_table)
+```
+
+```
+##      
+##        6 23 31 44 48 49 61 68 80 91 121 130 157 181 193 Sum
+##   A    1  1  1  1  0  0  0  0  0  0   0   0   0   0   0   4
+##   B    0  0  0  0  1  1  2  1  1  1   1   2   1   0   0  11
+##   C    0  0  0  0  0  0  0  0  0  0   0   0   0   1   1   2
+##   Sum  1  1  1  1  1  1  2  1  1  1   1   2   1   1   1  17
+```
+
+---
+
+## Basics about charts
+
+.pull-left[
+### Principles for good charts according to E. Tufte:
+(The Visual Display of Quantitative Information. Cheshire/
+Connecticut: Graphics Press, 1983)
+
+- „Graphical exellence is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space.”
+- Data-ink ratio = „proportion of a graphic’s ink devoted to the non-redundant display of data-information“ (kein chartjunk!)
+- „Graphical excellence is often found in simplicity of design and complexity of data.“
+
+\- after Müller-Scheeßel
+]
+
+.pull-right[
+![](../images/03_session/plot_elements.png)
+]
+
+---
+
+## Plot [1]
+
+.pull-left[
+Basic drawing function of R:
+
+```r
+plot(muensingen$Length)
+```
+
+options:
+- p – points (default)
+- l – solid line
+- b – line with points for the values
+- c – line with gaps for the values
+- o – solid line with points for the values
+- h – vertical lines up to the values
+- s – stepped line from value to value
+- n – empty coordinate system
+]
+
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+]
+
+---
+## Plot [2]
+
+.pull-left[
+
+```r
+plot(muensingen$Length,type="b")
+```
+
+![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+Intelligent system: automatic determination of variable type, drawing of
+the appropriate chart
+.tiny[
+
+```r
+plot(as.factor(muensingen$fibula_scheme))
+```
+
+![](index_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+]
+
+---
+
+## Plot [3]
+
+Enhancing the plot with optional components &amp; Text
+.tiny[
+
+```r
+plot(muensingen$Length, muensingen$FL,
+     xlim=c(0, 140), # limits of the x axis
+     ylim = c(0, 100), # limits of the y axis
+     xlab = "Fibula Length", # label of the y axis
+     ylab = "Foot Length", # label of the x axis
+     main = "Fibula total length vs. Foot Length", # main title
+     sub="example plot" # subtitle
+     )
+```
+
+![](index_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Plot [4]
+
+Plot do a lot for you:
+- Opens a window for display
+- Determines the optimal size of the frame of reference
+- Draws the coordinate system
+- Draws the values
+
+Gives a „handle“ back for further additions to the plot, e.g.:
+- lines – additional lines to an existing plot
+- points – additional points to an existing plot
+- abline – additional special lines to an existing plot
+- text – additional text on choosen position to an existing plot
+
+Additional possiblities for “decorations”: ? par
+
+---
+
+## Plot [5]
+
+Add additional elements:
+Drawing lines
+
+
+```r
+abline(v = mean(muensingen$Length), col = "red")         # draw a red vertical line
+abline(h = mean(muensingen$FL), col = "green")           # draw a green vertical line
+abline(lm(FL~Length, data = muensingen), col = "blue")   # draw a blue diagonal line
+```
+
+![](index_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+---
+
+## Export the graphics
+
+With the GUI:
+
+Export → Save as...
+
+With the commando line:
+As vector file
+
+
+```r
+dev.copy2eps(file="test.eps")
+dev.copy2pdf(file="test.pdf")
+```
+
+
+```r
+savePlot(filename="test.tif", type="tiff")
+```
+
+Possible are “png”, “jpeg”, “tiff”, “bmp”
+SavePlot can save sometimes also vector files (dependent on operation system and installation)
+
+---
+
+## Pie chart [1]
+
+The classical one – but also with R not much better...
+
+Used to display proportions, suitable for nominal data
+
+$$
+a_i = \frac{n_i} {N} * 360°
+$$
+
+
+Disadvantages:
+- Color selection can influence the perception (red is seen larger then gray)
+- Small differences are not easy visible
+
+**totally No-Go: 3d-pies!!!**
+
+---
+
+## Pie chart [2]
+
+I eat pie...
+
+![](../images/03_session/3dpie.png)
+
+.caption[source: http://www.lrz-muenchen.de/~wlm]
+
+*The pieces »viel zu wenig«, »etwas zu wenig« und »gerade richtig« have exactly the same size, the piece »viel zu viel« is a bit smaller.*
+
+---
+
+## Pie chart [3]
+.tiny[
+.pull-left[
+Data are a vector of counts
+
+```r
+table(muensingen$fibula_scheme)
+```
+
+```
+## 
+##  A  B  C 
+##  4 11  2
+```
+
+```r
+pie(table(muensingen$fibula_scheme))
+```
+
+![](index_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+]
+.pull-right[
+### Color palette:
+The standard palette is pastel, if you prefer another:
+
+```r
+pie(table(muensingen$fibula_scheme),
+    col=c("red","green","blue"))
+```
+
+![](index_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+]
+]
+
+---
+
+## Bar plot [1]
+
+Generally the better alternative...
+Bar plots are suitable for display of proportions as well as for absolute data. They can be used for every level of measurement.
+
+.small[
+.pull-left[
+
+
+```r
+barplot(table(muensingen$fibula_scheme))
+```
+
+![](index_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+
+```r
+barplot(muensingen$Length)
+```
+
+![](index_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+]
+
+]
+
+---
+
+## Bar plot [2]
+
+With names:
+
+```r
+par(las=2)                          # turn labels 90°
+barplot(muensingen$Length,          # plot fibulae length
+        names.arg=muensingen$Grave) # with names of the graves
+title("Fibulae length")             # add title
+```
+
+![](index_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+---
+
+## Bar plot [3]
+Horizontal:
+
+```r
+par(las=1)                          # turn labels back again
+barplot(table(muensingen$fibula_scheme), # Plot counts fibulae scheme
+        horiz=T,                         # horizontal
+        cex.names=2)                     # make the labels bigger
+```
+
+![](index_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+---
+
+## Bar plot [4]
+
+Display of counts
+.tiny[
+.pull-left[
+
+```r
+my_new_table &lt;- table(muensingen$fibula_scheme,
+                      muensingen$Coils)
+my_new_table
+```
+
+```
+##    
+##     3 4 6 10 12
+##   A 1 3 0  0  0
+##   B 0 3 6  1  1
+##   C 0 1 1  0  0
+```
+
+
+```r
+barplot(my_new_table)
+```
+
+![](index_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+]
+.pull-right[
+
+```r
+barplot(my_new_table, beside=T, legend.text=T)
+```
+
+![](index_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+]
+]
+
+---
+
+## Bar Plot [5]
+
+Display of proportions
+.tiny[
+.pull-left[
+
+```r
+table.prop&lt;-prop.table(my_new_table,2)
+table.prop
+```
+
+```
+##    
+##             3         4         6        10        12
+##   A 1.0000000 0.4285714 0.0000000 0.0000000 0.0000000
+##   B 0.0000000 0.4285714 0.8571429 1.0000000 1.0000000
+##   C 0.0000000 0.1428571 0.1428571 0.0000000 0.0000000
+```
+
+```r
+barplot(table.prop)
+```
+
+![](index_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+tmp&lt;-barplot(table.prop,
+             legend.text=T,  # add a legend
+             col=rainbow(3)  # make it more colorful
+             )
+
+# add a title
+title("ratio of fibulae schemes \n by number of coils",
+      outer=TRUE,            # outside the plot area
+      line=- 3)              # on line -3 above
+```
+
+![](index_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+]
+]
+
+---
+
+## Bar Plot [6]
+
+Problems with bar plots – and also with many other charts
+
+.pull-left[
+Percent vs. count: percents often distort the relations
+.tiny[
+
+```r
+par(mfrow=c(2,1))
+barplot(my_new_table,beside=T)
+barplot(table.prop,beside=T)
+```
+
+![](index_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+]
+]
+
+.pull-right[
+Scales: the choosen limits of the axes can distort the relations
+.tiny[
+
+```r
+par(mfrow=c(1,2))
+barplot(muensingen$Length[1:2],xpd=F,ylim=c(45,55))
+barplot(muensingen$Length[1:2],xpd=F)
+```
+
+![](index_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+
+```r
+par(mfrow=c(1,1))
+```
+]
+]
+
+---
+
+## Box-plot (Box-and-Whiskers-Plot)
+
+One of the best (my precious)!
+.pull-left[
+Used to display the distribution of values in a data vector of metrical (interval, ratio) scale
+&lt;pre&gt;
+1 2 3 4 5 6 7 8 9
+____|___|___|____
+&lt;/pre&gt;
+
+- thick line: mean
+- Box: the inner both quantiles
+- Whisker: last value &lt; than 1.5 times the distance of the inner quantile
+]
+
+.pull-right[
+
+```r
+boxplot(1:9)
+```
+
+![](index_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Box Plot [2]
+
+.pull-left[
+
+```r
+boxplot(muensingen$Length)
+```
+
+![](index_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+boxplot(muensingen$Length ~
+          muensingen$fibula_scheme)
+```
+
+![](index_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Box Plot [3]
+
+More beautiful:
+.pull-left[
+
+```r
+par(las=1)
+boxplot(Length ~ fibula_scheme,
+        data = muensingen,
+        main = "Length by type",
+        col="grey",
+        xlab="fibulae scheme",
+        ylab= "length"
+        )
+```
+]
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Scatterplot [1]
+.pull-left[
+
+For 2 variables
+
+Used to display a variable in relation to another one. Generally for all scales suitable, but for nominal and ordinal scale other charts are often better.
+
+
+```r
+plot(muensingen$Length, muensingen$FL)
+abline(
+  lm(muensingen$FL~muensingen$Length),
+  col="red")
+```
+]
+
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-35-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Scatterplot [2]
+
+Call additional libraries:
+.tiny[
+.pull-left[
+
+```r
+library(car) # library for regression analysis
+scatterplot(FL ~ Length, data = muensingen)
+```
+
+![](index_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+library(ggplot2) # advanced plots library
+b&lt;- ggplot(muensingen,aes(x=Length,y=FL))
+graph&lt;-b + geom_point()
+show(graph)
+```
+
+![](index_files/figure-html/unnamed-chunk-37-1.png)&lt;!-- --&gt;
+]
+]
+
+---
+
+## Histogramm [1]
+Used for classified display of distributions
+Data reduction vs. precision: Display of count values of classes of values
+
+.pull-left[
+
+```r
+hist(muensingen$Length)
+```
+
+![](index_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+```r
+hist(muensingen$Length, labels = T)
+```
+
+![](index_files/figure-html/unnamed-chunk-39-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+## Histogramm [2]
+
+Custom breaks of classes
+
+.pull-left[
+
+```r
+hist(muensingen$Length,
+     labels = T)
+```
+
+![](index_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+```r
+hist(muensingen$Length,
+     labels = T,
+     breaks = 10)
+```
+
+![](index_files/figure-html/unnamed-chunk-41-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+## Histogramm [3]
+
+.pull-left[
+More beautiful
+
+```r
+hist(muensingen$Length,breaks=10,
+     labels=T,
+     col="red",
+     xlab="Length",
+     main="Histogram Fibulae Length")
+```
+]
+
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-43-1.png)&lt;!-- --&gt;
+]
+
+Disadvantages:
+- Data reduction vs. precision → loss of information
+- Actual display depends strongly on the choosen class width
+
+---
+
+## steam-and-leaf chart
+
+An attempt to overcome the disadvantages of a histogram
+
+Is not very often used. Scales like histograms.
+
+```r
+stem(muensingen$Length)
+```
+
+```
+## 
+##   The decimal point is 2 digit(s) to the right of the |
+## 
+##   0 | 34444
+##   0 | 5555566677
+##   1 | 13
+```
+
+
+Advantage:
+- Information about the distribution inside the classes and the absolute values are (partly) visible.
+
+---
+
+## kernel smoothing (kernel density estimation)
+
+Another attempt to overcome the disadvantages of a histogram
+
+The distribution of the values is considered and a distribution curve is
+calculated. Continuous distributions are better displayed, without artificial
+breaks. Scales like histograms.
+
+.pull-left[
+
+```r
+plot(density(muensingen$Length))
+```
+
+![](index_files/figure-html/unnamed-chunk-45-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+Histogram and kernel-density-plot together
+
+
+```r
+hist(muensingen$Length, prob=T)
+lines(density(muensingen$Length))
+```
+
+![](index_files/figure-html/unnamed-chunk-46-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Style of charts
+
+### Stay honest!
+
+Choice of display has a strong influence on the statement.
+
+![](index_files/figure-html/unnamed-chunk-47-1.png)&lt;!-- --&gt;
+
+---
+
+## Style of charts
+
+### Stay honest!
+Choice of display has a strong influence on the statement.
+
+### Clear layout!
+Minimise Ratio of ink per shown information!
+
+### Use the suitable chart for the data!
+Consider nominal-ordinal-interval-ratio scale
+
+---
+
+## Suggestions for charts
+
+| What to display | suitable | not suitable|
+| - | - | - |
+| Parts of a whole: few | Pie chart, stacked bar plot | |
+| Parts of a whole: few | Stacked bar plot | |
+| Multiple answers (ties) | Horizontal bar plot | Pie chart, stacked bar plot |
+| Comparison of different values of different variables | Grouped bar plot | |
+| Comparison of parts of a whole | Stacked bar plot | |
+| Comparison of developments | Line chart | |
+| Frequency distribution | Histogram, kernel density plot | |
+| Correlation of two variables | scatterplot | | |
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../libs/remark-latest.min.js"></script>
+<script src="../libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"fig_caption": true,
+"ratio": "16:10"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
