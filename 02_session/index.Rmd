@@ -246,6 +246,7 @@ mtcars
 ---
 ## Download data for further tasks
 
+* [height.RData](height.RData)
 * [kursmatrix.txt](kursmatrix.txt)
 * [kursdata.txt](kursdata.txt)
 * [kursdata.csv](kursdata.csv)
