@@ -244,6 +244,13 @@ mtcars
 
 
 ---
+## Download data for further tasks
+
+* [kursmatrix.txt](kursmatrix.txt)
+* [kursdata.txt](kursdata.txt)
+* [kursdata.csv](kursdata.csv)
+
+---
 ## Data import through reading of files
 
 remember:
