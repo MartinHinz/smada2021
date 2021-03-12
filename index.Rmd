@@ -58,8 +58,9 @@ cat(rmarkdown::metadata$date)
 - 11\. Session: Cluster Analysis | 12.05.2021
 - 12\. Session: Correspondence Analysis | 26.05.2021
 - Test | 02.06.2021
-
 ]
+
+[book](_book/preface.html)
 
 .footnote[
 .small[
