@@ -1,1 +1,2 @@
 rmd_files: ["book.Rmd","02_session/02-chapter.Rmd"]
+output_dir: "book"

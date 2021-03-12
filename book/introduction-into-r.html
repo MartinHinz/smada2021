@@ -337,30 +337,30 @@ Solution
 <p>As with vectors, each element in a matrix represents a scalar value. One of the specific features of the data type matrix in R is, that all values have to be of the same kind. That means with in one and the same metrics, there can only be numbers, characters, or true and false values at once. We can’t mix these types of information in a matrix, which is the difference from the next data structure that we will learn.</p>
 <p>There are also inbuilt matrices in R, for example are matrix holding the transfer rates between different European currencies. Of course these are restoring values and not updated online all the time</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="introduction-into-r.html#cb39-1" aria-hidden="true" tabindex="-1"></a>euro.cross</span></code></pre></div>
-<pre><code>##              ATS         BEF         DEM         ESP         FIM         FRF
-## ATS  1.000000000  2.93161486 0.142135709  12.0917422 0.432093050 0.476702543
-## BEF  0.341108927  1.00000000 0.048483759   4.1246012 0.147390797 0.162607493
-## DEM  7.035529673 20.62546336 1.000000000  85.0718109 3.040003477 3.353854885
-## ESP  0.082701069  0.24244768 0.011754775   1.0000000 0.035734557 0.039423810
-## FIM  2.314316324  6.78468413 0.328946992  27.9841163 1.000000000 1.103240477
-## FRF  2.097744212  6.14977811 0.298164361  25.3653822 0.906420695 1.000000000
-## IEP 17.471976881 51.22110711 2.483391826 211.2666399 7.549519785 8.328935807
-## ITL  0.007106602  0.02083382 0.001010102   0.0859312 0.003070713 0.003387735
-## LUF  0.341108927  1.00000000 0.048483759   4.1246012 0.147390797 0.162607493
-## NLG  6.244151907 18.30544854 0.887516960  75.5026750 2.698054644 2.976603092
-## PTE  0.068636087  0.20121457 0.009755639   0.8299299 0.029657176 0.032718997
-##              IEP         ITL         LUF         NLG         PTE
-## ATS 0.0572345080  140.714229  2.93161486 0.160149851  14.5695951
-## BEF 0.0195232016   47.998880  1.00000000 0.054628544   4.9698190
-## DEM 0.4026750791  989.999131 20.62546336 1.126739032 102.5048189
-## ESP 0.0047333550   11.637217  0.24244768 0.013244564   1.2049211
-## FIM 0.1324587561  325.657236  6.78468413 0.370637415  33.7186519
-## FRF 0.1200633578  295.182459  6.14977811 0.335953424  30.5632839
-## IEP 1.0000000000 2458.555749 51.22110711 2.798134501 254.5596294
-## ITL 0.0004067429    1.000000  0.02083382 0.001138121   0.1035403
-## LUF 0.0195232016   47.998880  1.00000000 0.054628544   4.9698190
-## NLG 0.3573809621  878.641019 18.30544854 1.000000000  90.9747653
-## PTE 0.0039283527    9.658074  0.20121457 0.010992059   1.0000000</code></pre>
+<pre><code>##              ATS         BEF         DEM         ESP         FIM         FRF          IEP         ITL         LUF
+## ATS  1.000000000  2.93161486 0.142135709  12.0917422 0.432093050 0.476702543 0.0572345080  140.714229  2.93161486
+## BEF  0.341108927  1.00000000 0.048483759   4.1246012 0.147390797 0.162607493 0.0195232016   47.998880  1.00000000
+## DEM  7.035529673 20.62546336 1.000000000  85.0718109 3.040003477 3.353854885 0.4026750791  989.999131 20.62546336
+## ESP  0.082701069  0.24244768 0.011754775   1.0000000 0.035734557 0.039423810 0.0047333550   11.637217  0.24244768
+## FIM  2.314316324  6.78468413 0.328946992  27.9841163 1.000000000 1.103240477 0.1324587561  325.657236  6.78468413
+## FRF  2.097744212  6.14977811 0.298164361  25.3653822 0.906420695 1.000000000 0.1200633578  295.182459  6.14977811
+## IEP 17.471976881 51.22110711 2.483391826 211.2666399 7.549519785 8.328935807 1.0000000000 2458.555749 51.22110711
+## ITL  0.007106602  0.02083382 0.001010102   0.0859312 0.003070713 0.003387735 0.0004067429    1.000000  0.02083382
+## LUF  0.341108927  1.00000000 0.048483759   4.1246012 0.147390797 0.162607493 0.0195232016   47.998880  1.00000000
+## NLG  6.244151907 18.30544854 0.887516960  75.5026750 2.698054644 2.976603092 0.3573809621  878.641019 18.30544854
+## PTE  0.068636087  0.20121457 0.009755639   0.8299299 0.029657176 0.032718997 0.0039283527    9.658074  0.20121457
+##             NLG         PTE
+## ATS 0.160149851  14.5695951
+## BEF 0.054628544   4.9698190
+## DEM 1.126739032 102.5048189
+## ESP 0.013244564   1.2049211
+## FIM 0.370637415  33.7186519
+## FRF 0.335953424  30.5632839
+## IEP 2.798134501 254.5596294
+## ITL 0.001138121   0.1035403
+## LUF 0.054628544   4.9698190
+## NLG 1.000000000  90.9747653
+## PTE 0.010992059   1.0000000</code></pre>
 <p>You can see that we have rows and columns here and both the rows and columns have names. In this example row and column names are the same because we have a special kind of matrix. But in general the names of the rows and columns can differ from each other. Matrices are specific data types with which you can conduct matrix algebra, which is a specific branch of mathematics that is also used in statistics. We will not deal with this very much. That’s why we most of the time will probably work more with the next data type.</p>
 </div>
 <div id="data-frame" class="section level3" number="2.7.4">
@@ -435,8 +435,8 @@ Solution
 <h2><span class="header-section-number">2.8</span> Data import through reading of files</h2>
 <p>Data can be imported into R from different formats and sources. The most straightforward version is to directly scan a text file and read it into an R variable. For directly reading in a file we can use the function <code>scan()</code>. The file <code>kursmatrix.txt</code> is a simple text file in which ages and bodies sizes of individuals are listed consecutively. Scan reads in each item and translate it to a position in a vector.</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="introduction-into-r.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scan</span>(<span class="st">&quot;kursmatrix.txt&quot;</span>)</span></code></pre></div>
-<pre><code>##  [1]  39  34  23  38  23  21  23  31  25  31  24  23  23  39  21 181 170 185 163
-## [20] 175 163 162 172 172 180 187 158 184 156 168</code></pre>
+<pre><code>##  [1]  39  34  23  38  23  21  23  31  25  31  24  23  23  39  21 181 170 185 163 175 163 162 172 172 180 187 158 184 156
+## [30] 168</code></pre>
 <p>If we, for example, want to turn this factor into a two-dimensional structure, like a matrix, we can use the command matrix to define such a structure and then use as an input the scanned content of the file. For the command <code>matrix()</code>, One of its parameters is the content that should be turned into a matrix, the second parameter is the number of columns that this matrix should have in end.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="introduction-into-r.html#cb48-1" aria-hidden="true" tabindex="-1"></a>kursmatrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">scan</span>(<span class="st">&quot;kursmatrix.txt&quot;</span>),<span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p>The result is a two-dimensional structure, with two columns, in which body height and age are listed in different columns.</p>
@@ -510,8 +510,7 @@ Solution
 <pre><code>## [1] &quot;burial&quot;     &quot;depot&quot;      &quot;settlement&quot;</code></pre>
 <p>Now we can combine these two factors into one.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="introduction-into-r.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(places, categories)</span></code></pre></div>
-<pre><code>## [1] &quot;Leubingen&quot;  &quot;Melz&quot;       &quot;Bruszczewo&quot; &quot;burial&quot;     &quot;depot&quot;     
-## [6] &quot;settlement&quot;</code></pre>
+<pre><code>## [1] &quot;Leubingen&quot;  &quot;Melz&quot;       &quot;Bruszczewo&quot; &quot;burial&quot;     &quot;depot&quot;      &quot;settlement&quot;</code></pre>
 </div>
 <div id="named-vectors" class="section level2" number="2.10">
 <h2><span class="header-section-number">2.10</span> Named vectors</h2>
@@ -529,10 +528,10 @@ Solution
 <p>For this we explore a way of loading data into R. This time we use the need to data storage option of R. This format is called ‘RData’, and different from other loading or saving, we do not have to specify a variable name. In this case the variable is stored with its content, and if we load this dataset again, the variable is restored with the same name.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="introduction-into-r.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;height.RData&quot;</span>)</span>
 <span id="cb63-2"><a href="introduction-into-r.html#cb63-2" aria-hidden="true" tabindex="-1"></a>height</span></code></pre></div>
-<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
-##      181      170      185      163      175      163      162      172 
-##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
-##      172      180      187      158      184      156      168</code></pre>
+<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah    Clara    Alain   Adrian   Marlen  Michael 
+##      181      170      185      163      175      163      162      172      172      180      187      158      184 
+##   Helena  Nephele 
+##      156      168</code></pre>
 <p>Now we can use this vector that is assigned to the variable name height, to demonstrate some functions that make calculations over all the values that are stored in this vector. The first step probably comes to mind, is to sum up all the values. This can be done in R own using the function <code>sum()</code>.</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introduction-into-r.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum:</span></span>
 <span id="cb65-2"><a href="introduction-into-r.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(height)</span></code></pre></div>
@@ -552,10 +551,10 @@ Solution
 <p>Other possible functions might for example be related to the order and the extremes of the values within our dataset. We can sort the dataset according to the values, using the function <code>sort()</code>. In case of numerical values, the items will be sorted according to the numerical order. In case of characters, the items will be sorted according to the character. Our height data on numerical, therefore we will get them sorted from the smallest to the largest person.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introduction-into-r.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sort:</span></span>
 <span id="cb73-2"><a href="introduction-into-r.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(height)</span></code></pre></div>
-<pre><code>##   Helena   Marlen   Ilaria   Silvia     Anna  Nephele  Jannick    Sarah 
-##      156      158      162      163      163      168      170      172 
-##    Clara     Till    Alain Matthias  Michael  Nicolas   Adrian 
-##      172      175      180      181      184      185      187</code></pre>
+<pre><code>##   Helena   Marlen   Ilaria   Silvia     Anna  Nephele  Jannick    Sarah    Clara     Till    Alain Matthias  Michael 
+##      156      158      162      163      163      168      170      172      172      175      180      181      184 
+##  Nicolas   Adrian 
+##      185      187</code></pre>
 <p>Immediately we can identify the smallest and the largest person. But we can also explicitly get the values using the function <code>min()</code> for minimum, and <code>max()</code> for maximum. The function <code>range()</code> gives both values at the same time.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="introduction-into-r.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># minimum:</span></span>
 <span id="cb75-2"><a href="introduction-into-r.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(height)</span></code></pre></div>
@@ -573,17 +572,17 @@ Solution
 <p>Not only can we use functions on more complex variables like vectors, we also can do calculations. If, for example, we combine a scalar value With a mathematical expression with a vector, the calculation is done at every position of this vector. For example, if we want our height vector in metre, we have to divided by 100. We can directly apply this calculation to the whole variable, and the results will change every individual position in that vector. That means, we divide the variable by 100, and all the items in the variable are then divided by 100, causing every value to be in meter instead of centimeter.</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="introduction-into-r.html#cb81-1" aria-hidden="true" tabindex="-1"></a>height.in.m <span class="ot">&lt;-</span> height<span class="sc">/</span><span class="dv">100</span></span>
 <span id="cb81-2"><a href="introduction-into-r.html#cb81-2" aria-hidden="true" tabindex="-1"></a>height.in.m</span></code></pre></div>
-<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
-##     1.81     1.70     1.85     1.63     1.75     1.63     1.62     1.72 
-##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
-##     1.72     1.80     1.87     1.58     1.84     1.56     1.68</code></pre>
+<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah    Clara    Alain   Adrian   Marlen  Michael 
+##     1.81     1.70     1.85     1.63     1.75     1.63     1.62     1.72     1.72     1.80     1.87     1.58     1.84 
+##   Helena  Nephele 
+##     1.56     1.68</code></pre>
 <p>The case is different if we combine to vectors with a mathematical expression. In this case, the first value of the first vector is combined with the first value of the second vector.The second value of the first vector is then combined with the second value of the second vector, and so forth.</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="introduction-into-r.html#cb83-1" aria-hidden="true" tabindex="-1"></a>test<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>)</span>
 <span id="cb83-2"><a href="introduction-into-r.html#cb83-2" aria-hidden="true" tabindex="-1"></a>height.in.m <span class="sc">+</span> test</span></code></pre></div>
-<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
-##     2.81     3.70     4.85     5.63     6.75     7.63     8.62     9.72 
-##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
-##    10.72    11.80    12.87    13.58    14.84    15.56    16.68</code></pre>
+<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah    Clara    Alain   Adrian   Marlen  Michael 
+##     2.81     3.70     4.85     5.63     6.75     7.63     8.62     9.72    10.72    11.80    12.87    13.58    14.84 
+##   Helena  Nephele 
+##    15.56    16.68</code></pre>
 <p>In case, that we have different number of positions in the individual factors vectors, the short one is “recycled”. That means, it starts again from the beginning. You can try that out yourself, if you take the example above and remove some items from the test vector.</p>
 
 <div class="exercise">
@@ -676,8 +675,7 @@ Solution
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="introduction-into-r.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 1 2 3 1 2 3 1 2 3</code></pre>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="introduction-into-r.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Anton&quot;</span>,<span class="st">&quot;Berta&quot;</span>,<span class="st">&quot;Claudius&quot;</span>),<span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Anton&quot;    &quot;Berta&quot;    &quot;Claudius&quot; &quot;Anton&quot;    &quot;Berta&quot;    &quot;Claudius&quot; &quot;Anton&quot;   
-## [8] &quot;Berta&quot;    &quot;Claudius&quot;</code></pre>
+<pre><code>## [1] &quot;Anton&quot;    &quot;Berta&quot;    &quot;Claudius&quot; &quot;Anton&quot;    &quot;Berta&quot;    &quot;Claudius&quot; &quot;Anton&quot;    &quot;Berta&quot;    &quot;Claudius&quot;</code></pre>
 </div>
 <div id="data-access" class="section level2" number="2.14">
 <h2><span class="header-section-number">2.14</span> Data access</h2>
@@ -694,33 +692,31 @@ Solution
 <pre><code>## Matthias  Jannick  Nicolas 
 ##      181      170      185</code></pre>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="introduction-into-r.html#cb109-1" aria-hidden="true" tabindex="-1"></a>height[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)]</span></code></pre></div>
-<pre><code>##  Silvia    Till    Anna  Ilaria   Sarah   Clara   Alain  Adrian  Marlen Michael 
-##     163     175     163     162     172     172     180     187     158     184 
-##  Helena Nephele 
-##     156     168</code></pre>
+<pre><code>##  Silvia    Till    Anna  Ilaria   Sarah   Clara   Alain  Adrian  Marlen Michael  Helena Nephele 
+##     163     175     163     162     172     172     180     187     158     184     156     168</code></pre>
 <p>If we have a named vector, like for example with our heigth data, these positions have also and unique identifier. In that case, we can also use the unique identifier, to access a specific position in our data storage vector.</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="introduction-into-r.html#cb111-1" aria-hidden="true" tabindex="-1"></a>height[<span class="st">&quot;Clara&quot;</span>]</span></code></pre></div>
 <pre><code>## Clara 
 ##   172</code></pre>
 <p>This data access is two ways: not only can we get the values at a specific position, but we can also change the values, given that we indicate a specific position in the vector. In the following example at first the content of the vector height is shown, then we change the entry in the first value, and you can inspect the effect.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="introduction-into-r.html#cb113-1" aria-hidden="true" tabindex="-1"></a>height</span></code></pre></div>
-<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
-##      181      170      185      163      175      163      162      172 
-##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
-##      172      180      187      158      184      156      168</code></pre>
+<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah    Clara    Alain   Adrian   Marlen  Michael 
+##      181      170      185      163      175      163      162      172      172      180      187      158      184 
+##   Helena  Nephele 
+##      156      168</code></pre>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="introduction-into-r.html#cb115-1" aria-hidden="true" tabindex="-1"></a>height[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">168</span></span>
 <span id="cb115-2"><a href="introduction-into-r.html#cb115-2" aria-hidden="true" tabindex="-1"></a>height</span></code></pre></div>
-<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
-##      168      170      185      163      175      163      162      172 
-##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
-##      172      180      187      158      184      156      168</code></pre>
+<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah    Clara    Alain   Adrian   Marlen  Michael 
+##      168      170      185      163      175      163      162      172      172      180      187      158      184 
+##   Helena  Nephele 
+##      156      168</code></pre>
 <p>Of course the same is true for the access by name.</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="introduction-into-r.html#cb117-1" aria-hidden="true" tabindex="-1"></a>height[<span class="st">&quot;Till&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">181</span></span>
 <span id="cb117-2"><a href="introduction-into-r.html#cb117-2" aria-hidden="true" tabindex="-1"></a>height</span></code></pre></div>
-<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
-##      168      170      185      163      181      163      162      172 
-##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
-##      172      180      187      158      184      156      168</code></pre>
+<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah    Clara    Alain   Adrian   Marlen  Michael 
+##      168      170      185      163      181      163      162      172      172      180      187      158      184 
+##   Helena  Nephele 
+##      156      168</code></pre>
 </div>
 </div>
 <div id="logical-values" class="section level2" number="2.15">
@@ -729,10 +725,10 @@ Solution
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="introduction-into-r.html#cb119-1" aria-hidden="true" tabindex="-1"></a>pi<span class="sc">&gt;</span><span class="dv">4</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="introduction-into-r.html#cb121-1" aria-hidden="true" tabindex="-1"></a>height <span class="sc">&gt;</span> <span class="dv">175</span></span></code></pre></div>
-<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
-##    FALSE    FALSE     TRUE    FALSE     TRUE    FALSE    FALSE    FALSE 
-##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
-##    FALSE     TRUE     TRUE    FALSE     TRUE    FALSE    FALSE</code></pre>
+<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah    Clara    Alain   Adrian   Marlen  Michael 
+##    FALSE    FALSE     TRUE    FALSE     TRUE    FALSE    FALSE    FALSE    FALSE     TRUE     TRUE    FALSE     TRUE 
+##   Helena  Nephele 
+##    FALSE    FALSE</code></pre>
 <p>but you can also enter them yourself. Logical values are entered as ‘TRUE’ or ‘FALSE’. But there is also a shortcut, ‘T’ or ‘F’ would be enough.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="introduction-into-r.html#cb123-1" aria-hidden="true" tabindex="-1"></a>logic_test <span class="ot">&lt;-</span> <span class="fu">c</span>(T,F)</span>
 <span id="cb123-2"><a href="introduction-into-r.html#cb123-2" aria-hidden="true" tabindex="-1"></a>logic_test <span class="sc">==</span> T</span></code></pre></div>
@@ -841,10 +837,10 @@ Solution
 <p>We can also access individual values within a matrix. This is done in the same way like with vectors. So either, using the position in the form of a number, or by name. Since now we have a more dimensional data object, we also have more dimensions to specify, if we would like to access a specific value. In the case of a two-dimensional matrix, for example, we have to give two positions to identify a specific value. These positions are separated by a comma. General, rows are the first dimension, while columns are the second dimension in our. So rows first, Callums second is a rule, that is applicable for a lot of other situations.</p>
 <p>If we specify only one of the positions, we refer to either the whole column, or the whole row. The result is then again a vector. Also on this selection, like on every other vector, we can apply mathematical operations.</p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="introduction-into-r.html#cb149-1" aria-hidden="true" tabindex="-1"></a>kursmatrix[, <span class="dv">1</span>] <span class="sc">/</span> <span class="dv">100</span></span></code></pre></div>
-<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah 
-##     0.39     0.34     0.23     0.38     0.23     0.21     0.23     0.31 
-##    Clara    Alain   Adrian   Marlen  Michael   Helena  Nephele 
-##     0.25     0.31     0.24     0.23     0.23     0.39     0.21</code></pre>
+<pre><code>## Matthias  Jannick  Nicolas   Silvia     Till     Anna   Ilaria    Sarah    Clara    Alain   Adrian   Marlen  Michael 
+##     0.39     0.34     0.23     0.38     0.23     0.21     0.23     0.31     0.25     0.31     0.24     0.23     0.23 
+##   Helena  Nephele 
+##     0.39     0.21</code></pre>
 <p>Also in this case, if we combine a matrix with a vector, the same logic is to like if we combine to vectors. So if we combine a mattress and a vector, Every value of the vector is combined with every value of the Matrixx starting with the first vector within the matrix. If we combine a matrix and the matrix, then the first value in the first column of the first matrix is combined with the first value of the first column in the second matrix, and so on, equivalent to the way in which vectors are combined.</p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="introduction-into-r.html#cb151-1" aria-hidden="true" tabindex="-1"></a>kursmatrix <span class="sc">/</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">15</span>))</span></code></pre></div>
 <pre><code>##                age height
@@ -942,6 +938,7 @@ Solution
 <p>You very likely will have problems with Microsoft Excel. Over spreadsheet software might be smarter. Nevertheless, if you are on the continent, you would like to save your data in the way like below.</p>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="introduction-into-r.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(kursdata,<span class="st">&quot;kursdata.csv&quot;</span>)</span></code></pre></div>
 <p>Of course, R also offer us packages, that directly can save files in .XLSX format. The downside of these packages are, that most of the time they require additional dependencies or programming languages, for example perl or python. And actually using the CSV format this is not necessary at all. So it is best that you develop the habit to use CSV as you exchange format between different software.</p>
+<p>With this, now I hope, that we have everything at hand, so that we can start using R as actual software. In the next chapter we will start producing that part of statistics, that most people think of when statistics are mentioned: graphs, diagrams, and tables.</p>
 
 </div>
 </div>
