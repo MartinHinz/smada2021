@@ -1,0 +1,106 @@
+.caption {
+  float: right;
+  font-size: .8rem;
+  font-style: italic;
+}
+
+.green { color: green; }
+.red { color: red; }
+.smaller { font-size: 90% }
+.small { font-size: 75% }
+.tiny { font-size: 60% }
+
+.smaller .remark-code, .small .remark-code, .tiny .remark-code {
+  font-size: inherit;
+}
+
+
+.remark-slide-content{
+   background-image:url("../images/Unibe_Logo_16pt_RGB.png");  
+   background-size: 10%;
+   background-position: top right;
+}
+
+.inverse {
+  background: #000 url("../images/Unibe_Logo_16pt_weiss.png") top right no-repeat; 
+  background-size: 10%;
+  color: #fff;
+  text-shadow: none;
+}
+
+.inverse thead {
+  background-color: #777; 
+}
+
+.inverse tr:nth-child(even) {
+  background-color: #555; 
+}
+body{
+  font-family: 'Arial'
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Arial';
+    font-weight: normal;
+}
+
+.remark-slide-content h2 {
+  color: #E6002E;
+  font-size: 28pt;
+}
+
+.remark-slide-content h3 {
+  color: #8b8b8b;
+  font-size: 20pt;
+}
+
+.remark-slide-number {
+    font-size: 12px;
+    right: auto;
+}
+
+a, a > code {
+  color: #0074c4;
+}
+
+.title-slide {
+  background-color: #fff;
+  background-image:url("../images/Unibe_Logo_16pt_RGB.png");  
+  background-size: 15%;
+  background-position: top right;
+}
+
+.title-slide h1, .title-slide h2, .title-slide h3 {
+  color: #E6002E;
+}
+
+.title-slide h2, .title-slide h3 {
+  color: #000;
+}
+
+.title-slide .remark-slide-number {
+    display: none;
+}
+
+.footnote{
+  bottom: 2em;
+}
+
+/* Three-column layout */
+.column3 {
+  width: 33%;
+  height: 92%;
+  float: left;
+}
+
+.highlight{
+ color: #E6002E; 
+}
+
+.highlight-alt {
+  color: #057996;  
+}
+
+.left-column h2{
+  color: inherit;
+}
