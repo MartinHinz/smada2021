@@ -32,14 +32,8 @@ cat('## ', rmarkdown::metadata$title)
 ```
 .small[
 ```{r, echo = FALSE, results="asis"}
-cat('#### ', rmarkdown::metadata$author)
-```
-
-```{r, echo = FALSE, results="asis"}
-cat(rmarkdown::metadata$institute)
-```
-
-```{r, echo = FALSE, results="asis"}
+cat(rmarkdown::metadata$author, "| ")
+cat(rmarkdown::metadata$institute, "| ")
 cat(rmarkdown::metadata$date)
 ```
 
