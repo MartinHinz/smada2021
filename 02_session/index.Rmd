@@ -277,7 +277,7 @@ kursdata <- read.csv2("kursdata.csv")
  
 Read with rownames
 ```{r}
-kursdaten <- read.csv2("kursdaten.csv",row.names = 1)
+kursdaten <- read.csv2("kursdata.csv",row.names = 1)
 ```
 
 
