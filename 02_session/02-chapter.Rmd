@@ -1,4 +1,4 @@
-```{r, setup, include=FALSE}
+```{r include=FALSE}
 knitr::opts_knit$set(root.dir = '02_session/')
 xfun::pkg_load2(c("htmltools", "mime"))
 remove(list = ls())

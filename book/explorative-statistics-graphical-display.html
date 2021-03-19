@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Explorative statistics &amp; graphical display | Statistical methods for archaeological data analysis</title>
+  <meta name="description" content="3 Explorative statistics &amp; graphical display | Statistical methods for archaeological data analysis" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Explorative statistics &amp; graphical display | Statistical methods for archaeological data analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Explorative statistics &amp; graphical display | Statistical methods for archaeological data analysis" />
+  
+  
+  
+
+<meta name="author" content="Martin Hinz" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-into-r.html"/>
+
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="introduction-into-r.html"><a href="introduction-into-r.html"><i class="fa fa-check"></i><b>2</b> Introduction into R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#start-r-studio"><i class="fa fa-check"></i><b>2.1</b> Start R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-r"><i class="fa fa-check"></i><b>2.2</b> Using R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#start-of-the-system"><i class="fa fa-check"></i><b>2.2.1</b> Start of the system:</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-into-r.html"><a href="introduction-into-r.html#simplest-way-to-use-r-as-calculator"><i class="fa fa-check"></i><b>2.2.2</b> Simplest way to use: R as calculator</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-into-r.html"><a href="introduction-into-r.html#multiple-commands-are-separated-by"><i class="fa fa-check"></i><b>2.2.3</b> Multiple commands are separated by ;</a></li>
+<li class="chapter" data-level="2.2.4" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-functions"><i class="fa fa-check"></i><b>2.2.4</b> Using functions:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-into-r.html"><a href="introduction-into-r.html#getting-help"><i class="fa fa-check"></i><b>2.3</b> Getting help</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-into-r.html"><a href="introduction-into-r.html#assignment-of-data-to-variables"><i class="fa fa-check"></i><b>2.4</b> Assignment of data to variables</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#arrow-or-equal-sign"><i class="fa fa-check"></i><b>2.4.1</b> Arrow or equal sign?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-into-r.html"><a href="introduction-into-r.html#working-with-variables"><i class="fa fa-check"></i><b>2.5</b> Working with variables</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-variables"><i class="fa fa-check"></i><b>2.6</b> Using variables</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-types-in-r-variables"><i class="fa fa-check"></i><b>2.7</b> Data types in R Variables</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#scalar"><i class="fa fa-check"></i><b>2.7.1</b> Scalar</a></li>
+<li class="chapter" data-level="2.7.2" data-path="introduction-into-r.html"><a href="introduction-into-r.html#vector"><i class="fa fa-check"></i><b>2.7.2</b> Vector</a></li>
+<li class="chapter" data-level="2.7.3" data-path="introduction-into-r.html"><a href="introduction-into-r.html#matrix"><i class="fa fa-check"></i><b>2.7.3</b> Matrix:</a></li>
+<li class="chapter" data-level="2.7.4" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-frame"><i class="fa fa-check"></i><b>2.7.4</b> Data frame:</a></li>
+<li class="chapter" data-level="2.7.5" data-path="introduction-into-r.html"><a href="introduction-into-r.html#the-working-directory"><i class="fa fa-check"></i><b>2.7.5</b> The working directory</a></li>
+<li class="chapter" data-level="2.7.6" data-path="introduction-into-r.html"><a href="introduction-into-r.html#download-data-for-further-tasks-into-your-working-directory"><i class="fa fa-check"></i><b>2.7.6</b> Download data for further tasks into your working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-import-through-reading-of-files"><i class="fa fa-check"></i><b>2.8</b> Data import through reading of files</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-c-for-data-entry"><i class="fa fa-check"></i><b>2.9</b> Using c() for data entry</a></li>
+<li class="chapter" data-level="2.10" data-path="introduction-into-r.html"><a href="introduction-into-r.html#named-vectors"><i class="fa fa-check"></i><b>2.10</b> Named vectors</a></li>
+<li class="chapter" data-level="2.11" data-path="introduction-into-r.html"><a href="introduction-into-r.html#applying-functions-to-more-complex-variables"><i class="fa fa-check"></i><b>2.11</b> Applying functions to more complex variables</a></li>
+<li class="chapter" data-level="2.12" data-path="introduction-into-r.html"><a href="introduction-into-r.html#calculations-with-vectors"><i class="fa fa-check"></i><b>2.12</b> Calculations with vectors</a></li>
+<li class="chapter" data-level="2.13" data-path="introduction-into-r.html"><a href="introduction-into-r.html#sequences-and-repeated-data"><i class="fa fa-check"></i><b>2.13</b> Sequences and repeated data</a></li>
+<li class="chapter" data-level="2.14" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-access"><i class="fa fa-check"></i><b>2.14</b> Data access</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#by-indexposition"><i class="fa fa-check"></i><b>2.14.1</b> by index/position</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="introduction-into-r.html"><a href="introduction-into-r.html#logical-values"><i class="fa fa-check"></i><b>2.15</b> Logical values</a></li>
+<li class="chapter" data-level="2.16" data-path="introduction-into-r.html"><a href="introduction-into-r.html#factors"><i class="fa fa-check"></i><b>2.16</b> Factors</a></li>
+<li class="chapter" data-level="2.17" data-path="introduction-into-r.html"><a href="introduction-into-r.html#missing-na-values"><i class="fa fa-check"></i><b>2.17</b> missing (NA) values</a></li>
+<li class="chapter" data-level="2.18" data-path="introduction-into-r.html"><a href="introduction-into-r.html#matrices"><i class="fa fa-check"></i><b>2.18</b> Matrices</a></li>
+<li class="chapter" data-level="2.19" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-frames"><i class="fa fa-check"></i><b>2.19</b> Data frames</a></li>
+<li class="chapter" data-level="2.20" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-export-through-save"><i class="fa fa-check"></i><b>2.20</b> Data export through save</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html"><i class="fa fa-check"></i><b>3</b> Explorative statistics &amp; graphical display</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#dataset-used-for-this-chapter"><i class="fa fa-check"></i><b>3.1</b> Dataset used for this chapter</a></li>
+<li class="chapter" data-level="3.2" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#cross-tables-contingency-tables"><i class="fa fa-check"></i><b>3.2</b> Cross tables (contingency tables)</a></li>
+<li class="chapter" data-level="3.3" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#basics-about-charts"><i class="fa fa-check"></i><b>3.3</b> Basics about charts</a></li>
+<li class="chapter" data-level="3.4" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#the-command-plot"><i class="fa fa-check"></i><b>3.4</b> The command <code>plot()</code></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#basic-plotting"><i class="fa fa-check"></i><b>3.4.1</b> Basic plotting</a></li>
+<li class="chapter" data-level="3.4.2" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#enhancing-the-plot-with-optional-components-text"><i class="fa fa-check"></i><b>3.4.2</b> Enhancing the plot with optional components &amp; Text</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#export-the-graphics"><i class="fa fa-check"></i><b>3.5</b> Export the graphics</a></li>
+<li class="chapter" data-level="3.6" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#pie-chart"><i class="fa fa-check"></i><b>3.6</b> Pie chart</a></li>
+<li class="chapter" data-level="3.7" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#bar-plot"><i class="fa fa-check"></i><b>3.7</b> Bar plot</a></li>
+<li class="chapter" data-level="3.8" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#box-plot-box-and-whiskers-plot"><i class="fa fa-check"></i><b>3.8</b> Box-plot (Box-and-Whiskers-Plot)</a></li>
+<li class="chapter" data-level="3.9" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#scatterplot"><i class="fa fa-check"></i><b>3.9</b> Scatterplot</a></li>
+<li class="chapter" data-level="3.10" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#histogramm"><i class="fa fa-check"></i><b>3.10</b> Histogramm</a></li>
+<li class="chapter" data-level="3.11" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#stem-and-leaf-chart"><i class="fa fa-check"></i><b>3.11</b> stem-and-leaf chart</a></li>
+<li class="chapter" data-level="3.12" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#kernel-smoothing-kernel-density-estimation"><i class="fa fa-check"></i><b>3.12</b> kernel smoothing (kernel density estimation)</a></li>
+<li class="chapter" data-level="3.13" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#guidelines"><i class="fa fa-check"></i><b>3.13</b> Guidelines</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#stay-honest"><i class="fa fa-check"></i><b>3.13.1</b> Stay honest!</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical methods for archaeological data analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="explorative-statistics-graphical-display" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Explorative statistics &amp; graphical display</h1>
+<p>(The videos for this chapter are <a href="http://vitutr.archaeological.science/categories/Statistical+methods+for+archaeological+data+analysis+I+2019/index.html">here</a>, Number 10-16)</p>
+<p>Like I already described in the introduction, statistics can be divided into different subfields. On the one hand there is the statistical inference, dealing with the testing of hypothesis on data. On the other hand there are fields like explorative statistics, in which the detection of pattern in the data is in the foreground. Decides that there also exists the field of descriptive statistics, in which parameters or distributions of data are the main object of investigation.</p>
+<p>In this chapter we will deal with explorative statistics and descriptive statistics kind of at the same time, because we will learn how to visualise data with the help of R. Especially graphical visualisation is in between descriptive and explorative statistics.</p>
+<div id="dataset-used-for-this-chapter" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Dataset used for this chapter</h2>
+<p>The dataset, that we are using for this chapter, comes from the burial-ground of Münsingen/Rain. Maybe in the later version of this book I will give more details to the state of said. For the time being every Swiss archaeologist should have a slight idea what is burial-ground consist of. You can download the data using the following link: <a href="data:text/csv;base64,O0dyYXZlO01ubztGTDtCSDtCRkE7RkE7Q0Q7QlJBO0VEO0ZFTDtDO0JXO0JUO0ZFVztDb2lscztMZW5ndGg7ZmlidWxhX3NjaGVtZQoxOzEyMTszNDg7Mjg7MTc7MTsxMDsxMDsyOzg7NjsyMDsyLDU7Miw2OzIsMjs0OzUzO0IKMjsxMzA7NTQ1OzI5OzE1OzM7ODs2OzM7NjsxMDsxNzsxMSw3OzMsOTs2LDQ7Njs0NztCCjM7MTMwOzU0OTsyMjsxNTszOzg7NzszOzEzOzE7MTc7NTs0LDY7Miw1OzEwOzQ3O0IKODsxNTc7ODU7MjM7MTM7Mzs4OzY7MjsxMDs3OzE1OzUsMjsyLDc7NSw0OzEyOzQxO0IKMTE7MTgxOzIxMjs5NDsxNTs3OzEwOzEyOzU7MTE7MzE7NTA7NCwzOzQsMztOQTs2OzEyODtDCjEyOzE5Mzs2MTE7Njg7MTg7Nzs5Ozk7NzszOzUwOzE4OzksMzs2LDU7TkE7NDsxMTA7QwoxMzsyMzs2NDM7MTU7MTg7MTsxMDsxMDsxOzU7MDsxNTszLDU7Myw1OzA7NDs0MDtBCjE0OzMxOzgxMjsyMzsyNjs0Ozc7OTs1OzEyOzE7MTY7NiwyOzcsNzsyLDg7NDs3NDtBCjE1OzQ0Ozc1MjsxMDsxMDsyOzEwOzY7MjsyO05BOzk7MjsyLDM7MiwyOzM7MjY7QQoxNjs0ODs3ODg7MTU7MTk7Mjs4Ozc7MzszOzQ7MTI7Myw3OzMsNTsxLDk7NDs1NjtCCjE3OzQ5Ozc5ODsyMDsyMzsyOzg7NzsxOzg7NTsxNjs3LDc7NSwyOzIsNjs2OzY4O0IKMTg7Njs2NzM7Mjc7MTU7Njs4Ozc7NTszOzExOzExOzMsNzszLDU7MSw4OzQ7NTU7QQoxOTs2MTs4MjE7MjA7MTM7NTs4OzU7MjsxMDs1OzEwOzQsNDs0LDQ7NSwxOzY7MzY7QgoyMDs2MTs4MzA7MjA7MTQ7MTs4OzY7MTszOzQ7MTQ7MTQsMzsxLDQ7MSw3OzY7NDQ7QgoyMTs2ODs1ODc7MjI7MTg7MTs4Ozc7MTs1Ozg7MTc7OCw4OzM7Miw0OzY7NTk7QgoyMjs4MDs1Mjk7MTI7MjI7MTs2Ozk7MTs5OzA7MTE7Niw4OzYsNDswOzQ7NDU7QgoyMzs5MTs0NjQ7MjA7MTU7Mjs3Ozc7Mzs2OzEwOzEyOzUsNTszLDg7Myw5OzY7NTA7Qgo=" download="muensingen_fib.csv">muensingen_fib.csv</a>.</p>
+<p>The data is such represents different fibulae found on the side. Please download the file and save it into a directory of your choice. For this chapter, like with all of the chapters, you might like to specify a specific folder for this chapter. Save the data there, and, as we have learnt in the last chapter, select this folder as your current working directory.</p>
+<p>If you have downloaded the data to this folder and correctly selected it as you’re working directory, you should be able to reach the Münsingen data and inspect its structure. Since it is a dataset in the “Continental” CSV file, you can load the data into are using to <code>read.csv2()</code> format. Also you will realise, that the dataset already contains row numbers. You might like to specify ‘row.names = 1’.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="explorative-statistics-graphical-display.html#cb172-1" aria-hidden="true" tabindex="-1"></a>muensingen <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;muensingen_fib.csv&quot;</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb172-2"><a href="explorative-statistics-graphical-display.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(muensingen) <span class="co"># For getting a glimpse to the data</span></span></code></pre></div>
+<pre><code>##    Grave Mno FL BH BFA FA CD BRA ED FEL  C   BW  BT FEW Coils Length fibula_scheme
+## 1    121 348 28 17   1 10 10   2  8   6 20  2.5 2.6 2.2     4     53             B
+## 2    130 545 29 15   3  8  6   3  6  10 17 11.7 3.9 6.4     6     47             B
+## 3    130 549 22 15   3  8  7   3 13   1 17  5.0 4.6 2.5    10     47             B
+## 8    157  85 23 13   3  8  6   2 10   7 15  5.2 2.7 5.4    12     41             B
+## 11   181 212 94 15   7 10 12   5 11  31 50  4.3 4.3  NA     6    128             C
+## 12   193 611 68 18   7  9  9   7  3  50 18  9.3 6.5  NA     4    110             C</code></pre>
+<p>The dataset originally comes from the R package <code>archdata</code>. It is a data frame consisting of 30 observations with some variables describing the characteristics of the fibulae. If you want to full description of what the state of me, I suggest that you consult the documentation of the ice data package. There this dataset is called <code>Fibulae</code>. While we will graphically display different variables, I will explain what is variables mean.</p>
+</div>
+<div id="cross-tables-contingency-tables" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Cross tables (contingency tables)</h2>
+<p>The first category of visual representation of data is actually not a diagram. It is the table. Tables are today very widespread for the representation of information, so I don’t think that I will need to explain to you what the table looks and our table works. A bit formalised, how we use tables here, is that in most of the cases the rules will hold the items of investigation, while the columns will contain different variables.</p>
+<p>But this is not true all of the time. For a very specific type of table, that we will learn to know now, this is not true. The kind of table, that I’m talking about, is the contingency table. This kind of table is also known as cross tabulation, or crosstab. This kind of representation is used to show the interrelation between two variables. That means, contrary to what I have stated in the paragraph above, did hear both the rows and columns represent variables.</p>
+<p>Let’s have a look to one of these cross tabs, so it becomes clear, what is meant by that. For this, we will tabulate the scheme of the fibula against the grave in which it was found. Fibula Scheme is a standardised way of how different types of fibulae are are produced, they represent archaeological types. In one grave there may be more than one fibula. Therefore, the great number does not represent a unique identifier of the object fibula, the item of the investigation. It is just one variable among others.</p>
+<p>In R, you can use to come on table to display the number of fibula in a specific fibula scheme per grave.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="explorative-statistics-graphical-display.html#cb174-1" aria-hidden="true" tabindex="-1"></a>my_table <span class="ot">&lt;-</span> <span class="fu">table</span>(muensingen<span class="sc">$</span>fibula_scheme, muensingen<span class="sc">$</span>Grave) </span>
+<span id="cb174-2"><a href="explorative-statistics-graphical-display.html#cb174-2" aria-hidden="true" tabindex="-1"></a>my_table</span></code></pre></div>
+<pre><code>##    
+##     6 23 31 44 48 49 61 68 80 91 121 130 157 181 193
+##   A 1  1  1  1  0  0  0  0  0  0   0   0   0   0   0
+##   B 0  0  0  0  1  1  2  1  1  1   1   2   1   0   0
+##   C 0  0  0  0  0  0  0  0  0  0   0   0   0   1   1</code></pre>
+<p>As you can see, the variable <code>muensingen$fibula_scheme</code> is given us the first parameter of the function, while the other variable <code>muensingen$Grave</code> represents the second parameter. The result is the table, in which the first parameter is mapped in the rows, while the second parameter, the grave number, is mapped to the columns. Each cell now represents the number of items, in this case of specific fibula types, in each burial. More abstract speaking, crosstab is the representation in which the current occurrence of two variable values are mapped.</p>
+<p>If we also want to have an idea, how many items there are per row and how many per column, we might like to add the margins to the table. Table margins gives us to sum of the values for each role, each column, and in total. An R, the command for that is <code>addmargins()</code>.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="explorative-statistics-graphical-display.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(my_table)</span></code></pre></div>
+<pre><code>##      
+##        6 23 31 44 48 49 61 68 80 91 121 130 157 181 193 Sum
+##   A    1  1  1  1  0  0  0  0  0  0   0   0   0   0   0   4
+##   B    0  0  0  0  1  1  2  1  1  1   1   2   1   0   0  11
+##   C    0  0  0  0  0  0  0  0  0  0   0   0   0   1   1   2
+##   Sum  1  1  1  1  1  1  2  1  1  1   1   2   1   1   1  17</code></pre>
+<p>You can see, that we have a new row and a new column. The row contains the sum per column, while the column contains the sum per row. In the lower right most sell we have to total sum of all items.</p>
+<p>In data sets of low dimensionality, this represents a rather straightforward and convenient way to investigate the relationship between two, probably more, variables. They also represent a starting point for different other statistical approaches and techniques, for example the Chi-square test, that we will learn about later. In the context of spreadsheet software, crosstabs are often also called pivot table.</p>
+</div>
+<div id="basics-about-charts" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Basics about charts</h2>
+<p>Besides the tables, which also contains some graphical elements, like lines, the visualisation, which comes to the minds of most people in respect of statistics, are charts. Most charts or diagrams contain a certain set of elements, that can repeatedly be seen even with different types of graphical display. Most of the time we have some axis, which represents the structure of the variable underlying to representation. Quite often, this access has some marks, most of the time regularly spaced, and often also with some annotation. These marks are called tick marks. For the representation of one variable, one axis might be enough. But most of the time, we have a two-dimensional visualisation. This is already necessary, if we want to represent the category of some items and the count of items in that specific category. Very often, we have charts that represents the relationship of two variables. In both cases, we have two axis. In the area, that is defined by the axis, we have to representation of the actual data. This takes place, using different symbols, lines, or other graphical elements. Here, different types of charts different. Very often, we have also label for the axis, labels for the whole plot, and sometimes some subheadings describing more in detail, what the plot is about.</p>
+<p><img src="../images/03_session/plot_elements.png" /></p>
+<p>There are certain rules or guidelines, how shots should be designed, to be most efficient. Edward Tufte, a professor emeritus of statistics and computer science at University, is well known for his publications in respect to data visualisation. In one of his publications, he defined the principles for a good graphical representation of information.</p>
+<blockquote>
+<p>Graphical excellence is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space. E. Tufte 1983</p>
+</blockquote>
+<p>Just rule of thumb it also known as the data-ink-ratio, the ‘proportion of a graphic’s ink devoted to the non-redundant display of data-information’. As these are only guidelines, it is clear, that whole details are charged will be very much depends on its use case. But it’s also clear, that one should aim for a reduced use of graphical elements, so that the information, that needs to be transmitted, is in the foreground. Also, certain bells and whistles might enhance this information transmission quite a bit. I trust your sense of style to choose the right amount of ink for the right purpose.</p>
+</div>
+<div id="the-command-plot" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> The command <code>plot()</code></h2>
+<p>The command <code>plot()</code> is the basic commands in R to produce a graphical visualisation. What happens, when you do use plot with different data sets very much depends on, what kind of dataset you have. This command is a kind of chameleon, changing its appearance according to the necessities. This philosophy is also true for different other commands in R. There are some standardisations, that comparable effects should result from comparable names. So, whenever you use the command <code>plot()</code>, a plot will be the result. How this plot looks like, depends on the package, from which the data structure is coming, that you are plotting. The same is true for example for the command <code>summary()</code>. This command gives a summary, least surprisingly, good structured according to the data underline the summary.</p>
+<div id="basic-plotting" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Basic plotting</h3>
+<p>Lets come back to our command plot(). It’s a basic manifestation can be seen, when we plot one variable. For this purpose, let’s take the length of the fibulae from our dataset.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="explorative-statistics-graphical-display.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(muensingen<span class="sc">$</span>Length)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p>You can see, that like with most other commands in R, within the brackets the parameters are written. Here it is a reference to the variable, that should be plotted. You also should be able to see elements from the general outline of the plot, that we just have introduced. In this basic implementation, the values to be plotted are visualised using the Y axis, while the X axis represents the order of the values in the vector. The values in the dataset themselves are represented as points, positions according to their actual value on the Y axis, and to their order in the dataset on the X axis. That is why the label of the X axis is index.</p>
+<p>Some standard layouts in respect to specific data can be selected using the parameter ‘type’. For example, <code>type="p"</code> is the default setting and results in the plots that we just saw. Specifying <code>type="b"</code> results in a plot of the points connected by lines, as you can see below.</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="explorative-statistics-graphical-display.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(muensingen<span class="sc">$</span>Length, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<p>But this kind of visualisation is not correct here. Line implies that there is a continuous process going on, which is not the case between the individual values of our unconnected similar. Better representation of the nature of our data might be, if we are using the parameter <code>type="h"</code>, That gives us vertical lines from the origin of our coordinate system to the actual value.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="explorative-statistics-graphical-display.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(muensingen<span class="sc">$</span>Length, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p>Below you can find a list of possible options:</p>
+<ul>
+<li>p – points (default)</li>
+<li>l – solid line</li>
+<li>b – line with points for the values</li>
+<li>c – line with gaps for the values</li>
+<li>o – solid line with points for the values</li>
+<li>h – vertical lines up to the values</li>
+<li>s – stepped line from value to value</li>
+<li>n – empty coordinate system</li>
+</ul>
+<p>The option <code>"n"</code>, although seemingly quite useless, will become one of the most interesting options to be selected here. This option can be used, to draw a coordinate system, without filling it in the first place. In this way, we can ask R to draw to coordinate system, that we can then fill with our own symbols or other graphical elements.</p>
+<p>As I said, the command <code>plot()</code> is a chameleon that changes its appearance according to the dataset. For example, if we used to command on a dataset containing factor variables, the resulting visualisation will be a bar chart, counting the number of items per category, instead of the kind of visualisation that we have seen with the length data.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="explorative-statistics-graphical-display.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">as.factor</span>(muensingen<span class="sc">$</span>fibula_scheme))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+</div>
+<div id="enhancing-the-plot-with-optional-components-text" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Enhancing the plot with optional components &amp; Text</h3>
+<p>Of course, we can influence all the different elements of shops in such a flexible software like R. For example, we can specify the size of our X and Y axis, we can change the labels of both axis and also the heading and the subtitle of the chart. This is done using different parameters. By adding up so many parameters, the commands can become quite intimidating. But it is essentially just adding up parameter by parameter. So from a structural point of view there is no complex logic behind that. Also, when writing R commands, You can always us new lines behind elements that indicate, that our command is not finished yet. Such elements might be a mathematical symbols or for example commas like you can see below.</p>
+<p>.tiny[</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="explorative-statistics-graphical-display.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(muensingen<span class="sc">$</span>Length, muensingen<span class="sc">$</span>FL,</span>
+<span id="cb182-2"><a href="explorative-statistics-graphical-display.html#cb182-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">140</span>), <span class="co"># limits of the x axis</span></span>
+<span id="cb182-3"><a href="explorative-statistics-graphical-display.html#cb182-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="co"># limits of the y axis</span></span>
+<span id="cb182-4"><a href="explorative-statistics-graphical-display.html#cb182-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Fibula Length&quot;</span>, <span class="co"># label of the y axis</span></span>
+<span id="cb182-5"><a href="explorative-statistics-graphical-display.html#cb182-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Foot Length&quot;</span>, <span class="co"># label of the x axis</span></span>
+<span id="cb182-6"><a href="explorative-statistics-graphical-display.html#cb182-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Fibula total length vs. Foot Length&quot;</span>, <span class="co"># main title</span></span>
+<span id="cb182-7"><a href="explorative-statistics-graphical-display.html#cb182-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub=</span><span class="st">&quot;example plot&quot;</span> <span class="co"># subtitle</span></span>
+<span id="cb182-8"><a href="explorative-statistics-graphical-display.html#cb182-8" aria-hidden="true" tabindex="-1"></a>     )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" />
+]</p>
+<p>So you can see the effects of the different parameters. The extent of the axis is defined by <code>xlim</code> and <code>ylim</code>. The labels of the axis is given by <code>xlab</code> and <code>ylab</code>. The explanatory headings are defined by <code>main</code> and <code>sub</code>. Also, this plot represented by various plots, in which we met do you already know length of the fibula against the length of the foot of the fibula. It is quite obvious, that the longer the fibula is, the longer also its foot by be. So using this kind of so-called scatterplot, we can visualise this relationship between the two variables.</p>
+<p>Plot is doing a lot for you:</p>
+<ul>
+<li>Opens a window for display</li>
+<li>Determines the optimal size of the frame of reference</li>
+<li>Draws the coordinate system</li>
+<li>Draws the values</li>
+</ul>
+<p>In the background, also the last plot is remembered, and this plot is still changeable. You can use specific commands, to add elements to the already existing plot. These elements can be:</p>
+<ul>
+<li>lines – additional lines to an existing plot</li>
+<li>points – additional points to an existing plot</li>
+<li>abline – additional special lines to an existing plot</li>
+<li>text – additional text on choosen position to an existing plot</li>
+</ul>
+<p>This is the reason, why it sometimes might be reasonable, to plot an empty plot using the option “n”. You can use this version, to add first create a coordinate system, and then fill it up with lines or points.</p>
+<p>There are some more possibilities to change the layout and style of the plots. For example, the command <code>par()</code> will give you the tools to change a lot of the look of and feel. I suggest that you look up the help page for this command to see which possibilities exists to change the layout of the plot.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="explorative-statistics-graphical-display.html#cb183-1" aria-hidden="true" tabindex="-1"></a>? par</span></code></pre></div>
+<p>As an example, how you can add elements to an existing plot, we will draw some straight lines into the plot of the total length versus the foot length of the fibula. At first, we will draw a line in red at the mean value of the length of the fibula. Since the length is on the X axis, the line with the mean of the length must be a vertical line going up. Accordingly, the mean of the foot length, that is represented by the Y axis, must be a horizontal line. For both, we are using to command <code>abline()</code>. The difference is, that for vertical line specify the parameter ‘v’, for a horizontal line we specified a perimeter ‘h’. In both cases the parameter ‘col’ specifies the colour of the line. The third line is somehow special: it represents the relationship between the foot length and the total length in the data. Therefore, it is a diagonal line. It is defined by linear model of these two parameters. What this means we will explain later, for now you can just keep in mind, that in this way we can represent the trends in the data, drawing a trend line.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="explorative-statistics-graphical-display.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(muensingen<span class="sc">$</span>Length), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)         <span class="co"># draw a red vertical line</span></span>
+<span id="cb184-2"><a href="explorative-statistics-graphical-display.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(muensingen<span class="sc">$</span>FL), <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)           <span class="co"># draw a green vertical line</span></span>
+<span id="cb184-3"><a href="explorative-statistics-graphical-display.html#cb184-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(FL<span class="sc">~</span>Length, <span class="at">data =</span> muensingen), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)   <span class="co"># draw a blue diagonal line</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+</div>
+</div>
+<div id="export-the-graphics" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Export the graphics</h2>
+<p>Of course, if we have created a decent plot, we probably don’t want it to remain in R. Most of the time, we would probably like to use it in other contexts, be at homework, an article or a presentation. To do that, we need to wait to explore our plots.</p>
+<p>Using RStudio, probably the easiest way is to be used to graphical user interface, especially when it comes to exporting only individual plots. For this, in the plots window, there is a button called export.</p>
+<p><img src="../images/02_session/export_gui_1.png" /></p>
+<p>Here, you can select if you want to export your plot as an image (roster image), or as a PDF (vector file). The export windows should be more or less self-explanatory, you can specify the size of the resulting image and also the location, where it should be saved.</p>
+<p><img src="../images/02_session/export_gui_1.png" /></p>
+<p>Before RStudio, saving plots took place most of the time using commands from the command line. This still is very useful, if you use scripts and want to create multiple or even very many plots at once, changing the inputs data. Two very common formats when it comes to vector format or ‘PDF’ or probably more common ‘eps’ specifically for images. You can copy your current plot window to a vector file using the command <code>dev.copy2...()</code> and then the file format in which the result should be saved. So let’s save our current plots to both formats using to come on spill.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="explorative-statistics-graphical-display.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.copy2eps</span>(<span class="at">file=</span><span class="st">&quot;test.eps&quot;</span>)</span>
+<span id="cb185-2"><a href="explorative-statistics-graphical-display.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.copy2pdf</span>(<span class="at">file=</span><span class="st">&quot;test.pdf&quot;</span>)</span></code></pre></div>
+<p>There are even more raster then vector file formats. By default, R is capable of exporting to PNG, JPEG, TIFF and BMP. You can use the command <code>savePlot()</code> for this.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="explorative-statistics-graphical-display.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">savePlot</span>(<span class="at">filename=</span><span class="st">&quot;test.tif&quot;</span>, <span class="at">type=</span><span class="st">&quot;tiff&quot;</span>)</span></code></pre></div>
+<p>If you really plan to use the graphical visualisation in R in that way, it is worthwhile to dive deeper into the export format and options then we can present here. For most of the basic use cases, exporting the files via the graphical user interface is the most convenient and most controllable way of storing your valuable plots on your file system.</p>
+</div>
+<div id="pie-chart" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Pie chart</h2>
+<p>Let’s not start discussing different plot types. We will begin with one of the most widespread used type of plots: the pie chart. You can see pie charts all over the media, newspapers, and also books, might it be scientific or popular books. Pie charts are used to display proportions of the total. For this reason, they are most suitable (if at all) for nominal data. Or, of course, percentage data, if this is the original data type. For example, results of the election that often represented in pie chart. Here, we see the percentage of voters voting for a specific party. Basically, this represents normal data, the choices of the individuals for one or the other party.</p>
+<p>I would like to opportunity to throw in an unnecessary formula here:</p>
+<p><span class="math display">\[
+a_i = \frac{n_i} {N} * 360°
+\]</span></p>
+<p>The proportions of the categories <span class="math inline">\(i\)</span> in relation to the total number, represented by the number of items of that category <span class="math inline">\(n_i\)</span> divided by the total number <span class="math inline">\(N\)</span> is multiplied by 360°. The resulting angle is the angle, which can be used for a circular visualisation of this amount.</p>
+<p>Pie charts have different disadvantages, some they share with other graphical representation of data, but some are unique to this kind of display. Examples to colour selection very influential when it comes to perception. Red as an aggressive colour is perceived larger then for example grey. Very specific to a pie chart is the fact that we as humans are more trained to see differences in length then in area. And in the pie chart, the differences are visualised using the area of the different pieces of the pie. This results in effect, that small differences are not so easily visible in a pie chart, then this would be the case for example with a bar chart, a visualisation technique that we will learn about below.</p>
+<p>Like in many other cases, 3-D representation does not work so well on printed paper. Since the human eye and brain must compromise between both the perception that we are looking at a 3-D image but in reality it’s a 2-D object, differences are distorted. Let’s look at the following example that I took from the literature:</p>
+<p><img src="../images/03_session/3dpie.png" /></p>
+<p>.caption[source: <a href="http://www.lrz-muenchen.de/~wlm" class="uri">http://www.lrz-muenchen.de/~wlm</a>]</p>
+<p>The pieces »viel zu wenig«, »etwas zu wenig« und »gerade richtig« have exactly the same size, the piece »viel zu viel« is a bit smaller. Perception wise, the different shares seem to be quite different because of the reasons mentioned above. So in any case, 3-D or not, pie charts are inferior to a lot of other visualisation techniques. Nevertheless, because it is a very widespread used technique, still I would like to demonstrate how are you can create them using R.</p>
+<p>The actual commands to draw a pie chart in R is <code>pie()</code>. This command expects the number of counts, and all the normalisation to percentages and then the visualisation will take place automatically. This means, that it might be necessary to recode data. In this case, we will use the fibula schemes and visualise there ratio. This variable comes in the form of a character vector indicating to different schemes. Here, we can use the command table, to transform the nominal presence into a table of counts.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="explorative-statistics-graphical-display.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(muensingen<span class="sc">$</span>fibula_scheme)</span></code></pre></div>
+<pre><code>## 
+##  A  B  C 
+##  4 11  2</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="explorative-statistics-graphical-display.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(muensingen<span class="sc">$</span>fibula_scheme))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p>Do you original colour scheme of the <code>pie()</code> command is rather pastel. Of course, you can change the colours, using the col parameter. Here, in the order of their appearance, you can specify different colours, that will be used to represent this category.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="explorative-statistics-graphical-display.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(muensingen<span class="sc">$</span>fibula_scheme),</span>
+<span id="cb190-2"><a href="explorative-statistics-graphical-display.html#cb190-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<p>This should be enough to be set for the pie chart. It had already had the honour to be the first mentioned. That’s enough. We will from now on turn to more scientifically useful visualisations.</p>
+</div>
+<div id="bar-plot" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Bar plot</h2>
+<p>A worthy replacement for any kind of pie chart is a bar chart or a plot. Most of the time it is the better alternative. Since here, the differences are represented by the length of the bars, humans can more easily perceive the differences between different categories. Also, this kind of visualisation is more flexible, because you can also represent absolute data and measurements with a bar chart, not only percentages.</p>
+<p>Also, the command <code>barplot()</code> requires a vector containing the data. This can be the number of fibulae in the different styles, like so:</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="explorative-statistics-graphical-display.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(muensingen<span class="sc">$</span>fibula_scheme))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p>Or it can be length of the different fibulae.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="explorative-statistics-graphical-display.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(muensingen<span class="sc">$</span>Length)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p>Both versions are meaningful and can help visualising the data. Although especially the last plot is difficult to understand, because it it lacking some essential information. For example, what is represented here by the bars, in total, but also, what does the individual bars represent. Since the vector resulting from the table commands automatically had names, these names were used in the case of the fibula scheme. In the case of the length, we have to specify these names on our own. For this, there is the parameter “names.arg”. Also, you might like to turn the names so that they become more readable and do not flow into each other. For this, you can use the parameter “las=2”. Lastly, I’ll give you a variant of how you can put the main title to a plot using to command <code>title()</code>.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="explorative-statistics-graphical-display.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">las=</span><span class="dv">2</span>)                          <span class="co"># turn labels 90°</span></span>
+<span id="cb193-2"><a href="explorative-statistics-graphical-display.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(muensingen<span class="sc">$</span>Length,          <span class="co"># plot fibulae length</span></span>
+<span id="cb193-3"><a href="explorative-statistics-graphical-display.html#cb193-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">names.arg=</span>muensingen<span class="sc">$</span>Grave) <span class="co"># with names of the graves</span></span>
+<span id="cb193-4"><a href="explorative-statistics-graphical-display.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Fibulae length&quot;</span>)             <span class="co"># add title</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p>Of course, you can also turn the bar chart around, making it horizontal. In that case, you probably would like to turn the labels again. Also, you can influence the size of text using a parameter ‘cex’. You can also specify what should be changed in size, in this case the names.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="explorative-statistics-graphical-display.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">las=</span><span class="dv">1</span>)                          <span class="co"># turn labels back again</span></span>
+<span id="cb194-2"><a href="explorative-statistics-graphical-display.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(muensingen<span class="sc">$</span>fibula_scheme), <span class="co"># Plot counts fibulae scheme</span></span>
+<span id="cb194-3"><a href="explorative-statistics-graphical-display.html#cb194-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">horiz=</span>T,                         <span class="co"># horizontal</span></span>
+<span id="cb194-4"><a href="explorative-statistics-graphical-display.html#cb194-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex.names=</span><span class="dv">2</span>)                     <span class="co"># make the labels bigger</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p>Bar charts are also much more flexible compared to pie charts in so far, as you can easily display more than two variables. In this way, your plot can become 3-D or more in a meaningful way.</p>
+<p>Let’s assume, we want to visualise the number of coils of the fibula in relationship to the style. We can use the table command to produce a table accordingly.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="explorative-statistics-graphical-display.html#cb195-1" aria-hidden="true" tabindex="-1"></a>my_new_table <span class="ot">&lt;-</span> <span class="fu">table</span>(muensingen<span class="sc">$</span>fibula_scheme,</span>
+<span id="cb195-2"><a href="explorative-statistics-graphical-display.html#cb195-2" aria-hidden="true" tabindex="-1"></a>                      muensingen<span class="sc">$</span>Coils)</span>
+<span id="cb195-3"><a href="explorative-statistics-graphical-display.html#cb195-3" aria-hidden="true" tabindex="-1"></a>my_new_table</span></code></pre></div>
+<pre><code>##    
+##     3 4 6 10 12
+##   A 1 3 0  0  0
+##   B 0 3 6  1  1
+##   C 0 1 1  0  0</code></pre>
+<p>No, we can directly put this table into the <code>barplot()</code> command. Let’s see the output:</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="explorative-statistics-graphical-display.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(my_new_table)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p>You can see, that the different styles (fibula schemes) get different colours. With this, we not only seeing the number of items in respect to the different number of coils, but also at the same time, in which style to fibula is produced. This way of representing subcategory it’s called ‘stacked’. If you don’t like this way of representation probably you like more the version where the different categories are put side-by-side like below.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="explorative-statistics-graphical-display.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(my_new_table, <span class="at">beside=</span>T, <span class="at">legend.text=</span>T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<p>Until now, we have only seen bars of different height. The beauty of the pie command was, that it automatically transformed absolute values into percentages. With a slight alteration of the table commands, we can achieve the same with a bar chart, and even better. For that, we are using the <code>prop.table()</code> command. This stands for proportional table. In current versions of R, you can use also the command <code>proportions()</code>. Its first parameter is the dataset for which the proportion should be calculated, in the format of the table. That means, it takes the result of the table command, and then transform it into a proportional table. The second parameter defines, what should sum up to 100, or in other words, what is the full total to which the proportion should be calculated. As always in R rows come first, so they have the number 1, while columns come second, so they have the number 2. That means, the following command will calculate the percentages in respect to the columns, which each will sum up to 1.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="explorative-statistics-graphical-display.html#cb199-1" aria-hidden="true" tabindex="-1"></a>table.prop<span class="ot">&lt;-</span><span class="fu">prop.table</span>(my_new_table,<span class="dv">2</span>)</span>
+<span id="cb199-2"><a href="explorative-statistics-graphical-display.html#cb199-2" aria-hidden="true" tabindex="-1"></a>table.prop</span></code></pre></div>
+<pre><code>##    
+##             3         4         6        10        12
+##   A 1.0000000 0.4285714 0.0000000 0.0000000 0.0000000
+##   B 0.0000000 0.4285714 0.8571429 1.0000000 1.0000000
+##   C 0.0000000 0.1428571 0.1428571 0.0000000 0.0000000</code></pre>
+<p>If we put the results into the <code>barplot()</code> command, we will get a result comparable or even better to the pie chart.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="explorative-statistics-graphical-display.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(table.prop)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<p>Of course, you can also change elements of the bar plot. For example, you can get fancy with the colours. Here, are used to command rainbow, specified with the number of colours I would like to get, to create a colour spectrum from the rainbow. Also, I would like to have a legend. Additionally, I want to have a title. This title is quite long, so I divided it in two rows, using the special “” sign. Since it is such a long title, I also have to use space outside of the actual plot area. You can get a feeling for the effects of this different para metres by playing around a bit with them.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="explorative-statistics-graphical-display.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(table.prop,</span>
+<span id="cb202-2"><a href="explorative-statistics-graphical-display.html#cb202-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">legend.text=</span>T,  <span class="co"># add a legend</span></span>
+<span id="cb202-3"><a href="explorative-statistics-graphical-display.html#cb202-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">col=</span><span class="fu">rainbow</span>(<span class="dv">3</span>)  <span class="co"># make it more colorful</span></span>
+<span id="cb202-4"><a href="explorative-statistics-graphical-display.html#cb202-4" aria-hidden="true" tabindex="-1"></a>             )</span>
+<span id="cb202-5"><a href="explorative-statistics-graphical-display.html#cb202-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb202-6"><a href="explorative-statistics-graphical-display.html#cb202-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add a title</span></span>
+<span id="cb202-7"><a href="explorative-statistics-graphical-display.html#cb202-7" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;ratio of fibulae schemes </span><span class="sc">\n</span><span class="st"> by number of coils&quot;</span>,</span>
+<span id="cb202-8"><a href="explorative-statistics-graphical-display.html#cb202-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">outer=</span><span class="cn">TRUE</span>,            <span class="co"># outside the plot area</span></span>
+<span id="cb202-9"><a href="explorative-statistics-graphical-display.html#cb202-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">line=</span><span class="sc">-</span> <span class="dv">3</span>)              <span class="co"># on line -3 above</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p>But also bar plots do not solve every problem that we have with graphical representation. For example, there is often the question, what is better: percentage or absolute numbers. If we would like to compare different situations, with different total numbers, and we are most interested in the ratios, then the percentages are a good choice. But at the same time, due to this characteristic, they can hide differences in the underlying total numbers. This can become especially problematic, if you divide your bars also in subcategories.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="explorative-statistics-graphical-display.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb203-2"><a href="explorative-statistics-graphical-display.html#cb203-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(my_new_table,<span class="at">beside=</span>T)</span>
+<span id="cb203-3"><a href="explorative-statistics-graphical-display.html#cb203-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(table.prop,<span class="at">beside=</span>T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p>Just from the visualisation of the percentages here it seems, as if there are more fibulae of scheme A with three coils then with four. So it is absolutely necessary to always provide the absolute numbers, if you present your data as percentage of the total. It can take place in the caption, or directly in the plot. And this problem or better this consideration must be taken into account not only with bar charts, but also with any other representation of percentages.</p>
+<p>Another source of visual confusion can be the scales already ranges of the axis. For example, if we do not draw an access from 0 to the maximum value, but let it start at an arbitrary value, small differences can visually become very big. In the example below, I visualise the first and the second fibula respectively their length.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="explorative-statistics-graphical-display.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb204-2"><a href="explorative-statistics-graphical-display.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(muensingen<span class="sc">$</span>Length[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">xpd=</span>F,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">55</span>))</span>
+<span id="cb204-3"><a href="explorative-statistics-graphical-display.html#cb204-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(muensingen<span class="sc">$</span>Length[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">xpd=</span>F)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="explorative-statistics-graphical-display.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<p>Although it is obvious, if you actually look at the axis, there is a difference it’s not that big (it’s only six), only from visual inspection it seem to be enormous compared to the visual representation of the same difference in the diagram to the right. Most of the time, it is better to have your axis ranging from 0 to the actual values, except for situations, where the comparison between different bars or other elements is hindered by the fact that the relative differences are so little.</p>
+<p>You might have realised, that in the last two examples are used to command <code>par(mfrow=c(..))</code>. With this comment, you can find that plots are placed side-by-side or one on top of the other. Also here do usual rule of R present: Rows are the first number, columns are the second number. So both I said that I want to have two rows of plots with one column, below I said I want to have one row with two columns. You can use this to lay out your plots in a smarter way.</p>
+</div>
+<div id="box-plot-box-and-whiskers-plot" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Box-plot (Box-and-Whiskers-Plot)</h2>
+<p>The next type of plot is not totally dissimilar to the bar plot. Also in this case, in the case of the box plot, we have a rectangular element representing our data. But the logic behind the box plot is very different.</p>
+<p>A box plot, which is also called box and whisker plot, is used to describe the distribution of values in a range of data. Let’s try to explain that using the numbers from 1 to 9 as our values. If we sort these values, than we get the root of numbers from 1 to 9.</p>
+<pre>
+1 2 3 4 5 6 7 8 9
+____|___|___|____
+</pre>
+<p>No, we divide the values by their position. That value, that is placed in the centre, is of specific importance because it is the most centred value of this dataset. Here we draw a line. If we take half the number between the first and the centremost, we get the first quarter of our data. When we do the same towards the end, we get the last quarter of the data. Where the first quarter ends, and we are the last quarter starts, we also mark this dataset. The values at these positions are 3 for the start of the first quarter, 5 for the most central value, and 7 for the start of the second quarter.</p>
+Compare this with the following distribution of data.
+<pre>
+1 1 2 7 7 8 20 26 100
+____|___|___|________
+</pre>
+<p>Here, two marks the beginning of the second quarter, seven customers sent a value, and 20 marks the beginning of the last quarter of the data. Notice, that this does not depend on their actual values, but only on the position within the ordered dataset. If we now have a Y axis, on which we have continuous scale of the actual values, and we draw a box according to the parameters we just defined (position of the first the second and the third quarter of the data), than we get a feeling for how the values of the data within our dataset are distributed.</p>
+<p>In the visualisation of the box plot, the box marks to inner half of the data so the second and the third quarter of the data. The border between the second of the fourth quarter, the most central value, is marked by a line (This value is also “median”, we will learn about it soon). Beside the box itself at the thick line dividing it, there are also thin lines sticking out from the box on top and bottom. This lines are called whiskers. The end line of a whisker is drawn at that value, that is less than 1.5 times the distance of the inner half of the data away. Every other point, that is more far away, is considered to be an outlier, and is visualised by a point.</p>
+<p>Let’s see the actual box plot of all numbers 1 to 9.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="explorative-statistics-graphical-display.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p>Here you can see all elements I’ve just described except for the outliers. To produce an outlier, we will add a very high value to our dataset.</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="explorative-statistics-graphical-display.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">15</span>, <span class="dv">20</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p>You can see, did I edit the value of 15, which is now marked by the whisker. I also edit the value 20, which is now displayed as an outlier. If we applied to our actual data, the length of the fibula at Münsingen, you will see kind of the same.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="explorative-statistics-graphical-display.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(muensingen<span class="sc">$</span>Length)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p>The interpretation would be like following, most of the data are evenly distributed between 30 and 80 mm. The thick line is a bit lower in the box, this means, that there are slightly more low values than high values. Besides the usual values, we have two outliers at approximately 120 mm plus or minus. By inspecting this plot, I already learnt a lot about distribution of the data in our dataset.</p>
+<p>Box plots are especially useful, if you want to compare the distribution of data between different categories of data. For example, you might like to compare the distribution of the length of the fibula in respect to their style. For this, I will introduce to you in new syntax in how are you can formulate circumstances in R. This notation is called formula notation. It is centred around the tilde ‘~’. This sign means “in relation to”. So, if I like to draw a box plot of the length of the fibula in respect to its style, I can express it like a below:</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="explorative-statistics-graphical-display.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(muensingen<span class="sc">$</span>Length <span class="sc">~</span></span>
+<span id="cb209-2"><a href="explorative-statistics-graphical-display.html#cb209-2" aria-hidden="true" tabindex="-1"></a>          muensingen<span class="sc">$</span>fibula_scheme)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p>We will work with this kind of formula notation more in more advanced topics here. This notation becomes especially helpful when it comes to modelling. Because there, you model things in relation to other things.</p>
+<p>Back to our box plot. Of course, we can also use parameters here, to add elements to our plot. This elements might be a title, the colour, or the labels of the axis. You might like to play around a bit with the example below to get a feeling of the effects.</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="explorative-statistics-graphical-display.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb210-2"><a href="explorative-statistics-graphical-display.html#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Length <span class="sc">~</span> fibula_scheme,</span>
+<span id="cb210-3"><a href="explorative-statistics-graphical-display.html#cb210-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> muensingen,</span>
+<span id="cb210-4"><a href="explorative-statistics-graphical-display.html#cb210-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Length by type&quot;</span>,</span>
+<span id="cb210-5"><a href="explorative-statistics-graphical-display.html#cb210-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="st">&quot;green&quot;</span>,</span>
+<span id="cb210-6"><a href="explorative-statistics-graphical-display.html#cb210-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&quot;fibulae scheme&quot;</span>,</span>
+<span id="cb210-7"><a href="explorative-statistics-graphical-display.html#cb210-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span> <span class="st">&quot;length&quot;</span></span>
+<span id="cb210-8"><a href="explorative-statistics-graphical-display.html#cb210-8" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<p>All in all, a box plot is a very helpful tool when it comes to condensed have a look on the distribution of data. As I have explained, this is specifically helpful if you want to compare different distributions with each other. If you are more the girl that likes to watch the matrix uncoded, the scatterplot is probably more your type. We will learn about that below.</p>
+</div>
+<div id="scatterplot" class="section level2" number="3.9">
+<h2><span class="header-section-number">3.9</span> Scatterplot</h2>
+<p>Just get a proper is probably that kind of plot of people (beside a pie chart) imagine most of the time when they think about statistical visualisation. It is also one of the most basic plot types. That’s why it is also the standard configuration of the command <code>plot()</code>. Basically it is used to display one variable in relation to another one. This other variable can also be the order of the values, as we have seen in the example above. In general, scatterplot is suited for all data types and scales of variables, although most of the time for nominal and ordinal data other chart types might be preferable.</p>
+<p>Since we discussed basic elements of the scatterplot already above, without mentioning the name, I would like to use the space here to show you some alternative ways how are you can produce a scatterplot in R. For this, we start with the basic plot of the similar length against the foot length, with the Trent line edit in red, like we have done before.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>Although libraries offer a different ways of displaying scatterplots. One option here is the library car, that is specifically used for regression analyses (analyses of the relationship of two variables). To get access to the functionality of another library in R, at first we have to load this library. For this we used to come on <code>library()</code>. As the parameter you use the name of the library that need to be loaded. Pay attention: you don’t need to use quotation mark " to load known and installed libraries.</p>
+<p>The command from ‘car’ to produce a scatterplot is <code>scatterplot()</code>. In here you also use the formula notation that we have seen already with the box plot, but also with the linear model for the trendline in the example above. Here you specify the names of the columns in the dataset as variables, and as data you give the name of the variable which holds the whole dataset, the data frame <code>muensingen</code>.</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="explorative-statistics-graphical-display.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car) <span class="co"># library for regression analysis</span></span>
+<span id="cb211-2"><a href="explorative-statistics-graphical-display.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scatterplot</span>(FL <span class="sc">~</span> Length, <span class="at">data =</span> muensingen)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p>At this resulting scatterplot, you can see different elements, that we have seen before: for example, the box plots. Also, we see a trend line. But also, we see more lines. If you want to know, what is lines mean, you should consult do you help for the function <code>scatterplot()</code>. Luckily, you know how this can be done.</p>
+<p>Another suggestion is to use the library ggplot2. This library is very powerful and it is used a lot in professional visualisation. In publications and in conference presentations you will see ggplot style visualisations very often. The reason, why we are not using it here, is, that it comes with its own syntax philosophy. To learn this, would overwhelm potentially students that already have to cope with the basic understanding of R. But once you have mastered R in general, I strongly suggest that you have a closer look to this plot library.</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="explorative-statistics-graphical-display.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># advanced plots library</span></span>
+<span id="cb212-2"><a href="explorative-statistics-graphical-display.html#cb212-2" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(muensingen,<span class="fu">aes</span>(<span class="at">x=</span>Length,<span class="at">y=</span>FL))</span>
+<span id="cb212-3"><a href="explorative-statistics-graphical-display.html#cb212-3" aria-hidden="true" tabindex="-1"></a>graph<span class="ot">&lt;-</span>b <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb212-4"><a href="explorative-statistics-graphical-display.html#cb212-4" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(graph)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+</div>
+<div id="histogramm" class="section level2" number="3.10">
+<h2><span class="header-section-number">3.10</span> Histogramm</h2>
+<p>The next type of plants that we would like to have a look to is the histogram. Here, we take a different perspective compare to the scatterplot, and more similar to the box plot. Also here, we are looking at the distribution of the data. We visualise, in which part of the value range of our data most of our data are located. So what we will see, is if most of the data rather low or rather high values, for example.</p>
+<p>At first I would like to give you an example of an histogram, so that we can understand its character and its use cases. Therefore let’s again use the length of the fibula in our dataset and plot the histogram accordingly.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="explorative-statistics-graphical-display.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(muensingen<span class="sc">$</span>Length)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p>You can see that on the X axis of the plot we can see the actual values. The Y axis has to label frequency. The data are represented like with a bar plot in between values of length. In the first bar, between 20 and 40, we have to representation of all fibulae with a length between 20 and 40. If we look to the frequency, we can see that there are three. The next class of fibulae is between 40 and 60. Here, we can see that we have 10. This goes on.</p>
+<p>So, in histogram, we don’t see any longer the individual values, but we see, how many items have values within a certain range. With this visualisation and the perspective on the distribution we are reducing the complexity of the data. You don’t any longer see the individual item, but we get a better understanding about the distribution of the values of the individual items within the whole dataset. Quite often in visualisation, but also statistics in general, we have to compromise between the consideration of the new visual case and the extraction of the general pattern.</p>
+<p>In the standard display of histogram, we can only guess the individual values or the total numbers of cases per class. If we add labels, we can also see the actual numbers represented in the plot.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="explorative-statistics-graphical-display.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(muensingen<span class="sc">$</span>Length, <span class="at">labels =</span> T)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p>Of course, we are not forced to only use the classes between 20 and 40, 40 and 60 and so on. We can also define our own classes. For example, if we want to have a finer resolution, we could decide to display classes off with of 10. We do that, using the parameter ‘breaks’.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="explorative-statistics-graphical-display.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(muensingen<span class="sc">$</span>Length,</span>
+<span id="cb215-2"><a href="explorative-statistics-graphical-display.html#cb215-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> T,</span>
+<span id="cb215-3"><a href="explorative-statistics-graphical-display.html#cb215-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p>Please note the differences: before, we had some blocks, that now are divided into finer structures. The choice of the class with can be decisive for the interpretation. Although our dataset is rather small, if you look to the highest values, just from visual inspection in the first case it seems that we have a rather constant data distribution between 100 and 140. With the smaller class with, the holes in this distribution become obvious. So also here, we have to make a compromise between visualising the individual case and total pattern.</p>
+<p>Again, of course, we can use the usual suspects to change the look of our histogram.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p>The disadvantages of the Instagram are, that makes the data reduction necessary and therefore we lose some information in the visualisation. Also, as we have seen, is the actual display show me dependent on the choice of the class with. There are different techniques to overcome especially this problem. The first, the stem and leaf chart, comes from an age, where computers we are not able to produce plots. For reasons of completeness, but also because it’s mentioned in the Stephen Shennan’s book, we included here. The other and currently much more popular version is the kernel density estimation or kernel smoothing. We will learn about it afterwards.</p>
+</div>
+<div id="stem-and-leaf-chart" class="section level2" number="3.11">
+<h2><span class="header-section-number">3.11</span> stem-and-leaf chart</h2>
+<p>The stem and leave chart is a clever idea to at the same time represent the general pattern, but also the individual cases. On the one hand, it is also a kind of histogram. But at the same time, it shows the values of the individual cases. Nevertheless, it has become a bit out of fashion lately.</p>
+<p>Let’s demonstrate it with our usual example. The command is stem.</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="explorative-statistics-graphical-display.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stem</span>(muensingen<span class="sc">$</span>Length)</span></code></pre></div>
+<pre><code>## 
+##   The decimal point is 2 digit(s) to the right of the |
+## 
+##   0 | 34444
+##   0 | 5555566677
+##   1 | 13</code></pre>
+<p>Our dataset consists of several similar length below 100, and two above 100. The latter you can see as the last line of the result of the stem and leave plot. The line above represents all the fibulae between 50 and 100. The top line represents all those between zero and 50. You can see, that the individual cases are represented by figures. This figure indicates the next value. So for example, in the top row the first number is zero. This means, that the first number is below 100. It starts with a 3, so it’s round about 30. After that, we have four 4s. This means, we have four more fibula with length of around 40. By now, you should’ve understand the pattern.</p>
+<p>So as promised, the steam and leaf plot is as such a clever idea to represent data. It’s only drawback is, that it doesn’t look very visual, and reminds a lot on the age of computers without decent graphical displays. And has also announced, there is some more modern alternative to that that we will have a look to in the next part: the kernel smoothing.</p>
+</div>
+<div id="kernel-smoothing-kernel-density-estimation" class="section level2" number="3.12">
+<h2><span class="header-section-number">3.12</span> kernel smoothing (kernel density estimation)</h2>
+<p>The last plot version that I would like to introduce to you is the kernel density estimation, quite often abbreviated as KDE. Also this visualisation is very similar to the histogram. Let’s have a look at it and then discuss its features.</p>
+<p>This time, we actually have to specify two commands. The first, <code>density()</code> is doing the actual calculation. The second is the usual <code>plot()</code> command. The density command is encapsuled into the brackets of the plot command. In this way, the output of the density serves as an input for the plot.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="explorative-statistics-graphical-display.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(muensingen<span class="sc">$</span>Length))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<p>You can see, that’s the essential elements are quite comparable to the histogram. We have an X axis visualising the values within the dataset. And we have a Y axis, this time not with frequency, but with density. This concept of density is the most difficult part to understand here. Therefore, let’s postpone it for a second.</p>
+<p>Let’s first concentrate on this moving part. For this, let’s assume that we are not looking at the actual value, But to a more blurred representation of the value. Like, if you are looking with half closed eyes or in not fitting glasses to a point. It will be blurred. The most intensity will still be in the centre, but there will be a halo of lesser and lesser intensity the more far you will get from the centre.</p>
+<p>Or probably a better way to understand this is to think about the actual values as hole in a vessel filled with sand. At the hole, which is at the position of the actual value, the sand will fall down and will form a heap. This heat will be the highest in the centre so at the actual value, but it will form a small hill, starting from left and right of the actual value. If two values are nearby, the hills will merge and join in a bigger hill. This is how you can interpret the picture above. Around 40 to 50, there are the most holes in our sandbox, so here most of the sand will fall down and for the big heap. On the other hand, at 110 and 130, there are only two holes each, so they’re only small hills will form.</p>
+<p>With this kind of visualisation, we avoid a problem to artificially draw boundaries between classes. Still, we can see a representation of the total distribution of the values within our dataset. And this is more precise than the box plot, because we get more information about the internal structuring of the data.</p>
+<p>We can also combine the KDE with histogram. For this, we have to bring both to the same scale. The scale of the KDE is such, that the total area under the curve of the will sum up to 1. We can also be scaled histogram to be in the same scale. For this, we used to parameter ‘prob=T’.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="explorative-statistics-graphical-display.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(muensingen<span class="sc">$</span>Length, <span class="at">prob=</span>T)</span>
+<span id="cb219-2"><a href="explorative-statistics-graphical-display.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(muensingen<span class="sc">$</span>Length))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p>We later will learn more about the concept of area under the curve, for no visionalisation is in the foreground, so we will stick with that.</p>
+</div>
+<div id="guidelines" class="section level2" number="3.13">
+<h2><span class="header-section-number">3.13</span> Guidelines</h2>
+<div id="stay-honest" class="section level3" number="3.13.1">
+<h3><span class="header-section-number">3.13.1</span> Stay honest!</h3>
+<p>Some final suggestions for guidelines, that you might like to consider, when you’re plotting data. The first and probably most relevant is that you should stay honest in your data representation. It is easy to cheat with different techniques. Although for example everyone probably can understand the scales of your axis, nevertheless the presentation can produce very different perceptions. The choice of the way how are you display your data has a strong influence on the statement and how it will be received.</p>
+<p>Choice of display has a strong influence on the statement. Let’s use the example of the Swiss stock market index to see, how different scales can influence the visualisation.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p>The upper left panel shows the development of the Swiss stock market within the last year. Usually you can detect the crash that took place in the course of the Corona epidemy. This is the kind of display that is quite often shown in respect to such developments. The upper limit represents the upmost value, the lower limit the lower most value. Of course, this is visible at the Y axis. In this visualisation, the development looks very dramatic. If we only change the Y axis starting from zero, this crash looks less dramatic immediately.</p>
+<p>If we additionally enlarge our investigation window (or at least the window of data that we are displaying), it becomes obvious that much stronger deteriorations took place in the past. The lower right panel shows Shows the development starting from 1990. This shows, how low this value was in the beginning.</p>
+<p>However you might like to interpret this developments in respect of today’s severity, it is clear, that the different scales put this development in very different frames of references.</p>
+<p>So, you could sum up the suggestions for graphical representation like so:</p>
+<ul>
+<li>Stay honest!
+<ul>
+<li>Choice of display has a strong influence on the statement.</li>
+</ul></li>
+<li>Clear layout!
+<ul>
+<li>Minimise Ratio of ink per shown information!</li>
+</ul></li>
+<li>Use the suitable chart for the data!
+<ul>
+<li>Consider nominal-ordinal-interval-ratio scale</li>
+</ul></li>
+</ul>
+<p>For the last point, I have compiled a small table that can give you an advice which kind of visualisation you should choose in which kind of situation.</p>
+<table>
+<thead>
+<tr class="header">
+<th>What to display</th>
+<th>suitable</th>
+<th>not suitable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Parts of a whole: few</td>
+<td>Pie chart, stacked bar plot</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Parts of a whole: few</td>
+<td>Stacked bar plot</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Multiple answers (ties)</td>
+<td>Horizontal bar plot</td>
+<td>Pie chart, stacked bar plot</td>
+</tr>
+<tr class="even">
+<td>Comparison of different values of different variables</td>
+<td>Grouped bar plot</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Comparison of parts of a whole</td>
+<td>Stacked bar plot</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Comparison of developments</td>
+<td>Line chart</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Frequency distribution</td>
+<td>Histogram, kernel density plot</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Correlation of two variables</td>
+<td>scatterplot</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Sometimes, it is illustrative to look at bad examples. Such bad representation of data is also called <a href="https://en.wikipedia.org/wiki/Chartjunk">chartjunk</a>. I will link here to the <a href="https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=00040Z">respective chapter of the book of Edward Tufte</a> to you, so if you would like to go deeper into the subject, can I have a look here. But with his keywords, entered into a search engine of your choice, you will be delighted with a lot of examples of how not to do it. Enjoy.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-into-r.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
