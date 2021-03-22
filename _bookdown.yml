@@ -1,2 +1,2 @@
-rmd_files: ["book.Rmd","02_session/02-chapter.Rmd","03_session/03-chapter.Rmd"]
+rmd_files: ["book.Rmd","02_session/02-chapter.Rmd","03_session/03-chapter.Rmd","04_session/04-chapter.Rmd"]
 output_dir: "book"
