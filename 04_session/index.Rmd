@@ -4,7 +4,7 @@ subtitle: "04 - Descriptive statistics"
 author: "Martin Hinz"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 fontsize: 9pt
-date: "17.03.2019"
+date: "31.03.2019"
 output:
   xaringan::moon_reader:
     chakra: "../libs/remark-latest.min.js"
