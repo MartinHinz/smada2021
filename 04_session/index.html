@@ -338,7 +338,7 @@ Equals to the sum of the squared distances from the mean divided by the
 number of observations
 
 $$ 
-s^2 = \frac {\sum_{i=1}^{n} (x_i - \bar{x})} {n-1}
+s^2 = \frac {\sum_{i=1}^{n} (x_i - \bar{x})^2} {n-1}
 $$
 
 In R:
@@ -372,7 +372,7 @@ Variance has through the squaring squared units (mm → mm2)
 For a parameter with the original units: square root → standard deviation
 
 $$ 
-s = \sqrt{\frac {\sum_{i=1}^{n} (x_i - \bar{x})} {n-1}}
+s = \sqrt{\frac {\sum_{i=1}^{n} (x_i - \bar{x})^2} {n-1}}
 $$
 
 
