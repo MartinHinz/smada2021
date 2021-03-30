@@ -26,6 +26,15 @@ class: title-slide, center, middle
 
 10.03.2021
 
+10.03.2021
+
+.footnote[
+.right[
+.tiny[
+You can download a [pdf of this presentation](smada03.pdf).
+]
+]
+]
 ---
 
 ## Loading data for the following steps
@@ -135,7 +144,7 @@ options:
 ]
 
 .pull-right[
-![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -148,7 +157,7 @@ options:
 plot(muensingen$Length,type="b")
 ```
 
-![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -160,7 +169,7 @@ the appropriate chart
 plot(as.factor(muensingen$fibula_scheme))
 ```
 
-![](index_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 ]
 ]
 
@@ -182,7 +191,7 @@ plot(muensingen$Length, muensingen$FL,
      )
 ```
 
-![](index_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -217,7 +226,7 @@ abline(h = mean(muensingen$FL), col = "green")           # draw a green vertical
 abline(lm(FL~Length, data = muensingen), col = "blue")   # draw a blue diagonal line
 ```
 
-![](index_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -296,7 +305,7 @@ table(muensingen$fibula_scheme)
 pie(table(muensingen$fibula_scheme))
 ```
 
-![](index_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
 ]
 .pull-right[
 ### Color palette:
@@ -307,7 +316,7 @@ pie(table(muensingen$fibula_scheme),
     col=c("red","green","blue"))
 ```
 
-![](index_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 
 ]
 ]
@@ -327,7 +336,7 @@ Bar plots are suitable for display of proportions as well as for absolute data. 
 barplot(table(muensingen$fibula_scheme))
 ```
 
-![](index_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -337,7 +346,7 @@ barplot(table(muensingen$fibula_scheme))
 barplot(muensingen$Length)
 ```
 
-![](index_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -356,7 +365,7 @@ barplot(muensingen$Length,          # plot fibulae length
 title("Fibulae length")             # add title
 ```
 
-![](index_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -370,7 +379,7 @@ barplot(table(muensingen$fibula_scheme), # Plot counts fibulae scheme
         cex.names=2)                     # make the labels bigger
 ```
 
-![](index_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -399,7 +408,7 @@ my_new_table
 barplot(my_new_table)
 ```
 
-![](index_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
 ]
 .pull-right[
 
@@ -407,7 +416,7 @@ barplot(my_new_table)
 barplot(my_new_table, beside=T, legend.text=T)
 ```
 
-![](index_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 ]
 ]
 
@@ -436,7 +445,7 @@ table.prop
 barplot(table.prop)
 ```
 
-![](index_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -453,7 +462,7 @@ title("ratio of fibulae schemes \n by number of coils",
       line=- 3)              # on line -3 above
 ```
 
-![](index_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
 ]
 ]
 
@@ -473,7 +482,7 @@ barplot(my_new_table,beside=T)
 barplot(table.prop,beside=T)
 ```
 
-![](index_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
 ]
 ]
 
@@ -487,7 +496,7 @@ barplot(muensingen$Length[1:2],xpd=F,ylim=c(45,55))
 barplot(muensingen$Length[1:2],xpd=F)
 ```
 
-![](index_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
 
 ```r
 par(mfrow=c(1,1))
@@ -518,7 +527,7 @@ ____|___|___|____
 boxplot(1:9)
 ```
 
-![](index_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -531,7 +540,7 @@ boxplot(1:9)
 boxplot(muensingen$Length)
 ```
 
-![](index_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -541,7 +550,7 @@ boxplot(muensingen$Length ~
           muensingen$fibula_scheme)
 ```
 
-![](index_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -563,7 +572,7 @@ boxplot(Length ~ fibula_scheme,
 ```
 ]
 .pull-right[
-![](index_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -585,7 +594,7 @@ abline(
 ]
 
 .pull-right[
-![](index_files/figure-html/unnamed-chunk-35-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -601,7 +610,7 @@ library(car) # library for regression analysis
 scatterplot(FL ~ Length, data = muensingen)
 ```
 
-![](index_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-37-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -613,7 +622,7 @@ graph&lt;-b + geom_point()
 show(graph)
 ```
 
-![](index_files/figure-html/unnamed-chunk-37-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
 ]
 ]
 
@@ -629,7 +638,7 @@ Data reduction vs. precision: Display of count values of classes of values
 hist(muensingen$Length)
 ```
 
-![](index_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-39-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -639,7 +648,7 @@ hist(muensingen$Length)
 hist(muensingen$Length, labels = T)
 ```
 
-![](index_files/figure-html/unnamed-chunk-39-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -656,7 +665,7 @@ hist(muensingen$Length,
      labels = T)
 ```
 
-![](index_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-41-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -668,7 +677,7 @@ hist(muensingen$Length,
      breaks = 10)
 ```
 
-![](index_files/figure-html/unnamed-chunk-41-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-42-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -689,7 +698,7 @@ hist(muensingen$Length,breaks=10,
 ]
 
 .pull-right[
-![](index_files/figure-html/unnamed-chunk-43-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-44-1.png)&lt;!-- --&gt;
 ]
 
 Disadvantages:
@@ -737,7 +746,7 @@ breaks. Scales like histograms.
 plot(density(muensingen$Length))
 ```
 
-![](index_files/figure-html/unnamed-chunk-45-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-46-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -749,7 +758,7 @@ hist(muensingen$Length, prob=T)
 lines(density(muensingen$Length))
 ```
 
-![](index_files/figure-html/unnamed-chunk-46-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-47-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -762,7 +771,7 @@ lines(density(muensingen$Length))
 
 Choice of display has a strong influence on the statement.
 
-![](index_files/figure-html/unnamed-chunk-47-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-48-1.png)&lt;!-- --&gt;
 
 ---
 
