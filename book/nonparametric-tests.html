@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Nonparametric Tests | Statistical methods for archaeological data analysis</title>
+  <meta name="description" content="5 Nonparametric Tests | Statistical methods for archaeological data analysis" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Nonparametric Tests | Statistical methods for archaeological data analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Nonparametric Tests | Statistical methods for archaeological data analysis" />
+  
+  
+  
+
+<meta name="author" content="Martin Hinz" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="descriptive-statistics.html"/>
+
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="introduction-into-r.html"><a href="introduction-into-r.html"><i class="fa fa-check"></i><b>2</b> Introduction into R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#start-r-studio"><i class="fa fa-check"></i><b>2.1</b> Start R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-r"><i class="fa fa-check"></i><b>2.2</b> Using R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#start-of-the-system"><i class="fa fa-check"></i><b>2.2.1</b> Start of the system:</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-into-r.html"><a href="introduction-into-r.html#simplest-way-to-use-r-as-calculator"><i class="fa fa-check"></i><b>2.2.2</b> Simplest way to use: R as calculator</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-into-r.html"><a href="introduction-into-r.html#multiple-commands-are-separated-by"><i class="fa fa-check"></i><b>2.2.3</b> Multiple commands are separated by ;</a></li>
+<li class="chapter" data-level="2.2.4" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-functions"><i class="fa fa-check"></i><b>2.2.4</b> Using functions:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-into-r.html"><a href="introduction-into-r.html#getting-help"><i class="fa fa-check"></i><b>2.3</b> Getting help</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-into-r.html"><a href="introduction-into-r.html#assignment-of-data-to-variables"><i class="fa fa-check"></i><b>2.4</b> Assignment of data to variables</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#arrow-or-equal-sign"><i class="fa fa-check"></i><b>2.4.1</b> Arrow or equal sign?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-into-r.html"><a href="introduction-into-r.html#working-with-variables"><i class="fa fa-check"></i><b>2.5</b> Working with variables</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-variables"><i class="fa fa-check"></i><b>2.6</b> Using variables</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-types-in-r-variables"><i class="fa fa-check"></i><b>2.7</b> Data types in R Variables</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#scalar"><i class="fa fa-check"></i><b>2.7.1</b> Scalar</a></li>
+<li class="chapter" data-level="2.7.2" data-path="introduction-into-r.html"><a href="introduction-into-r.html#vector"><i class="fa fa-check"></i><b>2.7.2</b> Vector</a></li>
+<li class="chapter" data-level="2.7.3" data-path="introduction-into-r.html"><a href="introduction-into-r.html#matrix"><i class="fa fa-check"></i><b>2.7.3</b> Matrix:</a></li>
+<li class="chapter" data-level="2.7.4" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-frame"><i class="fa fa-check"></i><b>2.7.4</b> Data frame:</a></li>
+<li class="chapter" data-level="2.7.5" data-path="introduction-into-r.html"><a href="introduction-into-r.html#the-working-directory"><i class="fa fa-check"></i><b>2.7.5</b> The working directory</a></li>
+<li class="chapter" data-level="2.7.6" data-path="introduction-into-r.html"><a href="introduction-into-r.html#download-data-for-further-tasks-into-your-working-directory"><i class="fa fa-check"></i><b>2.7.6</b> Download data for further tasks into your working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-import-through-reading-of-files"><i class="fa fa-check"></i><b>2.8</b> Data import through reading of files</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-c-for-data-entry"><i class="fa fa-check"></i><b>2.9</b> Using c() for data entry</a></li>
+<li class="chapter" data-level="2.10" data-path="introduction-into-r.html"><a href="introduction-into-r.html#named-vectors"><i class="fa fa-check"></i><b>2.10</b> Named vectors</a></li>
+<li class="chapter" data-level="2.11" data-path="introduction-into-r.html"><a href="introduction-into-r.html#applying-functions-to-more-complex-variables"><i class="fa fa-check"></i><b>2.11</b> Applying functions to more complex variables</a></li>
+<li class="chapter" data-level="2.12" data-path="introduction-into-r.html"><a href="introduction-into-r.html#calculations-with-vectors"><i class="fa fa-check"></i><b>2.12</b> Calculations with vectors</a></li>
+<li class="chapter" data-level="2.13" data-path="introduction-into-r.html"><a href="introduction-into-r.html#sequences-and-repeated-data"><i class="fa fa-check"></i><b>2.13</b> Sequences and repeated data</a></li>
+<li class="chapter" data-level="2.14" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-access"><i class="fa fa-check"></i><b>2.14</b> Data access</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#by-indexposition"><i class="fa fa-check"></i><b>2.14.1</b> by index/position</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="introduction-into-r.html"><a href="introduction-into-r.html#logical-values"><i class="fa fa-check"></i><b>2.15</b> Logical values</a></li>
+<li class="chapter" data-level="2.16" data-path="introduction-into-r.html"><a href="introduction-into-r.html#factors"><i class="fa fa-check"></i><b>2.16</b> Factors</a></li>
+<li class="chapter" data-level="2.17" data-path="introduction-into-r.html"><a href="introduction-into-r.html#missing-na-values"><i class="fa fa-check"></i><b>2.17</b> missing (NA) values</a></li>
+<li class="chapter" data-level="2.18" data-path="introduction-into-r.html"><a href="introduction-into-r.html#matrices"><i class="fa fa-check"></i><b>2.18</b> Matrices</a></li>
+<li class="chapter" data-level="2.19" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-frames"><i class="fa fa-check"></i><b>2.19</b> Data frames</a></li>
+<li class="chapter" data-level="2.20" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-export-through-save"><i class="fa fa-check"></i><b>2.20</b> Data export through save</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html"><i class="fa fa-check"></i><b>3</b> Explorative statistics &amp; graphical display</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#dataset-used-for-this-chapter"><i class="fa fa-check"></i><b>3.1</b> Dataset used for this chapter</a></li>
+<li class="chapter" data-level="3.2" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#cross-tables-contingency-tables"><i class="fa fa-check"></i><b>3.2</b> Cross tables (contingency tables)</a></li>
+<li class="chapter" data-level="3.3" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#basics-about-charts"><i class="fa fa-check"></i><b>3.3</b> Basics about charts</a></li>
+<li class="chapter" data-level="3.4" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#the-command-plot"><i class="fa fa-check"></i><b>3.4</b> The command <code>plot()</code></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#basic-plotting"><i class="fa fa-check"></i><b>3.4.1</b> Basic plotting</a></li>
+<li class="chapter" data-level="3.4.2" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#enhancing-the-plot-with-optional-components-text"><i class="fa fa-check"></i><b>3.4.2</b> Enhancing the plot with optional components &amp; Text</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#export-the-graphics"><i class="fa fa-check"></i><b>3.5</b> Export the graphics</a></li>
+<li class="chapter" data-level="3.6" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#pie-chart"><i class="fa fa-check"></i><b>3.6</b> Pie chart</a></li>
+<li class="chapter" data-level="3.7" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#bar-plot"><i class="fa fa-check"></i><b>3.7</b> Bar plot</a></li>
+<li class="chapter" data-level="3.8" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#box-plot-box-and-whiskers-plot"><i class="fa fa-check"></i><b>3.8</b> Box-plot (Box-and-Whiskers-Plot)</a></li>
+<li class="chapter" data-level="3.9" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#scatterplot"><i class="fa fa-check"></i><b>3.9</b> Scatterplot</a></li>
+<li class="chapter" data-level="3.10" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#histogramm"><i class="fa fa-check"></i><b>3.10</b> Histogramm</a></li>
+<li class="chapter" data-level="3.11" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#stem-and-leaf-chart"><i class="fa fa-check"></i><b>3.11</b> stem-and-leaf chart</a></li>
+<li class="chapter" data-level="3.12" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#kernel-smoothing-kernel-density-estimation"><i class="fa fa-check"></i><b>3.12</b> kernel smoothing (kernel density estimation)</a></li>
+<li class="chapter" data-level="3.13" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#guidelines"><i class="fa fa-check"></i><b>3.13</b> Guidelines</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#stay-honest"><i class="fa fa-check"></i><b>3.13.1</b> Stay honest!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#parameters-of-distributions"><i class="fa fa-check"></i><b>4.1.1</b> Parameters of distributions</a></li>
+<li class="chapter" data-level="4.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#loading-data-for-the-following-steps"><i class="fa fa-check"></i><b>4.1.2</b> Loading data for the following steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency-1"><i class="fa fa-check"></i><b>4.2</b> Central tendency</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>4.2.1</b> Mean</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>4.2.2</b> Median</a></li>
+<li class="chapter" data-level="4.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>4.2.3</b> Mode</a></li>
+<li class="chapter" data-level="4.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#comparing-central-tendency-parameters"><i class="fa fa-check"></i><b>4.2.4</b> Comparing Central tendency parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#dispersion-1"><i class="fa fa-check"></i><b>4.3</b> Dispersion</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#range"><i class="fa fa-check"></i><b>4.3.1</b> Range</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#towards-a-better-parameter-for-dispersion"><i class="fa fa-check"></i><b>4.3.2</b> Towards a better parameter for dispersion</a></li>
+<li class="chapter" data-level="4.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#empirical-variance"><i class="fa fa-check"></i><b>4.3.3</b> (empirical) variance</a></li>
+<li class="chapter" data-level="4.3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#empirical-standard-deviation"><i class="fa fa-check"></i><b>4.3.4</b> (empirical) standard deviation</a></li>
+<li class="chapter" data-level="4.3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#coefficient-of-variation"><i class="fa fa-check"></i><b>4.3.5</b> Coefficient of variation</a></li>
+<li class="chapter" data-level="4.3.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quantile"><i class="fa fa-check"></i><b>4.3.6</b> Quantile</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#shape-of-the-distribution"><i class="fa fa-check"></i><b>4.4</b> Shape of the distribution</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#skewness"><i class="fa fa-check"></i><b>4.4.1</b> Skewness</a></li>
+<li class="chapter" data-level="4.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#kurtosis"><i class="fa fa-check"></i><b>4.4.2</b> Kurtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#take-home"><i class="fa fa-check"></i><b>4.5</b> Take Home</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html"><i class="fa fa-check"></i><b>5</b> Nonparametric Tests</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#inductive-statistics-or-statistical-inference"><i class="fa fa-check"></i><b>5.1</b> Inductive statistics or statistical inference</a></li>
+<li class="chapter" data-level="5.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#population-and-sample"><i class="fa fa-check"></i><b>5.2</b> Population and sample</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#repetition"><i class="fa fa-check"></i><b>5.2.1</b> Repetition:</a></li>
+<li class="chapter" data-level="5.2.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#parameter"><i class="fa fa-check"></i><b>5.2.2</b> Parameter</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#statistical-hypothesis-testing"><i class="fa fa-check"></i><b>5.3</b> Statistical Hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#validation-of-an-assumption-about-the-population"><i class="fa fa-check"></i><b>5.3.1</b> Validation of an assumption about the population</a></li>
+<li class="chapter" data-level="5.3.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#null-hypothesis"><i class="fa fa-check"></i><b>5.3.2</b> Null hypothesis</a></li>
+<li class="chapter" data-level="5.3.3" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#one-tailedtwo-tailed-hypothesis"><i class="fa fa-check"></i><b>5.3.3</b> One-tailed/Two-tailed hypothesis</a></li>
+<li class="chapter" data-level="5.3.4" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#stat.-significance"><i class="fa fa-check"></i><b>5.3.4</b> Stat. Significance</a></li>
+<li class="chapter" data-level="5.3.5" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#how-true-is-true"><i class="fa fa-check"></i><b>5.3.5</b> How true is true?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#α--und-β-error"><i class="fa fa-check"></i><b>5.4</b> α- und β-error</a></li>
+<li class="chapter" data-level="5.5" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#parametric-vs.-nonparametric"><i class="fa fa-check"></i><b>5.5</b> Parametric vs. Nonparametric</a></li>
+<li class="chapter" data-level="5.6" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#chi2-test"><i class="fa fa-check"></i><b>5.6</b> <span class="math inline">\(\chi^2\)</span> test</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#facts-sheet"><i class="fa fa-check"></i><b>5.6.1</b> Facts sheet</a></li>
+<li class="chapter" data-level="5.6.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#excursus-degree-of-freedom"><i class="fa fa-check"></i><b>5.6.2</b> Excursus degree of freedom</a></li>
+<li class="chapter" data-level="5.6.3" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#chi2-test-for-one-sample-example-after-shennan"><i class="fa fa-check"></i><b>5.6.3</b> <span class="math inline">\(\chi^2\)</span> Test for one sample (example after Shennan)</a></li>
+<li class="chapter" data-level="5.6.4" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#two-sample-case-test-for-independence"><i class="fa fa-check"></i><b>5.6.4</b> Two sample case (Test for independence)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#kolmogorovsmirnov-test"><i class="fa fa-check"></i><b>5.7</b> Kolmogorov–Smirnov test</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#facts-sheet-ks-test"><i class="fa fa-check"></i><b>5.7.1</b> Facts sheet KS-Test</a></li>
+<li class="chapter" data-level="5.7.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#example-after-shennan"><i class="fa fa-check"></i><b>5.7.2</b> Example (after Shennan)</a></li>
+<li class="chapter" data-level="5.7.3" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#ks-test-in-r"><i class="fa fa-check"></i><b>5.7.3</b> KS-Test in R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#interpretation-of-significance-tests"><i class="fa fa-check"></i><b>5.8</b> Interpretation of significance tests</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#pay-attention-also-when-the-statistic-seem-to-be-clear"><i class="fa fa-check"></i><b>5.8.1</b> Pay attention also when the statistic seem to be clear</a></li>
+<li class="chapter" data-level="5.8.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#statistical-association-not-mean-causal-association"><i class="fa fa-check"></i><b>5.8.2</b> Statistical association not mean causal association!</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical methods for archaeological data analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="nonparametric-tests" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Nonparametric Tests</h1>
+<div id="inductive-statistics-or-statistical-inference" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Inductive statistics or statistical inference</h2>
+<p>Until now, we have primarily described and presented the data of our sample using descriptive statistics and graphical visualisation. We also used graphical visualisations to explore our dataset in the sense of explorative statistics. In all of these techniques, we stayed on the page of the sample. We did not make any conclusions about the underlying population.</p>
+<p>This is no different, when we come to the field of inductive statistics, or statistical inference. Here, we explicitly try to estimate characteristics of our population using our sample. Since in nearly all cases, our sample will be smaller (in archaeology actually very much smaller) then our population, we have only access to a small part of the information describing the full population. So necessarily, when we base our estimation only on a fraction of the population, our estimation will be wrong. But it doesn’t need to be true, it just needs to be sufficiently correct. Nevertheless, it is essential to keep that in mind: whatever comes out of the statistical analyses, only is to with a certain probability. The knowledge gained is always statistical meaning, there is a certain chance that the world is like we assume it. We have to have a link from the sample that we have at hand, to the population. This link is provided to us by probability theory. We will explain that a bit more detailed, when it comes to parametric tests.</p>
+</div>
+<div id="population-and-sample" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Population and sample</h2>
+<div id="repetition" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Repetition:</h3>
+<p>A small repetition of what we have learnt in the beginning: We call <strong>population</strong> the collection of all items that are relevant for our investigation. But in most cases, we cannot investigate the full population. Therefore we investigate only a fraction of it. This fraction, that we ideally select on certain criteria (represent activity), is called our <strong>sample</strong>. We always should keep in mind, that the dataset that we are analysing is only a random selection of the whole collection of items that we are really interested in. In so far, it is like our probe that we send out as spaceship Enterprise into the nebula of data that lie in front of us. This is especially true in archaeology, where neither the population nor the conditions under which our sample is created is under our control. We never will be able to access the population, and we never will be able to verify our interpretation with it.</p>
+</div>
+<div id="parameter" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Parameter</h3>
+<p>Even if we have no way of precisely knowing them, our population always has certain values or distributions of values, there are fixed. For example, there is a specific value for the mean foot length of all the La Tène B fibulae ever produced (given, that we can agree on what a La Tène B fibula is). This value is there. It is an actual number. But we never will know it, and it’s lost in the depth of time.</p>
+<p>Such variables, that we can’t be sure exists and have a certain value we call <strong>parametres</strong>. This parameters can only be estimated by us using the sample. So, they are not accessible for us, nevertheless that they really exist and really have a specific value.</p>
+<p>Also, samples have parammeters. But these parameters are accessible: we can measure them. But we have to distinguish these parameters from the actual parameters of the population. Quite often, this is already visible in the notation that is used in the formula, which differentiate between sample and population. For example:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Population</th>
+<th align="center">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\mu:\)</span> mean of the population</td>
+<td align="center"><span class="math inline">\(\bar{x}\)</span>: mean of the sample</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\sigma\)</span>: standard deviation of the population</td>
+<td align="center"><span class="math inline">\(s\)</span>: standard deviation of the sample</td>
+</tr>
+</tbody>
+</table>
+<p>Since we can only measure the parameters of the sample, we use them, and some knowledge about the general distribution of values in random processes, to estimate those values of the population. This is done in statistical tests, where it is estimated, if and how likely certain values of a sample, under certain conditions of a random process, result from the population with a certain parameter. The quality of the statement of a test therefore depends on the choice of the sample (representativity)! For this, we make a hypothesis about the value of the population, and then we test this hypothesis using statistical hypothesis testing.</p>
+</div>
+</div>
+<div id="statistical-hypothesis-testing" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Statistical Hypothesis testing</h2>
+<div id="validation-of-an-assumption-about-the-population" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Validation of an assumption about the population</h3>
+<p>As I have just explained, does statistical hypothesis testing takes place before the background of the sample. We make a hypothesis about the value of the parameter of the population, and then we estimate, how likely the sample that we have at hand could have resulted from such a population. If it is very likely, then it is an indication that our hypothesis is not too bad. If it is very unlikely, that might be indication that there is something wrong with our hypothesis.</p>
+<p>Before we start to talk about actual and individual values, most of the time hypothesis actually unfold them self more as general questions like the one below:</p>
+<p><strong>How probable is it that two or more samples descend from the different/the same population?</strong></p>
+<p>(eg. Is the custom of grave goods for man and women so different that two different social groups are visible?)</p>
+<p><strong>How probable is it that a given sample descend from a population with certain parameters?</strong></p>
+<p>(Is the amount of grave goods random or is a pattern visible?)</p>
+<p>In the first place, when we have two samples and try to estimate if they originate from the same or from different populations, we have a test for independence. That means, we test, based on the samples, if the population of both values are independent from each other or not. In the second case, which is also called goodness of fit test, we test how good our data fits to a specific assumption, like I have explained above. But it is very difficult to prove something about the population, given that we have a sample. Maybe, we just have to wrong sample? Maybe, while our sample just doesn’t fit to our assumption, the sample next to it would probably do. It is much easier to falsifier statement using a sample: only one black swan falsifies do you hypothesis, that all swans are white. Therefore, in statistical hypothesis testing, we use a detour over falsification to make our hypothesis more plausible. This detour is called null-hypothesis.</p>
+</div>
+<div id="null-hypothesis" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Null hypothesis</h3>
+<p>In statistical tests most of the times not the statement is tested which one expects to be true, but one tries to disprove the statement which one expects to be wrong: the null hypothesis. This hypothesis states mostly, that a association do not exists or that there is no differences between the samples and the distribution of the observations is by chance. So, most of the time, it is the rather boring standard situation, that exciting scientific investigations try to disprove.</p>
+<p>An example: Is the composition of grave goods different between male and female deceased?</p>
+<p>This is the scientific question. Now, there are two possible answers to that, resulting into possible hypothesis:</p>
+<p><span class="math inline">\(H_0\)</span>: The composition is the same</p>
+<p><span class="math inline">\(H_1\)</span>: The composition is different</p>
+<p>So instead of proving our hypothesis one, we try to disprove or falsify its opposite. When we have shown, that the assumption, that the composition is the same (or only different due to random chance), then we have shown at the same time, that the composition is different. We did not say anything about how it is different, or why it is different, we only state, that is different. As we have shown above, this has two reasons:</p>
+<ol style="list-style-type: decimal">
+<li>It is (logical) easier to prove, that a statement is wrong (falsify) then to prove that a statement is true (verify).</li>
+<li>Most of the times it is easier to formulate a null hypothesis (How exactly is the composition different?). It doesn’t make a assumption about how the character of a association/difference exactly is.</li>
+</ol>
+<p>So the “workflow” of the statistical test is the following: At first, usually from our scientific question, we have our alternative hypothesis. At the moment, it is probably not with an alternative, because it is the only hypothesis that we have. Usually, we hope or expect to find something interesting in the data. For example in relation to gender differences in burial items:</p>
+<p><strong>Construction of a alternative hypothesis:</strong></p>
+<p>The composition of the grave goods is different between male and female deceased.</p>
+<p>From this assumption, we build our no hypothesis in such a way that we are stating the opposite of what we might expect:</p>
+<p><strong>Construction of the null hypothesis:</strong></p>
+<p>The composition of the grave goods is the same in male and female burials.</p>
+<p>[To be honest, this is a bit of cheating. If you get further into the discussion about the validity of statistical analyses, you will learn decides to discussion on the P value as such, that one should actually only compare real scientific hypothesis with each other, and not such a strawman like another hypothesis. Nevertheless, this is (quite successful) practice in frequentist statistical analyses since decades, and in most of the time it actually also works quite well. Only to let you know, that this is not the only way of how you can interpret this workflow.]</p>
+<p>Now, that we have our normal hypothesis, we can test with our data from our sample how likely it is. How do you specifically is done, depends very much on the statistical test that we are using, and the data quality, that we are investigating. But the general logic is always the same: the next step is the</p>
+<p><strong>Test of the null hypothesis</strong></p>
+<p>From this, we have two possible results. Either:</p>
+<p><strong>If the result of the test is significant:</strong></p>
+<p>Then we have evidence, that our Null Hypothesis might not be true. And, depending on the level of security that we would like to have, this might be rather overwhelming evidence. In that case, we reject the null hypothesis. This also means, that we can choose the alternative hypothesis. In our example:</p>
+<p>The composition of the grave goods is different between male and female deceased.</p>
+<p>If the result of the test is not significant, This means, that we do not have enough evidence to securely falsify the null hypothesis. Or in other words:</p>
+<p><strong>The null hypothesis could not be rejected.</strong></p>
+<p>This now does not mean, get the null hypothesis is actually true. You see that quite often, that When statistical test is not significant, that interpretation is that there is no difference for example between two populations. But this is not correct because the null hypothesis can be kept Ivor, because it’s true (or better not wrong), or, because there are not enough data. Statistical significance doesn’t and cannot differentiate between these two possibilities.</p>
+</div>
+<div id="one-tailedtwo-tailed-hypothesis" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> One-tailed/Two-tailed hypothesis</h3>
+<p>Sometimes, you see one-tailed or two-tailed as qualifier resulting from statistical tests. This comes from the fact that technically in most of the hypothesis testing we compare our value to a range of theoretical values. In such situations, our value can be bigger or smaller than this range. Now, it depends on the question asked and therefore on the hypothesis, in which case we can reject our null hypothesis. Probably can be best explained using example:</p>
+<p><em>Is the number of grave goods in female burials higher than in male?</em></p>
+<p>With this type of question, there is only one way in which our hypothesis (or it’s null hypothesis) can be falsified. Only in the case, when the number of greatcoats in May burials are higher, then we have a falsification of our hypothesis. There is only one way, one tail of the values, on which it can be falsified.</p>
+<p><em>Is the number of grave goods in female burials different from male?</em></p>
+<p>Here, the number of grave goods in female burials can differ into directions: There can be more or less burial items. So on both tails of our value range (smaller, bigger) there is falsification of the null hypothesis possible. Therefore, this is a two-tailed hypothesis.</p>
+<p>Here, we have more chance for a random process to result in the pattern that we are observing. That’s why in statistical tests the result is often two significances (onetailed, two-tailed).
+.center[
+<img src="../images/05_session/cm_fig2d.png" alt=":width 25%" /> <img src="../images/05_session/cm_fig2c.png" alt=":width 25%" />]</p>
+</div>
+<div id="stat.-significance" class="section level3" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Stat. Significance</h3>
+</div>
+<div id="how-true-is-true" class="section level3" number="5.3.5">
+<h3><span class="header-section-number">5.3.5</span> How true is true?</h3>
+<p>Now, we quite often have used the term significant. Of course, in common language this means important. In the realm of statistical analyses, significance means a measure of how certain decision for one or the other hypothesis is. Or, to put it the other way round, it is a measure of uncertainty.</p>
+<p>We have already introduced the null hypothesis, and there we have explained that statistical significance decides whether or not to accept the null hypothesis. More specifically, significance is exactly a measure of how probable an error is when we reject the null hypothesis. That is not directly the same as how likely the null hypothesis itself is, although quite often it will be mixed up with this meaning. One important factor in this difference is, that also sample size and with that certainty of evidence against the null hypothesis is factored in here. But from this perspective, it also makes quiet sense that based on this criterion the null hypothesis is rejected or not. This measure of course is a continuous variable, so there are no specific values per se that would define a threshold. Nevertheless, there are some arbitrary classical thresholds:</p>
+<ul>
+<li>0.05: significant, with 95% probability the decision is right.</li>
+<li>0.01: very significant, with 99% probability the decision is right.</li>
+<li>0.001: highly significant, with 99,9% probability the decision is right.</li>
+</ul>
+<p>In archaeology, where no life depends on our decision, usually the 0.05 level is perfectly fine for decision-making. In medical trial or situations, where you have a lot of experimental data, you probably would like to have stricter significance levels than that. But technically, no one can stop you to introduce your own significance level if you like.</p>
+<p>This measure of significance is also often called p-value in the literature in the English literature, or alpha (<span class="math inline">\(\alpha\)</span>) in other languages. If you look up these names, you probably will find that there is quite a discussion going on about the value of the p-value in scientific analyses. Since this year it’s a beginners course, we will not go into this debate. For us the p-value is significant enough, and we will stick to this arbitrary 0.05 measure. This measure also means, that in 1 out of 20 cases the null hypothesis will be rejected even though it should not be rejected. When interpreting statistical results, one should always keep this in mind: even with seemingly objective statistical methods, there is quite a big margin of error possible. Actually, there are two possible arrows here: we can except the null hypothesis, even if it is not true. Or, we can reject the null hypothesis even if it is true. We will learn about these two versions in the next section.</p>
+</div>
+</div>
+<div id="α--und-β-error" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> α- und β-error</h2>
+<p>As I have described above, we can go wrong in two ways with the rejection of a null hypothesis in statistical investigations:</p>
+<p><strong>The null hypothesis is rejected although it is true</strong> -&gt; <em>Type I error, false positive, <span class="math inline">\(\alpha\)</span>-error</em></p>
+<p>Such an error would be, for example, when the result of a pregnancy test shows a pregnancy although there is none.</p>
+<p><strong>The null hypothesis is not rejected although it is wrong</strong> -&gt; <em>Type II error, false negative, <span class="math inline">\(\beta\)</span>-error</em></p>
+<p>In this situation, the example would be the result of a pregnancy test if it shows no pregnancy although there is one.</p>
+<p>So in general, there are two situations where we can decide correct: If we accept the null hypothesis, and it is the correct choice, or we reject the null hypothesis, and that is the correct choice. If we reject the null hypothesis, but there is in reality no difference between our samples, then we make this type one error. In that case, we would think that we gained some new knowledge, so we probably will build further interpretations on top of that. That makes type one errors more severe. Because, with a Type II error, when we keep the null hypothesis although there is a difference in our data justifying the alternative hypothesis, if we correctly interpret the statistical results we just miss an opportunity to find an interesting pattern. When another hypothesis cannot be rejected, we should not learn anything about the population.So, not so much damage should result from that.</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>True condition: H0 (There is no difference)</th>
+<th>True condition: H1 (There is a difference)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>By the use of a statistical test the decision was made for: H0</td>
+<td>Correct decision</td>
+<td>Type II error</td>
+</tr>
+<tr class="even">
+<td>By the use of a statistical test the decision was made for: H1</td>
+<td>Type I error</td>
+<td>Correct decision</td>
+</tr>
+</tbody>
+</table>
+<p>Nevertheless, both situations are annoying, so that is why statistical tests usually try to avoid both types of errors. But they can do so only in so far as they adapt their strictness. If they are too strict, they will not reject the null hypothesis to easily, leading to type 2 errors. If they are not strict enough, do you wanna risk type 1 errors. So it is always a balancing act between both error possibilities.
+The <strong>power</strong> of the statistical test is its capability to avoid type two errors without risking type one error. This capability depends on the amount of information that can be put into the test itself. That means, if we have not very much information not very much evidence, then type two errors are more likely. In general, this also not very desirable, because more powerful tests enable us to differentiate more clearly between random effects and actual patterns in the data.</p>
+</div>
+<div id="parametric-vs.-nonparametric" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Parametric vs. Nonparametric</h2>
+<p>The question, what nonparametric tests mean, and what distinguish them from parametric tests, is strongly connected to what we have described just above. If we have very little information, because from the data themselves or from general knowledge they can’t be put so much into the equation, then we probably will have tested and not very powerful. On the other hand, this tests might be applicable in situations, we are more powerful tests are not valid, and cannot be used. On the other hand, if we can introduce more information into our test, we have more grounds to differentiate between random effects and actual patterns. This precisely is the difference between parametric and nonparametric tests.</p>
+<p><strong>Parametric</strong> tests, we make certain assumptions about the distributions of the values in the population. Quite often, we assume that the values follow the so-called normal distribution. But there are also other possibilities: for example we could have a independence test that require the variance of the data to be equal. We will learn about one of these tests later, and but alternatives we do have in this situation. Quite often, parametric tests also, resulting from their prerequisites, can applied only to metric variables.</p>
+<p><strong>Nonparametric</strong> tests on the other hand do not make any of these assumptions. They do not care, what distribution the data might have in the population. Also, most tests for nominal or even ordinal variables are nonparametric. Another benefit is that quite often they are applicable for rather a small sample sizes. But for this flexibility, of course, your pay a price: this tests are not as powerful as their parametric counterparts. Nevertheless, for the dirty and sparse data that archaeology usually has to deal with, we can declared that this kind of tests exist.</p>
+</div>
+<div id="chi2-test" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> <span class="math inline">\(\chi^2\)</span> test</h2>
+<p>The first statistical test, that we will cover here, is probably one of the most nonparametric tests there is. The Chi-Square test requires only two or more sets of nominal variables, and will try to test whether or not the court occurrence of values is related to each other or not.</p>
+<p>This probably doesn’t sound so universal, but in archaeological reality you can cover already quite wide range of possible questions with this. And also, you can base your interpretations much more secure, if you have the ability to differentiate between actual patterns and random results from sampling processes. Such questions might be:</p>
+<p><strong>Do settlements tend to be situated on rather good soil or is the distribution random?</strong></p>
+<p>If we can differentiate between situations, where to settlement behaviour is just independent from disorder quality, and such situations, where decide quality or a specific side quality makes a difference for the settlement behaviour, we can learn a lot about settlement behaviour in general and it economical dependencies specifically.</p>
+<p><strong>Do older individuals have more shoe-last celt as grave goods than younger?</strong></p>
+<p>If we assume, and archaeology did so, that shoe-last celt (Schuhleistenkeil) are a sign of social rank in neolithic Linear Band Ceramic groups, then their distribution among the individuals of different age classes can you give us an indication about the construction and reproduction of status and role in society. If, for example these items are evenly distributed among older and younger individuals, can we have an indication that it is not activities during lifetime that define the social rank of a person, but this rank can be inherited. Or the other way round, if these objects are concentrated in order age classes, we have an indication that only with a long life you get the allowance to have one of these objects as burial item. [One problem here: Of course, this is a vicious circle, because the fact that these objects occur in older age classes primarily make them suspicious for being a social marker of rank in the first place.]</p>
+<p>All these questions and the related categories are probably not the first thing, and that comes to your mind, when you think about statistical tests. Here, we talk about nominal variables. And this is especially the value of the Chi-Squared test for archaeology: Most of our variables and of our interesting questions are nominal scaled. Let’s have a look how we can perform this test.</p>
+<div id="facts-sheet" class="section level3" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> Facts sheet</h3>
+<div id="chi2-test-for-independence-of-two-distributions" class="section level4" number="5.6.1.1">
+<h4><span class="header-section-number">5.6.1.1</span> <span class="math inline">\(\chi^2\)</span> Test for independence of two distributions</h4>
+<p><strong>Requirements</strong>: at least 1 nominal scaled variable (one sample case) and
+1 nominal scaled grouping variable (two sample case)</p>
+<p><strong>Procedure with one sample</strong>: observed values are compared with expected values given a certain distribution, no expected value should be &lt; 5; n should be &gt; 50</p>
+<p><strong>Procedure with two samples</strong>: observed values of both distributions are
+compared with expected values if the samples would be even distributed,
+no expected value should be &lt; 5; n should be &gt; 50</p>
+<p><strong>If sample size is too small</strong>: Fishers Exact Test</p>
+<p><strong>Test statistics</strong>: <span class="math inline">\(\chi^2\)</span></p>
+<p>Significance depend on degree of freedom (df)</p>
+</div>
+<div id="what-do-these-facts-mean" class="section level4" number="5.6.1.2">
+<h4><span class="header-section-number">5.6.1.2</span> What do these facts mean</h4>
+<p>Most of this will explain itself when we come to the practical examples. The test itself requires one nominal scaled variable, that means the counts of objects within at least more than one category. So actually not the count number, but the categorisation is the original variable. The nominal scaled grouping variable describes simply the fact that we can differentiate to samples, if we would like to compare to samples. We have to be able to distinguish between apples and oranges.
+In both cases, we compare the observed values of our dataset with some expected values, that will result from certain assumptions or expectations about how the distribution of the values should be. Also this will be more clearly understandable with the practical example. But in the one sample as well as in the two sample version of the test, there is a requirement of having no expected value (the number of objects of a certain category that you would expect given your assumptions) should be smaller than five, and the total number of cases should be at least 50. Please note, that if this pre-requisites cannot be fulfilled, you can use the so-called Fishers Exact Test instead. Its interpretation is very similar to the one for the Chi-Square test statistic. The test itself is called after the Chi-Square distribution that it uses as test statistic. In statistical tests, often certain theoretical distributions are used as shortcuts to approximates other, more complicated distributions to decide, whether or not the values might come from random processes.
+The last thing we have to explain to the concept of degrees of freedom.</p>
+</div>
+</div>
+<div id="excursus-degree-of-freedom" class="section level3" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span> Excursus degree of freedom</h3>
+<p>Very general, degree of freedom in statistics means a number of values in a calculation or equation that can vary freely. It is the amount of choices that you have before everything is determined. Let’s assume the following numbers of burials, divided into different classes:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>male</th>
+<th>female</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cremation</td>
+<td></td>
+<td></td>
+<td>201</td>
+</tr>
+<tr class="even">
+<td>inhumation</td>
+<td></td>
+<td></td>
+<td>197</td>
+</tr>
+<tr class="odd">
+<td>total</td>
+<td>216</td>
+<td>182</td>
+<td>398</td>
+</tr>
+</tbody>
+</table>
+<p>We have the total sums in the margins, we have in total 216 male burials, and 182 female burials. Also, we know already that we have 201 cremation burials and 197 inhumations. But the distribution within the table is not yet determined. We don’t know, how does different values are distributed among the classes. But if we have information about just one cell:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>male</th>
+<th>female</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cremation</td>
+<td>123</td>
+<td></td>
+<td>201</td>
+</tr>
+<tr class="even">
+<td>inhumation</td>
+<td></td>
+<td></td>
+<td>197</td>
+</tr>
+<tr class="odd">
+<td>total</td>
+<td>216</td>
+<td>182</td>
+<td>398</td>
+</tr>
+</tbody>
+</table>
+<p>Now everything is determined. We can calculate the number of male inhumations, we can also calculate the number of female creation cremations, And then also the number of female inhumations. With just one value set (and it doesn’t matter which value it is actually) the whole table is determined.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>male</th>
+<th>female</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cremation</td>
+<td>123</td>
+<td>78</td>
+<td>201</td>
+</tr>
+<tr class="even">
+<td>inhumation</td>
+<td>93</td>
+<td>104</td>
+<td>197</td>
+</tr>
+<tr class="odd">
+<td>total</td>
+<td>216</td>
+<td>182</td>
+<td>398</td>
+</tr>
+</tbody>
+</table>
+<p>This means, that this table structure has a degree of freedom of one.</p>
+<p><strong>df=1</strong>: if one value is chosen all other can be calculated with the help of
+the margins</p>
+<p>In general, there is a very simple formula to calculate the degrees of freedom of such tables:</p>
+<p>(number of columns – 1)*(number of rows – 1)</p>
+<p>So we have to substract from the number of column 1, and multiplied it by the number of rows -1. You can calculate the example above with this formula, or check the sample below with the same formula and have already an estimation about how many degrees of freedom this will have.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>male</th>
+<th>female</th>
+<th>uncertain</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cremation</td>
+<td></td>
+<td></td>
+<td></td>
+<td>201</td>
+</tr>
+<tr class="even">
+<td>inhumation</td>
+<td></td>
+<td></td>
+<td></td>
+<td>197</td>
+</tr>
+<tr class="odd">
+<td>total</td>
+<td>196</td>
+<td>179</td>
+<td>23</td>
+<td>398</td>
+</tr>
+</tbody>
+</table>
+<p>No we have three columns, and still two rows. According to our formula, we should have a degree of freedom of two. Let’s try that out. If we introduce one value, there is still possibility to vary other values freely. For example, if we fixed a number of female cremations, we still don’t know or can’t calculate all the other values.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>male</th>
+<th>female</th>
+<th>uncertain</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cremation</td>
+<td></td>
+<td>78</td>
+<td></td>
+<td>201</td>
+</tr>
+<tr class="even">
+<td>inhumation</td>
+<td></td>
+<td></td>
+<td></td>
+<td>197</td>
+</tr>
+<tr class="odd">
+<td>total</td>
+<td>196</td>
+<td>179</td>
+<td>23</td>
+<td>398</td>
+</tr>
+</tbody>
+</table>
+<p>Only if we add another value, for example the number of male cremations, we can calculate all the other values.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>male</th>
+<th>female</th>
+<th>uncertain</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cremation</td>
+<td>113</td>
+<td>78</td>
+<td></td>
+<td>201</td>
+</tr>
+<tr class="even">
+<td>inhumation</td>
+<td></td>
+<td></td>
+<td></td>
+<td>197</td>
+</tr>
+<tr class="odd">
+<td>total</td>
+<td>196</td>
+<td>179</td>
+<td>23</td>
+<td>398</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>male</th>
+<th>female</th>
+<th>uncertain</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cremation</td>
+<td>113</td>
+<td>78</td>
+<td>10</td>
+<td>201</td>
+</tr>
+<tr class="even">
+<td>inhumation</td>
+<td>83</td>
+<td>101</td>
+<td>13</td>
+<td>197</td>
+</tr>
+<tr class="odd">
+<td>total</td>
+<td>196</td>
+<td>179</td>
+<td>23</td>
+<td>398</td>
+</tr>
+</tbody>
+</table>
+<p>As expected from our formula, we have a degree of freedom of two.</p>
+<p><strong>df=2</strong>: if two values are chosen all other can be calculated with the help of the margins</p>
+<p>(number of columns – 1)*(number of rows – 1)</p>
+<p>Using again the formula, I’ll leave the last example for you to figure out yourself.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>male</th>
+<th>female</th>
+<th>uncertain</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cremation</td>
+<td></td>
+<td></td>
+<td></td>
+<td>201</td>
+</tr>
+<tr class="even">
+<td>inhumation</td>
+<td></td>
+<td></td>
+<td></td>
+<td>197</td>
+</tr>
+<tr class="odd">
+<td>other</td>
+<td></td>
+<td></td>
+<td></td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>201</td>
+<td>187</td>
+<td>40</td>
+<td>428</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="chi2-test-for-one-sample-example-after-shennan" class="section level3" number="5.6.3">
+<h3><span class="header-section-number">5.6.3</span> <span class="math inline">\(\chi^2\)</span> Test for one sample (example after Shennan)</h3>
+<p>For demonstration using example from the Stephen Shennans book on quantifying archaeology: the number of Neolithic settlements on different soil types in eastern France</p>
+<table>
+<thead>
+<tr class="header">
+<th>Soil type</th>
+<th>Number of settlements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rendzina</td>
+<td>26</td>
+</tr>
+<tr class="even">
+<td>Alluvial</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>Brown earth</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>53</td>
+</tr>
+</tbody>
+</table>
+<p>The question that should be answered here is whether or not there is a certain preference for specific soil types. From the data themselves it seems quite obvious, that Rendzina is very much preferred for settlements. So we will not need to statistical methods to check out, which of the sort of type is this preferred, but rather, if this high number of settlements could also result from just random effects. Or to be more concrete, how likely such a random configuration might be, and if it is likely to falsely exclude the possibility of random effects with more than our standard 5% probability for statistical significance.</p>
+<p>This is actually a one sample test, because we have only one sample: the amount of settlements on the different soil types. It is probably easier to understand, that this is one variable, if you imagine it is a list of settlements, where we have the values “Rendzina”, “Rendzina”, “Brown earth”, “Alluvial”, and so on. With this it becomes clear that we have a variable that is nominal scaled.</p>
+<p>We will calculate two versions of this test here: at first a naive version, in which we assume, that the soil types are evenly distributed over the landscape, with the same area ratio. In the second version, we will add information about the actual distribution of the soil types in the landscape to our equation, and with that we will alter the values that we will expect for its distribution.</p>
+<div id="version-1-even-distributed" class="section level4" number="5.6.3.1">
+<h4><span class="header-section-number">5.6.3.1</span> Version 1: even distributed</h4>
+<p>In this version, we assume that every soil type has the same proportion area in the landscape. If we now randomly distribute our settlements over the landscape, we would expect that each soil type has the same same probability of settlement. Consequently, we would expect that the number of settlements for each side type is the same. In total, we have 53 settlements. If we would evenly distribute these settlements over our three soil types, we would end up with the expection of 17.6667 settlements per soil type.</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Soil type</th>
+<th>Number of settlements</th>
+<th>Proportion of soil type</th>
+<th>expected number of settlements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rendzina</td>
+<td>26</td>
+<td>1/3</td>
+<td>17.6667</td>
+</tr>
+<tr class="even">
+<td>Alluvial</td>
+<td>9</td>
+<td>1/3</td>
+<td>17.6667</td>
+</tr>
+<tr class="odd">
+<td>Brown earth</td>
+<td>18</td>
+<td>1/3</td>
+<td>17.6667</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>53</td>
+<td>1</td>
+<td>53</td>
+</tr>
+</tbody>
+</table>
+<p>Now we can formulate a hypothesis: We are interested, if the settlements are not evenly distributed. Therefore, we need to disprove or make unlikely an even distribution. Soour hypothesis look like that:</p>
+<p><span class="math inline">\(H_0\)</span>: The settlements are evenly distributed on all soil types.</p>
+<p><span class="math inline">\(H_1\)</span>: The settlements are <strong>not</strong> evenly distributed on all soil types.</p>
+<p>Of course, from the data we already see, that they are not distributed like our expectation. But of course, there is random chance that a certain soil type gets a higher number of settlements then another. This would also be true if we would use a dice to distribute the number of settlements. We are only interested in the situation, when this rolling a dice scenario is very unlikely, and a pattern behind this distribution cannot be ignored. For that, we have to measure how far the actual data are from our expectation (you could call that measure of surprise), and how likely such a distance from our expectation would be given the possible random nature of the distribution. For the later part, we will use pre-calculated tables, or the statistical program R. But the first part we can calculate ourselves.</p>
+<p>Please don’t be afraid: here come to formula! But we will gently introduce and explain this formula to you.</p>
+<p>Formula for <span class="math inline">\(\chi^2\)</span>:</p>
+<p><span class="math inline">\(\chi^2=\sum_{i=1}^n \frac{(O_i - E_i)^2}{E_i}\)</span></p>
+<p><span class="math inline">\(O_i\)</span>: number of <strong>observed</strong> cases</p>
+<p><span class="math inline">\(E_i\)</span>: number of <strong>expected</strong> cases</p>
+<p><span class="math inline">\(\chi^2\)</span>: symbol for the test statistic chi-squared</p>
+<p>The number of observed cases the present our actual data. This is the data that we observed. Consequently, the number of expected cases is represented by our column “expected number of settlements”. In this formula, from our exact cases our expectations are substracted to calculate the difference. Because we don’t care if I were observed cases are bigger or smaller than our expectations, because we are only interested in the difference, we square them to get rid of the sign. Then we have to take care, get our measure of surprise is independent from the number of cases. This is because the difference of 10 will probably surprise us, if the total number of cases is 20, but in the situation, where the total number is 5000, this difference of 10 probably is totally irrelevant. That is why we divide by the number of expected cases again, to normalise for the expected magnitude of our data. That must be repeated for every cell of the table. Once this is done, we can sum up all over individual measures of surprise to get the total surprise for the table, or more formally does Chi-Squared value for the table.</p>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Soil type</th>
+<th>Number of observed cases</th>
+<th>Number of expected cases</th>
+<th><span class="math inline">\(O_i - E_i\)</span></th>
+<th><span class="math inline">\((O_i - E_i)^2\)</span></th>
+<th><span class="math inline">\(\frac{(O_i - E_i)^2}{E_i}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rendzina</td>
+<td>26</td>
+<td>17.6667</td>
+<td>8.3333</td>
+<td>69,4444</td>
+<td>3.9308</td>
+</tr>
+<tr class="even">
+<td>Alluvial</td>
+<td>9</td>
+<td>17.6667</td>
+<td>-8.6667</td>
+<td>75,1117</td>
+<td>4.2516</td>
+</tr>
+<tr class="odd">
+<td>Brown earth</td>
+<td>18</td>
+<td>17.6667</td>
+<td>0.3333</td>
+<td>0.1111</td>
+<td>0.0063</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>53</td>
+<td>53</td>
+<td></td>
+<td></td>
+<td><strong>8.18868</strong></td>
+</tr>
+</tbody>
+</table>
+<p>In this specific case, and starting from our expectations, we are rather surprised about the value of Rendzina, Because it is much higher than our expectations and even more surprised about the value of Alluvial, but this time, because it’s much lower than our expectation. We seem not to be surprised at all by the value of brown earth, because the difference to our expectation is below one. The total measure of surprise (or Chi-Square value) is 8.18868. Currently, we do not know how to interpret that, we have no framework for it. What approach could be now to calculate several random settings and see, how because the price can be given random distribution. This easily can be done today using a computer. Before a computer was available to everyone, this was very hard, and so a lot of precalculated tables were available. One of those food precalculated tables can be found in the book of Stephen Shennan. These tables are structured according to the level of significance (in our case 0.05) and the degrees of freedom (in our case 2, because we have one column for the observed and one column for the expected cases). With degree of freedom and level of significance we will find the threshold value. If our calculated threshold value is above this threshold, we have a significant result. This means, that there is a chance below 5% to go wrong to reject the null hypothesis, based on our data. In our case, the threshold is 5.99145. The value we have calculated is much higher, therefore we have a significant result. There’s quite enough evidence to assume, that there is a preference for specific soil type visible in this settlement behaviour.</p>
+</div>
+<div id="version-2-even-distributed-with-consideration-of-the-proportion-of-the-soil-types-on-the-total-area" class="section level4" number="5.6.3.2">
+<h4><span class="header-section-number">5.6.3.2</span> Version 2: even distributed with consideration of the proportion of the soil types on the total area</h4>
+<p>In the second version, we know how much area the difference or types take up in the landscape. This does not alter our data, but our expectations. If we know, how much percentage of the landscape is constituted off the individual soils, we also would exceed proportional amount of settlements to be situated on these soils. Now in this example, the distribution it’s not so far away from the even distribution, but slightly.</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Soil type</th>
+<th>Number of settlements</th>
+<th>Proportion of soil type</th>
+<th>expected number of settlements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rendzina</td>
+<td>26</td>
+<td>32%</td>
+<td>16.69</td>
+</tr>
+<tr class="even">
+<td>Alluvial</td>
+<td>9</td>
+<td>25%</td>
+<td>13.25</td>
+</tr>
+<tr class="odd">
+<td>Brown earth</td>
+<td>18</td>
+<td>34%</td>
+<td>22.79</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>53</td>
+<td>1</td>
+<td>53</td>
+</tr>
+</tbody>
+</table>
+<p>For example, Rendzina makes 32% of the size of the landscape, resulting in an expectation of 16.69 settlements on this soil (multiplying the total number of 53 settlements by this percentage). From here on the onward, everything is the same like in the example before. We have to compare our expectation with our data, measure our surprise, and compare that to the possible surprise from random effects.</p>
+<p><span class="math inline">\(\chi^2=\sum_{i=1}^n \frac{(O_i - E_i)^2}{E_i}\)</span></p>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Soil type</th>
+<th>Number of observed cases</th>
+<th>Number of expected cases</th>
+<th><span class="math inline">\(O_i - E_i\)</span></th>
+<th><span class="math inline">\((O_i - E_i)^2\)</span></th>
+<th><span class="math inline">\(\frac{(O_i - E_i)^2}{E_i}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rendzina</td>
+<td>26</td>
+<td>16.69</td>
+<td>9.04</td>
+<td>81.7216</td>
+<td>4.8185</td>
+</tr>
+<tr class="even">
+<td>Alluvial</td>
+<td>9</td>
+<td>13.25</td>
+<td>-4.25</td>
+<td>18.0625</td>
+<td>1.1363</td>
+</tr>
+<tr class="odd">
+<td>Brown earth</td>
+<td>18</td>
+<td>22.79</td>
+<td>-4.79</td>
+<td>22.9441</td>
+<td>1.007</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>53</td>
+<td>53</td>
+<td></td>
+<td></td>
+<td><strong>7.1885</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The resulting number is slightly lower, but still beyond the threshold of 5.99145. So even considering the different proportions of the soils in the landscape, the result is still significant, and we have to interpret the preference pattern for specific soils</p>
+</div>
+<div id="chi2-test-in-r" class="section level4" number="5.6.3.3">
+<h4><span class="header-section-number">5.6.3.3</span> <span class="math inline">\(\chi^2\)</span> test in R</h4>
+<p>Let’s recreate the example in our. At first, we have to create a vector with our data.</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="nonparametric-tests.html#cb295-1" aria-hidden="true" tabindex="-1"></a>settlements <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">26</span>,<span class="dv">9</span>,<span class="dv">18</span>)</span>
+<span id="cb295-2"><a href="nonparametric-tests.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(settlements) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rendzina&quot;</span>,<span class="st">&quot;Alluvial&quot;</span>,<span class="st">&quot;brown earth&quot;</span>)</span>
+<span id="cb295-3"><a href="nonparametric-tests.html#cb295-3" aria-hidden="true" tabindex="-1"></a>settlements</span></code></pre></div>
+<pre><code>##    Rendzina    Alluvial brown earth 
+##          26           9          18</code></pre>
+<p>If we don’t have any specific expectations about the distribution, we directly can input the vector into the commands. It will default to an even distribution, and will compare it to this.</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="nonparametric-tests.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(settlements)</span></code></pre></div>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  settlements
+## X-squared = 8.19, df = 2, p-value = 0.017</code></pre>
+<p>Given our knowledge and our own endeavours, we can easily interpret the output of the command now. The <code>X-squared</code> is that Chi-Squared value that we also calculated. Because it’s a one sample test, R also calculate the degrees of freedom correctly. The last return value is the p-value. Instead of just giving us significant or not significant, R calculates the error probability for rejecting the null hypothesis. Since this p-value is below 0.05, we can reject the null hypothesis and collet a significant result.</p>
+<p>We can introduce our expected proportions using the parameter <code>p</code>. Here, we give the percentages of the sort of types on the landscape as fractions, so that they sum up to 1</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="nonparametric-tests.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(settlements,<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.32</span>,<span class="fl">0.25</span>,<span class="fl">0.43</span>))</span></code></pre></div>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  settlements
+## X-squared = 7.19, df = 2, p-value = 0.027</code></pre>
+<p>You can read the result in the same way like the one above. You will realise that the Chi-Squared value is lower, and that the p-value is higher, meaning there is a higher chance of making an error rejected the null hypothesis.</p>
+<p>Now that you have seen, how are you can calculate to one sample version by hand, and using R, we will turn our attention to the two sample version of the Chi squared test.</p>
+</div>
+</div>
+<div id="two-sample-case-test-for-independence" class="section level3" number="5.6.4">
+<h3><span class="header-section-number">5.6.4</span> Two sample case (Test for independence)</h3>
+<p>In the examples before, we have compared one sample to a theoretical distribution, also enriched with some external knowledge. There, we have analysed how well our sample fits to some assumptions about the population. In the two sample case, we compare if the distribution of the values is independent between two populations. The data from this task may also come from the same data collection. Using a grouping variable, we divide this sample into two possible independent populations and test, if this independence is actually true.</p>
+<p>As an example, I will use the distribution of amber in the sites of the Unetice culture. Here, we compare graves and settlements in relation to the presence of amber. We would like to find out, if the deposition conditions, and the causing traditions and behaviour is so different that we have to assume that different Processes must have been involved at the different site categories.</p>
+<p>For this, we construct 2 x 2 table. Quite often, you will encounter situations, where this 2 x 2 set up might be applicable to your data. For example, every time you may like to find out if the presence of what artefact is connected to the presence of another artefact, this restructuring of the data might be useful.</p>
+<p><em>(example after Hinz, beautified)</em></p>
+<table>
+<thead>
+<tr class="header">
+<th>Type of site</th>
+<th>amber</th>
+<th></th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>+</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>settlement</td>
+<td>6</td>
+<td>18</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td>grave</td>
+<td>132</td>
+<td>44</td>
+<td>176</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>138</td>
+<td>62</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p>So, our scientific question is if amber is primary a grave good in this society, or if it is distributed evenly across the different site categories. Like in most other situations, also here we aim for a certainty (level of significance) of 0.05. So, we will reject or not hypothesis only if we are 95% sure that it is wrong. Having 2 x 2 table, we have two rolls and two columns, which results in a degree of freedom of 1 (remember the formula to calculate degrees of freedom from above).</p>
+<p>Our first task is to establish our expectation. We have to calculate the expected number of occurrence in the different side categories, given the assumption, that the distribution is independent from the site categories. In such a case, the number of sites with amber in settlements and in burials would only depend on The total number of sites with ember, and the ratio between sides of the type of settlement and sides of the type grave. Conversely, this is also true for the number of sites without amber.</p>
+<p>So in total, we have 24 sites of the category settlement. If it would not matter, if it is a settlement or a burial, then the ratio between settlements with and without amber would be the same as the total ratio of sites with and without amber. The total ratio of amber present versus amber not present is 138 to 62. So we have more sites with amber in our sample then without. Of over 200 sites in total, 24 or settlements. That means, that 24÷200, or 12% of the sites are settlements. Also, 138÷200, or 69% of the sites have amber. That means, that of our 12% settlement sites (that is 24), 69% (that is 16.56) should be settlement sites with amber, given that amber is distributed independently from site categories.</p>
+<p>This means, that we can use the margins of our table to calculate the expectation values. Using Cross-multiplication, we can multiply the margins and divide the result by the total number to get the number of sites that we would expect given independence. We need to repeat this procedure for every cell in our table, to get the expectation values for every individual possibility.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Type of site</th>
+<th>amber</th>
+<th></th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>+</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>settlement</td>
+<td>24/200*138 = 16.56</td>
+<td>24/200*62=7.44</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td>grave</td>
+<td>138/200*176=121.44</td>
+<td>62/200*176=54,56</td>
+<td>176</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>138</td>
+<td>62</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p>From here onwards, the procedure is essentially the same like in the one sample case. For every cell, Using the Chi-Square formula, we calculate our measure of surprise, substracting the expectation from the observation, square result and divide by expectatio. Then we have to sum this up for the total table.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Type of site</th>
+<th>amber</th>
+<th></th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>+</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>settlement</td>
+<td>O=6 vs. E=16.56</td>
+<td>O=18 vs. E=7.44</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td>grave</td>
+<td>O=132 vs. E=121.44</td>
+<td>O=44 vs. E=54.56</td>
+<td>176</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>138</td>
+<td>62</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\chi^2=\sum_{i=1}^n \frac{(O_i - E_i)^2}{E_i}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th>Type of site</th>
+<th>amber</th>
+<th></th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>+</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>settlement</td>
+<td>(6-16.56)^2/16.56=6.73</td>
+<td>(18-7.44)^2/7.44=14.99</td>
+<td>24</td>
+</tr>
+<tr class="odd">
+<td>grave</td>
+<td>(132-121.44)^2/121.44=0.92</td>
+<td>(44-54.56)^2/54.56=2.04</td>
+<td>176</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>138</td>
+<td>62</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p>The total <span class="math inline">\(\chi^2\)</span> is 24.68. Looking up in the table, we will find for a significant level of 0.05 and a degree of freedom of Df=1 the threshold of 3.84146. This means, we are much more surprised by the distribution of our data then our threshold value for possible random processes indicates. Therefore, the result is significant, and we can reject the null hypothesis and state, given our sample, that amber seem to be primarily a grave goods in the Unetice culture.</p>
+<div id="chi2-test-for-indipendence-in-r" class="section level4" number="5.6.4.1">
+<h4><span class="header-section-number">5.6.4.1</span> <span class="math inline">\(\chi^2\)</span> test for indipendence in R</h4>
+<p>To calculate the same table in R, at first we have to enter all our data. Since now we have a 2 x 2 table, we have to produce a matrix representing all data. The calculation of course only needs the numbers, but for convenience we name our matrix with row and column names. Please note that we are using the <code>matrix()</code> command. In this command, as first parameter we give our values at first for the first column, then for the second column and so on in a vector. Then, we specify that we want a matrix with two columns. With that, our values are distributed between these two columns, and the result is a table representing the data.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="nonparametric-tests.html#cb301-1" aria-hidden="true" tabindex="-1"></a>amber<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">132</span>,<span class="dv">18</span>,<span class="dv">44</span>),<span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb301-2"><a href="nonparametric-tests.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(amber)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;with amber&quot;</span>,<span class="st">&quot;without amber&quot;</span>)</span>
+<span id="cb301-3"><a href="nonparametric-tests.html#cb301-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(amber)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;settlement&quot;</span>,<span class="st">&quot;grave&quot;</span>)</span>
+<span id="cb301-4"><a href="nonparametric-tests.html#cb301-4" aria-hidden="true" tabindex="-1"></a>amber</span></code></pre></div>
+<pre><code>##            with amber without amber
+## settlement          6            18
+## grave             132            44</code></pre>
+<p>Now we can run our Chi-Squared test light before, entering the variable into the command for the test itself.</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="nonparametric-tests.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(amber)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  amber
+## X-squared = 22.4, df = 1, p-value = 2.2e-06</code></pre>
+<p>If you have a closer look to the result, you will be able to see that R is given us the correct degree of freedom, and the P-value indicating a significant result, because it is below 0.05. But you also will see that the total Chi-Square value is only 22.402, and not 24.684, as we have calculated ‘by hand’! Did we, or R, made a mistake here?</p>
+<p>No, actually not. On an even closer inspection, you will see, that the headline of the test result states that it is ‘Pearson’s Chi-squared test with Yates’ continuity correction’. By default, our is introducing a correction for small sample sizes, that is known as ‘Yates’ continuity correction’. Instead of directly squaring the observed minus the expectation values, it’s abstracts 0.5 from the absolute difference of both. The formula for this is <span class="math inline">\((|O-E|-0,5)²/E\)</span>. Substracting the small number does make a difference in case of a small sample size, because in this situation also the results from substracting the expectation from the observed will result in a small number. But if the result is large, because the sample size is also a large, 0.5 will not change so much in the end. Of course, we can also calculate the raw Chi-Square result. In this case we have to specify that we do not want the correction to take place.</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="nonparametric-tests.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(amber,<span class="at">correct=</span>F)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  amber
+## X-squared = 24.7, df = 1, p-value = 6.8e-07</code></pre>
+<p>Now the result is exactly like we have calculated it on our own. In case of small sample sizes, the correction already helps a bit to make the result robust. But in such a situation, especially when the number of cases is very small, it might be a good idea to use the Fishers Exact test instead of the Chi-Squared test. If you’re interested, you may find a description of this test procedure <a href="https://en.wikipedia.org/wiki/Fisher%27s_exact_test">here</a>, and its implementation R <a href="https://statsandr.com/blog/fisher-s-exact-test-in-r-independence-test-for-a-small-sample/">here</a>.</p>
+</div>
+<div id="chi2-excercise" class="section level4" number="5.6.4.2">
+<h4><span class="header-section-number">5.6.4.2</span> <span class="math inline">\(\chi^2\)</span> excercise</h4>
+<p>You can try out your skills in Chi-Square testing yourself using the following exercise:</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-5" class="exercise"><strong>Exercise 5.1  </strong></span>Given all the animal bones from the Neolithic side of welcome Wolkenwehe (Mischka et al. 2005). We have here to Neolithic layers, one from the middle and one from the late Neolithic. The minimum number of individuals of different animals are divided into wild and domestic animals. Please test, if the ratio between wild and domestic animals is independent from the layer, and with that independent from the period of use of the site.</p>
+<table>
+<thead>
+<tr class="header">
+<th>layer</th>
+<th>Domestic animal</th>
+<th>Wild animal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>202 (late neolithic)</td>
+<td>159</td>
+<td>32</td>
+</tr>
+<tr class="even">
+<td>203 (middle neolithic)</td>
+<td>84</td>
+<td>54</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details>
+<summary>
+Solution
+</summary>
+<p>At first, we have to construct our matrix for the data we have.</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="nonparametric-tests.html#cb307-1" aria-hidden="true" tabindex="-1"></a>ww<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">159</span>,<span class="dv">84</span>,<span class="dv">32</span>,<span class="dv">54</span>),<span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb307-2"><a href="nonparametric-tests.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ww)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;domestic&quot;</span>,<span class="st">&quot;wild&quot;</span>)</span>
+<span id="cb307-3"><a href="nonparametric-tests.html#cb307-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(ww)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;late_neo&quot;</span>,<span class="st">&quot;mid_neo&quot;</span>)</span>
+<span id="cb307-4"><a href="nonparametric-tests.html#cb307-4" aria-hidden="true" tabindex="-1"></a>ww</span></code></pre></div>
+<pre><code>##          domestic wild
+## late_neo      159   32
+## mid_neo        84   54</code></pre>
+<p>Then, we performed a Chi-Squared test.</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="nonparametric-tests.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(ww)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  ww
+## X-squared = 19.6, df = 1, p-value = 9.4e-06</code></pre>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="nonparametric-tests.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(ww, <span class="at">correct =</span> F)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  ww
+## X-squared = 20.8, df = 1, p-value = 5.2e-06</code></pre>
+<p>You can see, that now, since we have more cases, the yates correction does not change the results in the same intensity like another example. But in both situations, we have a significant result: the differences between the different layers are statistical significant.</p>
+</details>
+</div>
+</div>
+</div>
+<div id="kolmogorovsmirnov-test" class="section level2" number="5.7">
+<h2><span class="header-section-number">5.7</span> Kolmogorov–Smirnov test</h2>
+<p>Our second nonparametric test is the Kolmogorov–Smirnov test, or short KS test. This test can be used in situations, where are you having ordinal scales or better variable. Such a variable has more informational value, and therefore the test can also perform with a higher power. That means, that this test is more capable of avoiding type 2 errors. The downside is that it is only applicable if we have this kind of data present. Also, Kolmogorov–Smirnov test can be used as an goodness of fit test in the one sample case, and as a test for independence in the two sample case.</p>
+<div id="facts-sheet-ks-test" class="section level3" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Facts sheet KS-Test</h3>
+<p><strong>requirements</strong>: at least one ordinal scaled Variable (one sample case) and 1 nominal scaled grouping variable (two sample case)</p>
+<p><strong>Procedure one sample case</strong>: the cumulative procentual frequency of the sample is compared with a standard distribution (often normal distribution)</p>
+<p><strong>Procedure two sample case</strong>: the cumulative procentual frequencies of the samples is compared</p>
+<div id="what-do-these-facts-mean-1" class="section level4" number="5.7.1.1">
+<h4><span class="header-section-number">5.7.1.1</span> What do these facts mean</h4>
+<p>We test against a at least ordinal scaled variable. Please note, that the KS-Test is also very useful in situations where you have a metric data. When we have to distinguish between two samples, we need again a at least nominal scaled grouping variable.</p>
+<p>In the test procedure, we order our values according to the ordinal scale variable, and then we calculate the procentual frequency for every cell in our table. Finally, we sum these frequencies up starting from the top to the bottom. This gives us the cumulative procentual frequency. Now we calculate again the difference to our expectation, either against a theoretical distribution, or against the other sample. Then we are looking forward to the maximum difference, and compare this to a threshold, that this time we calculate ourselves given the number of cases that we have in the different samples. If we are more surprised by the difference then a random situation could produce within 95% of the cases, we assume statistical significance. Please follow example to understand precisely what this means.</p>
+</div>
+</div>
+<div id="example-after-shennan" class="section level3" number="5.7.2">
+<h3><span class="header-section-number">5.7.2</span> Example (after Shennan)</h3>
+<p>Here, again we are using an example from the Stephen Shennan book. We are analysing female Bronze Age burials from a graveyard. The individuals buried our listed according to the different age classes. This age classes represent our ordinal variable.</p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+rich
+</th>
+<th style="text-align:right;">
+poor
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+infans I
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+infans II
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+juvenilus
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adultus
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+maturus
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+senilis
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sum
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:right;">
+136
+</td>
+</tr>
+</tbody>
+</table>
+<p>Looking at the data, you will realise that there are more individuals in the poorer category that died in younger ages. But also in total, there are more individuals in the category poor. You can have the hypothesis, get people that were equipped more rich when buried also represents richer individuals during lifetime. And you can also have the assumption, that rich individuals had more access to resources, and probably also had the chance to get older. So here, the question might arise, it needs to be answered in a statistical way, if there is a significant difference between the mortality pattern in both categories.</p>
+<p>From this data and our assumption, we build up our test configuration. Our hypothesis is that there is the difference between the two mortality patterns. Therefore, another hypothesis is that there is no difference. So we assume, that the distribution of age at death is independent from the number of burial items.</p>
+<p><span class="math inline">\(H_0\)</span>: There is no difference between rich and poor graves according to age of death.</p>
+<p><span class="math inline">\(H_1\)</span>: There is a difference between rich and poor graves according to age of death.</p>
+<p>Since the difference can be that poor died earlier, or later, we have a two-tailed test here. As always, our level of significance is 0.05. We use the age classes as ordinal scaled test variable, and the wealth classes as at least nominal scaled grouping variable. Wealth proceed can be understood as an ordinal scale. But we can always scale down the variable, so we treated just as if it is an nominal scaled one. In the table, the levels are already sorted according to our ordinal scaled variable. If not, of course you can easily do it yourself.</p>
+<p><strong>Level of significance</strong>: 0.05</p>
+<p><strong>variables</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>ordinal scaled age classes</li>
+<li>(at least) nominale (ordinale) scaled wealth classes</li>
+</ol>
+<p>At first, we will calculate the procentual frequency. That is the ratio of the individual classes in respect to the total number. Simply, we divide every cell by the total sum. If you would multiply that by 100, you would get the percentage.</p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+rich
+</th>
+<th style="text-align:right;">
+rich_ratio
+</th>
+<th style="text-align:right;">
+poor
+</th>
+<th style="text-align:right;">
+poor_ratio
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+infans I
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.07895
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+0.16912
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+infans II
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.10526
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+0.15441
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+juvenilus
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.14474
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0.18382
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adultus
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0.38158
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+0.26471
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+maturus
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+0.25000
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0.19853
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+senilis
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.03947
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.02941
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sum
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+<td style="text-align:right;">
+136
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+</tr>
+</tbody>
+</table>
+<p>You can see, that while the actual numbers sum up to the total number for each category, the ratios some up to 1. Is the next step, we have to calculate the cumulative frequency. That means, but with sum up the values from top to bottom for each row, including all the values of the categories that are smaller than the actual category. So in the first row, infans I, the cumulative frequency is actually the same value as the original frequency. In the second row, infans II, the cumulative frequency is the value of infans I plus the value of infans II. And so on.</p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+rich
+</th>
+<th style="text-align:right;">
+rich_ratio
+</th>
+<th style="text-align:right;">
+rich_cumsum
+</th>
+<th style="text-align:right;">
+poor
+</th>
+<th style="text-align:right;">
+poor_ratio
+</th>
+<th style="text-align:right;">
+poor_cumsum
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+infans I
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.07895
+</td>
+<td style="text-align:right;">
+0.07895
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+0.16912
+</td>
+<td style="text-align:right;">
+0.16912
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+infans II
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.10526
+</td>
+<td style="text-align:right;">
+0.18421
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+0.15441
+</td>
+<td style="text-align:right;">
+0.32353
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+juvenilus
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.14474
+</td>
+<td style="text-align:right;">
+0.32895
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0.18382
+</td>
+<td style="text-align:right;">
+0.50735
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adultus
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0.38158
+</td>
+<td style="text-align:right;">
+0.71053
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+0.26471
+</td>
+<td style="text-align:right;">
+0.77206
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+maturus
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+0.25000
+</td>
+<td style="text-align:right;">
+0.96053
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0.19853
+</td>
+<td style="text-align:right;">
+0.97059
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+senilis
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.03947
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.02941
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sum
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+<td style="text-align:right;">
+3.26316
+</td>
+<td style="text-align:right;">
+136
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+<td style="text-align:right;">
+3.74265
+</td>
+</tr>
+</tbody>
+</table>
+<p>Now you can see, that while the sum of the procentual frequency is 1, but after cumulative frequency is the number different from 1. At the same time the last real value in this column is 1 (‘senilis’). And the other values are constantly rising going down our age classes. That means, for example in the role of ‘adultus’ the valley represents all the individuals that died in that age class or younger.</p>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+rich_cumsum
+</th>
+<th style="text-align:right;">
+poor_cumsum
+</th>
+<th style="text-align:right;">
+difference
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+infans I
+</td>
+<td style="text-align:right;">
+0.07895
+</td>
+<td style="text-align:right;">
+0.16912
+</td>
+<td style="text-align:right;">
+0.09017
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+infans II
+</td>
+<td style="text-align:right;">
+0.18421
+</td>
+<td style="text-align:right;">
+0.32353
+</td>
+<td style="text-align:right;">
+0.13932
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: lightsalmon !important;">
+juvenilus
+</td>
+<td style="text-align:right;background-color: lightsalmon !important;">
+0.32895
+</td>
+<td style="text-align:right;background-color: lightsalmon !important;">
+0.50735
+</td>
+<td style="text-align:right;background-color: lightsalmon !important;">
+0.17841
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adultus
+</td>
+<td style="text-align:right;">
+0.71053
+</td>
+<td style="text-align:right;">
+0.77206
+</td>
+<td style="text-align:right;">
+0.06153
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+maturus
+</td>
+<td style="text-align:right;">
+0.96053
+</td>
+<td style="text-align:right;">
+0.97059
+</td>
+<td style="text-align:right;">
+0.01006
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+senilis
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+</tr>
+</tbody>
+</table>
+<p>Now we have to identify the situation, we are both distributions different the most. For this, we have to substract one cumulative frequency from the other, and make the values absolute removing to sign. Having done this, we can identify those at the age class ‘juvenilus’ the difference is the highest with a value of 0.178. This is our test statistic that we will compare to a calculated threshold.</p>
+<p>By comparing the percentages, our degree of surprise within our data is already independent of the number of cases. Thus, we now need to find a threshold value that indicates how large the deviation could be within a sample that is only dependent on the random distribution. At the same time, however, this surprise also depends on the number of cases: if we have fewer cases, larger differences can also arise purely by chance. The law of large numbers applies here, which we will get to know in more detail later: The more cases we consider, the more purely random effects will cancel each other out. Therefore, we need more surprise for a smaller number of cases in order to be convinced that this could not have been caused by a random distribution. At the same time, the required degree of surprise also depends on the significance level that we want to achieve: the more certain we want to be, i.e. the greater our significance level must be, the greater the surprise must be in order to be considered significant.</p>
+<p>In the following formula for calculating threshold, both aspects are considered.</p>
+<p><span class="math inline">\(threshold = f * \sqrt{\frac{n_1 + n_2}{n_1 * n_2} }\)</span></p>
+<p>In the formula, you can see <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. These numbers represent the number of cases in the first and the second sample. In the numerator of the fraction, you can see that both sample sizes are added, while in the denominator they are multiplied. This means, that the resulting number will be higher, when the total sample size is smaller, and vice versa. The other factor is <span class="math inline">\(f\)</span>, which is the constant that depends on the level of significance that we would like to achieve.</p>
+<p>Factor f:</p>
+<ul>
+<li>Level of significance 0.05: 1.36</li>
+<li>Level of significance 0.01: 1.63</li>
+<li>Level of significance 0.001: 1.95</li>
+</ul>
+<p>So all we have to do is to fill in the numbers from our samples and the value for the level of significance that we would like to achieve. In our case, these are the following numbers:</p>
+<p>Total number rich: 76 = <span class="math inline">\(n_1\)</span></p>
+<p>Total number poor: 136 = <span class="math inline">\(n_2\)</span></p>
+<p>So the calculation for a threshold is unfolding like this:</p>
+<p><span class="math inline">\(threshold = 1.36 * \sqrt{\frac{76 + 136}{76 * 136} } = 0.19477\)</span></p>
+<p>No, we can compare that to the value that we have calculated from all sample:</p>
+<p>Difference max (D_max): 0.178</p>
+<p>You can see, that 0.19477 &gt; 0.178. This means, that the difference can not be considered to be significant.</p>
+<p>But this does not mean, that the distribution is actually equal! Since we have made is dependent on the sample size, it is clear that there are two reasons why a significant result could not have been reached: Either, the resulting difference is really not big enough, so that it could result from a random process. Or I will sample size is just too small, so that we can really differentiate between random and patterned processes.</p>
+<p>Here, with archaeological thinking, we can already spot a possible error in our assumption: quite big differences exist in the lowest category, that is ‘infans I’. From our science we know, that burials of children are often not be equipped with very many of your items, independent from the circumstances in life. So here is a possible source of bias, that our calculation cannot reveal, but that we have to identify using our domain knowledge. But also in this situation, statistical tests can help to identify these divergence from our expectation, and make us think about possible reasons for this.</p>
+</div>
+<div id="ks-test-in-r" class="section level3" number="5.7.3">
+<h3><span class="header-section-number">5.7.3</span> KS-Test in R</h3>
+<p>Let’s do the same test using R. You probably like to download the data for your own experimentation.</p>
+<ul>
+<li><a href="data:text/csv;base64,IiI7ImFsdGVyIjsicmVpY2h0dW0iCiIxIjsxOyJyZWljaCIKIjIiOzE7InJlaWNoIgoiMyI7MTsicmVpY2giCiI0IjsxOyJyZWljaCIKIjUiOzE7InJlaWNoIgoiNiI7MTsicmVpY2giCiI3IjsxOyJyZWljaCIKIjgiOzE7InJlaWNoIgoiOSI7MTsicmVpY2giCiIxMCI7MTsicmVpY2giCiIxMSI7MTsicmVpY2giCiIxMiI7MTsicmVpY2giCiIxMyI7MTsicmVpY2giCiIxNCI7MTsicmVpY2giCiIxNSI7MTsicmVpY2giCiIxNiI7MTsicmVpY2giCiIxNyI7MTsicmVpY2giCiIxOCI7MTsicmVpY2giCiIxOSI7MTsicmVpY2giCiIyMCI7MTsicmVpY2giCiIyMSI7MTsicmVpY2giCiIyMiI7MTsicmVpY2giCiIyMyI7MTsicmVpY2giCiIyNCI7MTsiYXJtIgoiMjUiOzE7ImFybSIKIjI2IjsxOyJhcm0iCiIyNyI7MTsiYXJtIgoiMjgiOzE7ImFybSIKIjI5IjsxOyJhcm0iCiIzMCI7MjsicmVpY2giCiIzMSI7MjsicmVpY2giCiIzMiI7MjsicmVpY2giCiIzMyI7MjsicmVpY2giCiIzNCI7MjsicmVpY2giCiIzNSI7MjsicmVpY2giCiIzNiI7MjsicmVpY2giCiIzNyI7MjsicmVpY2giCiIzOCI7MjsicmVpY2giCiIzOSI7MjsicmVpY2giCiI0MCI7MjsicmVpY2giCiI0MSI7MjsicmVpY2giCiI0MiI7MjsicmVpY2giCiI0MyI7MjsicmVpY2giCiI0NCI7MjsicmVpY2giCiI0NSI7MjsicmVpY2giCiI0NiI7MjsicmVpY2giCiI0NyI7MjsicmVpY2giCiI0OCI7MjsicmVpY2giCiI0OSI7MjsicmVpY2giCiI1MCI7MjsicmVpY2giCiI1MSI7MjsiYXJtIgoiNTIiOzI7ImFybSIKIjUzIjsyOyJhcm0iCiI1NCI7MjsiYXJtIgoiNTUiOzI7ImFybSIKIjU2IjsyOyJhcm0iCiI1NyI7MjsiYXJtIgoiNTgiOzI7ImFybSIKIjU5IjszOyJyZWljaCIKIjYwIjszOyJyZWljaCIKIjYxIjszOyJyZWljaCIKIjYyIjszOyJyZWljaCIKIjYzIjszOyJyZWljaCIKIjY0IjszOyJyZWljaCIKIjY1IjszOyJyZWljaCIKIjY2IjszOyJyZWljaCIKIjY3IjszOyJyZWljaCIKIjY4IjszOyJyZWljaCIKIjY5IjszOyJyZWljaCIKIjcwIjszOyJyZWljaCIKIjcxIjszOyJyZWljaCIKIjcyIjszOyJyZWljaCIKIjczIjszOyJyZWljaCIKIjc0IjszOyJyZWljaCIKIjc1IjszOyJyZWljaCIKIjc2IjszOyJyZWljaCIKIjc3IjszOyJyZWljaCIKIjc4IjszOyJyZWljaCIKIjc5IjszOyJyZWljaCIKIjgwIjszOyJyZWljaCIKIjgxIjszOyJyZWljaCIKIjgyIjszOyJyZWljaCIKIjgzIjszOyJyZWljaCIKIjg0IjszOyJhcm0iCiI4NSI7MzsiYXJtIgoiODYiOzM7ImFybSIKIjg3IjszOyJhcm0iCiI4OCI7MzsiYXJtIgoiODkiOzM7ImFybSIKIjkwIjszOyJhcm0iCiI5MSI7MzsiYXJtIgoiOTIiOzM7ImFybSIKIjkzIjszOyJhcm0iCiI5NCI7MzsiYXJtIgoiOTUiOzQ7InJlaWNoIgoiOTYiOzQ7InJlaWNoIgoiOTciOzQ7InJlaWNoIgoiOTgiOzQ7InJlaWNoIgoiOTkiOzQ7InJlaWNoIgoiMTAwIjs0OyJyZWljaCIKIjEwMSI7NDsicmVpY2giCiIxMDIiOzQ7InJlaWNoIgoiMTAzIjs0OyJyZWljaCIKIjEwNCI7NDsicmVpY2giCiIxMDUiOzQ7InJlaWNoIgoiMTA2Ijs0OyJyZWljaCIKIjEwNyI7NDsicmVpY2giCiIxMDgiOzQ7InJlaWNoIgoiMTA5Ijs0OyJyZWljaCIKIjExMCI7NDsicmVpY2giCiIxMTEiOzQ7InJlaWNoIgoiMTEyIjs0OyJyZWljaCIKIjExMyI7NDsicmVpY2giCiIxMTQiOzQ7InJlaWNoIgoiMTE1Ijs0OyJyZWljaCIKIjExNiI7NDsicmVpY2giCiIxMTciOzQ7InJlaWNoIgoiMTE4Ijs0OyJyZWljaCIKIjExOSI7NDsicmVpY2giCiIxMjAiOzQ7InJlaWNoIgoiMTIxIjs0OyJyZWljaCIKIjEyMiI7NDsicmVpY2giCiIxMjMiOzQ7InJlaWNoIgoiMTI0Ijs0OyJyZWljaCIKIjEyNSI7NDsicmVpY2giCiIxMjYiOzQ7InJlaWNoIgoiMTI3Ijs0OyJyZWljaCIKIjEyOCI7NDsicmVpY2giCiIxMjkiOzQ7InJlaWNoIgoiMTMwIjs0OyJyZWljaCIKIjEzMSI7NDsiYXJtIgoiMTMyIjs0OyJhcm0iCiIxMzMiOzQ7ImFybSIKIjEzNCI7NDsiYXJtIgoiMTM1Ijs0OyJhcm0iCiIxMzYiOzQ7ImFybSIKIjEzNyI7NDsiYXJtIgoiMTM4Ijs0OyJhcm0iCiIxMzkiOzQ7ImFybSIKIjE0MCI7NDsiYXJtIgoiMTQxIjs0OyJhcm0iCiIxNDIiOzQ7ImFybSIKIjE0MyI7NDsiYXJtIgoiMTQ0Ijs0OyJhcm0iCiIxNDUiOzQ7ImFybSIKIjE0NiI7NDsiYXJtIgoiMTQ3Ijs0OyJhcm0iCiIxNDgiOzQ7ImFybSIKIjE0OSI7NDsiYXJtIgoiMTUwIjs0OyJhcm0iCiIxNTEiOzQ7ImFybSIKIjE1MiI7NDsiYXJtIgoiMTUzIjs0OyJhcm0iCiIxNTQiOzQ7ImFybSIKIjE1NSI7NDsiYXJtIgoiMTU2Ijs0OyJhcm0iCiIxNTciOzQ7ImFybSIKIjE1OCI7NDsiYXJtIgoiMTU5Ijs0OyJhcm0iCiIxNjAiOzU7InJlaWNoIgoiMTYxIjs1OyJyZWljaCIKIjE2MiI7NTsicmVpY2giCiIxNjMiOzU7InJlaWNoIgoiMTY0Ijs1OyJyZWljaCIKIjE2NSI7NTsicmVpY2giCiIxNjYiOzU7InJlaWNoIgoiMTY3Ijs1OyJyZWljaCIKIjE2OCI7NTsicmVpY2giCiIxNjkiOzU7InJlaWNoIgoiMTcwIjs1OyJyZWljaCIKIjE3MSI7NTsicmVpY2giCiIxNzIiOzU7InJlaWNoIgoiMTczIjs1OyJyZWljaCIKIjE3NCI7NTsicmVpY2giCiIxNzUiOzU7InJlaWNoIgoiMTc2Ijs1OyJyZWljaCIKIjE3NyI7NTsicmVpY2giCiIxNzgiOzU7InJlaWNoIgoiMTc5Ijs1OyJyZWljaCIKIjE4MCI7NTsicmVpY2giCiIxODEiOzU7InJlaWNoIgoiMTgyIjs1OyJyZWljaCIKIjE4MyI7NTsicmVpY2giCiIxODQiOzU7InJlaWNoIgoiMTg1Ijs1OyJyZWljaCIKIjE4NiI7NTsicmVpY2giCiIxODciOzU7ImFybSIKIjE4OCI7NTsiYXJtIgoiMTg5Ijs1OyJhcm0iCiIxOTAiOzU7ImFybSIKIjE5MSI7NTsiYXJtIgoiMTkyIjs1OyJhcm0iCiIxOTMiOzU7ImFybSIKIjE5NCI7NTsiYXJtIgoiMTk1Ijs1OyJhcm0iCiIxOTYiOzU7ImFybSIKIjE5NyI7NTsiYXJtIgoiMTk4Ijs1OyJhcm0iCiIxOTkiOzU7ImFybSIKIjIwMCI7NTsiYXJtIgoiMjAxIjs1OyJhcm0iCiIyMDIiOzU7ImFybSIKIjIwMyI7NTsiYXJtIgoiMjA0Ijs1OyJhcm0iCiIyMDUiOzU7ImFybSIKIjIwNiI7NjsicmVpY2giCiIyMDciOzY7InJlaWNoIgoiMjA4Ijs2OyJyZWljaCIKIjIwOSI7NjsicmVpY2giCiIyMTAiOzY7ImFybSIKIjIxMSI7NjsiYXJtIgoiMjEyIjs2OyJhcm0iCg==" download="graeberbrz.csv">graeberbrz.csv</a></li>
+</ul>
+<p>First, let’s look at the data and inspect them:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="nonparametric-tests.html#cb313-1" aria-hidden="true" tabindex="-1"></a>graeberbrz <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;graeberbrz.csv&quot;</span>,</span>
+<span id="cb313-2"><a href="nonparametric-tests.html#cb313-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb313-3"><a href="nonparametric-tests.html#cb313-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(graeberbrz)</span></code></pre></div>
+<pre><code>##   alter reichtum
+## 1     1    reich
+## 2     1    reich
+## 3     1    reich
+## 4     1    reich
+## 5     1    reich
+## 6     1    reich</code></pre>
+<p>You can see, that in our dataset the age classes are coded using numbers starting from one for ‘infans I’ to 6 for ‘senilus’. Quite often it makes sense to recode ordinal variables in such a numerical way to make it accessible for calculations in R. With this recording, we achieved that the ordinal character preserved. We can use the table comand to display the full dataset with the frequency of burials in the different classes:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="nonparametric-tests.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(graeberbrz)</span></code></pre></div>
+<pre><code>##      reichtum
+## alter arm reich
+##     1   6    23
+##     2   8    21
+##     3  11    25
+##     4  29    36
+##     5  19    27
+##     6   3     4</code></pre>
+<p>For the <code>ks.test()</code>, which is the R command for conducting this test, it is convenient to take the data set apart into two vectors. The first vector will include the list of ages, the second vector will store the association with a specific wealth class.</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="nonparametric-tests.html#cb317-1" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> graeberbrz<span class="sc">$</span>alter</span>
+<span id="cb317-2"><a href="nonparametric-tests.html#cb317-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(age)</span></code></pre></div>
+<pre><code>## [1] 1 1 1 1 1 1</code></pre>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="nonparametric-tests.html#cb319-1" aria-hidden="true" tabindex="-1"></a>wealth <span class="ot">&lt;-</span> graeberbrz<span class="sc">$</span>reichtum</span>
+<span id="cb319-2"><a href="nonparametric-tests.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wealth)</span></code></pre></div>
+<pre><code>## [1] &quot;reich&quot; &quot;reich&quot; &quot;reich&quot; &quot;reich&quot; &quot;reich&quot; &quot;reich&quot;</code></pre>
+<p>Using the wealth vector as access criterion, we will feed into the <code>ks.test()</code> command age classes of the rich and the poor graves separatly as two samples</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="nonparametric-tests.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(age[wealth<span class="sc">==</span><span class="st">&quot;arm&quot;</span>],</span>
+<span id="cb321-2"><a href="nonparametric-tests.html#cb321-2" aria-hidden="true" tabindex="-1"></a>        age[wealth<span class="sc">==</span><span class="st">&quot;reich&quot;</span>]</span>
+<span id="cb321-3"><a href="nonparametric-tests.html#cb321-3" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<pre><code>## Warning in ks.test(age[wealth == &quot;arm&quot;], age[wealth == &quot;reich&quot;]): p-value will be approximate in the presence of ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  age[wealth == &quot;arm&quot;] and age[wealth == &quot;reich&quot;]
+## D = 0.178, p-value = 0.09
+## alternative hypothesis: two-sided</code></pre>
+<p>You will see, that in the output the value D represents the maximum difference between the two samples that we also have calculated by hand. Additionally, you will see the P value that here is 0.09. So given the classical 0.05 significance level, we just have not reached enough certainty that we can speak about a patterned distribution with 95% security.</p>
+<p>You also will see a warning, that there are ties. This means, that there are equal values in both samples present. In that case, exact P values cannot be calculated. This is only possible, if we have a metric variable instead of an ordinal ones, or a very large sample size (beyond 10000). For us, the approximated p-value is more than enough.</p>
+<p>Lastly, you will see that the alternative hypothesis is two sided. This means, that by default the test assumes a two-tailed hypothesis. So in total, the test using R confirms our own calculation of the result: it is not significant.</p>
+<div id="ks-test-excercise" class="section level4" number="5.7.3.1">
+<h4><span class="header-section-number">5.7.3.1</span> KS-test excercise</h4>
+<p>You can try out what you have learned using this exercise:</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-6" class="exercise"><strong>Exercise 5.2  </strong></span>This dataset represents cups from ‘relative closed’ finds from late neolithic inventories (Müller 2001).</p>
+<p>File: <a href="data:text/csv;base64,InRhc3NlbnR5cCI7ImhvZWhlIgoiZWluZ2xpZWRyaWciOzcsMgoiZWluZ2xpZWRyaWciOzkKImVpbmdsaWVkcmlnIjs1LDQKImVpbmdsaWVkcmlnIjsxMgoiZWluZ2xpZWRyaWciOzEyCiJlaW5nbGllZHJpZyI7NgoiendlaWdsaWVkcmlnIjsxNQoiendlaWdsaWVkcmlnIjs5CiJlaW5nbGllZHJpZyI7MTAsOAoiZWluZ2xpZWRyaWciOzgsNAoiZWluZ2xpZWRyaWciOzE0LDQKImVpbmdsaWVkcmlnIjs5LDkKInp3ZWlnbGllZHJpZyI7MjEKImVpbmdsaWVkcmlnIjsxMiw2CiJlaW5nbGllZHJpZyI7NywyCiJlaW5nbGllZHJpZyI7MTMsNQoiZWluZ2xpZWRyaWciOzEyCiJlaW5nbGllZHJpZyI7Myw5CiJlaW5nbGllZHJpZyI7MTUsNgoiZWluZ2xpZWRyaWciOzYsOQoiendlaWdsaWVkcmlnIjsxMCw1CiJlaW5nbGllZHJpZyI7MTIKImVpbmdsaWVkcmlnIjs2LDkKImVpbmdsaWVkcmlnIjsxMiw5CiJlaW5nbGllZHJpZyI7Myw2CiJ6d2VpZ2xpZWRyaWciOzEwLDUKInp3ZWlnbGllZHJpZyI7Niw2CiJ6d2VpZ2xpZWRyaWciOzcsNQoiendlaWdsaWVkcmlnIjsyNSw1CiJlaW5nbGllZHJpZyI7NgoiendlaWdsaWVkcmlnIjsxMiw2CiJlaW5nbGllZHJpZyI7OSw2CiJlaW5nbGllZHJpZyI7MTYsNQoiZWluZ2xpZWRyaWciOzYsNgoiendlaWdsaWVkcmlnIjs2CiJ6d2VpZ2xpZWRyaWciOzEwLDIKInp3ZWlnbGllZHJpZyI7MTIsNgoiZWluZ2xpZWRyaWciOzUsNAoiZWluZ2xpZWRyaWciOzE2LDUKImVpbmdsaWVkcmlnIjsxMSw0CiJlaW5nbGllZHJpZyI7MTEsNAoiendlaWdsaWVkcmlnIjsyMCw0CiJlaW5nbGllZHJpZyI7MjEsNgoiZWluZ2xpZWRyaWciOzkKImVpbmdsaWVkcmlnIjsxOAoiZWluZ2xpZWRyaWciOzcsMgoiZWluZ2xpZWRyaWciOzE4CiJlaW5nbGllZHJpZyI7Nyw1CiJlaW5nbGllZHJpZyI7MTIsOQoiZWluZ2xpZWRyaWciOzYsOQoiendlaWdsaWVkcmlnIjsxMgoiendlaWdsaWVkcmlnIjs3LDgKImVpbmdsaWVkcmlnIjs3LDgKInp3ZWlnbGllZHJpZyI7MTAsOAoiendlaWdsaWVkcmlnIjs5CiJ6d2VpZ2xpZWRyaWciOzIxCiJ6d2VpZ2xpZWRyaWciOzEzLDgKInp3ZWlnbGllZHJpZyI7NgoiZWluZ2xpZWRyaWciOzEwLDUKImVpbmdsaWVkcmlnIjs3LDUKImVpbmdsaWVkcmlnIjsxMgoiZWluZ2xpZWRyaWciOzkKInp3ZWlnbGllZHJpZyI7OSw2CiJ6d2VpZ2xpZWRyaWciOzgsNwoiendlaWdsaWVkcmlnIjs5LDYKInp3ZWlnbGllZHJpZyI7Nyw4CiJ6d2VpZ2xpZWRyaWciOzE1LDkKImVpbmdsaWVkcmlnIjs4LDEKInp3ZWlnbGllZHJpZyI7OSw2CiJlaW5nbGllZHJpZyI7MTAsMgoiZWluZ2xpZWRyaWciOzEzLDUKImVpbmdsaWVkcmlnIjs2LDYKImVpbmdsaWVkcmlnIjs5CiJ6d2VpZ2xpZWRyaWciOzEyCiJlaW5nbGllZHJpZyI7NSwxCiJ6d2VpZ2xpZWRyaWciOzEyCiJlaW5nbGllZHJpZyI7MjAsNAoiZWluZ2xpZWRyaWciOzE1CiJlaW5nbGllZHJpZyI7MTQsNAoiZWluZ2xpZWRyaWciOzEwLDgKImVpbmdsaWVkcmlnIjsxNCwxCiJlaW5nbGllZHJpZyI7Myw2CiJlaW5nbGllZHJpZyI7MTMsNQoiZWluZ2xpZWRyaWciOzcsMgoiZWluZ2xpZWRyaWciOzQsNQoiZWluZ2xpZWRyaWciOzcsNQoiZWluZ2xpZWRyaWciOzYsOQoiZWluZ2xpZWRyaWciOzEwLDUKImVpbmdsaWVkcmlnIjs1LDQKImVpbmdsaWVkcmlnIjs4LDQKImVpbmdsaWVkcmlnIjs1LDQKImVpbmdsaWVkcmlnIjsyMQoiZWluZ2xpZWRyaWciOzcsMgoiZWluZ2xpZWRyaWciOzIxLDYKImVpbmdsaWVkcmlnIjs0LDgKInp3ZWlnbGllZHJpZyI7MTAsMgoiendlaWdsaWVkcmlnIjsyMQoiendlaWdsaWVkcmlnIjsxMCwyCiJ6d2VpZ2xpZWRyaWciOzI1LDIKImVpbmdsaWVkcmlnIjsyMQoiZWluZ2xpZWRyaWciOzksOQoiendlaWdsaWVkcmlnIjsxMywyCiJ6d2VpZ2xpZWRyaWciOzgsNAoiZWluZ2xpZWRyaWciOzEzLDUKImVpbmdsaWVkcmlnIjs5CiJ6d2VpZ2xpZWRyaWciOzkK" download="mueller2001.csv">mueller2001.csv</a></p>
+<p>If you inspect the dataset, you will see that it contains the height of cups and a classification whether there profile is subdivided by a break or not. Please analyse with the Kolmogorov-Smirnov-Test if the heigths of cups with and without breaks differ significant on a 0.05-level.</p>
+</div>
+<details>
+<summary>
+Solution
+</summary>
+<p>At first, we have to load our data and construct our two sample vectors. This time, we divide the data set in a slightly different way, to give you an alternative. But it would also work in the same manner like we divided the example of the burials. Note also, that this situation we have metric data, and not ordinal ones.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="nonparametric-tests.html#cb324-1" aria-hidden="true" tabindex="-1"></a>cups <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;mueller2001.csv&quot;</span>)</span>
+<span id="cb324-2"><a href="nonparametric-tests.html#cb324-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb324-3"><a href="nonparametric-tests.html#cb324-3" aria-hidden="true" tabindex="-1"></a>cups.with_breaks <span class="ot">&lt;-</span> cups<span class="sc">$</span>hoehe[cups<span class="sc">$</span>tassentyp <span class="sc">==</span> <span class="st">&quot;zweigliedrig&quot;</span>]</span>
+<span id="cb324-4"><a href="nonparametric-tests.html#cb324-4" aria-hidden="true" tabindex="-1"></a>cups.without_breaks <span class="ot">&lt;-</span> cups<span class="sc">$</span>hoehe[cups<span class="sc">$</span>tassentyp <span class="sc">==</span> <span class="st">&quot;eingliedrig&quot;</span>]</span></code></pre></div>
+<p>Then, we performed a KS test.</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="nonparametric-tests.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(cups.with_breaks, cups.without_breaks)</span></code></pre></div>
+<pre><code>## Warning in ks.test(cups.with_breaks, cups.without_breaks): cannot compute exact p-value with ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  cups.with_breaks and cups.without_breaks
+## D = 0.252, p-value = 0.1
+## alternative hypothesis: two-sided</code></pre>
+<p>Also here, there is no significant difference between the two types of cups in respect to the height.</p>
+</details>
+</div>
+</div>
+</div>
+<div id="interpretation-of-significance-tests" class="section level2" number="5.8">
+<h2><span class="header-section-number">5.8</span> Interpretation of significance tests</h2>
+<div id="pay-attention-also-when-the-statistic-seem-to-be-clear" class="section level3" number="5.8.1">
+<h3><span class="header-section-number">5.8.1</span> Pay attention also when the statistic seem to be clear</h3>
+<p>As with every version of statistical tests, the quality of the results strongly depends on:</p>
+<ul>
+<li>Having the right data</li>
+<li>Asking the right question</li>
+</ul>
+<p>So even a significant result probably doesn’t mean anything, if you have asked the wrong question. Here, science and domain knowledge is much more important then statistical knowledge!</p>
+<p><strong>After the test as well as before the test: The interpretation determines the result!</strong></p>
+<p>Also, what do you do with the significant results strongly depends on your interpretation. For example, if you analyse a dataset, you probably will find a lot of associations, especially if it is more complex. But not every dependence, not every association it’s meaningful! Remember that by definition you will get a significant result in every 20th test even if all underlying data are just random. This means:</p>
+<p><strong>Statistically significant ≠ archaeologically significant!</strong></p>
+<p>You have to make sure, that the results that you can obtain really something that could also have relevance in the life of prehistoric people to become relevant.</p>
+<p>All in all:</p>
+<p><strong>Statistical results stay statistical: significance is always probability that the choice of a hypothesis is correct, but there is also a probability that it is by chance…</strong></p>
+</div>
+<div id="statistical-association-not-mean-causal-association" class="section level3" number="5.8.2">
+<h3><span class="header-section-number">5.8.2</span> Statistical association not mean causal association!</h3>
+<p>The classic saying in statistics is that association does not mean causation. Even if there is really a pattern in the data, this could result from observed variables, all variables that you did not take into account when constructing your hypothesis.</p>
+<p>One example according to the Stephen Shennan book is the association between grave size and sex of the buried individuals Although there might be a statistically significant association between grave size and sex, this could be caused by a third factor. Maybe mail individuals have just bigger body height, making it necessary to dig bigger burial pits so that they can fit in. A conclusion which says that grave size are causally determined by sex would be at least not correct.</p>
+<p><img src="../images/06_session/hidden_third.png" /></p>
+<p>Always, doing statistical analyses does not save you from making your own thoughs and trying to contact good science!</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="descriptive-statistics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
