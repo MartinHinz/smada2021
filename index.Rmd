@@ -49,7 +49,7 @@ cat(rmarkdown::metadata$date)
   - [Book Chapter](book/descriptive-statistics.html)
   - [Video](https://tube.switch.ch/videos/yDLbBcbEWD)
   - [R Tutorial Videos](http://vitutr.archaeological.science/categories/Statistical+methods+for+archaeological+data+analysis+I+2019/index.html) (15,16,[17])
-  - [Homework](04_session/hausaufgabe_04.pdf)
+  - [Homework](04_session/homework_04.html)
  
 </details>
 - 05\. Session: Nonparametric Tests | 24.03.2021
