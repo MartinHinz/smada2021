@@ -1,10 +1,10 @@
-exr:unnamed-chunk-15
-exr:unnamed-chunk-42
+exr:unnamed-chunk-16
+exr:unnamed-chunk-43
 exr:unlabeled-div-3
 exr:unlabeled-div-4
 exr:unlabeled-div-5
 exr:unlabeled-div-6
-fig:unnamed-chunk-171
+fig:unnamed-chunk-172
 preface
 introduction-into-r
 start-r-studio

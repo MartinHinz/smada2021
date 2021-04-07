@@ -50,6 +50,8 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -517,7 +519,7 @@ Solution
 <div id="towards-a-better-parameter-for-dispersion" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Towards a better parameter for dispersion</h3>
 <p>We have already seen, that the mean, although also sensitive to outliers, at least consider all the values in the dataset as constitutional elements for the parameter. A good description for the dispersion might be the mean distance of all values from the mean. The following plot shows us the values of the Münsingen dataset from a different perspective. Every line represents one fibula. We have substracted the mean of the length of the different fibulae from the individual values. Again, we can see our two unusual long fibulae as high values. The bars each represents how much smaller or bigger the fibulae are in respect to the mean.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="100%" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="100%" /></p>
 <p>Now, to get a value for the dispersion of the dataset to consider all individual items, we have to calculate the mean distance from the main. But we cannot simply substract the mean from each value and calculate the mean from it because this would result in zero. The reason for this is the very definition of the mean.</p>
 <p><span class="math display">\[ 
 \sum_{i=1}^{n} (x_i - \bar{x}) = 0

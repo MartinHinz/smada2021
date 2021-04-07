@@ -14,6 +14,10 @@ output:
     keep_md: true
 ---
 
+```{r echo=FALSE}
+options(knitr.table.format = 'html')
+````
+
 # Preface
 
 Hallo Welt!

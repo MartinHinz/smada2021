@@ -50,6 +50,8 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -559,57 +561,57 @@ or 1 - (1 out of 4): 1-0.25 = 0.75</p>
 <p>Also, if we would like to predict the mean result of the dice roll, the actual result of the individual trial might be very different from our expectation. At least for the first one. Probably also, if we had to dices. But the more dices we have, the closer will be our theoretical mean of the dice rolls to the actual one. Here, we have our bridge from the sample to the population. In this case, the population is the mean of all dices ever thrown. Like with an archaeological population, this is theoretical value that actually could have been observed by an omnipotent observer (omniscience). But we as ordinary mortals have no way of knowing the real value. But it will likely be around 3.5. Our sample all those dices that we actually throw. And we can start estimating the value of the population from our sample. In this case, the larger our sample, the better our estimation. Or more general:</p>
 <p><strong>The larger the sample, the more similar the distribution of sample and population</strong></p>
 <p>Let’s add a practical experiment to our thought experiment. Although we will not be able to throw very many dices, we have a computer that can do this for us. We will use at first 10 dices.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="basic-probability-theory.html#cb329-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb329-2"><a href="basic-probability-theory.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
-<span id="cb329-3"><a href="basic-probability-theory.html#cb329-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
-<span id="cb329-4"><a href="basic-probability-theory.html#cb329-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-168-1.png" /><!-- --></p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="basic-probability-theory.html#cb330-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
-<span id="cb330-2"><a href="basic-probability-theory.html#cb330-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 4.5</code></pre>
-<p>Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can’t implement a little script snippet here so that I can now state the result is 4.5. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let’s try this out:</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="basic-probability-theory.html#cb332-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb332-2"><a href="basic-probability-theory.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
-<span id="cb332-3"><a href="basic-probability-theory.html#cb332-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
-<span id="cb332-4"><a href="basic-probability-theory.html#cb332-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="basic-probability-theory.html#cb328-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb328-2"><a href="basic-probability-theory.html#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
+<span id="cb328-3"><a href="basic-probability-theory.html#cb328-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
+<span id="cb328-4"><a href="basic-probability-theory.html#cb328-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" /><!-- --></p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="basic-probability-theory.html#cb333-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
-<span id="cb333-2"><a href="basic-probability-theory.html#cb333-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 3.39</code></pre>
-<p>I am pretty optimistic that this time the value of 3.39 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="basic-probability-theory.html#cb335-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb335-2"><a href="basic-probability-theory.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
-<span id="cb335-3"><a href="basic-probability-theory.html#cb335-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
-<span id="cb335-4"><a href="basic-probability-theory.html#cb335-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="basic-probability-theory.html#cb329-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
+<span id="cb329-2"><a href="basic-probability-theory.html#cb329-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
+<pre><code>## [1] 3.1</code></pre>
+<p>Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can’t implement a little script snippet here so that I can now state the result is 3.1. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let’s try this out:</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="basic-probability-theory.html#cb331-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb331-2"><a href="basic-probability-theory.html#cb331-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
+<span id="cb331-3"><a href="basic-probability-theory.html#cb331-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
+<span id="cb331-4"><a href="basic-probability-theory.html#cb331-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" /><!-- --></p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="basic-probability-theory.html#cb336-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
-<span id="cb336-2"><a href="basic-probability-theory.html#cb336-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 3.4911</code></pre>
-<p>The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.4911 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="basic-probability-theory.html#cb332-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
+<span id="cb332-2"><a href="basic-probability-theory.html#cb332-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
+<pre><code>## [1] 3.51</code></pre>
+<p>I am pretty optimistic that this time the value of 3.51 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.</p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="basic-probability-theory.html#cb334-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb334-2"><a href="basic-probability-theory.html#cb334-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
+<span id="cb334-3"><a href="basic-probability-theory.html#cb334-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
+<span id="cb334-4"><a href="basic-probability-theory.html#cb334-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-171-1.png" /><!-- --></p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="basic-probability-theory.html#cb335-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
+<span id="cb335-2"><a href="basic-probability-theory.html#cb335-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
+<pre><code>## [1] 3.52</code></pre>
+<p>The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.52 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.</p>
 <p><strong>The relative frequency of the random results converges against the probability of the random result</strong></p>
 <p>We can visualise this using a slightly different simulation. This time we are not simulating a specific parameters of our distribution, but the relative frequency of an individual result. Theoretically, the probability of throwing a 6 is 1/6. No let’s watch how the frequency changes over time if we throw one dice after the other.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="basic-probability-theory.html#cb338-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb338-2"><a href="basic-probability-theory.html#cb338-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb338-3"><a href="basic-probability-theory.html#cb338-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We roll all devices at the same time</span></span>
-<span id="cb338-4"><a href="basic-probability-theory.html#cb338-4" aria-hidden="true" tabindex="-1"></a>roll<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T))</span>
-<span id="cb338-5"><a href="basic-probability-theory.html#cb338-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb338-6"><a href="basic-probability-theory.html#cb338-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Therefore we have to make them iterative</span></span>
-<span id="cb338-7"><a href="basic-probability-theory.html#cb338-7" aria-hidden="true" tabindex="-1"></a><span class="co"># preparing some variables to gather our results </span></span>
-<span id="cb338-8"><a href="basic-probability-theory.html#cb338-8" aria-hidden="true" tabindex="-1"></a>list<span class="ot">=</span><span class="dv">0</span></span>
-<span id="cb338-9"><a href="basic-probability-theory.html#cb338-9" aria-hidden="true" tabindex="-1"></a>ratio<span class="ot">=</span><span class="dv">0</span></span>
-<span id="cb338-10"><a href="basic-probability-theory.html#cb338-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb338-11"><a href="basic-probability-theory.html#cb338-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Now iteratively calculating the relative frequency</span></span>
-<span id="cb338-12"><a href="basic-probability-theory.html#cb338-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (test <span class="cf">in</span> roll)</span>
-<span id="cb338-13"><a href="basic-probability-theory.html#cb338-13" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb338-14"><a href="basic-probability-theory.html#cb338-14" aria-hidden="true" tabindex="-1"></a>list<span class="ot">&lt;-</span><span class="fu">append</span>(list,test,<span class="fu">length</span>(list))</span>
-<span id="cb338-15"><a href="basic-probability-theory.html#cb338-15" aria-hidden="true" tabindex="-1"></a>ratio<span class="ot">&lt;-</span><span class="fu">append</span>(ratio,<span class="fu">sum</span>(list<span class="sc">==</span><span class="dv">6</span>)<span class="sc">/</span><span class="fu">length</span>(list))</span>
-<span id="cb338-16"><a href="basic-probability-theory.html#cb338-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb338-17"><a href="basic-probability-theory.html#cb338-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb338-18"><a href="basic-probability-theory.html#cb338-18" aria-hidden="true" tabindex="-1"></a><span class="co"># And plot...</span></span>
-<span id="cb338-19"><a href="basic-probability-theory.html#cb338-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ratio,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb338-20"><a href="basic-probability-theory.html#cb338-20" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-171"></span>
-<img src="_main_files/figure-html/unnamed-chunk-171-1.png" alt="Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes."  />
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="basic-probability-theory.html#cb337-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb337-2"><a href="basic-probability-theory.html#cb337-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb337-3"><a href="basic-probability-theory.html#cb337-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We roll all devices at the same time</span></span>
+<span id="cb337-4"><a href="basic-probability-theory.html#cb337-4" aria-hidden="true" tabindex="-1"></a>roll<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T))</span>
+<span id="cb337-5"><a href="basic-probability-theory.html#cb337-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb337-6"><a href="basic-probability-theory.html#cb337-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Therefore we have to make them iterative</span></span>
+<span id="cb337-7"><a href="basic-probability-theory.html#cb337-7" aria-hidden="true" tabindex="-1"></a><span class="co"># preparing some variables to gather our results </span></span>
+<span id="cb337-8"><a href="basic-probability-theory.html#cb337-8" aria-hidden="true" tabindex="-1"></a>list<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb337-9"><a href="basic-probability-theory.html#cb337-9" aria-hidden="true" tabindex="-1"></a>ratio<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb337-10"><a href="basic-probability-theory.html#cb337-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb337-11"><a href="basic-probability-theory.html#cb337-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Now iteratively calculating the relative frequency</span></span>
+<span id="cb337-12"><a href="basic-probability-theory.html#cb337-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (test <span class="cf">in</span> roll)</span>
+<span id="cb337-13"><a href="basic-probability-theory.html#cb337-13" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb337-14"><a href="basic-probability-theory.html#cb337-14" aria-hidden="true" tabindex="-1"></a>list<span class="ot">&lt;-</span><span class="fu">append</span>(list,test,<span class="fu">length</span>(list))</span>
+<span id="cb337-15"><a href="basic-probability-theory.html#cb337-15" aria-hidden="true" tabindex="-1"></a>ratio<span class="ot">&lt;-</span><span class="fu">append</span>(ratio,<span class="fu">sum</span>(list<span class="sc">==</span><span class="dv">6</span>)<span class="sc">/</span><span class="fu">length</span>(list))</span>
+<span id="cb337-16"><a href="basic-probability-theory.html#cb337-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb337-17"><a href="basic-probability-theory.html#cb337-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb337-18"><a href="basic-probability-theory.html#cb337-18" aria-hidden="true" tabindex="-1"></a><span class="co"># And plot...</span></span>
+<span id="cb337-19"><a href="basic-probability-theory.html#cb337-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ratio,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb337-20"><a href="basic-probability-theory.html#cb337-20" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-172"></span>
+<img src="_main_files/figure-html/unnamed-chunk-172-1.png" alt="Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes."  />
 <p class="caption">
 Figure 6.1: Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes.
 </p>
@@ -695,7 +697,7 @@ p(x_i=3) = \frac{1}{8}
 <p><strong>Expected value</strong>: The value that is most probable.</p>
 <p><strong>Dispersion</strong>: The variance of distribution</p>
 <p>As with any other distribution function, one can of course calculate Skewness and Kurtosis.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-172-1.png" /><!-- --></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-173-1.png" /><!-- --></p>
 <p>In addition to this quite intuitively understandable distribution function, there is also the <strong>cumulative distribution function (CDF)</strong>, which is very relevant for many statistical applications. Especially in the area of statistical tests, we will make use of it below.</p>
 <p>This function represents the cumulative sum of the probability density function. It answers the question of how likely it is to obtain a certain value of the random variable or a smaller one. In our example: “What is the probability of having up to two heads?”</p>
 <p>One important of its properties:</p>
@@ -713,7 +715,7 @@ p(x_i \leq 3) = 1
 \end{cases} \]</span></p>
 <p>It is obvious that values smaller than zero are impossible. Values less than or equal to zero, on the other hand, have a probability of 0.125 or one eighth, as already in the PDF. Values less than or equal to one have a probability of four-eighths, which is the sum of the probabilities for zero and one head. And so on.</p>
 <p>This is what the graphical representation looks like:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-173-1.png" /><!-- --></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-174-1.png" /><!-- --></p>
 <p>Now, of course, the question arises, what is the point of all this! How does this knowledge of probability theory help us to better understand statistical tests? We will continue with our example of the coin toss and now develop a statistical test to assess whether it is fair or marked coins that are being played with. Our example will include all the elements of a statistical test, and the procedure is basically transferable to other statistical tests. So we will take a look under the bonnet of a statistical test.</p>
 </div>
 </div>
@@ -1204,30 +1206,30 @@ p(x_i \leq 3) = 1
 <p>Do union of the number of cases is the number of cases from A times the number of cases from B minus the number, where A and B both a present. Since in the case of the first trial, we have two equivalent coins, we have to divide the number by two. Consequently, we also have to go to divide the second number of cases by one, which in practice does not change the result.</p>
 <p><span class="math inline">\((3_{first\ coin}/2_{two\ coins})*(2_{second\ coin}/1_{one\ coin}) = 3\)</span></p>
 <p>No we can do the same for our 20 coin example:</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="basic-probability-theory.html#cb339-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="basic-probability-theory.html#cb338-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="basic-probability-theory.html#cb341-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="basic-probability-theory.html#cb340-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 190</code></pre>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="basic-probability-theory.html#cb343-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">3</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">18</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="basic-probability-theory.html#cb342-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">3</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">18</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 1140</code></pre>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="basic-probability-theory.html#cb345-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">4</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">/</span> <span class="dv">3</span>) <span class="sc">*</span> (<span class="dv">18</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">17</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="basic-probability-theory.html#cb344-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">4</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">/</span> <span class="dv">3</span>) <span class="sc">*</span> (<span class="dv">18</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">17</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 4845</code></pre>
 <p>Actually, this is essentially the same like using the formula from the lower right cell of our combinatorics table:</p>
 <p><span class="math inline">\(\frac{n!}{k!*(n-k)!}=\binom{n}{k}\)</span></p>
 <p>Let’s try this out in R:</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="basic-probability-theory.html#cb347-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">20</span>; k <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb347-2"><a href="basic-probability-theory.html#cb347-2" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(n)<span class="sc">/</span>(<span class="fu">factorial</span>(k) <span class="sc">*</span> <span class="fu">factorial</span>(n<span class="sc">-</span>k))</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="basic-probability-theory.html#cb346-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">20</span>; k <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb346-2"><a href="basic-probability-theory.html#cb346-2" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(n)<span class="sc">/</span>(<span class="fu">factorial</span>(k) <span class="sc">*</span> <span class="fu">factorial</span>(n<span class="sc">-</span>k))</span></code></pre></div>
 <pre><code>## [1] 1140</code></pre>
 <p>We could have gotten here much faster, admittedly, if we would have blindly trust the table. But now you know, why is this binomial coefficient works. You can also sum up all the possible outcomes from k=0 to k=20, to check if our initial calculation of the total number of possible results was correct:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="basic-probability-theory.html#cb349-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">20</span></span>
-<span id="cb349-2"><a href="basic-probability-theory.html#cb349-2" aria-hidden="true" tabindex="-1"></a>total <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb349-3"><a href="basic-probability-theory.html#cb349-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>) {</span>
-<span id="cb349-4"><a href="basic-probability-theory.html#cb349-4" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> total <span class="sc">+</span> <span class="fu">factorial</span>(n)<span class="sc">/</span>(<span class="fu">factorial</span>(k) <span class="sc">*</span> <span class="fu">factorial</span>(n<span class="sc">-</span>k))</span>
-<span id="cb349-5"><a href="basic-probability-theory.html#cb349-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb349-6"><a href="basic-probability-theory.html#cb349-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb349-7"><a href="basic-probability-theory.html#cb349-7" aria-hidden="true" tabindex="-1"></a>total</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="basic-probability-theory.html#cb348-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">20</span></span>
+<span id="cb348-2"><a href="basic-probability-theory.html#cb348-2" aria-hidden="true" tabindex="-1"></a>total <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb348-3"><a href="basic-probability-theory.html#cb348-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>) {</span>
+<span id="cb348-4"><a href="basic-probability-theory.html#cb348-4" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> total <span class="sc">+</span> <span class="fu">factorial</span>(n)<span class="sc">/</span>(<span class="fu">factorial</span>(k) <span class="sc">*</span> <span class="fu">factorial</span>(n<span class="sc">-</span>k))</span>
+<span id="cb348-5"><a href="basic-probability-theory.html#cb348-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb348-6"><a href="basic-probability-theory.html#cb348-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb348-7"><a href="basic-probability-theory.html#cb348-7" aria-hidden="true" tabindex="-1"></a>total</span></code></pre></div>
 <pre><code>## [1] 1048576</code></pre>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="basic-probability-theory.html#cb351-1" aria-hidden="true" tabindex="-1"></a>total <span class="sc">==</span> <span class="dv">2</span><span class="sc">^</span><span class="dv">20</span></span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="basic-probability-theory.html#cb350-1" aria-hidden="true" tabindex="-1"></a>total <span class="sc">==</span> <span class="dv">2</span><span class="sc">^</span><span class="dv">20</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="from-counts-to-probabilities" class="section level3" number="6.6.3">
@@ -1244,8 +1246,8 @@ p(x_i \leq 3) = 1
 <p>6 times head: n = 20, k = 6: 38760 possibilities</p>
 <p><span class="math inline">\(\frac{n!}{k!*(n-k)!}=\binom{n}{k}\)</span></p>
 <p>One thing by the way: Of course there is an easy way to calculate this using R. The command is <code>choose()</code>. Are used it to calculate the numbers above, but we can also demonstrate it directly:</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="basic-probability-theory.html#cb353-1" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">20</span>; k<span class="ot">=</span><span class="dv">3</span></span>
-<span id="cb353-2"><a href="basic-probability-theory.html#cb353-2" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(n,k)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="basic-probability-theory.html#cb352-1" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">20</span>; k<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb352-2"><a href="basic-probability-theory.html#cb352-2" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(n,k)</span></code></pre></div>
 <pre><code>## [1] 1140</code></pre>
 <p>Finally, we can calculate probabilities! We have the total number of possible results, and we can calculate our positive results. All that is left to do is to use the formula of Laplace:</p>
 <p><span class="math inline">\(p(A) = \frac{Number\ of\ positive\ results}{Number\ of\ possible\ results}\)</span></p>
@@ -1317,33 +1319,33 @@ p(x_i \leq 3) = 1
 <p>190/1048576 = 0.00018 = <span class="math inline">\(\binom{20}{2} * 0.5^2 * (1 - 0.5)^{20-2} = 190*0.25 * 0\)</span></p>
 <p>If you like, you can compare this number to our calculation by hand from the table above. They should be the same.</p>
 <p>Again, in our there is a shortcut for calculating this probability, the command is <code>dbinom()</code>.</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="basic-probability-theory.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">6</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="basic-probability-theory.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">6</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.036964</code></pre>
 <p>And also for the cumulative distribution function, in that case it is <code>pbinom()</code></p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="basic-probability-theory.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">6</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="basic-probability-theory.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">6</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.057659</code></pre>
 <p>With these functions, now we have something to play with to explore the probabilities of the distribution and also of statistical tests in general. For example, we can plot the probability function, to get a graphical representation of our coin flips:</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="basic-probability-theory.html#cb359-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb359-2"><a href="basic-probability-theory.html#cb359-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.5</span>)</span>
-<span id="cb359-3"><a href="basic-probability-theory.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-188-1.png" /><!-- --></p>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="basic-probability-theory.html#cb358-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb358-2"><a href="basic-probability-theory.html#cb358-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.5</span>)</span>
+<span id="cb358-3"><a href="basic-probability-theory.html#cb358-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" /><!-- --></p>
 <p>You can see, that the highest probability is to get 10 heads and 10 tails. The distribution is symmetrical, the smaller the number of heads or tails get the more unlikely this situation will be.</p>
 <p>Also, we can plot the cumulative density function:</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="basic-probability-theory.html#cb360-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb360-2"><a href="basic-probability-theory.html#cb360-2" aria-hidden="true" tabindex="-1"></a>cumprob <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.5</span>)</span>
-<span id="cb360-3"><a href="basic-probability-theory.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,cumprob, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" /><!-- --></p>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="basic-probability-theory.html#cb359-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb359-2"><a href="basic-probability-theory.html#cb359-2" aria-hidden="true" tabindex="-1"></a>cumprob <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.5</span>)</span>
+<span id="cb359-3"><a href="basic-probability-theory.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,cumprob, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" /><!-- --></p>
 <p>There is a 59 % probability to get 10 or less heads (or tails).</p>
 <p>What you also can do is try out, how different probabilities of getting a head would result. This mean, you can build a model of how biased your coin is, and then try to fit this model to your data. You could also compare different models to evaluate which one is the best fitting. These are advanced statistical procedures, but nonetheless very often takes place in scientific investigations. Although the models might be more complicated than just changing a probability, the general workflow is the same. For now, we will only plot the probability density function for the situation, when a coin has a 70% chance of getting a head.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="basic-probability-theory.html#cb361-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb361-2"><a href="basic-probability-theory.html#cb361-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.7</span>)</span>
-<span id="cb361-3"><a href="basic-probability-theory.html#cb361-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" /><!-- --></p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="basic-probability-theory.html#cb360-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb360-2"><a href="basic-probability-theory.html#cb360-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.7</span>)</span>
+<span id="cb360-3"><a href="basic-probability-theory.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-191-1.png" /><!-- --></p>
 <p>This case, you can see that the most likely number of heads would be 14.</p>
 <div id="the-binom.test" class="section level3" number="6.7.1">
 <h3><span class="header-section-number">6.7.1</span> The binom.test</h3>
 <p>Of course, there is also an inbuilt binomial test in R. The test takes the parameters of the number of successes, the number of trials and the probability of success. The result is whether or not the sample is significantly different from the binomial model with that probability. The command is <code>binom.test()</code></p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="basic-probability-theory.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">5</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="basic-probability-theory.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">5</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Exact binomial test
 ## 
@@ -1362,7 +1364,7 @@ p(x_i \leq 3) = 1
 <h3><span class="header-section-number">6.7.2</span> Sample size</h3>
 <p>With our toy model we can also explore the effects of sample size. Let’s tenfold the number of trials, and see, what the rejection range would then be:</p>
 <p>N=200 throws</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="basic-probability-theory.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">85</span>,<span class="dv">200</span>,<span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="basic-probability-theory.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">85</span>,<span class="dv">200</span>,<span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Exact binomial test
 ## 

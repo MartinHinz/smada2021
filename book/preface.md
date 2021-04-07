@@ -14,6 +14,8 @@ output:
     keep_md: true
 ---
 
+
+
 # Preface
 
 Hallo Welt!
@@ -252,7 +254,7 @@ z
 ## [1] 2
 ```
 
-\BeginKnitrBlock{exercise}\iffalse{-91-67-97-108-99-117-108-97-116-105-111-110-32-111-102-32-97-32-99-105-114-99-108-101-93-}\fi{}<div class="exercise"><span class="exercise" id="exr:unnamed-chunk-15"><strong>(\#exr:unnamed-chunk-15)  \iffalse (Calculation of a circle) \fi{} </strong></span>Given is a circle with the radius r=5. Calculate the diameter d (2 \* r), the circumference u (2 \* π \* r) and the area a (π \* r^2).
+\BeginKnitrBlock{exercise}\iffalse{-91-67-97-108-99-117-108-97-116-105-111-110-32-111-102-32-97-32-99-105-114-99-108-101-93-}\fi{}<div class="exercise"><span class="exercise" id="exr:unnamed-chunk-16"><strong>(\#exr:unnamed-chunk-16)  \iffalse (Calculation of a circle) \fi{} </strong></span>Given is a circle with the radius r=5. Calculate the diameter d (2 \* r), the circumference u (2 \* π \* r) and the area a (π \* r^2).
 
 Add area a and circumference u, assign the result to the variable v and delete u and a.</div>\EndKnitrBlock{exercise}
 
@@ -373,7 +375,7 @@ mtcars
 ## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
 ## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
 ## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
-## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0 "Special"    2
 ## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
 ## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
 ## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
@@ -733,7 +735,7 @@ height.in.m + test
 
 In case, that we have different number of positions in the individual factors vectors, the short one is "recycled ". That means, it starts again from the beginning. You can try that out yourself, if you take the example above and remove some items from the test vector.
 
-\BeginKnitrBlock{exercise}\iffalse{-91-68-97-116-97-32-99-111-108-108-101-99-116-105-111-110-32-108-105-116-104-105-99-115-93-}\fi{}<div class="exercise"><span class="exercise" id="exr:unnamed-chunk-42"><strong>(\#exr:unnamed-chunk-42)  \iffalse (Data collection lithics) \fi{} </strong></span>An excavation produced the following numbers of flint artefacts:
+\BeginKnitrBlock{exercise}\iffalse{-91-68-97-116-97-32-99-111-108-108-101-99-116-105-111-110-32-108-105-116-104-105-99-115-93-}\fi{}<div class="exercise"><span class="exercise" id="exr:unnamed-chunk-43"><strong>(\#exr:unnamed-chunk-43)  \iffalse (Data collection lithics) \fi{} </strong></span>An excavation produced the following numbers of flint artefacts:
 
 | flakes | blades | cores | debris |
 | ------ | ------ | ----- | ------ | 
@@ -1487,7 +1489,7 @@ Lets come back to our command plot(). It's a basic manifestation can be seen, wh
 plot(muensingen$Length)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-77-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-78-1.png)<!-- -->
 
 You can see, that like with most other commands in R, within the brackets the parameters are written. Here it is a reference to the variable, that should be plotted. You also should be able to see elements from the general outline of the plot, that we just have introduced. In this basic implementation, the values to be plotted are visualised using the Y axis, while the X axis represents the order of the values in the vector. The values in the dataset themselves are represented as points, positions according to their actual value on the Y axis, and to their order in the dataset on the X axis. That is why the label of the X axis is index.
 
@@ -1498,7 +1500,7 @@ Some standard layouts in respect to specific data can be selected using the para
 plot(muensingen$Length, type = "b")
 ```
 
-![](_main_files/figure-html/unnamed-chunk-78-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-79-1.png)<!-- -->
 
 But this kind of visualisation is not correct here. Line implies that there is a continuous process going on, which is not the case between the individual values of our unconnected similar. Better representation of the nature of our data might be, if we are using the parameter `type="h"`, That gives us vertical lines from the origin of our coordinate system to the actual value.
 
@@ -1507,7 +1509,7 @@ But this kind of visualisation is not correct here. Line implies that there is a
 plot(muensingen$Length, type = "h")
 ```
 
-![](_main_files/figure-html/unnamed-chunk-79-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-80-1.png)<!-- -->
 
 Below you can find a list of possible options:
 
@@ -1529,7 +1531,7 @@ As I said, the command `plot()` is a chameleon that changes its appearance accor
 plot(as.factor(muensingen$fibula_scheme))
 ```
 
-![](_main_files/figure-html/unnamed-chunk-80-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-81-1.png)<!-- -->
 
 ### Enhancing the plot with optional components & Text
 
@@ -1548,7 +1550,7 @@ plot(muensingen$Length, muensingen$FL,
      )
 ```
 
-![](_main_files/figure-html/unnamed-chunk-81-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-82-1.png)<!-- -->
 ]
 
 So you can see the effects of the different parameters. The extent of the axis is defined by `xlim` and `ylim`. The labels of the axis is given by `xlab` and `ylab`. The explanatory headings are defined by `main` and `sub`. Also, this plot represented by various plots, in which we met do you already know length of the fibula against the length of the foot of the fibula. It is quite obvious, that the longer the fibula is, the longer also its foot by be. So using this kind of so-called scatterplot, we can visualise this relationship between the two variables.
@@ -1585,7 +1587,7 @@ abline(h = mean(muensingen$FL), col = "green")           # draw a green vertical
 abline(lm(FL~Length, data = muensingen), col = "blue")   # draw a blue diagonal line
 ```
 
-![](_main_files/figure-html/unnamed-chunk-83-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-84-1.png)<!-- -->
 
 ## Export the graphics
 
@@ -1656,7 +1658,7 @@ table(muensingen$fibula_scheme)
 pie(table(muensingen$fibula_scheme))
 ```
 
-![](_main_files/figure-html/unnamed-chunk-86-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-87-1.png)<!-- -->
 
 Do you original colour scheme of the `pie()` command is rather pastel. Of course, you can change the colours, using the col parameter. Here, in the order of their appearance, you can specify different colours, that will be used to represent this category.
 
@@ -1666,7 +1668,7 @@ pie(table(muensingen$fibula_scheme),
     col=c("red","green","blue"))
 ```
 
-![](_main_files/figure-html/unnamed-chunk-87-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-88-1.png)<!-- -->
 
 This should be enough to be set for the pie chart. It had already had the honour to be the first mentioned. That's enough. We will from now on turn to more scientifically useful visualisations.
 
@@ -1681,7 +1683,7 @@ Also, the command `barplot()` requires a vector containing the data. This can be
 barplot(table(muensingen$fibula_scheme))
 ```
 
-![](_main_files/figure-html/unnamed-chunk-88-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-89-1.png)<!-- -->
 
 Or it can be length of the different fibulae.
 
@@ -1690,7 +1692,7 @@ Or it can be length of the different fibulae.
 barplot(muensingen$Length)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-89-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-90-1.png)<!-- -->
 
 Both versions are meaningful and can help visualising the data. Although especially the last plot is difficult to understand, because it it lacking some essential information. For example, what is represented here by the bars, in total, but also, what does the individual bars represent. Since the vector resulting from the table commands automatically had names, these names were used in the case of the fibula scheme. In the case of the length, we have to specify these names on our own. For this, there is the parameter "names.arg". Also, you might like to turn the names so that they become more readable and do not flow into each other. For this, you can use the parameter "las=2". Lastly, I'll give you a variant of how you can put the main title to a plot using to command `title()`.
 
@@ -1702,7 +1704,7 @@ barplot(muensingen$Length,          # plot fibulae length
 title("Fibulae length")             # add title
 ```
 
-![](_main_files/figure-html/unnamed-chunk-90-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-91-1.png)<!-- -->
 
 Of course, you can also turn the bar chart around, making it horizontal. In that case, you probably would like to turn the labels again. Also, you can influence the size of text using a parameter 'cex'. You can also specify what should be changed in size, in this case the names.
 
@@ -1714,7 +1716,7 @@ barplot(table(muensingen$fibula_scheme), # Plot counts fibulae scheme
         cex.names=2)                     # make the labels bigger
 ```
 
-![](_main_files/figure-html/unnamed-chunk-91-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-92-1.png)<!-- -->
 
 Bar charts are also much more flexible compared to pie charts in so far, as you can easily display more than two variables. In this way, your plot can become 3-D or more in a meaningful way.
 
@@ -1742,7 +1744,7 @@ No, we can directly put this table into the `barplot()` command. Let's see the o
 barplot(my_new_table)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-93-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-94-1.png)<!-- -->
 
 You can see, that the different styles (fibula schemes) get different colours. With this, we not only seeing the number of items in respect to the different number of coils, but also at the same time, in which style to fibula is produced. This way of representing subcategory it's called 'stacked'. If you don't like this way of representation probably you like more the version where the different categories are put side-by-side like below.
 
@@ -1751,7 +1753,7 @@ You can see, that the different styles (fibula schemes) get different colours. W
 barplot(my_new_table, beside=T, legend.text=T)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-94-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-95-1.png)<!-- -->
 
 Until now, we have only seen bars of different height. The beauty of the pie command was, that it automatically transformed absolute values into percentages. With a slight alteration of the table commands, we can achieve the same with a bar chart, and even better. For that, we are using the `prop.table()` command. This stands for proportional table. In current versions of R, you can use also the command `proportions()`. Its first parameter is the dataset for which the proportion should be calculated, in the format of the table. That means, it takes the result of the table command, and then transform it into a proportional table. The second parameter defines, what should sum up to 100, or in other words, what is the full total to which the proportion should be calculated. As always in R rows come first, so they have the number 1, while columns come second, so they have the number 2. That means, the following command will calculate the percentages in respect to the columns, which each will sum up to 1. 
 
@@ -1776,7 +1778,7 @@ If we put the results into the `barplot()` command, we will get a result compara
 barplot(table.prop)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-96-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-97-1.png)<!-- -->
 
 Of course, you can also change elements of the bar plot. For example, you can get fancy with the colours. Here, are used to command rainbow, specified with the number of colours I would like to get, to create a colour spectrum from the rainbow. Also, I would like to have a legend. Additionally, I want to have a title. This title is quite long, so I divided it in two rows, using the special "\\n" sign. Since it is such a long title, I also have to use space outside of the actual plot area. You can get a feeling for the effects of this different para metres by playing around a bit with them.
 
@@ -1793,7 +1795,7 @@ title("ratio of fibulae schemes \n by number of coils",
       line=- 3)              # on line -3 above
 ```
 
-![](_main_files/figure-html/unnamed-chunk-97-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-98-1.png)<!-- -->
 
 But also bar plots do not solve every problem that we have with graphical representation. For example, there is often the question, what is better: percentage or absolute numbers. If we would like to compare different situations, with different total numbers, and we are most interested in the ratios, then the percentages are a good choice. But at the same time, due to this characteristic, they can hide differences in the underlying total numbers. This can become especially problematic, if you divide your bars also in subcategories. 
 
@@ -1804,7 +1806,7 @@ barplot(my_new_table,beside=T)
 barplot(table.prop,beside=T)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-98-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-99-1.png)<!-- -->
 
 Just from the visualisation of the percentages here it seems, as if there are more fibulae of scheme A with three coils then with four. So it is absolutely necessary to always provide the absolute numbers, if you present your data as percentage of the total. It can take place in the caption, or directly in the plot. And this problem or better this consideration must be taken into account not only with bar charts, but also with any other representation of percentages.
 
@@ -1817,7 +1819,7 @@ barplot(muensingen$Length[1:2],xpd=F,ylim=c(45,55))
 barplot(muensingen$Length[1:2],xpd=F)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-99-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-100-1.png)<!-- -->
 
 ```r
 par(mfrow=c(1,1))
@@ -1857,7 +1859,7 @@ Let's see the actual box plot of all numbers 1 to 9.
 boxplot(1:9)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-100-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-101-1.png)<!-- -->
 
 Here you can see all elements I've just described except for the outliers. To produce an outlier, we will add a very high value to our dataset.
 
@@ -1865,7 +1867,7 @@ Here you can see all elements I've just described except for the outliers. To pr
 boxplot(c(1:9,15, 20))
 ```
 
-![](_main_files/figure-html/unnamed-chunk-101-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-102-1.png)<!-- -->
 
 You can see, did I edit the value of 15, which is now marked by the whisker. I also edit the value 20, which is now displayed as an outlier. If we applied to our actual data, the length of the fibula at Münsingen, you will see kind of the same.
 
@@ -1874,7 +1876,7 @@ You can see, did I edit the value of 15, which is now marked by the whisker. I a
 boxplot(muensingen$Length)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-102-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-103-1.png)<!-- -->
 
 The interpretation would be like following, most of the data are evenly distributed between 30 and 80 mm. The thick line is a bit lower in the box, this means, that there are slightly more low values than high values. Besides the usual values, we have two outliers at approximately 120 mm plus or minus. By inspecting this plot, I already learnt a lot about distribution of the data in our dataset.
 
@@ -1886,7 +1888,7 @@ boxplot(muensingen$Length ~
           muensingen$fibula_scheme)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-103-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-104-1.png)<!-- -->
 
 We will work with this kind of formula notation more in more advanced topics here. This notation becomes especially helpful when it comes to modelling. Because there, you model things in relation to other things.
 
@@ -1912,7 +1914,7 @@ Just get a proper is probably that kind of plot of people (beside a pie chart) i
 
 Since we discussed basic elements of the scatterplot already above, without mentioning the name, I would like to use the space here to show you some alternative ways how are you can produce a scatterplot in R. For this, we start with the basic plot of the similar length against the foot length, with the Trent line edit in red, like we have done before.
 
-![](_main_files/figure-html/unnamed-chunk-105-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-106-1.png)<!-- -->
 
 Although libraries offer a different ways of displaying scatterplots. One option here is the library car, that is specifically used for regression analyses (analyses of the relationship of two variables). To get access to the functionality of another library in R, at first we have to load this library. For this we used to come on `library()`. As the parameter you use the name of the library that need to be loaded. Pay attention: you don't need to use quotation mark " to load known and installed libraries.
 
@@ -1924,7 +1926,7 @@ library(car) # library for regression analysis
 scatterplot(FL ~ Length, data = muensingen)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-106-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-107-1.png)<!-- -->
 
 At this resulting scatterplot, you can see different elements, that we have seen before: for example, the box plots. Also, we see a trend line. But also, we see more lines. If you want to know, what is lines mean, you should consult do you help for the function `scatterplot()`. Luckily, you know how this can be done.
 
@@ -1938,7 +1940,7 @@ graph<-b + geom_point()
 show(graph)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-107-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-108-1.png)<!-- -->
 
 ## Histogramm
 
@@ -1951,7 +1953,7 @@ At first I would like to give you an example of an histogram, so that we can und
 hist(muensingen$Length)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-108-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-109-1.png)<!-- -->
 
 You can see that on the X axis of the plot we can see the actual values. The Y axis has to label frequency. The data are represented like with a bar plot in between values of length. In the first bar, between 20 and 40, we have to representation of all fibulae with a length between 20 and 40. If we look to the frequency, we can see that there are three. The next class of fibulae is between 40 and 60. Here, we can see that we have 10. This goes on.
 
@@ -1964,7 +1966,7 @@ In the standard display of histogram, we can only guess the individual values or
 hist(muensingen$Length, labels = T)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-109-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-110-1.png)<!-- -->
 
 Of course, we are not forced to only use the classes between 20 and 40, 40 and 60 and so on. We can also define our own classes. For example, if we want to have a finer resolution, we could decide to display classes off with of 10. We do that, using the parameter 'breaks'.
 
@@ -1975,13 +1977,13 @@ hist(muensingen$Length,
      breaks = 10)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-110-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-111-1.png)<!-- -->
 
 Please note the differences: before, we had some blocks, that now are divided into finer structures. The choice of the class with can be decisive for the interpretation. Although our dataset is rather small, if you look to the highest values, just from visual inspection in the first case it seems that we have a rather constant data distribution between 100 and 140. With the smaller class with, the holes in this distribution become obvious. So also here, we have to make a compromise between visualising the individual case and total pattern.
 
 Again, of course, we can use the usual suspects to change the look of our histogram.
 
-![](_main_files/figure-html/unnamed-chunk-111-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-112-1.png)<!-- -->
 
 The disadvantages of the Instagram are, that makes the data reduction necessary and therefore we lose some information in the visualisation. Also, as we have seen, is the actual display show me dependent on the choice of the class with. There are different techniques to overcome especially this problem. The first, the stem and leaf chart, comes from an age, where computers we are not able to produce plots. For reasons of completeness, but also because it's mentioned in the Stephen Shennan's book, we included here. The other and currently much more popular version is the kernel density estimation or kernel smoothing. We will learn about it afterwards.
 
@@ -2021,7 +2023,7 @@ This time, we actually have to specify two commands. The first, `density()` is d
 plot(density(muensingen$Length))
 ```
 
-![](_main_files/figure-html/unnamed-chunk-113-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-114-1.png)<!-- -->
 
 You can see, that's the essential elements are quite comparable to the histogram. We have an X axis visualising the values within the dataset. And we have a Y axis, this time not with frequency, but with density. This concept of density is the most difficult part to understand here. Therefore, let's postpone it for a second.
 
@@ -2039,7 +2041,7 @@ hist(muensingen$Length, prob=T)
 lines(density(muensingen$Length))
 ```
 
-![](_main_files/figure-html/unnamed-chunk-114-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-115-1.png)<!-- -->
 
 We later will learn more about the concept of area under the curve, for no visionalisation is in the foreground, so we will stick with that.
 
@@ -2051,7 +2053,7 @@ Some final suggestions for guidelines, that you might like to consider, when you
 
 Choice of display has a strong influence on the statement. Let's use the example of the Swiss stock market index to see, how different scales can influence the visualisation.
 
-![](_main_files/figure-html/unnamed-chunk-115-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-116-1.png)<!-- -->
 
 The upper left panel shows the development of the Swiss stock market within the last year. Usually you can detect the crash that took place in the course of the Corona epidemy. This is the kind of display that is quite often shown in respect to such developments. The upper limit represents the upmost value, the lower limit the lower most value. Of course, this is visible at the Y axis. In this visualisation, the development looks very dramatic. If we only change the Y axis starting from zero, this crash looks less dramatic immediately.
 
@@ -2408,7 +2410,7 @@ A better measurement for the dispersion of the data should have the following ch
 
 We have already seen, that the mean, although also sensitive to outliers, at least consider all the values in the dataset as constitutional elements for the parameter. A good description for the dispersion might be the mean distance of all values from the mean. The following plot shows us the values of the Münsingen dataset from a different perspective. Every line represents one fibula. We have substracted the mean of the length of the different fibulae from the individual values. Again, we can see our two unusual long fibulae as high values. The bars each represents how much smaller or bigger the fibulae are in respect to the mean.
 
-<img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="100%" />
+<img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="100%" />
 
 Now, to get a value for the dispersion of the dataset to consider all individual items, we have to calculate the mean distance from the main. But we cannot simply substract the mean from each value and calculate the mean from it because this would result in zero. The reason for this is the very definition of the mean.
 
@@ -3368,26 +3370,52 @@ In the test procedure, we order our values according to the ordinal scale variab
 
 Here, again we are using an example from the Stephen Shennan book. We are analysing female Bronze Age burials from a graveyard. The individuals buried our listed according to the different age classes. This age classes represent our ordinal variable.
 
-
-\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X}
-\hline
-  & rich & poor\\
-\hline
-\cellcolor{gray!6}{infans I} & \cellcolor{gray!6}{6} & \cellcolor{gray!6}{23}\\
-\hline
-infans II & 8 & 21\\
-\hline
-\cellcolor{gray!6}{juvenilus} & \cellcolor{gray!6}{11} & \cellcolor{gray!6}{25}\\
-\hline
-adultus & 29 & 36\\
-\hline
-\cellcolor{gray!6}{maturus} & \cellcolor{gray!6}{19} & \cellcolor{gray!6}{27}\\
-\hline
-senilis & 3 & 4\\
-\hline
-\cellcolor{gray!6}{Sum} & \cellcolor{gray!6}{76} & \cellcolor{gray!6}{136}\\
-\hline
-\end{tabu}
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> rich </th>
+   <th style="text-align:right;"> poor </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> infans I </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 23 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> infans II </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> juvenilus </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 25 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> adultus </td>
+   <td style="text-align:right;"> 29 </td>
+   <td style="text-align:right;"> 36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> maturus </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> 27 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> senilis </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sum </td>
+   <td style="text-align:right;"> 76 </td>
+   <td style="text-align:right;"> 136 </td>
+  </tr>
+</tbody>
+</table>
 
 Looking at the data, you will realise that there are more individuals in the poorer category that died in younger ages. But also in total, there are more individuals in the category poor. You can have the hypothesis, get people that were equipped more rich when buried also represents richer individuals during lifetime. And you can also have the assumption, that rich individuals had more access to resources, and probably also had the chance to get older. So here, the question might arise, it needs to be answered in a statistical way, if there is a significant difference between the mortality pattern in both categories.
 
@@ -3408,76 +3436,200 @@ Since the difference can be that poor died earlier, or later, we have a two-tail
 
 At first, we will calculate the procentual frequency. That is the ratio of the individual classes in respect to the total number. Simply, we divide every cell by the total sum. If you would multiply that by 100, you would get the percentage. 
 
-
-\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
-\hline
-  & rich & rich\_ratio & poor & poor\_ratio\\
-\hline
-\cellcolor{gray!6}{infans I} & \cellcolor{gray!6}{6} & \cellcolor{gray!6}{0.07895} & \cellcolor{gray!6}{23} & \cellcolor{gray!6}{0.16912}\\
-\hline
-infans II & 8 & 0.10526 & 21 & 0.15441\\
-\hline
-\cellcolor{gray!6}{juvenilus} & \cellcolor{gray!6}{11} & \cellcolor{gray!6}{0.14474} & \cellcolor{gray!6}{25} & \cellcolor{gray!6}{0.18382}\\
-\hline
-adultus & 29 & 0.38158 & 36 & 0.26471\\
-\hline
-\cellcolor{gray!6}{maturus} & \cellcolor{gray!6}{19} & \cellcolor{gray!6}{0.25000} & \cellcolor{gray!6}{27} & \cellcolor{gray!6}{0.19853}\\
-\hline
-senilis & 3 & 0.03947 & 4 & 0.02941\\
-\hline
-\cellcolor{gray!6}{Sum} & \cellcolor{gray!6}{76} & \cellcolor{gray!6}{1.00000} & \cellcolor{gray!6}{136} & \cellcolor{gray!6}{1.00000}\\
-\hline
-\end{tabu}
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> rich </th>
+   <th style="text-align:right;"> rich_ratio </th>
+   <th style="text-align:right;"> poor </th>
+   <th style="text-align:right;"> poor_ratio </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> infans I </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0.07895 </td>
+   <td style="text-align:right;"> 23 </td>
+   <td style="text-align:right;"> 0.16912 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> infans II </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 0.10526 </td>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:right;"> 0.15441 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> juvenilus </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 0.14474 </td>
+   <td style="text-align:right;"> 25 </td>
+   <td style="text-align:right;"> 0.18382 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> adultus </td>
+   <td style="text-align:right;"> 29 </td>
+   <td style="text-align:right;"> 0.38158 </td>
+   <td style="text-align:right;"> 36 </td>
+   <td style="text-align:right;"> 0.26471 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> maturus </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> 0.25000 </td>
+   <td style="text-align:right;"> 27 </td>
+   <td style="text-align:right;"> 0.19853 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> senilis </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.03947 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 0.02941 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sum </td>
+   <td style="text-align:right;"> 76 </td>
+   <td style="text-align:right;"> 1.00000 </td>
+   <td style="text-align:right;"> 136 </td>
+   <td style="text-align:right;"> 1.00000 </td>
+  </tr>
+</tbody>
+</table>
 
 You can see, that while the actual numbers sum up to the total number for each category, the ratios some up to 1. Is the next step, we have to calculate the cumulative frequency. That means, but with sum up the values from top to bottom for each row, including all the values of the categories that are smaller than the actual category. So in the first row, infans I, the cumulative frequency is actually the same value as the original frequency. In the second row, infans II, the cumulative frequency is the value of infans I plus the value of infans II. And so on.
 
-
-\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
-\hline
-  & rich & rich\_ratio & rich\_cumsum & poor & poor\_ratio & poor\_cumsum\\
-\hline
-\cellcolor{gray!6}{infans I} & \cellcolor{gray!6}{6} & \cellcolor{gray!6}{0.07895} & \cellcolor{gray!6}{0.07895} & \cellcolor{gray!6}{23} & \cellcolor{gray!6}{0.16912} & \cellcolor{gray!6}{0.16912}\\
-\hline
-infans II & 8 & 0.10526 & 0.18421 & 21 & 0.15441 & 0.32353\\
-\hline
-\cellcolor{gray!6}{juvenilus} & \cellcolor{gray!6}{11} & \cellcolor{gray!6}{0.14474} & \cellcolor{gray!6}{0.32895} & \cellcolor{gray!6}{25} & \cellcolor{gray!6}{0.18382} & \cellcolor{gray!6}{0.50735}\\
-\hline
-adultus & 29 & 0.38158 & 0.71053 & 36 & 0.26471 & 0.77206\\
-\hline
-\cellcolor{gray!6}{maturus} & \cellcolor{gray!6}{19} & \cellcolor{gray!6}{0.25000} & \cellcolor{gray!6}{0.96053} & \cellcolor{gray!6}{27} & \cellcolor{gray!6}{0.19853} & \cellcolor{gray!6}{0.97059}\\
-\hline
-senilis & 3 & 0.03947 & 1.00000 & 4 & 0.02941 & 1.00000\\
-\hline
-\cellcolor{gray!6}{Sum} & \cellcolor{gray!6}{76} & \cellcolor{gray!6}{1.00000} & \cellcolor{gray!6}{3.26316} & \cellcolor{gray!6}{136} & \cellcolor{gray!6}{1.00000} & \cellcolor{gray!6}{3.74265}\\
-\hline
-\end{tabu}
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> rich </th>
+   <th style="text-align:right;"> rich_ratio </th>
+   <th style="text-align:right;"> rich_cumsum </th>
+   <th style="text-align:right;"> poor </th>
+   <th style="text-align:right;"> poor_ratio </th>
+   <th style="text-align:right;"> poor_cumsum </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> infans I </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0.07895 </td>
+   <td style="text-align:right;"> 0.07895 </td>
+   <td style="text-align:right;"> 23 </td>
+   <td style="text-align:right;"> 0.16912 </td>
+   <td style="text-align:right;"> 0.16912 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> infans II </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 0.10526 </td>
+   <td style="text-align:right;"> 0.18421 </td>
+   <td style="text-align:right;"> 21 </td>
+   <td style="text-align:right;"> 0.15441 </td>
+   <td style="text-align:right;"> 0.32353 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> juvenilus </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 0.14474 </td>
+   <td style="text-align:right;"> 0.32895 </td>
+   <td style="text-align:right;"> 25 </td>
+   <td style="text-align:right;"> 0.18382 </td>
+   <td style="text-align:right;"> 0.50735 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> adultus </td>
+   <td style="text-align:right;"> 29 </td>
+   <td style="text-align:right;"> 0.38158 </td>
+   <td style="text-align:right;"> 0.71053 </td>
+   <td style="text-align:right;"> 36 </td>
+   <td style="text-align:right;"> 0.26471 </td>
+   <td style="text-align:right;"> 0.77206 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> maturus </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> 0.25000 </td>
+   <td style="text-align:right;"> 0.96053 </td>
+   <td style="text-align:right;"> 27 </td>
+   <td style="text-align:right;"> 0.19853 </td>
+   <td style="text-align:right;"> 0.97059 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> senilis </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.03947 </td>
+   <td style="text-align:right;"> 1.00000 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 0.02941 </td>
+   <td style="text-align:right;"> 1.00000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sum </td>
+   <td style="text-align:right;"> 76 </td>
+   <td style="text-align:right;"> 1.00000 </td>
+   <td style="text-align:right;"> 3.26316 </td>
+   <td style="text-align:right;"> 136 </td>
+   <td style="text-align:right;"> 1.00000 </td>
+   <td style="text-align:right;"> 3.74265 </td>
+  </tr>
+</tbody>
+</table>
 
 Now you can see, that while the sum of the procentual frequency is 1, but after cumulative frequency is the number different from 1. At the same time the last real value in this column is 1 ('senilis'). And the other values are constantly rising going down our age classes. That means, for example in the role of 'adultus' the valley represents all the individuals that died in that age class or younger.
 
-
-```
-## Warning in latex_new_row_builder(target_row, table_info, bold, italic, monospace, : Setting full_width = TRUE will turn the table into a tabu environment where
-## colors are not really easily configable with this package. Please consider turn off full_width.
-```
-
-
-\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
-\hline
-  & rich\_cumsum & poor\_cumsum & difference\\
-\hline
-\cellcolor{gray!6}{infans I} & \cellcolor{gray!6}{0.07895} & \cellcolor{gray!6}{0.16912} & \cellcolor{gray!6}{0.09017}\\
-\hline
-infans II & 0.18421 & 0.32353 & 0.13932\\
-\hline
-\cellcolor{lightsalmon}{\cellcolor{gray!6}{juvenilus}} & \cellcolor{lightsalmon}{\cellcolor{gray!6}{0.32895}} & \cellcolor{lightsalmon}{\cellcolor{gray!6}{0.50735}} & \cellcolor{lightsalmon}{\cellcolor{gray!6}{0.17841}}\\
-\hline
-adultus & 0.71053 & 0.77206 & 0.06153\\
-\hline
-\cellcolor{gray!6}{maturus} & \cellcolor{gray!6}{0.96053} & \cellcolor{gray!6}{0.97059} & \cellcolor{gray!6}{0.01006}\\
-\hline
-senilis & 1.00000 & 1.00000 & 0.00000\\
-\hline
-\end{tabu}
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> rich_cumsum </th>
+   <th style="text-align:right;"> poor_cumsum </th>
+   <th style="text-align:right;"> difference </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> infans I </td>
+   <td style="text-align:right;"> 0.07895 </td>
+   <td style="text-align:right;"> 0.16912 </td>
+   <td style="text-align:right;"> 0.09017 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> infans II </td>
+   <td style="text-align:right;"> 0.18421 </td>
+   <td style="text-align:right;"> 0.32353 </td>
+   <td style="text-align:right;"> 0.13932 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;background-color: lightsalmon !important;"> juvenilus </td>
+   <td style="text-align:right;background-color: lightsalmon !important;"> 0.32895 </td>
+   <td style="text-align:right;background-color: lightsalmon !important;"> 0.50735 </td>
+   <td style="text-align:right;background-color: lightsalmon !important;"> 0.17841 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> adultus </td>
+   <td style="text-align:right;"> 0.71053 </td>
+   <td style="text-align:right;"> 0.77206 </td>
+   <td style="text-align:right;"> 0.06153 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> maturus </td>
+   <td style="text-align:right;"> 0.96053 </td>
+   <td style="text-align:right;"> 0.97059 </td>
+   <td style="text-align:right;"> 0.01006 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> senilis </td>
+   <td style="text-align:right;"> 1.00000 </td>
+   <td style="text-align:right;"> 1.00000 </td>
+   <td style="text-align:right;"> 0.00000 </td>
+  </tr>
+</tbody>
+</table>
 
 Now we have to identify the situation, we are both distributions different the most. For this, we have to substract one cumulative frequency from the other, and make the values absolute removing to sign. Having done this, we can identify those at the age class 'juvenilus' the difference is the highest with a value of 0.178. This is our test statistic that we will compare to a calculated threshold.
 
@@ -4016,27 +4168,6 @@ roll <- sample(1:6,n_dice, replace=T)
 hist(roll, breaks=0.5:6.5)
 ```
 
-![](_main_files/figure-html/unnamed-chunk-168-1.png)<!-- -->
-
-```r
-result <- mean(roll)
-result
-```
-
-```
-## [1] 4.5
-```
-
-Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can't implement a little script snippet here so that I can now state the result is 4.5. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let's try this out:
-
-
-```r
-n_dice <- 100
-# the sample command is our random number generator, our dice
-roll <- sample(1:6,n_dice, replace=T) 
-hist(roll, breaks=0.5:6.5)
-```
-
 ![](_main_files/figure-html/unnamed-chunk-169-1.png)<!-- -->
 
 ```r
@@ -4045,14 +4176,14 @@ result
 ```
 
 ```
-## [1] 3.39
+## [1] 3.1
 ```
 
-I am pretty optimistic that this time the value of 3.39 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.
+Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can't implement a little script snippet here so that I can now state the result is 3.1. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let's try this out:
 
 
 ```r
-n_dice <- 10000
+n_dice <- 100
 # the sample command is our random number generator, our dice
 roll <- sample(1:6,n_dice, replace=T) 
 hist(roll, breaks=0.5:6.5)
@@ -4066,10 +4197,31 @@ result
 ```
 
 ```
-## [1] 3.4911
+## [1] 3.51
 ```
 
-The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.4911 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.
+I am pretty optimistic that this time the value of 3.51 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.
+
+
+```r
+n_dice <- 10000
+# the sample command is our random number generator, our dice
+roll <- sample(1:6,n_dice, replace=T) 
+hist(roll, breaks=0.5:6.5)
+```
+
+![](_main_files/figure-html/unnamed-chunk-171-1.png)<!-- -->
+
+```r
+result <- mean(roll)
+result
+```
+
+```
+## [1] 3.52
+```
+
+The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.52 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.
 
 **The relative frequency of the random results converges against the probability of the random result**
 
@@ -4100,8 +4252,8 @@ abline(h=1/6,lty=3)
 ```
 
 <div class="figure">
-<img src="_main_files/figure-html/unnamed-chunk-171-1.png" alt="Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes."  />
-<p class="caption">(\#fig:unnamed-chunk-171)Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes.</p>
+<img src="_main_files/figure-html/unnamed-chunk-172-1.png" alt="Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes."  />
+<p class="caption">(\#fig:unnamed-chunk-172)Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes.</p>
 </div>
 
 Since again, this is a random experiment, I cannot guarantee but I am pretty optimistic that the solid line, representing our actual proportion of the number 6, will approach hour dashed line, the theoretical value. Note, that in the beginning we have some wiggles, but the longer of the experiment runs, the smoother and closer to the theoretical value it will get.
@@ -4160,7 +4312,7 @@ Typical properties of such a function are:
 
 As with any other distribution function, one can of course calculate Skewness and Kurtosis.
 
-![](_main_files/figure-html/unnamed-chunk-172-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-173-1.png)<!-- -->
 
 In addition to this quite intuitively understandable distribution function, there is also the **cumulative distribution function (CDF)**, which is very relevant for many statistical applications. Especially in the area of statistical tests, we will make use of it below.
 
@@ -4189,7 +4341,7 @@ It is obvious that values smaller than zero are impossible. Values less than or 
 
 This is what the graphical representation looks like:
 
-![](_main_files/figure-html/unnamed-chunk-173-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-174-1.png)<!-- -->
 
 Now, of course, the question arises, what is the point of all this! How does this knowledge of probability theory help us to better understand statistical tests? We will continue with our example of the coin toss and now develop a statistical test to assess whether it is fair or marked coins that are being played with. Our example will include all the elements of a statistical test, and the procedure is basically transferable to other statistical tests. So we will take a look under the bonnet of a statistical test.
 
@@ -4549,7 +4701,7 @@ probabilities <- dbinom(k,20,0.5)
 plot(k,probabilities, type = "h")
 ```
 
-![](_main_files/figure-html/unnamed-chunk-188-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-189-1.png)<!-- -->
 
 You can see, that the highest probability is to get 10 heads and 10 tails. The distribution is symmetrical, the smaller the number of heads or tails get the more unlikely this situation will be.
 
@@ -4562,7 +4714,7 @@ cumprob <- pbinom(k,20,0.5)
 plot(k,cumprob, type = "h")
 ```
 
-![](_main_files/figure-html/unnamed-chunk-189-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-190-1.png)<!-- -->
 
 There is a 59 % probability to get 10 or less heads (or tails).
 
@@ -4575,7 +4727,7 @@ probabilities <- dbinom(k,20,0.7)
 plot(k,probabilities, type = "h")
 ```
 
-![](_main_files/figure-html/unnamed-chunk-190-1.png)<!-- -->
+![](_main_files/figure-html/unnamed-chunk-191-1.png)<!-- -->
 
 This case, you can see that the most likely number of heads would be 14.
 
