@@ -4024,10 +4024,10 @@ result
 ```
 
 ```
-## [1] 2.1
+## [1] 4.5
 ```
 
-Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can't implement a little script snippet here so that I can now state the result is 2.1. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let's try this out:
+Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can't implement a little script snippet here so that I can now state the result is 4.5. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let's try this out:
 
 
 ```r
@@ -4045,10 +4045,10 @@ result
 ```
 
 ```
-## [1] 3.58
+## [1] 3.39
 ```
 
-I am pretty optimistic that this time the value of 3.58 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.
+I am pretty optimistic that this time the value of 3.39 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.
 
 
 ```r
@@ -4066,10 +4066,10 @@ result
 ```
 
 ```
-## [1] 3.4866
+## [1] 3.4911
 ```
 
-The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.4866 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.
+The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.4911 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.
 
 **The relative frequency of the random results converges against the probability of the random result**
 

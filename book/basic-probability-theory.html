@@ -566,8 +566,8 @@ or 1 - (1 out of 4): 1-0.25 = 0.75</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-168-1.png" /><!-- --></p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="basic-probability-theory.html#cb330-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
 <span id="cb330-2"><a href="basic-probability-theory.html#cb330-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 2.1</code></pre>
-<p>Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can’t implement a little script snippet here so that I can now state the result is 2.1. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let’s try this out:</p>
+<pre><code>## [1] 4.5</code></pre>
+<p>Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can’t implement a little script snippet here so that I can now state the result is 4.5. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let’s try this out:</p>
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="basic-probability-theory.html#cb332-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb332-2"><a href="basic-probability-theory.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
 <span id="cb332-3"><a href="basic-probability-theory.html#cb332-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
@@ -575,8 +575,8 @@ or 1 - (1 out of 4): 1-0.25 = 0.75</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" /><!-- --></p>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="basic-probability-theory.html#cb333-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
 <span id="cb333-2"><a href="basic-probability-theory.html#cb333-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 3.58</code></pre>
-<p>I am pretty optimistic that this time the value of 3.58 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.</p>
+<pre><code>## [1] 3.39</code></pre>
+<p>I am pretty optimistic that this time the value of 3.39 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="basic-probability-theory.html#cb335-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb335-2"><a href="basic-probability-theory.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
 <span id="cb335-3"><a href="basic-probability-theory.html#cb335-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
@@ -584,8 +584,8 @@ or 1 - (1 out of 4): 1-0.25 = 0.75</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" /><!-- --></p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="basic-probability-theory.html#cb336-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
 <span id="cb336-2"><a href="basic-probability-theory.html#cb336-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 3.4866</code></pre>
-<p>The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.4866 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.</p>
+<pre><code>## [1] 3.4911</code></pre>
+<p>The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.4911 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.</p>
 <p><strong>The relative frequency of the random results converges against the probability of the random result</strong></p>
 <p>We can visualise this using a slightly different simulation. This time we are not simulating a specific parameters of our distribution, but the relative frequency of an individual result. Theoretically, the probability of throwing a 6 is 1/6. No let’s watch how the frequency changes over time if we throw one dice after the other.</p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="basic-probability-theory.html#cb338-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
@@ -1429,7 +1429,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": "preface.pdf",
+"download": [["preface.pdf", "PDF"]],
 "toc": {
 "collapse": "subsection"
 }
