@@ -42,9 +42,9 @@ cat(rmarkdown::metadata$date)
 ### Presentations
 
 - [01. Session: Introduction](01_session/session_1_introduction.html) | 24.02.2021
-- [02. Session: Introduction into R](02_session/index.html) | 03.03.2021
-- [03. Session: Explorative Statistics/Graph. Display](03_session/index.html) | 10.03.2021
-- <details markdown=1><summary>04. Session: Descriptive Statistics | 17.03.2021</summary>
+- [02. Session: Introduction into R](02_session/index.html) | 03.03.2021 & 10.03.2021
+- [03. Session: Explorative Statistics/Graph. Display](03_session/index.html) | 17.03.2021
+- <details markdown=1><summary>04. Session: Descriptive Statistics | 24.03.2021</summary>
   - [Presentation](04_session/index.html)
   - [Book Chapter](book/descriptive-statistics.html)
   - [Video](https://tube.switch.ch/videos/yDLbBcbEWD)
@@ -52,7 +52,7 @@ cat(rmarkdown::metadata$date)
   - [Homework](04_session/homework_04.html)
  
 </details>
-- <details markdown=1><summary>05. Session: Nonparametric Tests | 24.03.2021</summary>
+- <details markdown=1><summary>05. Session: Nonparametric Tests | 31.03.2021</summary>
   - [Presentation](05_session/index.html)
   - [Book Chapter](book/nonparametric-tests.html)
   - [Video Part 1](https://tube.switch.ch/videos/X9AIAGeD6O)
@@ -61,13 +61,13 @@ cat(rmarkdown::metadata$date)
   - [Homework](05_session/homework_05.html)
  
 </details>
-- 06\. Session: Chi-square test | 31.03.2021
-- 07\. Session: Probability Theory and Distributions | 14.04.2021
-- 08\. Session: Distributions | 21.04.2021
-- 09\. Session: Parametric Tests | 28.04.2021
-- 10\. Session: Regression & Correlation | 05.05.2021
-- 11\. Session: Cluster Analysis | 12.05.2021
-- 12\. Session: Correspondence Analysis | 26.05.2021
+- 06\. Session: Basic Probability Theory | 14.04.2021
+- 0X\. Session: Distributions | not date, chapter will be produced asap!
+- 07\. Session: Parametric Tests | 21.04.2021
+- 08\. Session: Regression & Correlation | 28.05.2021
+- 09\. Session: Cluster Analysis | 05.05.2021
+- 10\. Session: Correspondence Analysis | 12.05.2021
+- 11\. Session: Repetition & Practice | 19.05.2021
 - Test | 02.06.2021
 ]
 
