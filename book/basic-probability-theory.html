@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Basic Probability Theory | Statistical methods for archaeological data analysis</title>
+  <meta name="description" content="6 Basic Probability Theory | Statistical methods for archaeological data analysis" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Basic Probability Theory | Statistical methods for archaeological data analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Basic Probability Theory | Statistical methods for archaeological data analysis" />
+  
+  
+  
+
+<meta name="author" content="Martin Hinz" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="nonparametric-tests.html"/>
+
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="introduction-into-r.html"><a href="introduction-into-r.html"><i class="fa fa-check"></i><b>2</b> Introduction into R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#start-r-studio"><i class="fa fa-check"></i><b>2.1</b> Start R-Studio</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-r"><i class="fa fa-check"></i><b>2.2</b> Using R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#start-of-the-system"><i class="fa fa-check"></i><b>2.2.1</b> Start of the system:</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-into-r.html"><a href="introduction-into-r.html#simplest-way-to-use-r-as-calculator"><i class="fa fa-check"></i><b>2.2.2</b> Simplest way to use: R as calculator</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-into-r.html"><a href="introduction-into-r.html#multiple-commands-are-separated-by"><i class="fa fa-check"></i><b>2.2.3</b> Multiple commands are separated by ;</a></li>
+<li class="chapter" data-level="2.2.4" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-functions"><i class="fa fa-check"></i><b>2.2.4</b> Using functions:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction-into-r.html"><a href="introduction-into-r.html#getting-help"><i class="fa fa-check"></i><b>2.3</b> Getting help</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-into-r.html"><a href="introduction-into-r.html#assignment-of-data-to-variables"><i class="fa fa-check"></i><b>2.4</b> Assignment of data to variables</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#arrow-or-equal-sign"><i class="fa fa-check"></i><b>2.4.1</b> Arrow or equal sign?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="introduction-into-r.html"><a href="introduction-into-r.html#working-with-variables"><i class="fa fa-check"></i><b>2.5</b> Working with variables</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-variables"><i class="fa fa-check"></i><b>2.6</b> Using variables</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-types-in-r-variables"><i class="fa fa-check"></i><b>2.7</b> Data types in R Variables</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#scalar"><i class="fa fa-check"></i><b>2.7.1</b> Scalar</a></li>
+<li class="chapter" data-level="2.7.2" data-path="introduction-into-r.html"><a href="introduction-into-r.html#vector"><i class="fa fa-check"></i><b>2.7.2</b> Vector</a></li>
+<li class="chapter" data-level="2.7.3" data-path="introduction-into-r.html"><a href="introduction-into-r.html#matrix"><i class="fa fa-check"></i><b>2.7.3</b> Matrix:</a></li>
+<li class="chapter" data-level="2.7.4" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-frame"><i class="fa fa-check"></i><b>2.7.4</b> Data frame:</a></li>
+<li class="chapter" data-level="2.7.5" data-path="introduction-into-r.html"><a href="introduction-into-r.html#the-working-directory"><i class="fa fa-check"></i><b>2.7.5</b> The working directory</a></li>
+<li class="chapter" data-level="2.7.6" data-path="introduction-into-r.html"><a href="introduction-into-r.html#download-data-for-further-tasks-into-your-working-directory"><i class="fa fa-check"></i><b>2.7.6</b> Download data for further tasks into your working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-import-through-reading-of-files"><i class="fa fa-check"></i><b>2.8</b> Data import through reading of files</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-into-r.html"><a href="introduction-into-r.html#using-c-for-data-entry"><i class="fa fa-check"></i><b>2.9</b> Using c() for data entry</a></li>
+<li class="chapter" data-level="2.10" data-path="introduction-into-r.html"><a href="introduction-into-r.html#named-vectors"><i class="fa fa-check"></i><b>2.10</b> Named vectors</a></li>
+<li class="chapter" data-level="2.11" data-path="introduction-into-r.html"><a href="introduction-into-r.html#applying-functions-to-more-complex-variables"><i class="fa fa-check"></i><b>2.11</b> Applying functions to more complex variables</a></li>
+<li class="chapter" data-level="2.12" data-path="introduction-into-r.html"><a href="introduction-into-r.html#calculations-with-vectors"><i class="fa fa-check"></i><b>2.12</b> Calculations with vectors</a></li>
+<li class="chapter" data-level="2.13" data-path="introduction-into-r.html"><a href="introduction-into-r.html#sequences-and-repeated-data"><i class="fa fa-check"></i><b>2.13</b> Sequences and repeated data</a></li>
+<li class="chapter" data-level="2.14" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-access"><i class="fa fa-check"></i><b>2.14</b> Data access</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="introduction-into-r.html"><a href="introduction-into-r.html#by-indexposition"><i class="fa fa-check"></i><b>2.14.1</b> by index/position</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="introduction-into-r.html"><a href="introduction-into-r.html#logical-values"><i class="fa fa-check"></i><b>2.15</b> Logical values</a></li>
+<li class="chapter" data-level="2.16" data-path="introduction-into-r.html"><a href="introduction-into-r.html#factors"><i class="fa fa-check"></i><b>2.16</b> Factors</a></li>
+<li class="chapter" data-level="2.17" data-path="introduction-into-r.html"><a href="introduction-into-r.html#missing-na-values"><i class="fa fa-check"></i><b>2.17</b> missing (NA) values</a></li>
+<li class="chapter" data-level="2.18" data-path="introduction-into-r.html"><a href="introduction-into-r.html#matrices"><i class="fa fa-check"></i><b>2.18</b> Matrices</a></li>
+<li class="chapter" data-level="2.19" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-frames"><i class="fa fa-check"></i><b>2.19</b> Data frames</a></li>
+<li class="chapter" data-level="2.20" data-path="introduction-into-r.html"><a href="introduction-into-r.html#data-export-through-save"><i class="fa fa-check"></i><b>2.20</b> Data export through save</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html"><i class="fa fa-check"></i><b>3</b> Explorative statistics &amp; graphical display</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#dataset-used-for-this-chapter"><i class="fa fa-check"></i><b>3.1</b> Dataset used for this chapter</a></li>
+<li class="chapter" data-level="3.2" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#cross-tables-contingency-tables"><i class="fa fa-check"></i><b>3.2</b> Cross tables (contingency tables)</a></li>
+<li class="chapter" data-level="3.3" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#basics-about-charts"><i class="fa fa-check"></i><b>3.3</b> Basics about charts</a></li>
+<li class="chapter" data-level="3.4" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#the-command-plot"><i class="fa fa-check"></i><b>3.4</b> The command <code>plot()</code></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#basic-plotting"><i class="fa fa-check"></i><b>3.4.1</b> Basic plotting</a></li>
+<li class="chapter" data-level="3.4.2" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#enhancing-the-plot-with-optional-components-text"><i class="fa fa-check"></i><b>3.4.2</b> Enhancing the plot with optional components &amp; Text</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#export-the-graphics"><i class="fa fa-check"></i><b>3.5</b> Export the graphics</a></li>
+<li class="chapter" data-level="3.6" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#pie-chart"><i class="fa fa-check"></i><b>3.6</b> Pie chart</a></li>
+<li class="chapter" data-level="3.7" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#bar-plot"><i class="fa fa-check"></i><b>3.7</b> Bar plot</a></li>
+<li class="chapter" data-level="3.8" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#box-plot-box-and-whiskers-plot"><i class="fa fa-check"></i><b>3.8</b> Box-plot (Box-and-Whiskers-Plot)</a></li>
+<li class="chapter" data-level="3.9" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#scatterplot"><i class="fa fa-check"></i><b>3.9</b> Scatterplot</a></li>
+<li class="chapter" data-level="3.10" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#histogramm"><i class="fa fa-check"></i><b>3.10</b> Histogramm</a></li>
+<li class="chapter" data-level="3.11" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#stem-and-leaf-chart"><i class="fa fa-check"></i><b>3.11</b> stem-and-leaf chart</a></li>
+<li class="chapter" data-level="3.12" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#kernel-smoothing-kernel-density-estimation"><i class="fa fa-check"></i><b>3.12</b> kernel smoothing (kernel density estimation)</a></li>
+<li class="chapter" data-level="3.13" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#guidelines"><i class="fa fa-check"></i><b>3.13</b> Guidelines</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="explorative-statistics-graphical-display.html"><a href="explorative-statistics-graphical-display.html#stay-honest"><i class="fa fa-check"></i><b>3.13.1</b> Stay honest!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#parameters-of-distributions"><i class="fa fa-check"></i><b>4.1.1</b> Parameters of distributions</a></li>
+<li class="chapter" data-level="4.1.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#loading-data-for-the-following-steps"><i class="fa fa-check"></i><b>4.1.2</b> Loading data for the following steps</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency-1"><i class="fa fa-check"></i><b>4.2</b> Central tendency</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>4.2.1</b> Mean</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>4.2.2</b> Median</a></li>
+<li class="chapter" data-level="4.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>4.2.3</b> Mode</a></li>
+<li class="chapter" data-level="4.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#comparing-central-tendency-parameters"><i class="fa fa-check"></i><b>4.2.4</b> Comparing Central tendency parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#dispersion-1"><i class="fa fa-check"></i><b>4.3</b> Dispersion</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#range"><i class="fa fa-check"></i><b>4.3.1</b> Range</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#towards-a-better-parameter-for-dispersion"><i class="fa fa-check"></i><b>4.3.2</b> Towards a better parameter for dispersion</a></li>
+<li class="chapter" data-level="4.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#empirical-variance"><i class="fa fa-check"></i><b>4.3.3</b> (empirical) variance</a></li>
+<li class="chapter" data-level="4.3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#empirical-standard-deviation"><i class="fa fa-check"></i><b>4.3.4</b> (empirical) standard deviation</a></li>
+<li class="chapter" data-level="4.3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#coefficient-of-variation"><i class="fa fa-check"></i><b>4.3.5</b> Coefficient of variation</a></li>
+<li class="chapter" data-level="4.3.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quantile"><i class="fa fa-check"></i><b>4.3.6</b> Quantile</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#shape-of-the-distribution"><i class="fa fa-check"></i><b>4.4</b> Shape of the distribution</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#skewness"><i class="fa fa-check"></i><b>4.4.1</b> Skewness</a></li>
+<li class="chapter" data-level="4.4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#kurtosis"><i class="fa fa-check"></i><b>4.4.2</b> Kurtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#take-home"><i class="fa fa-check"></i><b>4.5</b> Take Home</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html"><i class="fa fa-check"></i><b>5</b> Nonparametric Tests</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#inductive-statistics-or-statistical-inference"><i class="fa fa-check"></i><b>5.1</b> Inductive statistics or statistical inference</a></li>
+<li class="chapter" data-level="5.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#population-and-sample"><i class="fa fa-check"></i><b>5.2</b> Population and sample</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#repetition"><i class="fa fa-check"></i><b>5.2.1</b> Repetition:</a></li>
+<li class="chapter" data-level="5.2.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#parameter"><i class="fa fa-check"></i><b>5.2.2</b> Parameter</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#statistical-hypothesis-testing"><i class="fa fa-check"></i><b>5.3</b> Statistical Hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#validation-of-an-assumption-about-the-population"><i class="fa fa-check"></i><b>5.3.1</b> Validation of an assumption about the population</a></li>
+<li class="chapter" data-level="5.3.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#null-hypothesis"><i class="fa fa-check"></i><b>5.3.2</b> Null hypothesis</a></li>
+<li class="chapter" data-level="5.3.3" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#one-tailedtwo-tailed-hypothesis"><i class="fa fa-check"></i><b>5.3.3</b> One-tailed/Two-tailed hypothesis</a></li>
+<li class="chapter" data-level="5.3.4" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#stat.-significance"><i class="fa fa-check"></i><b>5.3.4</b> Stat. Significance</a></li>
+<li class="chapter" data-level="5.3.5" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#how-true-is-true"><i class="fa fa-check"></i><b>5.3.5</b> How true is true?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#α--und-β-error"><i class="fa fa-check"></i><b>5.4</b> α- und β-error</a></li>
+<li class="chapter" data-level="5.5" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#parametric-vs.-nonparametric"><i class="fa fa-check"></i><b>5.5</b> Parametric vs. Nonparametric</a></li>
+<li class="chapter" data-level="5.6" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#chi2-test"><i class="fa fa-check"></i><b>5.6</b> <span class="math inline">\(\chi^2\)</span> test</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#facts-sheet"><i class="fa fa-check"></i><b>5.6.1</b> Facts sheet</a></li>
+<li class="chapter" data-level="5.6.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#excursus-degree-of-freedom"><i class="fa fa-check"></i><b>5.6.2</b> Excursus degree of freedom</a></li>
+<li class="chapter" data-level="5.6.3" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#chi2-test-for-one-sample-example-after-shennan"><i class="fa fa-check"></i><b>5.6.3</b> <span class="math inline">\(\chi^2\)</span> Test for one sample (example after Shennan)</a></li>
+<li class="chapter" data-level="5.6.4" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#two-sample-case-test-for-independence"><i class="fa fa-check"></i><b>5.6.4</b> Two sample case (Test for independence)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#kolmogorovsmirnov-test"><i class="fa fa-check"></i><b>5.7</b> Kolmogorov–Smirnov test</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#facts-sheet-ks-test"><i class="fa fa-check"></i><b>5.7.1</b> Facts sheet KS-Test</a></li>
+<li class="chapter" data-level="5.7.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#example-after-shennan"><i class="fa fa-check"></i><b>5.7.2</b> Example (after Shennan)</a></li>
+<li class="chapter" data-level="5.7.3" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#ks-test-in-r"><i class="fa fa-check"></i><b>5.7.3</b> KS-Test in R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#interpretation-of-significance-tests"><i class="fa fa-check"></i><b>5.8</b> Interpretation of significance tests</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#pay-attention-also-when-the-statistic-seem-to-be-clear"><i class="fa fa-check"></i><b>5.8.1</b> Pay attention also when the statistic seem to be clear</a></li>
+<li class="chapter" data-level="5.8.2" data-path="nonparametric-tests.html"><a href="nonparametric-tests.html#statistical-association-not-mean-causal-association"><i class="fa fa-check"></i><b>5.8.2</b> Statistical association not mean causal association!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html"><i class="fa fa-check"></i><b>6</b> Basic Probability Theory</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#repetition-1"><i class="fa fa-check"></i><b>6.1</b> Repetition</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#population-and-sample-1"><i class="fa fa-check"></i><b>6.1.1</b> Population and sample</a></li>
+<li class="chapter" data-level="6.1.2" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#null-hypothesis-1"><i class="fa fa-check"></i><b>6.1.2</b> Null hypothesis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#the-concept-of-probability"><i class="fa fa-check"></i><b>6.2</b> The concept of probability</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#some-notations-and-definitions"><i class="fa fa-check"></i><b>6.2.1</b> Some Notations and Definitions</a></li>
+<li class="chapter" data-level="6.2.2" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#classical-probability-definition-by-laplace"><i class="fa fa-check"></i><b>6.2.2</b> Classical Probability Definition by Laplace</a></li>
+<li class="chapter" data-level="6.2.3" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#kolmogorovs-probability-axioms"><i class="fa fa-check"></i><b>6.2.3</b> Kolmogorovs probability axioms</a></li>
+<li class="chapter" data-level="6.2.4" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#conditional-and-independent-events"><i class="fa fa-check"></i><b>6.2.4</b> Conditional and independent events</a></li>
+<li class="chapter" data-level="6.2.5" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#addition-law-of-probability"><i class="fa fa-check"></i><b>6.2.5</b> Addition law of probability</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#combinatorics"><i class="fa fa-check"></i><b>6.3</b> Combinatorics</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#how-many-possibilities-are-there-to-combine-2-dice-results"><i class="fa fa-check"></i><b>6.3.1</b> How many possibilities are there to combine 2 dice results?</a></li>
+<li class="chapter" data-level="6.3.2" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#how-many-possible-unique-lotto-tickets-6-of-42-are-there"><i class="fa fa-check"></i><b>6.3.2</b> How many possible unique Lotto tickets (6 of 42) are there?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#law-of-large-numbers"><i class="fa fa-check"></i><b>6.4</b> Law of large numbers</a></li>
+<li class="chapter" data-level="6.5" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#random-variables"><i class="fa fa-check"></i><b>6.5</b> Random variables</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#what-is-random-at-all"><i class="fa fa-check"></i><b>6.5.1</b> What is random at all?</a></li>
+<li class="chapter" data-level="6.5.2" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#example-for-recoding-after-dolić"><i class="fa fa-check"></i><b>6.5.2</b> Example for recoding (after Dolić)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#building-a-statistical-test-from-scratch"><i class="fa fa-check"></i><b>6.6</b> Building a statistical test from scratch</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#number-of-possible-events"><i class="fa fa-check"></i><b>6.6.1</b> Number of possible events</a></li>
+<li class="chapter" data-level="6.6.2" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#number-of-positive-events"><i class="fa fa-check"></i><b>6.6.2</b> Number of positive events</a></li>
+<li class="chapter" data-level="6.6.3" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#from-counts-to-probabilities"><i class="fa fa-check"></i><b>6.6.3</b> From counts to probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#the-binomial-distribution"><i class="fa fa-check"></i><b>6.7</b> The Binomial Distribution</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#the-binom.test"><i class="fa fa-check"></i><b>6.7.1</b> The binom.test</a></li>
+<li class="chapter" data-level="6.7.2" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#sample-size"><i class="fa fa-check"></i><b>6.7.2</b> Sample size</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical methods for archaeological data analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basic-probability-theory" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Basic Probability Theory</h1>
+<div id="repetition-1" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Repetition</h2>
+<p>We talked about it before, but to be sure, that we are on the same page, here are some repetitions of some of the concepts we have already introduced. We will meet them in the progress of this chapter.</p>
+<div id="population-and-sample-1" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Population and sample</h3>
+<p>We already learnt the differentiation between the population and the sample. The <strong>population</strong> is the amount of all things that might be relevant for our analyses, or in other words, those objects in the real world about which we would like to make a statement with our statistical analyses. Quite often, the population cannot be analysed directly. From a practical point of you, this might be, because such an analyses would be too expensive. In archaeology, we do not have access to the full population of e.g. objects, because most of them have disintegrated over time.</p>
+<p>In such a situation, instead of investigating the full population, we take a <strong>sample</strong> of the population. Under ideal circumstances, we select our sample according to some controlled criteria, most often represent activity (in archaeology, quite often we take everything that we can get access to).</p>
+<p>The difference between sample and population is important. Realistically, we can only make statements about the sample. So we never know, if in the population there might be one or more individuals, they are totally different from those that we have sampled. But given some credible assumptions about the selection process of our sample, we can guess (or better measure) the probability that our sample represents the population well. In the end of the chapter you will know, how do use can be done.</p>
+<p>To make quantifiable statements about our population (or our sample), most of the time we will talk about <strong>parameter</strong>. These parameters are numerical representation of features of objects, or collections of objects. In case of the sample, we can measure these parameters directly. In case of the population, we cannot do this. Nevertheless, also the population has a fixed value for each individual parameter that we could measure on our sample. Here, we have to believe that there is a reality independent from us (or any other observer). Sold the parameters of the population represents real, fixed numbers, although we do not know them, and even if it is impossible to know them at all.</p>
+<p>In many statistical tests, we measure a parameter of sample, and then estimate our uncertainty, if the value measured would fall within a certain range of possible parameter values of the population. So essentially, we are building a bridge between our sample and the population. Our building material consists of probability theory. But from what has been said, it is clear, that the quality of our statement about the population (and its parameters) show me depends on the selection of the sample (and it’s representativity).</p>
+</div>
+<div id="null-hypothesis-1" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Null hypothesis</h3>
+<p>We also learnt the concept of the <strong>null hypothesis</strong>. Here, instead of proving our statement about the population, we are testing with the sample how likely it is, That’s the contrary of our original assumption (this contrary is the <strong>alternative hypothesis</strong>) is wrong. For example, for a specific parameter in the sample (e.g. the mean), we estimate how likely it is, that the sample with the specific parameter (the meaning of the sample) would come from the population with totally different mean value. Or, in the case of the Chi-Square test, how likely it is that the distribution of our values within the sample could come from a population, where the categories are independent from each other, just by random chance.</p>
+<p>If you are still uncertain, if you fully understand this concept, I would suggest that you have another look at the previous chapter.</p>
+</div>
+</div>
+<div id="the-concept-of-probability" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> The concept of probability</h2>
+<p>The concept of probability has to be differentiated between the “common sense” version and the scientific concept. In everyday life, we constantly use probabilities to express our assumptions about the world. If it rains, before you started reading this chapter, probably it is still raining. And you are very likely aware, did you learning result will be probably not as good as it could be, if you don’t do your homework. You will have a feeling about the likelihood of these probabilities, but this is subjective, and you will probably not be able to express that in numbers.</p>
+<p>But most of the time, these probabilities are not very specific. To make probabilities useful in a scientific environment, we have to be able to quantify them. For this reason, the statistical concept of probability is based on mathematical probability laws. These laws come from thought experiments or analyses of random trials. Such random trials depends on the idea, that they are (in principle) eternally repeatable operations, and that their result is (in principle) not predictable in the individual case. In that sense, you could say, that the mathematical principles of statistics resemble gambling. And a lot of the basic theory was indeed developed in the context of gambling. It might be very beneficial, if you have the ability to estimate how likely you will win a game of cards choosing one strategy or the other.</p>
+<p>Of course, if you roll a dice, or you draw a card from a mixed set of cards, the result is already determined: The laws of physics or the order of the cards in the deck determine, what number of the dice will show, or which card you will draw. But the actual result depends on so many independent influences, that it is nearly impossible (and with that impossible enough) to predict the individual case.</p>
+<p>The same is true for parameters of a population of objects, or the values within the sample: of course, these values are fixed and existent in the real world independent from the observer. But since the actual manifestation depends on so many influences and effects, that for us the values seem to be random. That is why we can use the same logic to estimate the best gambling strategy and to estimate the mean rim diameter of Neolithic pottery from a specific site. In both situations, you try to predict an unknown value or quantity using known values within a certain framework of parameters, and try to estimate your certainty (or probability of error). Kolmogorov, we already know from the Kolmogorov-Smirnov test, has developed a definition which is the foundation of today’s probability theory. Before we come to that, at first we have to understand some principles of set theory (Mengenlehre), related to probability theory, and some notations from that. For this, we use one of the classical examples: rolling the dice multiple times.</p>
+<div id="some-notations-and-definitions" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Some Notations and Definitions</h3>
+<p>If you roll a dice (for pen and paper role players, we are talking about a W6), the result of an individual might be for example 5. This is called an <em>elementary event</em> (or also <em>atomic event</em>, although no nuclear fission is involved, or <em>sample point</em>). The name refers both to the process and its result. In german it would be called “Ereignis”. This is the result of one actual trial, it is the realised result out of a range of possible results.</p>
+<p>The possible results in the case of the dice (again, dear old players, we are still talking about the W6) are one, two, three, four, five, six. These possible results are called <em>event space</em>, or <em>sample space</em>. Quite often, you find the greek letter Omega (<span class="math inline">\(\Omega\)</span>) as the symbol representing this sample space. In our case, you could also write that as follows:</p>
+<p><span class="math inline">\(\Omega = \{1,2,3,4,5,6\}\)</span></p>
+<p>The notation above describes, the Omega consists of the set (“Menge”) of the numbers from 1 to 6. Also, if we consider the results of different dice rolls in one go, they also can be understood as a set of values. Here, we are free to assign a symbol of our choice. E.g. like this:</p>
+<p><span class="math inline">\(A = {2,4,1,3,5}\)</span></p>
+<p>There are some more symbols in set theory and the respective notation that might be of relevance here. In the table, I’ll give you some examples, and I hope, with this practical representation you will be able to understand, what is going on here:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Set A={1,2,3,4}; Set B={4,5,6}; Event space Ω={1,2,3,4,5,6}</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1 is an element of set A</td>
+<td><span class="math inline">\(1\in{A}\)</span></td>
+</tr>
+<tr class="odd">
+<td>C is the union of A and B {1,2,3,4,4,5,6}</td>
+<td><span class="math inline">\(C = A \cup B\)</span></td>
+</tr>
+<tr class="even">
+<td>D is the intersection of A and B {4}</td>
+<td><span class="math inline">\(D = A \cap B\)</span></td>
+</tr>
+<tr class="odd">
+<td>E is A minus B {1,2,3}</td>
+<td><span class="math inline">\(E = A - B\)</span></td>
+</tr>
+<tr class="even">
+<td>Not A (=event space - A)</td>
+<td><span class="math inline">\(\bar{A} = \Omega - A = {5,6}\)</span></td>
+</tr>
+<tr class="odd">
+<td>The intersection of D {4} and E {1,2,3} is the empty set</td>
+<td><span class="math inline">\(D \cap E = \emptyset\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The symbol <span class="math inline">\(\in{}\)</span> describes membership. The union <span class="math inline">\(\cup\)</span> combines all elements from both involved sets. The intersection <span class="math inline">\(\cap\)</span> takes only those objects, that are represented in both sets. If you substract one set from the other, you remove all the elements from the first set that are present in the second set. The specific definition of a set is the qualifier “Not”, most of the time expressed as a bar above the symbol. This refers to everything else in the event space except for those objects that are in the negated set. The last important set is the empty set <span class="math inline">\(\emptyset\)</span>, that consists of zero elements.</p>
+<p>With this notation, now we have everything at hand so that we can talk very precise (science!) about possible results of the dice roll, add about all other possible random variables. We will use this knowledge now to calculate probabilities.</p>
+</div>
+<div id="classical-probability-definition-by-laplace" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Classical Probability Definition by Laplace</h3>
+<p>The very basic and classical definition of probability comes from Pierre-Simon Laplace (1749–1827).It states that the probability for a specific set of events (positive events) is calculated by dividing the number of possible outcomes with these positive events by the total number of all possible events. Or expressed in formulas:</p>
+<p><span class="math inline">\(p(A) = \frac{Number\ of\ positive\ results}{Number\ of\ possible\ results}\)</span></p>
+<p>The resulting number is also the relative frequency of this positive results. Let’s explain that with our dice example.</p>
+<p>To win the game, we have to throw a six. How likely is that?</p>
+<p><span class="math inline">\(A=6 , Event\ space=\{1,2,3,4,5,6\}\)</span></p>
+<p>The number of possible results in our event space is 6. With a dice there’s only one way to roll the number 6, the positive result in our example.</p>
+<p><span class="math inline">\(p(6)=\frac{1}{6}=0.1667=16.67\%\)</span></p>
+<p>All other results do not represent our positive result. Given our knowledge about the notation from above, we can also express it like that:</p>
+<p><span class="math inline">\(p(\bar{6})=p(\Omega) - p(6) = 1 - \frac{1}{6} = \frac{5}{6} = 0.8333 = 83.33\%\)</span></p>
+<p>So there is a probability of 16.67% to win the game, and the probability of 83.33% to not win the game. With this, we have already used intuitively most of the Kolmogorov axioms. Let’s dissect that a bit, and then come to the formal definition.</p>
+<p>In the random experiment, but also in the real world, if we have a result, all the time something must have happened. So the probability, that anything happened, irrespectable of the specific result, it’s always 100%. Or, a bit more formula, the probability of the event space is always 1.</p>
+<p><span class="math inline">\(p(\Omega) = 1\)</span></p>
+<p>This also can be called the <em>safe event</em>: it is safe to assume, that this will happen. The safe event is the event with 100% probability.</p>
+<p><span class="math inline">\(p(A) = 1\)</span></p>
+<p><span class="math inline">\(p(this\ is\ a\ statistics\ course) = 1\)</span></p>
+<p>If it is impossible, that the specific event might occur, then it has zero (0%) probability:</p>
+<p><span class="math inline">\(p(A) = 0\)</span></p>
+<p><span class="math inline">\(p(here\ you\ can\ learn\ something\ about\ knitting) = 0\)</span></p>
+<p>And event itself, and its negation represents <em>complimentary events</em>:</p>
+<p>Without physical tricks a dice roll always has a number as result. No matter, what it actually is, with normal dice its probability is 1/6</p>
+<p><span class="math inline">\(p(6)=\frac{1}{6}\rightarrow p(A)=\frac{1}{6}%\)</span></p>
+<p>Rolling not this specific result is the complimentary event of rolling exactly this result:</p>
+<p><span class="math inline">\(p(1...5)=\frac{5}{6}\rightarrow p(\bar{A})=\frac{5}{6}%\)</span></p>
+<p>With a normal dice, you always will roll a number as a result. The likelihood of this number will be always 1/6, because there is only one way this result (out of six possible results) could be the outcome. Not getting a specific number as a result, in the case of the dies, as always the probability of 5/6. There are five ways to get a different result from this specific one. So the result and its complimentary result describe the whole event space, and its combined probability is therefore 1.</p>
+<p><span class="math inline">\(p(A) + p(\bar{A}) = 1\)</span></p>
+<p>Since the probability of an event and its opposite is always 1, you can calculate one from the other.</p>
+<p>Let’s switch the example to test this out:</p>
+<p>A card game has 4 colors (diamonds, hearts, spades, clubs).</p>
+<p>The probability to draw a heart card is 1 out of 4: 0.25</p>
+<p>The probability of not drawing a Heart card is 3 out of 4: 0.75,
+or 1 - (1 out of 4): 1-0.25 = 0.75</p>
+</div>
+<div id="kolmogorovs-probability-axioms" class="section level3" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Kolmogorovs probability axioms</h3>
+<p>Now let’s have a look to the formal representation of the Kolmogorov probability axioms:</p>
+<div id="axiom" class="section level4" number="6.2.3.1">
+<h4><span class="header-section-number">6.2.3.1</span> 1. axiom</h4>
+<p>Each event from the event space is assigned a number p(A), which describes the probability of the event. This is between 0 and 1.</p>
+<p><span class="math inline">\(0 \leq p(A) \leq 1\)</span></p>
+<p>This means, for every possible event we express its probability with numbers ranging from 0 to 1.</p>
+</div>
+<div id="axiom-1" class="section level4" number="6.2.3.2">
+<h4><span class="header-section-number">6.2.3.2</span> 2. axiom</h4>
+<p>The safe event has the value one.</p>
+<p><span class="math inline">\(p(E) = 1\)</span></p>
+<p>This means, that if we know something must happen in this way, then its probability is 100% or 1.</p>
+</div>
+<div id="axiom-2" class="section level4" number="6.2.3.3">
+<h4><span class="header-section-number">6.2.3.3</span> 3. axiom</h4>
+<p>For pairwise disjunctive events, i.e. those that do not have an intersection
+(e.g. {1,2} and {3,4}), the probability for their union is the sum of their individual probabilities.</p>
+<p><span class="math inline">\(p(A_1 \cup A_2 ... \cup A_n) = \sum_{i=1}^n p(A_i)\)</span></p>
+<p>This means, that four sets to do not include the same members, the unified probability will be the sum of the individual probabilities. Not only in the case of the complimentary event, but in every situation where we talk about disjunctive events.</p>
+<p>So, in the case of our dies, one probable set of outcomes A (one way to win) might be 1 &amp; 2, the second B (another way to win) with 3 &amp; 4.</p>
+<p>e.g. <span class="math inline">\(\Omega = \{1,2,3 ,4 ,5,6\} , A=\{1,2\}, B=\{3,4\}\)</span></p>
+<p>Given that, the total probability of winning the game in one way or the other can be calculated as the sum of the individual probabilities of one way of winning and the other.</p>
+<p><span class="math inline">\(p(A) = \frac{2}{6}, P(B) = \frac{2}{6}, p(A \cup B) = p(A) + p(B) = \frac{2}{6} + \frac{2}{6} = \frac{4}{6} = 66,67\%\)</span></p>
+<p>All of this seems to be quite complicated ways to express quite common sense concepts. But you will see, as soon as we leave this very basic ground, that is very defined expression makes sense. This is especially true, when it comes to conditional probability and composite, repeated events. Here, quite often the commonsense understanding of probability has its limits.</p>
+</div>
+</div>
+<div id="conditional-and-independent-events" class="section level3" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Conditional and independent events</h3>
+<p>In estimating total probabilities, it is very important to distinguish between situations, where the results are independent from each other, from those, where the result of the first changes the probabilities of the second result. For independent results, we can stick to our example with the dice. Rolling a dice once does not change the probabilities of individual results from the second dice roll. In case of individual independent results, the total probability of a set of results is calculated by multiplying the individual probabilities.</p>
+<p>Therefore the probability is to roll first a 5 and then a 6 is calculated like so:</p>
+<p><span class="math inline">\(p(A \cap B) = p(A) * p(B) = \frac{1}{6} * \frac{1}{6} = \frac{1}{36}\)</span></p>
+<p>You can also understand that in a way, that after we have drawn the 5 out of our bag of possible numbers in the first random trial, we have put it back into the bag of random numbers. But what if, when we have an event, this is not longer available for further trials?</p>
+<p>Here is an experiment (after Dolić): A (non-transparent) bag with a chocolate biscuit, a sugar biscuit and an eco biscuit. How likely is it to get out the chocolate biscuit first and then the eco biscuit?</p>
+<p>It is wrong to assume, that we can use the same strategy like above: <span class="math inline">\(p(choco\ than\ eco) = p(choco) * p(eco) = \frac{1}{3} * \frac{1}{3} = \frac{1}{9}\)</span></p>
+<p>because after the chocolate biscuit’s out, there’s only two biscuits left
+<span class="math inline">\(p(eco\ if\ choco) = \frac{1}{2}\)</span></p>
+<p>That’s why: <span class="math inline">\(p(choco\ than\ eco) = p(choco) * p(eco\ if\ choco) = \frac{1}{3} * \frac{1}{2} = \frac{1}{6}\)</span></p>
+<p>First, it is necessary to calculate how likely it is to get out the chocolate biscuit. Here, we are still on safe ground: This first probability acts like in the case of the dice. But for the second trial, we have to calculate the probability of getting the eco biscuit, if we have already taken out the chocolate biscuit. Since now our event space consists only of two possibilities, it is 1 out of 2. Having figured this out, now we can multiply the probabilities.</p>
+<p>A more general definition of this is the <strong>axiom of (conditional) probability</strong>, as also defined by Kolmogorov:</p>
+<p><span class="math inline">\(p(A \cap B) = p(A) * p(B|A)\)</span></p>
+<p>This means, that we can calculate the total probability of A and B by multiplying the probability of A and the probability of B given A. Or, if we like to reformulated:</p>
+<p><span class="math inline">\(p(B|A) = \frac{p(A \cap B)}{p(A)}\)</span></p>
+<p>The (conditional) probability of B given A is the total probability of A and B, divided by the probability of A. You might find this definition in some textbooks.</p>
+</div>
+<div id="addition-law-of-probability" class="section level3" number="6.2.5">
+<h3><span class="header-section-number">6.2.5</span> Addition law of probability</h3>
+<p>This axiom of (conditional) probability helps us to make the third axiom more general. It gives us the tools to calculate probabilities in situations, where we don’t have mutual exclusive events.</p>
+<p>Let’s introduce this using a set of cards. The set contains 32 cards of for colors [ace (Ass), king (König), queen (Dame), jack (Bube), 10, 9, 8 and 7 in all four suits (clubs ♣, spades ♠, hearts ♥ and diamonds ♦)].</p>
+<p>First let’s calculate how likely it is to draw hearts card using our knowledge:</p>
+<p>32 cards, 1/4 is hearts (8)</p>
+<p><span class="math inline">\(p(A) = \frac{8}{32}\)</span></p>
+<p><span class="math inline">\(p(A) = \frac{1}{4}\)</span></p>
+<p>Or similarly, how likely it is to draw a queen:</p>
+<p>32 cards, 4 queen</p>
+<p><span class="math inline">\(p(A) = \frac{4}{32}\)</span></p>
+<p><span class="math inline">\(p(A) = \frac{1}{8}\)</span></p>
+<p>That’s easy isn’t it? But now let’s assume, that Queen and hearts are trump cards. How likely is it to draw a trump card? We cannot simply multiply nor add up the probabilities, because they are not mutually exclusive.</p>
+<p><img src="../images/07_session/set_image.png" /></p>
+<p>Imagine come out that in this image A represents all the hearts, and B represents all the Queens. The Queen of hearts is present in both sets. When calculating the probability of this combination, we have to consider this fact.</p>
+<p>So, drawing cards, how likely is it to draw a trump card (queens and hearts are trump)?
+32 cards, 4 queen, 8 heart, one queen of hearts</p>
+<p>First, we have to calculate the probability of drawing hearts, then we have to calculate the probability of drawing Queens. Since the Queen of hearts is present in both sets, we have to remove one of occurences or better, its probability.</p>
+<p><span class="math inline">\(p(A) = \frac{1}{4}\)</span>; <span class="math inline">\(p(B) = \frac{1}{8}\)</span>; <span class="math inline">\(p(A \cup B) = p(A) + p(B) - p(A \cap B)\)</span></p>
+<p><span class="math inline">\(p(A \cup B) = \frac{1}{4} + \frac{1}{8} - \frac{1}{32} = \frac{11}{32} = 0.34375\)</span></p>
+<p>This, we have developed the general addition law of probabilities:</p>
+<p>For all possible combination of events:</p>
+<p><span class="math inline">\(p(A \cup B) = p(A) + p(B) - p(A \cap B)\)</span></p>
+<p>With both, the conditional probability and the addition law of probability, it becomes clear that to calculate probabilities we have to find a way to count possible outcomes. This is the field that is called combinatorics. Luckily, there are only a few possibilities. Actually, there are only two factors that can change the set up of such random experiments: If the order is relevant, or, if we have independent trials</p>
+</div>
+</div>
+<div id="combinatorics" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Combinatorics</h2>
+<p>To calculate how many possible outcomes an experiment has is rather easy for the individual trial. But if the total probability consists of multiple events, then it is of importance holders events are combined.</p>
+<p>In essence, it boils down to the question, how many possibilities are there to select k elements from n elements? The following table gives you an overview of the possibilities and also shows, how the number of possibilities are calculated in this situations:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Variation (with respect to order)</th>
+<th>Combination (without respecting the order)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>with ‘putting back’; with replacement</td>
+<td><span class="math inline">\(n^k\)</span></td>
+<td><span class="math inline">\(\frac{(n+k-1)!}{k!*(n-1)!}\)</span></td>
+</tr>
+<tr class="even">
+<td>without ‘putting back’; without replacement</td>
+<td><span class="math inline">\(\frac{n!}{(n-k)!}\)</span></td>
+<td><span class="math inline">\(\frac{n!}{k!*(n-k)!}=\binom{n}{k}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Let’s illustrate these possibilities with a few examples:</p>
+<div id="how-many-possibilities-are-there-to-combine-2-dice-results" class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> How many possibilities are there to combine 2 dice results?</h3>
+<p><span class="math inline">\(\Omega = \{1,2,3,4,5,6\}; n(\Omega) = 6; number\ dices\ k = 2\)</span></p>
+<p>We have already figured out, that with the dice the probabilities do not change: We are dealing with a situation with replacement. Now we have to decide, if the order matters to us. This might be especially true, if we talk about a board game.</p>
+<p><span class="math inline">\(B^{k=2}_n = \{(x_1,x_2) | x_i \in \Omega\}\)</span></p>
+<p>So, we have the situation with putting back and with respect to order (<span class="math inline">\(x_1, x_2\)</span>). This situation, we calculate the number of possible outcomes by putting the number of possible events to the power of the number of trials.</p>
+<p><span class="math inline">\(n(B) = n^k = n(x_1) * n(x_2) = n(\Omega) * n(\Omega) = 6*6 = 6^2= 36\)</span></p>
+<p>Therefore, the Probability for a 6 in the first roll and a 5 in the second is: <span class="math inline">\(p(x_1=6, x_2=5) = \frac{1}{6^2} = \frac{1}{36} = 0,0278= 2,78\%\)</span></p>
+</div>
+<div id="how-many-possible-unique-lotto-tickets-6-of-42-are-there" class="section level3" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> How many possible unique Lotto tickets (6 of 42) are there?</h3>
+<p><span class="math inline">\(\Omega = \{1,2,3...,42\}, n(\Omega)=42, number\ draws\ k = 6\)</span></p>
+<p>We have to numbers from 1 to 42, so the size of our event space is 42. There are six numbers drawn, it does not matter in which order. But the numbers are not being put back, so we deal with no replacement.</p>
+<p><span class="math inline">\(B^{k=6}_n = \{(x_1, x_2,...,x_6)|| x_i \in \Omega | (x_1,...x_{i-1}) \}\)</span></p>
+<p>This situation, we have to use the formula in the lower right cell of our table. You can see a lot of !’s in this formula. This exclamation mark means “<a href="https://en.wikipedia.org/wiki/Factorial">factorial</a>”. In mathematics, the factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n:</p>
+<p><span class="math inline">\(n! = 1 \cdot 2 \cdot 3 \cdots (n-2) \cdot (n-1) \cdot n\)</span></p>
+<p>So, in the case of factorial 6, this translates to:</p>
+<p><span class="math inline">\(6! = 1 \cdot 2 \cdot 3 \cdot 4 \cdot 5 \cdot 6\)</span></p>
+<p>The whole expression has a specific name: it is the <a href="https://en.wikipedia.org/wiki/Binomial_coefficient">binomial coefficient</a>. To calculate the binomial for our situation, we just have to fill in our values.</p>
+<p><span class="math inline">\(n(B) = \frac{n!}{k! * (n-k)!} = \frac{42!}{6! * (42-6)!} = 5245786\)</span></p>
+<p>It’s a rather high number. It’s a bit more than half of the population of Switzerland. That means, if everybody in Switzerland would play lotto with a different set of numbers, only 1 to 2 persons would get it right.</p>
+<p>Therefore: Probability for 6 correct numbers:</p>
+<p><span class="math inline">\(p(6_{right})=\frac{1}{5245786}=0=0.00002 \%\)</span></p>
+<p>This now is a rather small number. It means, you as an individual have a rather low chance to win a jackpot. Probably it’s better to continue learning statistics to get a job. Even an archaeology the chances are better to make a living from it.</p>
+</div>
+</div>
+<div id="law-of-large-numbers" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Law of large numbers</h2>
+<p>No we have all the tools to calculate probabilities of different settings. It probably will not help us to win the jackpot. Even with the best statistical tools that, it is impossible to predict an individual outcome from a random experiment. Hence it is a random experiment. Of course, with your first game of lotto you might win a jackpot against the odds.</p>
+<p>Also, if we would like to predict the mean result of the dice roll, the actual result of the individual trial might be very different from our expectation. At least for the first one. Probably also, if we had to dices. But the more dices we have, the closer will be our theoretical mean of the dice rolls to the actual one. Here, we have our bridge from the sample to the population. In this case, the population is the mean of all dices ever thrown. Like with an archaeological population, this is theoretical value that actually could have been observed by an omnipotent observer (omniscience). But we as ordinary mortals have no way of knowing the real value. But it will likely be around 3.5. Our sample all those dices that we actually throw. And we can start estimating the value of the population from our sample. In this case, the larger our sample, the better our estimation. Or more general:</p>
+<p><strong>The larger the sample, the more similar the distribution of sample and population</strong></p>
+<p>Let’s add a practical experiment to our thought experiment. Although we will not be able to throw very many dices, we have a computer that can do this for us. We will use at first 10 dices.</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="basic-probability-theory.html#cb329-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb329-2"><a href="basic-probability-theory.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
+<span id="cb329-3"><a href="basic-probability-theory.html#cb329-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
+<span id="cb329-4"><a href="basic-probability-theory.html#cb329-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="basic-probability-theory.html#cb330-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
+<span id="cb330-2"><a href="basic-probability-theory.html#cb330-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can’t implement a little script snippet here so that I can now state the result is 3. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let’s try this out:</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="basic-probability-theory.html#cb332-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb332-2"><a href="basic-probability-theory.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
+<span id="cb332-3"><a href="basic-probability-theory.html#cb332-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
+<span id="cb332-4"><a href="basic-probability-theory.html#cb332-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="basic-probability-theory.html#cb333-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
+<span id="cb333-2"><a href="basic-probability-theory.html#cb333-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
+<pre><code>## [1] 3.45</code></pre>
+<p>I am pretty optimistic that this time the value of 3.45 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="basic-probability-theory.html#cb335-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb335-2"><a href="basic-probability-theory.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
+<span id="cb335-3"><a href="basic-probability-theory.html#cb335-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
+<span id="cb335-4"><a href="basic-probability-theory.html#cb335-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="basic-probability-theory.html#cb336-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
+<span id="cb336-2"><a href="basic-probability-theory.html#cb336-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
+<pre><code>## [1] 3.4779</code></pre>
+<p>The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.4779 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.</p>
+<p><strong>The relative frequency of the random results converges against the probability of the random result</strong></p>
+<p>We can visualise this using a slightly different simulation. This time we are not simulating a specific parameters of our distribution, but the relative frequency of an individual result. Theoretically, the probability of throwing a 6 is 1/6. No let’s watch how the frequency changes over time if we throw one dice after the other.</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="basic-probability-theory.html#cb338-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb338-2"><a href="basic-probability-theory.html#cb338-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb338-3"><a href="basic-probability-theory.html#cb338-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We roll all devices at the same time</span></span>
+<span id="cb338-4"><a href="basic-probability-theory.html#cb338-4" aria-hidden="true" tabindex="-1"></a>roll<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T))</span>
+<span id="cb338-5"><a href="basic-probability-theory.html#cb338-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb338-6"><a href="basic-probability-theory.html#cb338-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Therefore we have to make them iterative</span></span>
+<span id="cb338-7"><a href="basic-probability-theory.html#cb338-7" aria-hidden="true" tabindex="-1"></a><span class="co"># preparing some variables to gather our results </span></span>
+<span id="cb338-8"><a href="basic-probability-theory.html#cb338-8" aria-hidden="true" tabindex="-1"></a>list<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb338-9"><a href="basic-probability-theory.html#cb338-9" aria-hidden="true" tabindex="-1"></a>ratio<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb338-10"><a href="basic-probability-theory.html#cb338-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb338-11"><a href="basic-probability-theory.html#cb338-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Now iteratively calculating the relative frequency</span></span>
+<span id="cb338-12"><a href="basic-probability-theory.html#cb338-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (test <span class="cf">in</span> roll)</span>
+<span id="cb338-13"><a href="basic-probability-theory.html#cb338-13" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb338-14"><a href="basic-probability-theory.html#cb338-14" aria-hidden="true" tabindex="-1"></a>list<span class="ot">&lt;-</span><span class="fu">append</span>(list,test,<span class="fu">length</span>(list))</span>
+<span id="cb338-15"><a href="basic-probability-theory.html#cb338-15" aria-hidden="true" tabindex="-1"></a>ratio<span class="ot">&lt;-</span><span class="fu">append</span>(ratio,<span class="fu">sum</span>(list<span class="sc">==</span><span class="dv">6</span>)<span class="sc">/</span><span class="fu">length</span>(list))</span>
+<span id="cb338-16"><a href="basic-probability-theory.html#cb338-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb338-17"><a href="basic-probability-theory.html#cb338-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb338-18"><a href="basic-probability-theory.html#cb338-18" aria-hidden="true" tabindex="-1"></a><span class="co"># And plot...</span></span>
+<span id="cb338-19"><a href="basic-probability-theory.html#cb338-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ratio,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb338-20"><a href="basic-probability-theory.html#cb338-20" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-171"></span>
+<img src="_main_files/figure-html/unnamed-chunk-171-1.png" alt="Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes." width="672" />
+<p class="caption">
+Figure 6.1: Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes.
+</p>
+</div>
+<p>Since again, this is a random experiment, I cannot guarantee but I am pretty optimistic that the solid line, representing our actual proportion of the number 6, will approach hour dashed line, the theoretical value. Note, that in the beginning we have some wiggles, but the longer of the experiment runs, the smoother and closer to the theoretical value it will get.</p>
+<p>The law of the large number is the <strong>bridge from the sample to the population</strong>, it allows statements to be made about the population without knowing it.</p>
+</div>
+<div id="random-variables" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Random variables</h2>
+<div id="what-is-random-at-all" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> What is random at all?</h3>
+<p>Are use the term random already several times. As has been explained in the beginning, in a strict physical reality there is no such thing as randomness, except for probably quantum physics (We will not talk about quantum physics in this course!). Also, when you are using the random generator of your computer, still this random process is defined by the state in which the computer is at a given time. We should rather think of random processes as those processes that are either unknown or so complex that their outcome cannot be foreseen by us, but only estimated. A random variable is then the result of such a complex or unknown process. The values of such a random variable then represent the possible outcomes or results of this process. Whether we then really understand this as a random value is more of a philosophical question:</p>
+<p>Coin toss: The result of a coin toss is <em>determined</em> by different physical laws (throwing force, density of air, gravity etc.)! Since we cannot control these, the result to be considered <em>random</em>!</p>
+<p>An important step in order to statistically evaluate the results of a random variable is to convert them into the realm of real numbers (recode). In some detours, this is also possible for values that at first sight are difficult to convert into numbers. We will demonstrate this with the example of the coin toss.</p>
+</div>
+<div id="example-for-recoding-after-dolić" class="section level3" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Example for recoding (after Dolić)</h3>
+<p>A coin is flipped three times. The number of “heads” (H) is noted as a random variable. Possible results:</p>
+<table>
+<thead>
+<tr class="header">
+<th>coin flip</th>
+<th><span class="math inline">\(x_i\)</span></th>
+<th><span class="math inline">\(p(x_i)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TTT</td>
+<td>0</td>
+<td>1/8</td>
+</tr>
+<tr class="even">
+<td>TTH</td>
+<td>1</td>
+<td>1/8</td>
+</tr>
+<tr class="odd">
+<td>THT</td>
+<td>1</td>
+<td>1/8</td>
+</tr>
+<tr class="even">
+<td>HTT</td>
+<td>1</td>
+<td>1/8</td>
+</tr>
+<tr class="odd">
+<td>THH</td>
+<td>2</td>
+<td>1/8</td>
+</tr>
+<tr class="even">
+<td>HTH</td>
+<td>2</td>
+<td>1/8</td>
+</tr>
+<tr class="odd">
+<td>HHT</td>
+<td>2</td>
+<td>1/8</td>
+</tr>
+<tr class="even">
+<td>HHH</td>
+<td>3</td>
+<td>1/8</td>
+</tr>
+</tbody>
+</table>
+<p>In this example, the results of the individual coin tosses are heads or tails. Different sequences of heads or tails, even with the same total number, represent different possible events. The total sample space of our experiment is therefore a result with respect to the order with replacement at the same time. The calculation of the number of possible outcomes therefore follows from our combination table from above and corresponds to the size of the event space for the single experiment (n=2, head or tails) to the power of the number of trials (k=3).</p>
+<p><span class="math inline">\(n=2; k=3; 2^3=8\)</span></p>
+<p>Therefore, each event has a probability of 1/8. If we now look at the number of heads, it becomes clear that we can arrive at the same number of heads in different ways. There is only one possibility of not getting a head on three throws. Likewise, there is only one variation in which we get 3 heads. For one or two heads, on the other hand, there are 3 possibilities in each case.</p>
+<p>If the number of heads represents our random variable, we arrive at the following distribution:</p>
+<p><span class="math display">\[ f(x_i) =
+\begin{cases}
+p(x_i=0) = \frac{1}{8}\newline
+p(x_i=1) = \frac{3}{8}\newline
+p(x_i=2) = \frac{3}{8}\newline
+p(x_i=3) = \frac{1}{8}
+\end{cases} \]</span></p>
+<p>This distribution is called the <strong>probability density function (PDF)</strong> of our random variable. If it is a discrete (nominal) variable, it is also called the probability mass function (PMF).</p>
+<p>Typical properties of such a function are:</p>
+<p><strong>Expected value</strong>: The value that is most probable.</p>
+<p><strong>Dispersion</strong>: The variance of distribution</p>
+<p>As with any other distribution function, one can of course calculate Skewness and Kurtosis.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<p>In addition to this quite intuitively understandable distribution function, there is also the <strong>cumulative distribution function (CDF)</strong>, which is very relevant for many statistical applications. Especially in the area of statistical tests, we will make use of it below.</p>
+<p>This function represents the cumulative sum of the probability density function. It answers the question of how likely it is to obtain a certain value of the random variable or a smaller one. In our example: “What is the probability of having up to two heads?”</p>
+<p>One important of its properties:</p>
+<p><span class="math inline">\(0 \leq F(x) \leq 1\)</span></p>
+<p>F(x) is monotonous not falling. This means that as the value of the variable increases, the probability can never become smaller.</p>
+<p><span class="math inline">\(F(x_1 ) \leq F(x_2 )... \leq F(x_n )\)</span></p>
+<p>In the example of our coin toss, this function results as follows:</p>
+<p><span class="math display">\[ f(x_i) =
+\begin{cases}
+p(x_i &lt; 0) = 0\newline
+p(x_i \leq 0) = \frac{1}{8}\newline
+p(x_i \leq 1) = \frac{4}{8}\newline
+p(x_i \leq 2) = \frac{7}{8}\newline
+p(x_i \leq 3) = 1
+\end{cases} \]</span></p>
+<p>It is obvious that values smaller than zero are impossible. Values less than or equal to zero, on the other hand, have a probability of 0.125 or one eighth, as already in the PDF. Values less than or equal to one have a probability of four-eighths, which is the sum of the probabilities for zero and one head. And so on.</p>
+<p>This is what the graphical representation looks like:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<p>Now, of course, the question arises, what is the point of all this! How does this knowledge of probability theory help us to better understand statistical tests? We will continue with our example of the coin toss and now develop a statistical test to assess whether it is fair or marked coins that are being played with. Our example will include all the elements of a statistical test, and the procedure is basically transferable to other statistical tests. So we will take a look under the bonnet of a statistical test.</p>
+</div>
+</div>
+<div id="building-a-statistical-test-from-scratch" class="section level2" number="6.6">
+<h2><span class="header-section-number">6.6</span> Building a statistical test from scratch</h2>
+<p>In this section, I would like to use the knowledge, that we just gained, to build a statistical test from scratch. We will use our tools to estimate, if the coins with which we make our random experiment, are fair or marked. This will give us insight, how was statistical test actually works.</p>
+<p>So, our scientific question is: <strong>Is someone playing with biased coins?</strong></p>
+<p>For this, we have to figure out, how one can significantly (error probability 5%) determine that the coins are biased and always show e.g. head?</p>
+<p>At first, of course we have to construct our hypothesis and the respective null hypothesis. This could look like the following:</p>
+<p><span class="math inline">\(H_0\)</span>: The coins are not biased, the distribution corresponds to the distribution of an unbiased coin toss</p>
+<p><span class="math inline">\(H_1\)</span>: The coins are biased, the distribution differs significantly from the distribution of an unbiased coin toss</p>
+<p>Let’s also assume, that we do not have very much time for this test, so we limit our sample size or the number of throws to 20.</p>
+<p>n=20 throws</p>
+<p>No, we need a <strong>Rejection range</strong>: the number of heads that is high enough to be sure with a certain probability the coin is biased towards heads. We have to decide, I’ll sure we need to be, before we reject the null hypothesis, that the coin is not biased. For this, we stick to the traditional 0.05 significance level. That means, using our axioms, there need to be a 95% chance that rejecting the null hypothesis is a good idea. If the probability of the random occurrence of a result is less than 5%, the occurrence of that event is not random with 95% probability.</p>
+<p>Having figured out this, now we have to determine for how many heads results on 20 throws there is the probability 5% or lower, given unbiased coins. Basically, this question can be solved using the probability concept of Laplace:</p>
+<p><span class="math inline">\(p(A) = \frac{Number\ of\ positive\ results}{Number\ of\ possible\ results}\)</span></p>
+<p>We have to count the relative frequency of an event (heads). For this, we need:</p>
+<ul>
+<li>the number of possibilities for the positive events (heads)</li>
+<li>the total number of possible events (total number of possible results of throws of 20 coins)</li>
+</ul>
+<div id="number-of-possible-events" class="section level3" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> Number of possible events</h3>
+<p>Let’s look at some examples, how such random experiment could result:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">01</th>
+<th align="left">02</th>
+<th align="left">03</th>
+<th align="left">04</th>
+<th align="left">05</th>
+<th align="left">06</th>
+<th align="left">07</th>
+<th align="left">08</th>
+<th align="left">09</th>
+<th align="left">10</th>
+<th align="left">11</th>
+<th align="left">12</th>
+<th align="left">13</th>
+<th align="left">14</th>
+<th align="left">15</th>
+<th align="left">16</th>
+<th align="left">17</th>
+<th align="left">18</th>
+<th align="left">19</th>
+<th align="left">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+</tr>
+</tbody>
+</table>
+<p>There is only one possibility, that we do not have any head in our sample.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">01</th>
+<th align="left">02</th>
+<th align="left">03</th>
+<th align="left">04</th>
+<th align="left">05</th>
+<th align="left">06</th>
+<th align="left">07</th>
+<th align="left">08</th>
+<th align="left">09</th>
+<th align="left">10</th>
+<th align="left">11</th>
+<th align="left">12</th>
+<th align="left">13</th>
+<th align="left">14</th>
+<th align="left">15</th>
+<th align="left">16</th>
+<th align="left">17</th>
+<th align="left">18</th>
+<th align="left">19</th>
+<th align="left">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">H</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="left">01</th>
+<th align="left">02</th>
+<th align="left">03</th>
+<th align="left">04</th>
+<th align="left">05</th>
+<th align="left">06</th>
+<th align="left">07</th>
+<th align="left">08</th>
+<th align="left">09</th>
+<th align="left">10</th>
+<th align="left">11</th>
+<th align="left">12</th>
+<th align="left">13</th>
+<th align="left">14</th>
+<th align="left">15</th>
+<th align="left">16</th>
+<th align="left">17</th>
+<th align="left">18</th>
+<th align="left">19</th>
+<th align="left">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">T</td>
+<td align="left">H</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+</tr>
+</tbody>
+</table>
+<p>If we have only one head, it matters, on which throw this head falls. So there are 20 possibilities for this.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">01</th>
+<th align="left">02</th>
+<th align="left">03</th>
+<th align="left">04</th>
+<th align="left">05</th>
+<th align="left">06</th>
+<th align="left">07</th>
+<th align="left">08</th>
+<th align="left">09</th>
+<th align="left">10</th>
+<th align="left">11</th>
+<th align="left">12</th>
+<th align="left">13</th>
+<th align="left">14</th>
+<th align="left">15</th>
+<th align="left">16</th>
+<th align="left">17</th>
+<th align="left">18</th>
+<th align="left">19</th>
+<th align="left">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">H</td>
+<td align="left">H</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="left">01</th>
+<th align="left">02</th>
+<th align="left">03</th>
+<th align="left">04</th>
+<th align="left">05</th>
+<th align="left">06</th>
+<th align="left">07</th>
+<th align="left">08</th>
+<th align="left">09</th>
+<th align="left">10</th>
+<th align="left">11</th>
+<th align="left">12</th>
+<th align="left">13</th>
+<th align="left">14</th>
+<th align="left">15</th>
+<th align="left">16</th>
+<th align="left">17</th>
+<th align="left">18</th>
+<th align="left">19</th>
+<th align="left">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">H</td>
+<td align="left">T</td>
+<td align="left">H</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+</tr>
+</tbody>
+</table>
+<p>If we have two head, there is much more possibility for variation. Because also here, the order of the results matters, therefore we have to consider the position of the two heads in our sample. We cannot estimate the number of possibilities here by just looking (or at least I can’t do that). So either, we have to count it, or we have to calculate it.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">01</th>
+<th align="left">02</th>
+<th align="left">03</th>
+<th align="left">04</th>
+<th align="left">05</th>
+<th align="left">06</th>
+<th align="left">07</th>
+<th align="left">08</th>
+<th align="left">09</th>
+<th align="left">10</th>
+<th align="left">11</th>
+<th align="left">12</th>
+<th align="left">13</th>
+<th align="left">14</th>
+<th align="left">15</th>
+<th align="left">16</th>
+<th align="left">17</th>
+<th align="left">18</th>
+<th align="left">19</th>
+<th align="left">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">H</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">H</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="left">01</th>
+<th align="left">02</th>
+<th align="left">03</th>
+<th align="left">04</th>
+<th align="left">05</th>
+<th align="left">06</th>
+<th align="left">07</th>
+<th align="left">08</th>
+<th align="left">09</th>
+<th align="left">10</th>
+<th align="left">11</th>
+<th align="left">12</th>
+<th align="left">13</th>
+<th align="left">14</th>
+<th align="left">15</th>
+<th align="left">16</th>
+<th align="left">17</th>
+<th align="left">18</th>
+<th align="left">19</th>
+<th align="left">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">H</td>
+<td align="left">H</td>
+<td align="left">H</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="left">T</td>
+</tr>
+</tbody>
+</table>
+<p>With three heads, the possibilities should be even larger, because we have more heads that could take up certain positions in our sample. And this is just beginning: for figuring out, how many possibilities in total there are, we have to repeat this exercise for all possible numbers of head, and then sum them up. Counting them directly will take quite a while, so it is a practical way. Better try calculation!</p>
+<p>To calculate the total possible number, we can use our combinatorics table from above. We have already decided that if we have a head, it makes a difference whether it falls first, or second, or so on. I.e. that the order matters to us.</p>
+<p>[T,T,H] represents a different case that [H,T,T]</p>
+<p>On the other hand, we have to decide whether the probability of the next throw is affected by the previous one. If a coin shows tails, does that change the probability of the next coin to show tails (without replacement) or does this probability remain unchanged (with replacement)?</p>
+<p>The answer is: <strong>No</strong>. Chances does not change, so with replacement.</p>
+<p>To make things easier, here is the table again:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Variation (with respect to order)</th>
+<th>Combination (without respecting the order)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>with ‘putting back’; with replacement</td>
+<td><span class="math inline">\(n^k\)</span></td>
+<td><span class="math inline">\(\frac{(n+k-1)!}{k!*(n-1)!}\)</span></td>
+</tr>
+<tr class="even">
+<td>without ‘putting back’; without replacement</td>
+<td><span class="math inline">\(\frac{n!}{(n-k)!}\)</span></td>
+<td><span class="math inline">\(\frac{n!}{k!*(n-k)!}=\binom{n}{k}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Our choice should be the upper left cell, that is variation with replacement.</p>
+<p><span class="math inline">\(n^k\)</span></p>
+<p>We can also build that differently: For the first coin, there exists two possibilities, head or tail. For the second coin, there are also two possibilities, and so on. Each trial is independent from each other, so the probabilities will not change. With two coins, we have four possible results.</p>
+<p>[H, H]</p>
+<p>[T, H]</p>
+<p>[H, T]</p>
+<p>[T, T]</p>
+<p>That means, for each additional coin we have to multiply the number of possible outcomes (head or tail = two). That means, in a two coin situation:</p>
+<p><span class="math inline">\(2*2 = n^k = 2^2\)</span></p>
+<p>And in the three coin situation:</p>
+<p><span class="math inline">\(2*2*2 = n^k = 2^3\)</span></p>
+<p>And finally in the 20 coin situation:</p>
+<p><span class="math inline">\(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2 = n^k = 2^{20}\)</span></p>
+<p>Now we can assign our values to the variables:</p>
+<ul>
+<li>2 possible cases (Heads, Tails) : n</li>
+<li>20 possible positions : k</li>
+</ul>
+<p><strong>number of possible results: <span class="math inline">\(n^k\)</span> = <span class="math inline">\(2^{20}\)</span> = 1048576</strong></p>
+<p>2 results can be distributed in 1048576 ways on 20 positions</p>
+</div>
+<div id="number-of-positive-events" class="section level3" number="6.6.2">
+<h3><span class="header-section-number">6.6.2</span> Number of positive events</h3>
+<p>Now comes the tricky part: We have to calculate the number of positive events for our set up. Let’s start with the easy part: we know already, that there is only one possibility to distribute zero heads on our 20 positions. We also know, that there are 20 possibilities to distribute one head on the 20 positions.</p>
+<p>Number of positive events: How many possibilities are there to distribute a fixed number of coins with head to 20 places?</p>
+<p>What we have done intuitively in this situation is to change our perspective: the question is now how many possibilities there are to distribute one head to 20 possible positions. This means that there are now 20 possible outcomes (n), but our number of trials is only one (one head, k).</p>
+<p>n=20 places, k= cases head</p>
+<p>So let’s continue off for experiment using these numbers. How many possibilities are there to distribute zero heads on 20 places:</p>
+<p><strong>number of possible results: <span class="math inline">\(n^k\)</span> = <span class="math inline">\(20^{0}\)</span> = 1</strong></p>
+<p>That looks fine. It is the number that we expected from our counting. With this promising result let’s continue:</p>
+<p><strong>number of possible results: <span class="math inline">\(n^k\)</span> = <span class="math inline">\(20^{1}\)</span> = 20</strong></p>
+<p>That also looks fine. We expected 20, we got 20. But now, with more than one trial, it becomes difficult. If we have already put one coin on one position, now there are lesser positions available for the next head. With one position filled, there are only 19 other positions open. Also, when we have two coins, in the first place we have also to coins to distribute. For us in the end, both quotes are indistinguishable, but for the number of events the coins matter.</p>
+<p>Let’s demonstrate that with a more simple example having only three positions and two coins:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">H1</td>
+<td align="left">H2</td>
+<td align="left">T</td>
+</tr>
+<tr class="even">
+<td align="left">H1</td>
+<td align="left">T</td>
+<td align="left">H2</td>
+</tr>
+<tr class="odd">
+<td align="left">T</td>
+<td align="left">H1</td>
+<td align="left">H2</td>
+</tr>
+<tr class="even">
+<td align="left">H2</td>
+<td align="left">H1</td>
+<td align="left">T</td>
+</tr>
+<tr class="odd">
+<td align="left">H2</td>
+<td align="left">T</td>
+<td align="left">H1</td>
+</tr>
+<tr class="even">
+<td align="left">T</td>
+<td align="left">H2</td>
+<td align="left">H1</td>
+</tr>
+</tbody>
+</table>
+<p>For the first coin, there are three possible options for its position. For the second coin there are only two possibilities left. On the perspective of the final result, the first three lines are identical to the last three lines. But from the perspective of the event number, they represent different events. So in this case, the total number of events including the order could be calculated like that:</p>
+<p><span class="math inline">\(3_{first\ coin}*2_{second\ coin} = 6\)</span></p>
+<p>If we want to ignore the order, we have to remove those possibilities that are equivalent to us. Remember the image from the set theory (although it is not perfectly equivalent):</p>
+<p><img src="../images/07_session/set_image.png" /></p>
+<p>Do union of the number of cases is the number of cases from A times the number of cases from B minus the number, where A and B both a present. Since in the case of the first trial, we have two equivalent coins, we have to divide the number by two. Consequently, we also have to go to divide the second number of cases by one, which in practice does not change the result.</p>
+<p><span class="math inline">\((3_{first\ coin}/2_{two\ coins})*(2_{second\ coin}/1_{one\ coin}) = 3\)</span></p>
+<p>No we can do the same for our 20 coin example:</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="basic-probability-theory.html#cb339-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="basic-probability-theory.html#cb341-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 190</code></pre>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="basic-probability-theory.html#cb343-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">3</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">18</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 1140</code></pre>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="basic-probability-theory.html#cb345-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">20</span> <span class="sc">/</span> <span class="dv">4</span>) <span class="sc">*</span> (<span class="dv">19</span> <span class="sc">/</span> <span class="dv">3</span>) <span class="sc">*</span> (<span class="dv">18</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">17</span> <span class="sc">/</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 4845</code></pre>
+<p>Actually, this is essentially the same like using the formula from the lower right cell of our combinatorics table:</p>
+<p><span class="math inline">\(\frac{n!}{k!*(n-k)!}=\binom{n}{k}\)</span></p>
+<p>Let’s try this out in R:</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="basic-probability-theory.html#cb347-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">20</span>; k <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb347-2"><a href="basic-probability-theory.html#cb347-2" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(n)<span class="sc">/</span>(<span class="fu">factorial</span>(k) <span class="sc">*</span> <span class="fu">factorial</span>(n<span class="sc">-</span>k))</span></code></pre></div>
+<pre><code>## [1] 1140</code></pre>
+<p>We could have gotten here much faster, admittedly, if we would have blindly trust the table. But now you know, why is this binomial coefficient works. You can also sum up all the possible outcomes from k=0 to k=20, to check if our initial calculation of the total number of possible results was correct:</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="basic-probability-theory.html#cb349-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">20</span></span>
+<span id="cb349-2"><a href="basic-probability-theory.html#cb349-2" aria-hidden="true" tabindex="-1"></a>total <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb349-3"><a href="basic-probability-theory.html#cb349-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>) {</span>
+<span id="cb349-4"><a href="basic-probability-theory.html#cb349-4" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> total <span class="sc">+</span> <span class="fu">factorial</span>(n)<span class="sc">/</span>(<span class="fu">factorial</span>(k) <span class="sc">*</span> <span class="fu">factorial</span>(n<span class="sc">-</span>k))</span>
+<span id="cb349-5"><a href="basic-probability-theory.html#cb349-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb349-6"><a href="basic-probability-theory.html#cb349-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb349-7"><a href="basic-probability-theory.html#cb349-7" aria-hidden="true" tabindex="-1"></a>total</span></code></pre></div>
+<pre><code>## [1] 1048576</code></pre>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="basic-probability-theory.html#cb351-1" aria-hidden="true" tabindex="-1"></a>total <span class="sc">==</span> <span class="dv">2</span><span class="sc">^</span><span class="dv">20</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="from-counts-to-probabilities" class="section level3" number="6.6.3">
+<h3><span class="header-section-number">6.6.3</span> From counts to probabilities</h3>
+<p>If you are still with me, then now it is easy to calculate the possible number of events for the different numbers of head. All we have to do is to calculate its value using the normal coefficient.</p>
+<p>n = 20 places, k = number heads</p>
+<p>Number of positive events: calculated according to binomial coefficient, possibilities to arrange number of outputs in number of throws</p>
+<p>No times head: n = 20, k=0: only one possibility</p>
+<p>1 times head: n = 20, k = 1: 20 possibilities</p>
+<p>2 times head: n = 20, k = 2: 190 possibilities</p>
+<p>3 times head: n = 20, k = 3: 1140 possibilities</p>
+<p>4 times head: n = 20, k = 4: 4845 possibilities</p>
+<p>5 times head: n = 20, k = 5: 15504 possibilities</p>
+<p>6 times head: n = 20, k = 6: 38760 possibilities</p>
+<p><span class="math inline">\(\frac{n!}{k!*(n-k)!}=\binom{n}{k}\)</span></p>
+<p>One thing by the way: Of course there is an easy way to calculate this using R. The command is <code>choose()</code>. Are used it to calculate the numbers above, but we can also demonstrate it directly:</p>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="basic-probability-theory.html#cb353-1" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">20</span>; k<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb353-2"><a href="basic-probability-theory.html#cb353-2" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(n,k)</span></code></pre></div>
+<pre><code>## [1] 1140</code></pre>
+<p>Finally, we can calculate probabilities! We have the total number of possible results, and we can calculate our positive results. All that is left to do is to use the formula of Laplace:</p>
+<p><span class="math inline">\(p(A) = \frac{Number\ of\ positive\ results}{Number\ of\ possible\ results}\)</span></p>
+<p>Number of possible events = <span class="math inline">\(n^k = 2^{20} = 1048576\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">number head</th>
+<th align="right">possibilities</th>
+<th align="right">positive/possible</th>
+<th align="right">cumulative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.00000</td>
+<td align="right">0.00000</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">20</td>
+<td align="right">0.00002</td>
+<td align="right">0.00002</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">190</td>
+<td align="right">0.00018</td>
+<td align="right">0.00020</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">1140</td>
+<td align="right">0.00109</td>
+<td align="right">0.00129</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">4845</td>
+<td align="right">0.00462</td>
+<td align="right">0.00591</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">15504</td>
+<td align="right">0.01479</td>
+<td align="right">0.02069</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">38760</td>
+<td align="right">0.03696</td>
+<td align="right">0.05766</td>
+</tr>
+</tbody>
+</table>
+<p>Note, that this table there is a column for cumulative. If you want to know, how many ads would indicate a biased coin, we are not interested in the probability of getting exactly the specific number, but the probability of getting this number or less. Therefore, we have to cumulatively sum up the probabilities. This is equivalent to the cumulative distribution function (CDF). Since the probability since the probabilities do not care whether we are looking for heads or tails, if there is only a 2% chance of getting five heads, there is also only a 2% chance of getting five tails. When ever in this situation we observe in our sample, that there are only five or less number of tails present, we can be rather sure that the coins are biased towards heads. There is less than 2% probability, that this situation could come from a random effect.</p>
+</div>
+</div>
+<div id="the-binomial-distribution" class="section level2" number="6.7">
+<h2><span class="header-section-number">6.7</span> The Binomial Distribution</h2>
+<p>With this example we have developed a statistical distribution on our own. What we have detected is the so-called binomial distribution. This theoretical distributions are shortcuts for the calculation of probabilities. They represent model cases, against which we can compare our sample distribution. For these models it is assumed that your data following certain characteristics and have certain parameters. In case of to be normal distribution, it is a situation where you have two possible outcomes with certain probabilities. To binomial distribution then calculate the probability for the number of outcomes.</p>
+<p>The equation for the general binomial distribution is this:</p>
+<p><span class="math inline">\(B_{n;k;p} = \binom{n}{k} * p^k * (1 - p)^{n-k}\)</span></p>
+<p>You can see, dead beside our well-known <span class="math inline">\(n\)</span> and <span class="math inline">\(k\)</span>, there is also a <span class="math inline">\(p\)</span>. This <span class="math inline">\(p\)</span> represents the probability of the positive event, for example the probability of getting heads with a coin flip. In case of a fair coin, <span class="math inline">\(p\)</span> is equal to 0.5. You would assume that there is an even chance for heads and tails. Since the safe event has a probability of 1, if the probability is distributed via between the two options, it should be 0.5 each.</p>
+<p>Now, we can directly calculate the probability using this formula: For example 2 Heads, 18 Tails, k = 2, n = 20, p = 0.5</p>
+<p>190/1048576 = 0.00018 = <span class="math inline">\(\binom{20}{2} * 0.5^2 * (1 - 0.5)^{20-2} = 190*0.25 * 0\)</span></p>
+<p>If you like, you can compare this number to our calculation by hand from the table above. They should be the same.</p>
+<p>Again, in our there is a shortcut for calculating this probability, the command is <code>dbinom()</code>.</p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="basic-probability-theory.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">6</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.036964</code></pre>
+<p>And also for the cumulative distribution function, in that case it is <code>pbinom()</code></p>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="basic-probability-theory.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">6</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.057659</code></pre>
+<p>With these functions, now we have something to play with to explore the probabilities of the distribution and also of statistical tests in general. For example, we can plot the probability function, to get a graphical representation of our coin flips:</p>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="basic-probability-theory.html#cb359-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb359-2"><a href="basic-probability-theory.html#cb359-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.5</span>)</span>
+<span id="cb359-3"><a href="basic-probability-theory.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<p>You can see, that the highest probability is to get 10 heads and 10 tails. The distribution is symmetrical, the smaller the number of heads or tails get the more unlikely this situation will be.</p>
+<p>Also, we can plot the cumulative density function:</p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="basic-probability-theory.html#cb360-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb360-2"><a href="basic-probability-theory.html#cb360-2" aria-hidden="true" tabindex="-1"></a>cumprob <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.5</span>)</span>
+<span id="cb360-3"><a href="basic-probability-theory.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,cumprob, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p>There is a 59 % probability to get 10 or less heads (or tails).</p>
+<p>What you also can do is try out, how different probabilities of getting a head would result. This mean, you can build a model of how biased your coin is, and then try to fit this model to your data. You could also compare different models to evaluate which one is the best fitting. These are advanced statistical procedures, but nonetheless very often takes place in scientific investigations. Although the models might be more complicated than just changing a probability, the general workflow is the same. For now, we will only plot the probability density function for the situation, when a coin has a 70% chance of getting a head.</p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="basic-probability-theory.html#cb361-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb361-2"><a href="basic-probability-theory.html#cb361-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.7</span>)</span>
+<span id="cb361-3"><a href="basic-probability-theory.html#cb361-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p>This case, you can see that the most likely number of heads would be 14.</p>
+<div id="the-binom.test" class="section level3" number="6.7.1">
+<h3><span class="header-section-number">6.7.1</span> The binom.test</h3>
+<p>Of course, there is also an inbuilt binomial test in R. The test takes the parameters of the number of successes, the number of trials and the probability of success. The result is whether or not the sample is significantly different from the binomial model with that probability. The command is <code>binom.test()</code></p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="basic-probability-theory.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">5</span>,<span class="dv">20</span>,<span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  5 and 20
+## number of successes = 5, number of trials = 20, p-value = 0.041
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.086571 0.491046
+## sample estimates:
+## probability of success 
+##                   0.25</code></pre>
+<p>The resulting output contains a p-value. As with the other tests before, this p-value indicates statistical significance. In this case, it is statistical significance. Our sample is significantly different from a fair binomial trial. Beyond that, it also estimates the probability of success from the sample. In this case it is 25%. This is equivalent to our number of successes, divided by the number of trials. So with 20 trails, if only a quarter of the results are successes, then there is a significant divergence from the binomial distribution.</p>
+<p>Therefore, our rejection range is Number Tails &lt; 6: this results in 95% probability, that something is wrong with the coins. (25% of the tosses)</p>
+</div>
+<div id="sample-size" class="section level3" number="6.7.2">
+<h3><span class="header-section-number">6.7.2</span> Sample size</h3>
+<p>With our toy model we can also explore the effects of sample size. Let’s tenfold the number of trials, and see, what the rejection range would then be:</p>
+<p>N=200 throws</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="basic-probability-theory.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">85</span>,<span class="dv">200</span>,<span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  85 and 200
+## number of successes = 85, number of trials = 200, p-value = 0.04
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.35556 0.49670
+## sample estimates:
+## probability of success 
+##                  0.425</code></pre>
+<p>In case of 200 trials, we get a significant result already with 85 successes. This represents 43% of the coin flips. This means, that we relatively need much lesser surprise to be sure that there is something wrong. Of course, this is related to the law of the large number: the more trials we have, the more likely the sample distribution is close to the theoretical distribution. There is less influence of random effects.</p>
+<p>Here now, the rejection range is Number Tails &lt; 85: this results in 95% probability, that something is wrong with the coins. (42% of the tosses)</p>
+<p>To binomial distribution will be the only distribution, that we investigate in this detail. There are other distributions, that are interesting in situations where we have different variables, and deal with different underlying processes. To binomial distribution is helpful for analysing nominal variables and test their distribution according to specific probabilities. Other helpful distributions of examples the normal distribution, in case of metric data, who are influenced by a lot of independent effects. The Poisson distribution can be used for rare events, for example for analysing spatial or temporal distributions of events. There will be an in-depth level in which these distributions will be dealt with in more detail. However, this will not be an exam-relevant part of this exercise. Rather, those who are not directly interested can skip the next chapter and go directly to the parametric tests, in which we also deal intensively with the normal distribution, but for whose understanding the next chapter is not essential. If, however, you are interested in the concept of standard error and the question of the basis on which we can estimate mean values of populations on the basis of samples, what a confidence interval is, the next chapter is recommended, perhaps only in the second reading of this book.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="nonparametric-tests.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

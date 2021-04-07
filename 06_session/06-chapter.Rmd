@@ -37,6 +37,8 @@ Of course, if you roll a dice, or you draw a card from a mixed set of cards, the
 
 The same is true for parameters of a population of objects, or the values within the sample: of course, these values are fixed and existent in the real world independent from the observer. But since the actual manifestation depends on so many influences and effects, that for us the values seem to be random. That is why we can use the same logic to estimate the best gambling strategy and to estimate the mean rim diameter of Neolithic pottery from a specific site. In both situations, you try to predict an unknown value or quantity using known values within a certain framework of parameters, and try to estimate your certainty (or probability of error). Kolmogorov, we already know from the Kolmogorov-Smirnov test, has developed a definition which is the foundation of today's probability theory. Before we come to that, at first we have to understand some principles of set theory (Mengenlehre), related to probability theory, and some notations from that. For this, we use one of the classical examples: rolling the dice multiple times.
 
+### Some Notations and Definitions
+
 If you roll a dice (for pen and paper role players, we are talking about a W6), the result of an individual might be for example 5. This is called an *elementary event* (or also *atomic event*, although no nuclear fission is involved, or *sample point*). The name refers both to the process and its result. In german it would be called "Ereignis". This is the result of one actual trial, it is the realised result out of a range of possible results.
 
 The possible results in the case of the dice (again, dear old players, we are still talking about the W6) are one, two, three, four, five, six. These possible results are called *event space*, or *sample space*. Quite often, you find the greek letter Omega ($\Omega$) as the symbol representing this sample space. In our case, you could also write that as follows:
@@ -126,11 +128,11 @@ The probability to draw a heart card is 1 out of 4: 0.25
 The probability of not drawing a Heart card is 3 out of 4: 0.75,
 or 1 - (1 out of 4): 1-0.25 = 0.75
 
-## Kolmogorovs probability axioms
+### Kolmogorovs probability axioms
 
 Now let's have a look to the formal representation of the Kolmogorov probability axioms:
 
-### 1. axiom
+#### 1. axiom
 
 Each event from the event space is assigned a number p(A), which describes the probability of the event. This is between 0 and 1.
 
@@ -138,14 +140,14 @@ $0 \leq p(A) \leq 1$
 
 This means, for every possible event we express its probability with numbers ranging from 0 to 1.
 
-### 2. axiom
+#### 2. axiom
 The safe event has the value one.
 
 $p(E) = 1$
 
 This means, that if we know something must happen in this way, then its probability is 100% or 1.
 
-### 3. axiom
+#### 3. axiom
 For pairwise disjunctive events, i.e. those that do not have an intersection
 (e.g. {1,2} and {3,4}), the probability for their union is the sum of their individual probabilities.
 
@@ -161,11 +163,9 @@ Given that, the total probability of winning the game in one way or the other ca
 
 $p(A) = \frac{2}{6}, P(B) = \frac{2}{6}, p(A \cup B) = p(A) + p(B) = \frac{2}{6} + \frac{2}{6} = \frac{4}{6} = 66,67\%$
 
-
-
 All of this seems to be quite complicated ways to express quite common sense concepts. But you will see, as soon as we leave this very basic ground, that is very defined expression makes sense. This is especially true, when it comes to conditional probability and composite, repeated events. Here, quite often the commonsense understanding of probability has its limits.
 
-## Conditional and independent events
+### Conditional and independent events
 
 In estimating total probabilities, it is very important to distinguish between situations, where the results are independent from each other, from those, where the result of the first changes the probabilities of the second result. For independent results, we can stick to our example with the dice. Rolling a dice once does not change the probabilities of individual results from the second dice roll. In case of individual independent results, the total probability of a set of results is calculated by multiplying the individual probabilities.
 
@@ -196,7 +196,7 @@ $p(B|A) = \frac{p(A \cap B)}{p(A)}$
 
 The (conditional) probability of B given A is the total probability of A and B, divided by the probability of A. You might find this definition in some textbooks.
 
-## Addition law of probability
+### Addition law of probability
 
 This axiom of (conditional) probability helps us to make the third axiom more general. It gives us the tools to calculate probabilities in situations, where we don't have mutual exclusive events.
 
@@ -472,330 +472,222 @@ axis(1, at=1:5,labels=c("≤0", "≤1", "≤2", "≤3", "≤4"), col.axis="red")
 
 Now, of course, the question arises, what is the point of all this! How does this knowledge of probability theory help us to better understand statistical tests? We will continue with our example of the coin toss and now develop a statistical test to assess whether it is fair or marked coins that are being played with. Our example will include all the elements of a statistical test, and the procedure is basically transferable to other statistical tests. So we will take a look under the bonnet of a statistical test.
 
+## Building a statistical test from scratch
 
-## Relationship with statistical tests
+In this section, I would like to use the knowledge, that we just gained, to build a statistical test from scratch. We will use our tools to estimate, if the coins with which we make our random experiment, are fair or marked. This will give us insight, how was statistical test actually works.
 
-### Question: Is someone playing with biased coins?
+So, our scientific question is: **Is someone playing with biased coins?**
 
-How can one significantly (error probability 5%) determine that the coins are biased and always show head?
+For this, we have to figure out, how one can significantly (error probability 5%) determine that the coins are biased and always show e.g. head?
 
-$H_0$: The coins are not biased, the distribution corresponds to the distribution of an unbiased coin toss (Binomial distribution).
+At first, of course we have to construct our hypothesis and the respective null hypothesis. This could look like the following:
 
-$H_1$: The coins are biased, the distribution differs significantly from the distribution of an unbiased coin toss (Binomial distribution).
+$H_0$: The coins are not biased, the distribution corresponds to the distribution of an unbiased coin toss
 
-N=20 throws
+$H_1$: The coins are biased, the distribution differs significantly from the distribution of an unbiased coin toss
 
-We need:
+Let's also assume, that we do not have very much time for this test, so we limit our sample size or the number of throws to 20.
 
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
+n=20 throws
 
----
+No, we need a **Rejection range**: the number of heads that is high enough to be sure with a certain probability the coin is biased towards heads. We have to decide, I'll sure we need to be, before we reject the null hypothesis, that the coin is not biased. For this, we stick to the traditional 0.05 significance level. That means, using our axioms, there need to be a 95% chance that rejecting the null hypothesis is a good idea. If the probability of the random occurrence of a result is less than 5%, the occurrence of that event is not random with 95% probability.
 
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-We need:
-
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
-
-If the probability of the random occurrence of a result is less than 5%, the occurrence of that event is not random with 95% probability.
----
-
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-We need:
-
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
-
-If the probability of the random occurrence of a result is less than 5%, the occurrence of that event is not random with 95% probability.
-
-So: For how many head results on 20 rolls is the probability 5% or lower?
----
-
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-We need:
-
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
-
-If the probability of the random occurrence of a result is less than 5%, the occurrence of that event is not random with 95% probability.
-
-So: For how many head results on 20 rolls is the probability 5% or lower?
-
-Basically: Probability according to Laplace:
+Having figured out this, now we have to determine for how many heads results on 20 throws there is the probability 5% or lower, given unbiased coins. Basically, this question can be solved using the probability concept of Laplace:
 
 $p(A) = \frac{Number\ of\ positive\ results}{Number\ of\ possible\ results}$
 
-Relative frequency of an event
+We have to count the relative frequency of an event (heads). For this, we need:
 
----
+* the number of possibilities for the positive events (heads) 
+* the total number of possible events (total number of possible results of throws of 20 coins)
 
-## Relationship with statistical tests
+### Number of possible events
 
-### Question: Is someone playing with biased coins?
-
-We need:
-
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
-
-Basically: Probability according to Laplace:
-
-$p(A) = \frac{Number\ of\ positive\ results}{Number\ of\ possible\ results}$
-
-We need: Number of positive events (heads) and number of possible events (total number of possible results of throws of 20 coins)
----
-class: center, middle
-
-number of possible events
-
----
+Let's look at some examples, how such random experiment could result:
 
 ```{r echo=FALSE, results='asis'}
 
 a <- 1:20
+a <- sprintf("%02d", a)
+
+b <- c(rep("T",20))
+
+knitr::kable(data.frame(t(b)), "pipe", col.names=a)
+```
+
+There is only one possibility, that we do not have any head in our sample.
+
+```{r echo=FALSE, results='asis'}
+
 b <- c("H", rep("T",19))
 
-knitr::kable(data.frame(t(b)), "html", col.names=a)
+knitr::kable(data.frame(t(b)), "pipe", col.names=a)
 b <- c("T", "H", rep("T",18))
 
-knitr::kable(data.frame(t(b)), "html", col.names=a)
+knitr::kable(data.frame(t(b)), "pipe", col.names=a)
+```
 
+If we have only one head, it matters, on which throw this head falls. So there are 20 possibilities for this.
+
+```{r echo=FALSE, results='asis'}
 b <- c("H", "H", rep("T",18))
 
-knitr::kable(data.frame(t(b)), "html", col.names=a)
-
-b <- c("T", "T", "H", rep("T",17))
-
-knitr::kable(data.frame(t(b)), "html", col.names=a)
+knitr::kable(data.frame(t(b)), "pipe", col.names=a)
 
 b <- c("H", "T", "H", rep("T",17))
 
-knitr::kable(data.frame(t(b)), "html", col.names=a)
+knitr::kable(data.frame(t(b)), "pipe", col.names=a)
+
+b <- c("H", "T", "T", "H", rep("T",16))
+
+```
+
+If we have two head, there is much more possibility for variation. Because also here, the order of the results matters, therefore we have to consider the position of the two heads in our sample. We cannot estimate the number of possibilities here by just looking (or at least I can't do that). So either, we have to count it, or we have to calculate it.
+
+```{r echo=FALSE, results='asis'}
+knitr::kable(data.frame(t(b)), "pipe", col.names=a)
 
 b <- c("H", "H", "H", rep("T",17))
 
-knitr::kable(data.frame(t(b)), "html", col.names=a)
+knitr::kable(data.frame(t(b)), "pipe", col.names=a)
 ```
 
----
+With three heads, the possibilities should be even larger, because we have more heads that could take up certain positions in our sample. And this is just beginning: for figuring out, how many possibilities in total there are, we have to repeat this exercise for all possible numbers of head, and then sum them up. Counting them directly will take quite a while, so it is a practical way. Better try calculation!
 
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-We need:
-
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
-
-Number of possible events (total number of possible results of throws of 20 coins)
-
--> combinatorics: 
-
-Is the order important?
-
----
-
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-We need:
-
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
-
-Number of possible events (total number of possible results of throws of 20 coins)
-
--> combinatorics: 
-
-Is the order important?
-
-Answer: **Yes** (suprised?)
+To calculate the total possible number, we can use our combinatorics table from above. We have already decided that if we have a head, it makes a difference whether it falls first, or second, or so on. I.e. that the order matters to us.
 
 [T,T,H] represents a different case that [H,T,T]
 
-If a coin shows tails, does that change the probability of the next coin to show tails (without replacement) or does this probability remain unchanged (with replacement)?
+On the other hand, we have to decide whether the probability of the next throw is affected by the previous one. If a coin shows tails, does that change the probability of the next coin to show tails (without replacement) or does this probability remain unchanged (with replacement)?
 
----
+The answer is: **No**. Chances does not change, so with replacement.
 
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-We need:
-
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
-
-Number of possible events (total number of possible results of throws of 20 coins)
-
--> combinatorics: 
-
-Is the order important?
-
-Answer: **Yes** (suprised?)
-
-[T,T,H] represents a different case that [H,T,T]
-
-If a coin shows tails, does that change the probability of the next coin to show tails (without replacement) or does this probability remain unchanged (with replacement)?
-
-Answer is: **No**. Chances does not change, so with replacement.
-
----
-
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-We need:
-
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
-
-Number of possible events (total number of possible results of throws of 20 coins)
-
--> combinatorics: 
-
-with respect to order and with replacement:
+To make things easier, here is the table again:
 
 ||Variation (with respect to order)|Combination (without respecting the order)|
 |-|-|-|
 |with 'putting back'; with replacement| $n^k$ | $\frac{(n+k-1)!}{k!*(n-1)!}$ |
 |without 'putting back'; without replacement| $\frac{n!}{(n-k)!}$ | $\frac{n!}{k!*(n-k)!}=\binom{n}{k}$ |
 
----
-
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
+Our choice should be the upper left cell, that is variation with replacement.
 
 $n^k$
 
-2 possible cases (Heads, Tails) : n
-20 possible positions : k
+We can also build that differently: For the first coin, there exists two possibilities, head or tail. For the second coin, there are also two possibilities, and so on. Each trial is independent from each other, so the probabilities will not change. With two coins, we have four possible results.
 
+[H, H]
+
+[T, H]
+
+[H, T]
+
+[T, T]
+
+That means, for each additional coin we have to multiply the number of possible outcomes (head or tail = two). That means, in a two coin situation:
+
+$2*2 = n^k = 2^2$
+
+And in the three coin situation:
+
+$2*2*2 = n^k = 2^3$
+
+And finally in the 20 coin situation:
+
+$2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2 = n^k = 2^{20}$
+
+Now we can assign our values to the variables:
+
+* 2 possible cases (Heads, Tails) : n
+* 20 possible positions : k
 
 **number of possible results: $n^k$ = $2^{20}$ = 1048576**
 
 2 results can be distributed in 1048576 ways on 20 positions
----
-class: center, middle
 
-number of positive events
+### Number of positive events
 
----
-.pull-left[
-HHHHHH
-]
+Now comes the tricky part: We have to calculate the number of positive events for our set up. Let's start with the easy part: we know already, that there is only one possibility to distribute zero heads on our 20 positions. We also know, that there are 20 possibilities to distribute one head on the 20 positions.
 
-.pull-right[
-TTTTTTTTTTTTTT
-]
+Number of positive events: How many possibilities are there to distribute a fixed number of coins with head to 20 places?
 
-```{r echo=FALSE, results='asis'}
-a <- 1:20
-b <- c(rep("H",6), rep("T",14))
+What we have done intuitively in this situation is to change our perspective: the question is now how many possibilities there are to distribute one head to 20 possible positions. This means that there are now 20 possible outcomes (n), but our number of trials is only one (one head, k).
 
-knitr::kable(data.frame(t(b)), "html", col.names=a)
-b <- c(rep("H",5), "T", "H", rep("T",13))
+n=20 places, k= cases head
 
-knitr::kable(data.frame(t(b)), "html", col.names=a)
+So let's continue off for experiment using these numbers. How many possibilities are there to distribute zero heads on 20 places:
 
-b <- c(rep("H",5), rep("T",14), "H")
+**number of possible results: $n^k$ = $20^{0}$ = 1**
 
-knitr::kable(data.frame(t(b)), "html", col.names=a)
+That looks fine. It is the number that we expected from our counting. With this promising result let's continue:
+
+**number of possible results: $n^k$ = $20^{1}$ = 20**
+
+That also looks fine. We expected 20, we got 20. But now, with more than one trial, it becomes difficult. If we have already put one coin on one position, now there are lesser positions available for the next head. With one position filled, there are only 19 other positions open. Also, when we have two coins, in the first place we have also to coins to distribute. For us in the end, both quotes are indistinguishable, but for the number of events the coins matter.
+
+Let's demonstrate that with a more simple example having only three positions and two coins:
+
+| 1 | 2 | 3 |
+|:-|:-|:-|
+|H1|H2|T|
+|H1|T |H2|
+|T |H1|H2|
+|H2|H1|T|
+|H2|T |H1|
+|T |H2|H1|
+
+For the first coin, there are three possible options for its position. For the second coin there are only two possibilities left. On the perspective of the final result, the first three lines are identical to the last three lines. But from the perspective of the event number, they represent different events. So in this case, the total number of events including the order could be calculated like that:
+
+$3_{first\ coin}*2_{second\ coin} = 6$
+
+If we want to ignore the order, we have to remove those possibilities that are equivalent to us. Remember the image from the set theory (although it is not perfectly equivalent):
+
+![](../images/07_session/set_image.png)
+
+Do union of the number of cases is the number of cases from A times the number of cases from B minus the number, where A and B both a present. Since in the case of the first trial, we have two equivalent coins, we have to divide the number by two. Consequently, we also have to go to divide the second number of cases by one, which in practice does not change the result.
+
+$(3_{first\ coin}/2_{two\ coins})*(2_{second\ coin}/1_{one\ coin}) = 3$
+
+No we can do the same for our 20 coin example:
+
+```{r}
+(20 / 1)
+(20 / 2) * (19 / 1)
+(20 / 3) * (19 / 2) * (18 / 1)
+(20 / 4) * (19 / 3) * (18 / 2) * (17 / 1)
 ```
 
----
+Actually, this is essentially the same like using the formula from the lower right cell of our combinatorics table:
 
-## Relationship with statistical tests
+$\frac{n!}{k!*(n-k)!}=\binom{n}{k}$
 
-### Question: Is someone playing with biased coins?
+Let's try this out in R:
 
-We need:
+```{r}
+n = 20; k = 3
+factorial(n)/(factorial(k) * factorial(n-k))
+```
 
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
+We could have gotten here much faster, admittedly, if we would have blindly trust the table. But now you know, why is this binomial coefficient works. You can also sum up all the possible outcomes from k=0 to k=20, to check if our initial calculation of the total number of possible results was correct:
 
-Number of positive events: How many possibilities are there to divide a fixed number of coins with head (k: 1-20) into 20 places (n)?
+```{r}
+n = 20
+total = 0
+for (k in 0:20) {
+  total <- total + factorial(n)/(factorial(k) * factorial(n-k))
+}
 
-n=20 places, k= cases head
+total
+total == 2^20
+```
 
-Is it important in which order the coins fall?
+### From counts to probabilities
 
----
-
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-We need:
-
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
-
-Number of positive events: How many possibilities are there to divide a fixed number of coins with head (k: 1-20) into 20 places (n)?
-
-n=20 places, k= cases head
-
-Is it important in which order the coins fall?
-
-Answer: No, we are only interested in the number of e.g. 1x head, 2x tails, not in their order.
-
-If a coin shows tails, does this change the distribution of head/tail to the remaining places? (yes: without, no: with replacement)
-
----
-
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-We need:
-
-**Rejection range**: number head that is high enough to be sure with 95% of probability the coin is biased
-
-Number of positive events: How many possibilities are there to divide a fixed number of coins with head (k: 1-20) into 20 places (n)?
-
-Is it important in which order the coins fall? No
-
-Answer: No, we are only interested in the number of e.g. 1x head, 2x tails, not in their order.
-
-If a coin shows tails, does this change the distribution of head/tail to the remaining places? (yes: without, no: with replacement)
-
-Answer: Yes, the distribution is changing! If I have chosen head for a place, the number of remaining heads changes (with a fixed number of heads)!
-
----
-
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
+If you are still with me, then now it is easy to calculate the possible number of events for the different numbers of head. All we have to do is to calculate its value using the normal coefficient.
 
 n = 20 places, k = number heads
-
-Number of positive events
-
--> combinatorics: 
-
-with not respecting the order and without replacement:
-
-||Variation (with respect to order)|Combination (without respecting the order)|
-|-|-|-|
-|with 'putting back'; with replacement| $n^k$ | $\frac{(n+k-1)!}{k!*(n-1)!}$ |
-|without 'putting back'; without replacement| $\frac{n!}{(n-k)!}$ | $\frac{n!}{k!*(n-k)!}=\binom{n}{k}$ |
-
----
-
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-n = 20 places, k = number heads
-
-Number of possible events = $n^k = 2^{20} = 1048576$
 
 Number of positive events: calculated according to binomial coefficient, possibilities to arrange number of outputs in number of throws
 
-.pull-left[
 No times head: n = 20, k=0: only one possibility
 
 1 times head: n = 20, k = 1: `r choose(20, 1)` possibilities
@@ -809,12 +701,16 @@ No times head: n = 20, k=0: only one possibility
 5 times head: n = 20, k = 5: `r as.integer(choose(20, 5))` possibilities
 
 6 times head: n = 20, k = 6: `r as.integer(choose(20, 6))` possibilities
-]
-.pull-right[
-$\frac{n!}{k!*(n-k)!}=\binom{n}{k}$
-]
 
----
+$\frac{n!}{k!*(n-k)!}=\binom{n}{k}$
+
+One thing by the way: Of course there is an easy way to calculate this using R. The command is `choose()`. Are used it to calculate the numbers above, but we can also demonstrate it directly:
+
+```{r}
+n=20; k=3
+choose(n,k)
+```
+
 ```{r, echo=F}
 prop_table <- data.frame(
   n = 0:6
@@ -825,79 +721,108 @@ prop_table$prob <- prop_table$possib / 2^20
 prop_table$cum_prob <- cumsum(prop_table$prob)
 ```
 
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
-Number of possible events = $n^k = 2^{20} = 1048576$
+Finally, we can calculate probabilities! We have the total number of possible results, and we can calculate our positive results. All that is left to do is to use the formula of Laplace:
 
 $p(A) = \frac{Number\ of\ positive\ results}{Number\ of\ possible\ results}$
 
-```{r echo=FALSE, results='asis'}
-knitr::kable(prop_table, format = 'html', col.names = c("number head","possibilities",'positive/possible',"cumulative"))
-```
-
-
----
-```{r, echo=F}
-prop_table <- data.frame(
-  n = 0:6
-)
-
-prop_table$possib <- choose(20,prop_table$n)
-prop_table$prob <- prop_table$possib / 2^20
-prop_table$cum_prob <- cumsum(prop_table$prob)
-```
-
-## Relationship with statistical tests
-
-### Question: Is someone playing with biased coins?
-
 Number of possible events = $n^k = 2^{20} = 1048576$
 
-General: $B_{n;k;p} = \binom{n}{k} * p^k * (1 - p)^{n-k}$: Equation for binomial distribution
-
-In this example eg. 2 Heads, 18 Tails, k = 2, n = 20, p = 0.5:
-
-190/1048576 = `r format(190/1048576, scientific=F)` = $\binom{20}{2} * 0.5^2 * (1 - 0.5)^{20-2} = 190*0.25 * `r (1 - 0.5)^(20-2)`$
-
 ```{r echo=FALSE, results='asis'}
-knitr::kable(prop_table, format = 'html', col.names = c("number head","possibilities",'positive/possible',"cumulative"))
+knitr::kable(prop_table, format = 'pipe', col.names = c("number head","possibilities",'positive/possible',"cumulative"))
 ```
 
----
+Note, that this table there is a column for cumulative. If you want to know, how many ads would indicate a biased coin, we are not interested in the probability of getting exactly the specific number, but the probability of getting this number or less. Therefore, we have to cumulatively sum up the probabilities. This is equivalent to the cumulative distribution function (CDF). Since the probability since the probabilities do not care whether we are looking for heads or tails, if there is only a 2% chance of getting five heads, there is also only a 2% chance of getting five tails. When ever in this situation we observe in our sample, that there are only five or less number of tails present, we can be rather sure that the coins are biased towards heads. There is less than 2% probability, that this situation could come from a random effect.
 
-## Relationship with statistical tests
+## The Binomial Distribution
 
-### Question: Is someone playing with biased coins?
+With this example we have developed a statistical distribution on our own. What we have detected is the so-called binomial distribution. This theoretical distributions are shortcuts for the calculation of probabilities. They represent model cases, against which we can compare our sample distribution. For these models it is assumed that your data following certain characteristics and have certain parameters. In case of to be normal distribution, it is a situation where you have two possible outcomes with certain probabilities. To binomial distribution then calculate the probability for the number of outcomes.
 
-N=20 throws
+The equation for the general binomial distribution is this:
 
-We need:
+$B_{n;k;p} = \binom{n}{k} * p^k * (1 - p)^{n-k}$
 
-Rejection range: Number Tails < 6: 95% Probability, that something with the coins is wrong. (25% of the tosses)
+You can see, dead beside our well-known $n$ and $k$, there is also a $p$. This $p$ represents the probability of the positive event, for example the probability of getting heads with a coin flip. In case of a fair coin, $p$ is equal to 0.5. You would assume that there is an even chance for heads and tails. Since the safe event has a probability of 1, if the probability is distributed via between the two options, it should be 0.5 each.
 
-In R:
-.tiny[
+Now, we can directly calculate the probability using this formula: For example 2 Heads, 18 Tails, k = 2, n = 20, p = 0.5
+
+```{r echo=FALSE}
+options(scipen = 999)
+```
+
+190/1048576 = `r 190/1048576` = $\binom{20}{2} * 0.5^2 * (1 - 0.5)^{20-2} = 190*0.25 * `r (1 - 0.5)^(20-2)`$
+
+```{r echo=FALSE}
+options(scipen = 0)
+```
+
+If you like, you can compare this number to our calculation by hand from the table above. They should be the same.
+
+Again, in our there is a shortcut for calculating this probability, the command is `dbinom()`.
+
+```{r}
+dbinom(6,20,0.5)
+```
+
+And also for the cumulative distribution function, in that case it is `pbinom()`
+
+```{r}
+pbinom(6,20,0.5)
+```
+
+With these functions, now we have something to play with to explore the probabilities of the distribution and also of statistical tests in general. For example, we can plot the probability function, to get a graphical representation of our coin flips:
+
+```{r}
+k <- 0:20
+probabilities <- dbinom(k,20,0.5)
+plot(k,probabilities, type = "h")
+```
+
+You can see, that the highest probability is to get 10 heads and 10 tails. The distribution is symmetrical, the smaller the number of heads or tails get the more unlikely this situation will be.
+
+Also, we can plot the cumulative density function:
+
+```{r}
+k <- 0:20
+cumprob <- pbinom(k,20,0.5)
+plot(k,cumprob, type = "h")
+```
+
+There is a `r round(cumprob[11]*100)` % probability to get 10 or less heads (or tails).
+
+What you also can do is try out, how different probabilities of getting a head would result. This mean, you can build a model of how biased your coin is, and then try to fit this model to your data. You could also compare different models to evaluate which one is the best fitting. These are advanced statistical procedures, but nonetheless very often takes place in scientific investigations. Although the models might be more complicated than just changing a probability, the general workflow is the same. For now, we will only plot the probability density function for the situation, when a coin has a 70% chance of getting a head.
+
+```{r}
+k <- 0:20
+probabilities <- dbinom(k,20,0.7)
+plot(k,probabilities, type = "h")
+```
+
+This case, you can see that the most likely number of heads would be 14.
+
+### The binom.test
+
+Of course, there is also an inbuilt binomial test in R. The test takes the parameters of the number of successes, the number of trials and the probability of success. The result is whether or not the sample is significantly different from the binomial model with that probability. The command is `binom.test()`
+
 ```{r}
 binom.test(5,20,0.5)
 ```
-]
----
 
-## Relationship with statistical tests
+The resulting output contains a p-value. As with the other tests before, this p-value indicates statistical significance. In this case, it is statistical significance. Our sample is significantly different from a fair binomial trial. Beyond that, it also estimates the probability of success from the sample. In this case it is 25%. This is equivalent to our number of successes, divided by the number of trials. So with 20 trails, if only a quarter of the results are successes, then there is a significant divergence from the binomial distribution.
 
-### Question: Is someone playing with biased coins?
+Therefore, our rejection range is Number Tails < 6: this results in 95% probability, that something is wrong with the coins. (25% of the tosses)
+
+### Sample size
+
+With our toy model we can also explore the effects of sample size. Let's tenfold the number of trials, and see, what the rejection range would then be:
 
 N=200 throws
 
-We need:
-
-Rejection range: Number Tails < 85: 95% Probability, that something with the coins is wrong. (42% of the tosses)
-
-In R:
-.tiny[
 ```{r}
 binom.test(85,200,0.5)
 ```
-]
+
+In case of 200 trials, we get a significant result already with 85 successes. This represents 43% of the coin flips. This means, that we relatively need much lesser surprise to be sure that there is something wrong. Of course, this is related to the law of the large number: the more trials we have, the more likely the sample distribution is close to the theoretical distribution. There is less influence of random effects.
+
+Here now, the rejection range is Number Tails < 85: this results in 95% probability, that something is wrong with the coins. (42% of the tosses)
+
+To binomial distribution will be the only distribution, that we investigate in this detail. There are other distributions, that are interesting in situations where we have different variables, and deal with different underlying processes. To binomial distribution is helpful for analysing nominal variables and test their distribution according to specific probabilities. Other helpful distributions of examples the normal distribution, in case of metric data, who are influenced by a lot of independent effects. The Poisson distribution can be used for rare events, for example for analysing spatial or temporal distributions of events. There will be an in-depth level in which these distributions will be dealt with in more detail. However, this will not be an exam-relevant part of this exercise. Rather, those who are not directly interested can skip the next chapter and go directly to the parametric tests, in which we also deal intensively with the normal distribution, but for whose understanding the next chapter is not essential. If, however, you are interested in the concept of standard error and the question of the basis on which we can estimate mean values of populations on the basis of samples, what a confidence interval is, the next chapter is recommended, perhaps only in the second reading of this book.
