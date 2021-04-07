@@ -563,29 +563,29 @@ or 1 - (1 out of 4): 1-0.25 = 0.75</p>
 <span id="cb329-2"><a href="basic-probability-theory.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
 <span id="cb329-3"><a href="basic-probability-theory.html#cb329-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
 <span id="cb329-4"><a href="basic-probability-theory.html#cb329-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-168-1.png" /><!-- --></p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="basic-probability-theory.html#cb330-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
 <span id="cb330-2"><a href="basic-probability-theory.html#cb330-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<p>Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can’t implement a little script snippet here so that I can now state the result is 3. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let’s try this out:</p>
+<pre><code>## [1] 2.1</code></pre>
+<p>Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can’t implement a little script snippet here so that I can now state the result is 2.1. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let’s try this out:</p>
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="basic-probability-theory.html#cb332-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb332-2"><a href="basic-probability-theory.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
 <span id="cb332-3"><a href="basic-probability-theory.html#cb332-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
 <span id="cb332-4"><a href="basic-probability-theory.html#cb332-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" /><!-- --></p>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="basic-probability-theory.html#cb333-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
 <span id="cb333-2"><a href="basic-probability-theory.html#cb333-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 3.45</code></pre>
-<p>I am pretty optimistic that this time the value of 3.45 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.</p>
+<pre><code>## [1] 3.58</code></pre>
+<p>I am pretty optimistic that this time the value of 3.58 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="basic-probability-theory.html#cb335-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb335-2"><a href="basic-probability-theory.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
 <span id="cb335-3"><a href="basic-probability-theory.html#cb335-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
 <span id="cb335-4"><a href="basic-probability-theory.html#cb335-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(roll, <span class="at">breaks=</span><span class="fl">0.5</span><span class="sc">:</span><span class="fl">6.5</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" /><!-- --></p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="basic-probability-theory.html#cb336-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
 <span id="cb336-2"><a href="basic-probability-theory.html#cb336-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 3.4779</code></pre>
-<p>The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.4779 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.</p>
+<pre><code>## [1] 3.4866</code></pre>
+<p>The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.4866 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.</p>
 <p><strong>The relative frequency of the random results converges against the probability of the random result</strong></p>
 <p>We can visualise this using a slightly different simulation. This time we are not simulating a specific parameters of our distribution, but the relative frequency of an individual result. Theoretically, the probability of throwing a 6 is 1/6. No let’s watch how the frequency changes over time if we throw one dice after the other.</p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="basic-probability-theory.html#cb338-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
@@ -609,7 +609,7 @@ or 1 - (1 out of 4): 1-0.25 = 0.75</p>
 <span id="cb338-19"><a href="basic-probability-theory.html#cb338-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ratio,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
 <span id="cb338-20"><a href="basic-probability-theory.html#cb338-20" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>,<span class="at">lty=</span><span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-171"></span>
-<img src="_main_files/figure-html/unnamed-chunk-171-1.png" alt="Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes." width="672" />
+<img src="_main_files/figure-html/unnamed-chunk-171-1.png" alt="Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes."  />
 <p class="caption">
 Figure 6.1: Simulated dice experiment, the proportion of the number of 6 eyes is plotted, the dotted line shows the probability for 6 eyes.
 </p>
@@ -695,7 +695,7 @@ p(x_i=3) = \frac{1}{8}
 <p><strong>Expected value</strong>: The value that is most probable.</p>
 <p><strong>Dispersion</strong>: The variance of distribution</p>
 <p>As with any other distribution function, one can of course calculate Skewness and Kurtosis.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-172-1.png" /><!-- --></p>
 <p>In addition to this quite intuitively understandable distribution function, there is also the <strong>cumulative distribution function (CDF)</strong>, which is very relevant for many statistical applications. Especially in the area of statistical tests, we will make use of it below.</p>
 <p>This function represents the cumulative sum of the probability density function. It answers the question of how likely it is to obtain a certain value of the random variable or a smaller one. In our example: “What is the probability of having up to two heads?”</p>
 <p>One important of its properties:</p>
@@ -713,7 +713,7 @@ p(x_i \leq 3) = 1
 \end{cases} \]</span></p>
 <p>It is obvious that values smaller than zero are impossible. Values less than or equal to zero, on the other hand, have a probability of 0.125 or one eighth, as already in the PDF. Values less than or equal to one have a probability of four-eighths, which is the sum of the probabilities for zero and one head. And so on.</p>
 <p>This is what the graphical representation looks like:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-173-1.png" /><!-- --></p>
 <p>Now, of course, the question arises, what is the point of all this! How does this knowledge of probability theory help us to better understand statistical tests? We will continue with our example of the coin toss and now develop a statistical test to assess whether it is fair or marked coins that are being played with. Our example will include all the elements of a statistical test, and the procedure is basically transferable to other statistical tests. So we will take a look under the bonnet of a statistical test.</p>
 </div>
 </div>
@@ -1326,19 +1326,19 @@ p(x_i \leq 3) = 1
 <div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="basic-probability-theory.html#cb359-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
 <span id="cb359-2"><a href="basic-probability-theory.html#cb359-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.5</span>)</span>
 <span id="cb359-3"><a href="basic-probability-theory.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-188-1.png" /><!-- --></p>
 <p>You can see, that the highest probability is to get 10 heads and 10 tails. The distribution is symmetrical, the smaller the number of heads or tails get the more unlikely this situation will be.</p>
 <p>Also, we can plot the cumulative density function:</p>
 <div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="basic-probability-theory.html#cb360-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
 <span id="cb360-2"><a href="basic-probability-theory.html#cb360-2" aria-hidden="true" tabindex="-1"></a>cumprob <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.5</span>)</span>
 <span id="cb360-3"><a href="basic-probability-theory.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,cumprob, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" /><!-- --></p>
 <p>There is a 59 % probability to get 10 or less heads (or tails).</p>
 <p>What you also can do is try out, how different probabilities of getting a head would result. This mean, you can build a model of how biased your coin is, and then try to fit this model to your data. You could also compare different models to evaluate which one is the best fitting. These are advanced statistical procedures, but nonetheless very often takes place in scientific investigations. Although the models might be more complicated than just changing a probability, the general workflow is the same. For now, we will only plot the probability density function for the situation, when a coin has a 70% chance of getting a head.</p>
 <div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="basic-probability-theory.html#cb361-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">20</span></span>
 <span id="cb361-2"><a href="basic-probability-theory.html#cb361-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k,<span class="dv">20</span>,<span class="fl">0.7</span>)</span>
 <span id="cb361-3"><a href="basic-probability-theory.html#cb361-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,probabilities, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" /><!-- --></p>
 <p>This case, you can see that the most likely number of heads would be 14.</p>
 <div id="the-binom.test" class="section level3" number="6.7.1">
 <h3><span class="header-section-number">6.7.1</span> The binom.test</h3>
@@ -1429,7 +1429,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf"],
+"download": "preface.pdf",
 "toc": {
 "collapse": "subsection"
 }

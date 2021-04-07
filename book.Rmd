@@ -3,11 +3,15 @@ title: "Statistical methods for archaeological data analysis"
 author: "Martin Hinz"
 site: bookdown::bookdown_site
 documentclass: book
+header-includes:
+  - \usepackage{colortbl}
+  - \usepackage{tabu}
 output:
-  bookdown::gitbook: default
   bookdown::pdf_book:
     always_allow_html: true
-
+    latex_engine: xelatex
+  bookdown::gitbook: 
+    keep_md: true
 ---
 
 # Preface

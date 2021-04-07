@@ -262,7 +262,7 @@ barplot(table(muensingen$fibula_scheme), # Plot counts fibulae scheme
         cex.names=2)                     # make the labels bigger
 ```
 
-Bar charts are also much more flexible compared to pie charts in so far, as you can easily display more than two variables. In this way, your plot can become 3-D or more in a meaningful way.
+Bar charts are also much more flexible compared to pie charts in so far, as you can easily display more than two variables. In this way, your plot can become 3-D or more in a meaningful way.
 
 Let's assume, we want to visualise the number of coils of the fibula in relationship to the style. We can use the table command to produce a table accordingly.
 
@@ -297,7 +297,7 @@ If we put the results into the `barplot()` command, we will get a result compara
 barplot(table.prop)
 ```
 
-Of course, you can also change elements of the bar plot. For example, you can get fancy with the colours. Here, are used to command rainbow, specified with the number of colours I would like to get, to create a colour spectrum from the rainbow. Also, I would like to have a legend. Additionally, I want to have a title. This title is quite long, so I divided it in two rows, using the special "\n" sign. Since it is such a long title, I also have to use space outside of the actual plot area. You can get a feeling for the effects of this different para metres by playing around a bit with them.
+Of course, you can also change elements of the bar plot. For example, you can get fancy with the colours. Here, are used to command rainbow, specified with the number of colours I would like to get, to create a colour spectrum from the rainbow. Also, I would like to have a legend. Additionally, I want to have a title. This title is quite long, so I divided it in two rows, using the special "\\n" sign. Since it is such a long title, I also have to use space outside of the actual plot area. You can get a feeling for the effects of this different para metres by playing around a bit with them.
 
 ```{r, fig.height=5}
 barplot(table.prop,
