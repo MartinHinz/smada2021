@@ -36,43 +36,30 @@ cat(rmarkdown::metadata$author, "| ")
 cat(rmarkdown::metadata$institute, "| ")
 cat(rmarkdown::metadata$date)
 ```
+]
+
+<details markdown=1><summary>Content of the Course</summary>
+.tiny[
+| Nr. | Presentation | Chapter | Video | Technical Videos | Date Live Session | Chapter Shennan | Practical Task |
+|:-|:-|:-|:-|:-:|:-:|-:|:-:|
+| 1. | [Introduction](01_session/session_1_introduction.html) | tbw | [Video](https://tube.switch.ch/videos/0843b374) | [1](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/02/12/installing_r.html),[2](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/02/12/installing_r_studio.html) | 24.2.21 | 1+2 |
+| 2. | [Introduction into R](02_session/index.html) | [Chapter](https://martinhinz.github.io/smada2021/book/introduction-into-r.html) | [Part 1](https://tube.switch.ch/videos/b8d09352) [Part 2](https://tube.switch.ch/videos/hbwPCzKup8) | [5](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/02/22/basic_operations_in_r.html),[6](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/02/22/data_types_and_variables.html),[7](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/02/23/working_with_vectors.html),[8](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/02/23/working_with_matrices_and_data_frames.html),[9](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/02/24/load_and_save_data.html) | 3., 10. & 17.3.21 | NA |
+| 3. | [Explorative Statistics/Graph. Display](03_session/index.html) | [Chapter](https://martinhinz.github.io/smada2021/book/explorative-statistics-graphical-display.html) | NA | [10](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/03/22/making_tables.html), [11](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/03/22/plotting.html), [12](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/03/25/pie_charts.html), [13](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/03/27/bar_charts.html), [14](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/04/03/boxplots.html), [15](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/04/06/scatterplots.html), [16](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/05/10/cumsum_and_triplots.html) | 24.3.21 | 3 |
+| 4. | [Descriptive Statistics](04_session/index.html) | [Chapter](book/descriptive-statistics.html) | [Video](https://tube.switch.ch/videos/yDLbBcbEWD) | [17](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/05/17/central_tendency.html), [18](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/05/18/measurement_of_dispersion.html), [[19](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/05/23/skewness_and_kurtosis.html)] | 31.3.21 | 4 | [Homework](04_session/homework_04.html) |
+| 5. | [Nonparametric Tests]((05_session/index.html) | [Chapter](book/nonparametric-tests.html) | [Part 1](https://tube.switch.ch/videos/X9AIAGeD6O), [Part 2](https://tube.switch.ch/videos/A7XnqwrDbP) | [20](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/05/23/ks_test.html), [22](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/05/24/chi_square_test.html), [[21](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/05/24/mann_whitney_U_test.html)], [[23](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/07/09/associations.html)], [[24](http://vitutr.archaeological.science/statistical%20methods%20for%20archaeological%20data%20analysis%20i%202019/2019/07/09/fisher_test.html)] | 14.4.21 | 5 | [Homework](05_session/homework_05.html) |
+| 6. | Basic Probability Theory | Chapter | Video | NA | 21.4.21 | 6 | Homework |
+| 7. | Parametric Tests | Chapter | Video | Technical Videos | 28.4.21 | 6 | Homework |
+| 8. | Regression & Correlation | Chapter | Video | Technical Videos | 5.5.21 | 8 |  Homework |
+| 9. | Cluster Analysis | Chapter | Video | Technical Videos | 12.5.21 | 11 | Homework |
+| 10. | Correspondence Analysis | Chapter | Video | Technical Videos | 19.5.21 | 13 | Homework |
+| 12. | Repetition | Chapter | Video | Technical Videos | 26.5.21 | NA |
+| 11. | Test | Chapter | Video | Technical Videos | 2.6.21 | NA |
+]
+</details>
 
 ### [The book](book/preface.html)
 
-### Presentations
 
-- [01. Session: Introduction](01_session/session_1_introduction.html) | 24.02.2021
-- [02. Session: Introduction into R](02_session/index.html) | 03.03.2021 & 10.03.2021
-- [03. Session: Explorative Statistics/Graph. Display](03_session/index.html) | 17.03.2021
-- <details markdown=1><summary>04. Session: Descriptive Statistics | 24.03.2021</summary>
-  - [Presentation](04_session/index.html)
-  - [Book Chapter](book/descriptive-statistics.html)
-  - [Video](https://tube.switch.ch/videos/yDLbBcbEWD)
-  - [R Tutorial Videos](http://vitutr.archaeological.science/categories/Statistical+methods+for+archaeological+data+analysis+I+2019/index.html) (15,16,[17])
-  - [Homework](04_session/homework_04.html)
- 
-</details>
-- <details markdown=1><summary>05. Session: Nonparametric Tests | 31.03.2021</summary>
-  - [Presentation](05_session/index.html)
-  - [Book Chapter](book/nonparametric-tests.html)
-  - [Video Part 1](https://tube.switch.ch/videos/X9AIAGeD6O)
-  - [Video Part 2](https://tube.switch.ch/videos/A7XnqwrDbP)
-  - [R Tutorial Videos](http://vitutr.archaeological.science/categories/Statistical+methods+for+archaeological+data+analysis+I+2019/index.html) (20,22)
-  - [Homework](05_session/homework_05.html)
- 
-</details>
-- 06\. Session: Basic Probability Theory | 14.04.2021
-- 0X\. Session: Distributions | not date, chapter will be produced asap!
-- 07\. Session: Parametric Tests | 21.04.2021
-- 08\. Session: Regression & Correlation | 28.05.2021
-- 09\. Session: Cluster Analysis | 05.05.2021
-- 10\. Session: Correspondence Analysis | 12.05.2021
-- 11\. Session: Repetition & Practice | 19.05.2021
-- Test | 02.06.2021
-]
-
-.footnote[
 .small[
-<sup>\*</sup> You can find the **code of this presentations** at the [github repository](https://github.com/MartinHinz/smada2021). You might also like to check out the **video tutorials** in [english](https://tube.switch.ch/channels/b191ef92) or [german](http://vitutr.archaeological.science/).
-]
+You can find the **code of this presentations** at the [github repository](https://github.com/MartinHinz/smada2021). You might also like to check out the **video tutorials** in [english](https://tube.switch.ch/channels/b191ef92) or [german](http://vitutr.archaeological.science/).
 ]
