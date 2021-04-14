@@ -398,6 +398,49 @@ $p(A) = \frac{1}{4}$; $p(B) = \frac{1}{8}$; $p(A \cup B) = p(A) + p(B) - p(A \ca
 $p(A \cup B) = \frac{1}{4} + \frac{1}{8} - \frac{1}{32} = \frac{11}{32} = 0.34375$
 
 ---
+## Summary
+.tiny[
+**Classical Probability Definition by Laplace**
+
+$p(A) = \frac{Number\ of\ positive\ results}{Number\ of\ possible\ results}$
+
+.pull-left[
+**Kolmogorov 1. axiom**
+
+Each event from the event space is assigned a number p(A), which describes the probability of the event. This is between 0 and 1. $0 \leq p(A) \leq 1$
+
+**Kolmogorov 2. axiom**
+
+The safe event has the value one. $p(E) = 1$
+
+**Kolmogorov 3. axiom**
+
+For pairwise disjunctive events, i.e. those that do not have an intersection
+(e.g. {1,2} and {3,4}), the probability for their union is the sum of their individual probabilities. $p(A_1 \cup A_2 ... \cup A_n) = \sum_{i=1}^n p(A_i)$
+
+![](../images/07_session/first_draw.png)
+]
+
+.pull-right[
+**Multiple indepent events**
+
+$p(A \cap B) = p(A) * p(B)$
+
+**multiple conditional events**
+
+$p(A \cap B) = p(A) * p(B|A)$
+
+**multiple not disjunctive events**
+
+$p(A \cup B) = p(A) + p(B) - p(A \cap B)$
+
+![](../images/07_session/second_draw.png)
+.caption[Source: McElreath 2017]
+]
+]
+
+
+---
 ## combinatorics [1]
 
 To determine the probability, it is necessary to know all possible events
