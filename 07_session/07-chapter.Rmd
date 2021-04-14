@@ -1,0 +1,665 @@
+```{r include=FALSE}
+#knitr::opts_knit$set(root.dir = '07_session/')
+xfun::pkg_load2(c("htmltools", "mime", "DiagrammeR"))
+remove(list = ls())
+```
+
+# Parametric tests
+
+## Introduction
+
+As with nonparametric tests, also for parametric tests the aim is to check whether or not a specific sample can come from a population with specific parameters. But in the case of the parametric tests, most of the time this parameters are more obvious than in the case of the non-parametric ones. For example, if we compare the estimate of the mean of the population from two samples, which is the heart of the t-test, it is quite clear, that we treat this statistical test is a bridge from our sample to the population.
+
+The building material of the speech is in the case of the parametric test more sophisticated. To write this metaphor even further, you could say that this building material is stronger due to technical sophistication, and therefore the resulting bridges are more stable. But only if the building material is solid itself. So there are higher pre-requisites for the selecting for example for the Golden Gate Bridge then for any trail bridge somewhere in the woods.
+
+Also, because we make more assumptions about the population, it is more relevant if the sample is selected in the representative way to make the result of a parametric test valid. So in the interpretation of the results of a paramedic test, even more than in the case of the non-parametric versions, we have to keep in mind that we are using our sample, that is available to us, to estimate characteristics of the population, that is not available for us, especially in the case of archaeology. And also in archaeology especially, since most of the time we are working with a convenience sample, it is difficult to provide building material solid enough for parametric tests.
+
+Nevertheless, because these tests are much more powerful in most cases then their non-parametric counterparts, there is a reason to use these tests. And that is also the reason, why in most natural scientific investigations paramedic tests play the most important role. While in the case of the nonparametric tests, no assumption about the distribution of the sample or the population is made, with parametric tests we make such assumptions and use this added information to come to more precise conclusions. Another possible disadvantage of parametric tests is in the case of archaeology is, that usually they require a higher sample size, then nonparametric tests. But especially, if it comes to metric variables and measured quantities, which we have in the field for example of morphometric's, parametric tests are a powerful tool if used in the right way.
+
+## The parametric in parametric tests
+
+So in the case of the nonparametric tests, we have already explained that these tests do not require parameters of the sample and the underlying population to follow certain distributions or have certain values. With this, you also have already the definition of parametric tests. Here, we assume certain values are distributions to be given in the sample that we are investigating, or actually in the population that is underlying to sample. This assumption is narrow down the possibilities of events, giving us a smaller event space. With this, we can decide more easily if something has a 95% probability or not. In the case of the One Sample tests, most of the time it is assumed that the population **follow certain distributions**. Most of the time, At least understand that realm of statistics that can be applied to archaeology, this might be the so-called normal distribution, that we have learnt already in the chapter about distributions. But for other applications, other distributions might be required. When example here can be the t-test, that we will learn about later on, that requires the data to be normally distributed (among other things).
+
+Especially in the case of the two sample test, often **certain similarities between the two samples** are required, so that the test can be applied. In the case of the ANOVA, variance homogenity is assumed, and it is necessary to contact this analyses in the correct way.
+
+At last, nearly all parametric tests required variables that are metric scaled, so interval or ratio scaled. The reason for this is that most parametric tests use actual calculated parametres from the data, and if these parameters cannot be calculated, because this is not possible with this data quality, of course they do not make any sense. When example here might be DF test, which is a test for variances. As the variance is defined as the deviation from the mean, it can only reasonably be expressed in situations where we can calculate the mean. As we have learnt earlier, the main can only be calculated with metric variables.
+
+This means, that before we can apply an actual parametric test, often we have to determine whether our data quality is suitable for this test in the first place. And if this tests again have pre-requisites, this also might be necessarily checked with another test. From this, quite often cascades of tests emerge. Below, you can see a cascade for the application of the t-test.
+
+```{r, echo=FALSE}
+library(DiagrammeR)
+
+grViz("digraph {
+      # node definitions with substituted label text
+      node [fontname = Helvetica, shape = rectangle]        
+      tab1 [label = '@@1', shape='diamond']
+      tab2 [label = '@@2', shape='diamond']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+
+      # edge definitions with the node IDs
+      tab1 -> tab2[label='yes'];
+      tab2 -> tab3[label='yes'];
+      tab2 -> tab4[label='no'];
+      tab1 -> tab5[label='no'];
+      }
+
+      [1]: 'normal distributed?\\nks.test; shapiro.test'
+      [2]: 'homogenous variances?\\nf.test'
+      [3]: 't.test'
+      [4]: 't.test with \\n welch correction'
+      [5]: 'Non-Parametric Tests'
+      ")
+
+```
+
+There are multiple versions of this kind of decision tree, and you find legions of them in the Internet or in the literature. We will start following the path from this decision tree, to end up with our t-test. At first, we will check for normality, then we will test our data, if the variances are homogeneous, and lastly we will apply the t-test to our data.
+
+---
+
+## Test for normal distribution
+
+There are different ways to test for normality of data. One rather conventional option is the Kolmogorov-Smirnov test, that we have seen before as a 2-sample test for comparing different distributions. And we have learnt, that it is a non-parametric test. Of course, it also can be used to compare the sample distribution to a theoretical one, making it one simple goodness of fit test. But since it is very conservative, we will also use the Shapiro-Wilk test as well as optical representation of normality, namely the QQ plot.
+
+### The good old KS-Test
+
+We will start with the good old Kolmogorov Smirnov test. As an example, we will use a simulated dataset of the length of different silex blades. We are interested in differences of the length between two sites. If between these two sites a significant difference would exist, this could give us information about different production or use strategies that the occupants of the individual sites had in mind when preparing these blades.
+
+We will start with a reduced selection from the actual dataset. Below, you can find the code that you can run to get this selection into the R environment without loading a dataset.
+
+```{r}
+blade_length<-c(14.9, 24.0, 8.7, 29.3, 25.5, 23.9, 22.4,
+                12.7, 8.7, 25.1, 25.6, 14.7, 23.0, 23.2,
+                26.5, 11.1, 15.2, 20.6, 20.1, 25.1)
+```
+
+No, we directly can run the Kolmogorov Smirnov test. In the two sample version we have seen that we have at first input the first sample, and as the second input the second sample. In the case of the one sample test, there is no second sample. Instead, here we can give the name of the distribution that you would like to test against. More precisely, here you name the density function of this distribution as you would do if you would like to compute it using R. So in case of the normal distribution, the string that is given a second parameter would be `"pnorm"`. Depending on the distribution, that is used in the goodness of fit test, further parameters might be necessary.  These parameters are the same as you would use to calculate the density function in our. If you are unsure, you can look this up in the respective help files (in our example the help file for pnorm). Normal distribution is defined by the mean and the standard deviation. Of course, we would like to compare our specific sample to a dataset that has the same mean and standard deviation of our dataset (but follows a normal distribution). For this reason, we give us the mean for the normal distribution the mean of our sample, and likewise as the standard deviation for normal distribution the standard deviation of our sample. The resultant command would be this:
+
+```{r}
+ks.test(blade_length,"pnorm",mean(blade_length),sd(blade_length))
+```
+
+In the resulting output, you can see different things: at first, it is written that is a "`One-sample Kolmogorov-Smirnov test`". Then our dataset is named, then the D value and the p-value are shown as in the two sample case. Here, the P value is 0.42, so the result is not significant. Our distribution does not differ significantly from a normal distribution. Additionally you will see a warning, stating that there should be no ties or "Bindungen" in the data for the KS-Test. This means, that different data should not have equal values. Of course this is true, but we can't do very much about this because these are the data that we have. Nevertheless the result should be okay for the Kolmogorov Smirnov test. This would mean, that we can proceed further and use this dataset for the following tests.
+
+But, as you remember, there are two reasons, why a test might not be significant: Either, the reason is that the differences are really small compared to the null hypothesis, or, the sample size is too small. And in this case, it is quite likely that the sample size is actually rather small. Also, the KS test is known to be a rather conservative test. That means, that the no hypothesis is not easily rejected using this test.
+
+### The Shapiro Wilk test
+
+The KS test represents a general test that can be used in both the one sample and two sample case, and in the one sample case it is also a general goodness of fit test, meaning, that you can test against different other distributions. This makes this test very versatile for different applications. But for normal distribution, there are more specialised tests that can't do much more than testing against normality, but therefore they can do this very well. One of the examples here is the Shapiro Wilk test. Discussed generally has a higher power when it comes to normality check. But this is it's only application, it is not a general goodness of fit test. Normality is what we are interested here in, so let's see how we can apply this test.
+
+#### Facts sheet Shapiro Wilk test
+
+**requirements**: $x_1 ... x_n$ is a independend sample of a metric scaled variable
+
+$H_0$ The population is normal distributed
+
+$H_1$ the population is not normal distributed
+
+Its specific benefits is, that it has good test power also in cases of small sample sizes below 50. Since it is doing only one thing and this thing well, there is not very much that can be customised with the `shapiro.test()`, as it is named in R. Actually, the command does not accept any other parameter beside the dataset that should be tested against its normality, and this dataset should be a numeric vector. So, let's run this test with our blade length selection.
+
+```{r}
+shapiro.test(blade_length)
+```
+
+You can see, that this test now results in a significant p-value. Well, to be honest, it is just significant. No, we have to decide, if we accept our dataset for further tests that require normality, or if we reject this dataset for parametric tests and apply to non-parametric variant. Here are some rules of thumb: There are problems with a very small and very large sample sizes. In case of very small sample sizes, the Shapiro test performs better. In case of very large sample sizes, Both tests will give you a significant result even if the difference from a normal distribution is very small. There is the other side of the law of the large numbers. If you have very many samples, then statistical test will see already very small differences as significant. This does not mean, that necessarily cannot use the t-test any longer: The t-test is known to be rather robust test against the violation of the normality assumption. Especially, if the sample size is larger than 50, we can ignore more or less significant result.
+
+Our dataset here has a sample size of 20. The full dataset has a sample size of 45, so it will be very close to this 50 border. Also, the test statistic itself does not tell us very much about how the distribution of our sample is different from the normal distribution. For this reason, often it is very helpful to visualise the distribution of our data. We already learnt different methods for doing so. In this case, for example a histogram or a density plot might be helpful, or a box plot. But there is a very specific visualisation especially designed for checking against normality, which we will get known in the next section.
+
+### visual: QQ-plot
+
+The specific plot variant is called QQ plot, named so because it compares the quantiles of the actual to the normal distribution.  But at first, let's visualise the distribution of our values in a conventional way, so that we can better understand what the QQ plot is doing.
+
+```{r}
+plot(sort(blade_length))
+```
+
+If we plot our values sorted, we can see that there is a gap in the range of the values between 15 and 20. With a normal distribution, you would expect most values near the mean. This is not given here.
+
+```{r}
+hist(blade_length)
+plot(density(blade_length))
+```
+
+This also can be visualised using the histogram or the density plot. In the histogram, the gap between 15 and 20 becomes obvious. Also, it becomes obvious, that there are more values in the higher range of the total value range then in the lower one. The density plot confirms this interpretation, it shows us a bimodal distribution.
+
+```{r}
+boxplot(blade_length)
+```
+
+The box plot looks fairly normal except for the fact, that the median is shifted towards the higher range of the spectrum, confirming what we already know.
+
+No, let's make a QQ plot and compare it to the plot options that we already had. The command for the QQ plot is `qqnorm()`. There is also a command `qqplot()`, but this is designed to produce a plot for two samples. Also, most of the time you would like to enhance the QQ plot with a line that makes the theoretical position of a normal distribution more visual. For this you use the command `qqline()`.
+
+```{r}
+qqnorm(blade_length)
+qqline(blade_length)
+```
+
+The blooded self has the quantiles of the sample on the Y axis, and the quantiles of a normal distribution with the same parameters like our dataset on the X axis. The line represents, where a true normal distribution would end in this chart. If you see strong deviations from your actual data points in respect to the line, then you have strong deviations from the pattern of normal distribution. In our case, we can see an under representation in the centre of our distribution (the gap) and then an overall presentation of higher values, like we have seen already in the other plots. The lower end of a sample looks rather normal, except for this one outlier. So with this deviation and the test results from the individual tests, this dataset would probably be not suitable for a test that requires a normal distribution. In the following, we will use the full dataset, that follows the same pattern, but has a higher sample size. In this case, the deviations from the normal distribution could probably be ignored.
+
+
+```{r}
+blade_length <- read.csv("blade_length.csv")
+shapiro.test(blade_length$length)
+
+qqnorm(blade_length$length)
+qqline(blade_length$length)
+```
+
+
+:::{.exercise}
+Length of the handles of amphora of type Dressel 10 (Ihm 1978).
+
+The length of the handles of different amphora are given. Test with the appropriate methods if the variable is normal distributed
+
+**file**: `r xfun::embed_file('henkel_amphoren.csv', text = "henkel_amphoren.csv")`
+
+Test for normality
+:::
+
+<details><summary>Solution</summary>
+
+At first, we load the data (You will hopefully realise by inspecting the file, that it is a continental CSV file, so that's why we have to load it using the command `read.csv2()`):
+
+```{r}
+dressel <- read.csv2("henkel_amphoren.csv")
+```
+
+Then, we performed a `shapiro.test()`.
+
+```{r}
+shapiro.test(dressel$henkellaenge)
+```
+
+Shapiro shows a significant deviation from normal distribution. Nevertheless, we should inspect the pattern visually:
+
+```{r}
+qqnorm(dressel$henkellaenge)
+qqline(dressel$henkellaenge)
+```
+
+There are two outliers in the data. Either, we could switch to nonparametric tests, or, If we can change our scientific question to be answered without these outliers, we could remove them from our dataset. Every time, that we exclude a value in an analyses, we should document this in the paper or manuscript, that this analyses forms a part of.
+
+```{r}
+outliers <- c(which.max(dressel$henkellaenge),
+              which.min(dressel$henkellaenge)
+              )
+
+shapiro.test(dressel$henkellaenge[-outliers])
+qqnorm(dressel$henkellaenge[-outliers])
+qqline(dressel$henkellaenge[-outliers])
+```
+</details>
+
+## F-Test
+
+No, that we have decided that our sample is reasonably normal distributed, we can proceed ensuring that other prerequisites are fulfilled. To decide, which kind of t-test we can't apply here, we have to test whether or not we have homogeneity of variance between the two samples. This can be done using the F test. To test for homogenity of variances, there are other alternatives, for example the  Levene's test or the Brown–Forsythe test. These tests perform better, if the normality assumption of the F test is violated. The benefits of the F test is that it's rather simple and easy to understand. So for our introduction here this test might be very suitable.
+
+### Factsheet F Test
+
+F Test for variance homogenity of two samples
+
+**requirements**: two independent normal distributed sample of a metric scaled variable
+
+$H_0$ Both samples have the same variance (dispersion)
+
+$H_1$ Both samples have a different variance (dispersion)
+
+**Basic idea**: if both variances are equal, their quotient should be 1
+
+$$
+s_1^2 = s_2^2;\ then\ \frac{s_1^2}{s_2^2} = 1
+$$
+
+#### What do these facts mean
+
+The F test tests for homogeneity of variance of two samples. This means, that the checks whether or not the variances of both samples are more or less the same and could come from the same underlying population. Since we are talking about variances, of course we need a data quality of interval or ratio scaled variables. As the variance is defined as the squared mean deviations from the mean, we have to calculate the mean (actually twice). Since this can only be done with metrics scaled variables, it is clear, that this test can only be applied to this kind of data.
+
+Since we are testing against difference in variance, our null hypothesis is that the variances are the same. And here, the test gets very simple, kind of. If the variances would be the same, their division would result in a 1. The value that is calculated by the division of the actual variances from the samples is compared to a threshold, that could be calculated from F distribution (like it's done an R) or could be looked up in precalculated tables (like in the olde days). This threshold depends on the degrees of freedom ( $df_1 = n_1 -1; df_2 = n_2 - 1$ ) and the desired significance level. If the calculated quotient > treshhold, than the $H_0$ will be rejected, otherwise not. This means, that if the test turns out to be **significant**, then we have significantly demonstrated **unequal variances**. If it's not significant, then we have not enough data to decide, if we have homogeneous variances. If the F test is used as a pre-test for the t-test, a result not significant means that we can proceed applying the standard t-test without Welch correction.
+
+### Calculation by hand
+
+We go on with using our example of the blade length of flint blades from two sites. Now, we are using our full dataset. This dataset consists of 45 measurements, while 20 measurements are taken from the blades of the first site, 25 represents the blades of the second site. Since we have to calculate the variance, which is the squared mean difference from the mean, it makes sense to calculate the mean in the first place. If we have done this, we can calculate the variance in the known way (if you do not remember, you might like to look up in the respective chapter descriptive statistics).
+
+$n_1 = 20; \bar{x}_1 = 20.015$
+
+$variance\ s_1^2 = \frac{\sum^n_{i=1}{x_i - \bar{x}^2}}{n-1}=\frac{\sum^{20}_{i=1}{x_i - 20.015}}{20-1}=40.20871$
+
+$n_2 = 25; \bar{x}_2 = 20.492$
+
+$variance\ s_2^2 = \frac{\sum^{25}_{i=1}{x_i - 20.492}}{25-1}=33.0641$
+
+Now, this very simple formula that we have seen before can be applied to our variances. We just divide the variance from the first sample by the variance of the second sample. We take the result And compare it to a tabulated precalculated range of threshold values. Since the threshold depends on the degrees of freedom and our desired level of significance, we needed to decide on that. The degrees of freedom can be calculated by taking the number of cases for each sample substracted with one each. The level of significance is, as always (does it get boring?), 0.05.
+
+$F = \frac{s_1^2}{s_2^2}=\frac{40.20871}{33.0641}=1.216$
+
+$df_1$ = 20−1 = 19, $df_2$ = 25 − 1 = 24; Sign.level=0.05
+
+So if our first sample has a degree of freedom of 19, and our second sample a degree of freedom of 24, and our significance level is the usual 0.05, then we can find the appropriate value in the table, for example in the 'Quantifying Archaeology' book.
+
+threshold at $df_1$ = 19, $df_2$ = 24, $\alpha$=0.05: 2.114
+
+This threshold is bigger than the value that we have calculated. This means, that the F test is not significant here. For us, this means that we can proceed with the standard t-test for our dataset. It also means that the variances in our samples do not significantly different from each other. Remember, that this does not mean that the sample variances are significantly the same.
+
+### F-Test in R
+
+You can now download the full blade length dataset using the following link:
+
+`r xfun::embed_file('blade_length.csv', text = "blade_length.csv")`
+
+The rest is rather simple and straightforward in R. All you have to do is to use the command for the F test, which is `var.test()`. Here, you have the option to specify the two samples as to input vectors. But you also can use the formula notation which is in many cases much more intuitive and handy, once you have got accustomed to it. So in this case, we want to test the variances of the `length` from our dataset `blade_length` in relationship to the variable `site`. Here you go.
+
+```{r}
+var.test(length~site,data=blade_length)
+```
+
+The output of the test has many elements that we already know from our calculation by hand. At first, it states that we are using the 'F test to compare two variances'. Then we see the F value that is the same as we have calculated it. Also the degree of freedom for the first and the second sample are computed. Here they are named as numerator and denominator, according to the position of the first and the second sample in the formula for calculating the F value. Then we can see calculation of a confidence interval for the ratio of the population variances. In the case of our blade length dataset, also the F test using R is not significant. No surprise here. This means, that the variances are not significantly different, and we can use the standard t-test.
+
+:::{.exercise}
+(logarithmic) sizes of ritual enclosures at the Society Islands
+(Example by Shennan)
+
+Given are the (logarithmic) sizes of ritual enclosures in two valleys at the Society Islands.
+
+Please check whether the variances in both valleys are different!
+
+**file**: `r xfun::embed_file('marae.csv', text = "marae.csv")`
+:::
+
+<details><summary>Solution</summary>
+
+At first, we load the data (You will hopefully realise by inspecting the file, that this time it is a conventional CSV file, so that's why we have to load it using the command `read.csv()`. I will keep bothering you with moving the target here, so that you get used to check when you load your data):
+
+```{r}
+marae <- read.csv("marae.csv")
+```
+
+Next, we inspect the dataset.
+
+```{r}
+head(marae)
+str(marae)
+```
+
+So it seems, that in the dataset there are two variables: `size` with the sizes of the enclosures, `valley` encoding to different valleys. Now, we performed the F test using `var.test()`. We will use the formula notation, because I like it. If you don't, you have to take the two samples apart on your own.
+
+```{r}
+var.test(size ~ valley, data = marae)
+```
+
+It turns out, that the result is not significant. Since we have only 22 cases here, I assume, that sample size place an important role here. Also in this case, it is helpful to visualise the distribution of the data.
+
+```{r}
+boxplot(size ~ valley, data = marae)
+```
+
+From this, it becomes clear that the core of the data are distributed similarly among our two samples. But valley one have more extreme data. Since the mean is always sensitive for outliers, the variance is too. So if we would have more samples, it can be assumed that the F test would produce a significant result.
+
+</details>
+
+
+## t-Test
+
+After going through this cascade of tests, finally we arrived at the test that we originally wanted to contact: the test for differences in mean of two samples:
+
+## Facts sheet t-Test (homogenuous variances)
+
+Test for the comparison of the means of two samples.
+
+If the means do differ significantly, it is assumed that both samples come from different population (in the statistical sense).
+
+**requirements**: two independend normal distributed sample of a metric scaled variable with homogenous variances
+
+$H_0$ The populations of both samples have the same mean
+
+$H_1$ The populations of both samples have a different mean
+
+**Basic idea**:
+If the means of both samples are within the standard error of the estimations of the mean of the according populations, than both populations could be potentially the same. Else not.
+
+#### What do these facts mean
+
+
+![](../images/09_session/t_visualisation_1.png)
+.caption[source: I do not know any more...]
+
+
+
+![](../images/09_session/t_visualisation_2.png)
+.caption[source: I can not remember, either...]
+
+
+![](../images/09_session/t_visualisation_3.png)
+.caption[source: Guess what...]
+
+---
+## t-Test, homogenuous variances [2]
+
+### Calculation 'by hand'
+
+example blade length
+
+site 1, site 2
+
+.pull-left[
+$n_1 = 20; \bar{x_1} = 20.015 ; s^2_1 = 40.20871$
+$n_2 = 25; \bar{x_2} = 20.492 ; s^2_2 = 33.0641$
+
+$t = \frac{difference\ between\ group\ means}{variability\ of\ groups}$
+
+$t = \frac{\bar{x_1} - \bar{x_2}}{SE_{(\bar{x_1}-\bar{x_2})}}$
+]
+
+.pull-right[
+
+$SE = \frac{s}{\sqrt{n}} = \sqrt{\frac{s^2}{n}}$
+
+$SE_{(\bar{x_1}-\bar{x_2})} = \sqrt{\frac{S^2}{n_1} + \frac{S^2}{n_2}}$
+
+$S^2 = \frac{(n_1-1)*s_1^2 +  (n_2-1) * s_2^2}{n_1 + n_2 - 2}$
+
+$S^2 = \frac{(20-1)*40.20871 + (25-1)*33.0641}{20+25-2} = 36.22102$
+
+$SE_{(\bar{x_1}-\bar{x_2})} = \sqrt{\frac{36.22102}{20} + \frac{36.22102}{25}} = 1.805517$
+
+]
+
+---
+## t-Test, homogenuous variances [3]
+
+### Calculation 'by hand'
+
+$t = \frac{20.015−20.492}{1.805517} = −0,26419$
+
+$df = (n_1 − 1) + (n_2 − 1) = n_1 + n_2 − 2 = 20 + 25 − 2= 43$
+
+Looking up in table (eg. Shennan): df = 43; sig. level = 0.05
+
+possible differences bigger - smaller, therefore two tailed question
+
+threshold: 2.021
+
+**not significant**, we can not reject the null hypothesis
+
+There is no significant difference in the means of both samples, the could originate from the same population (statistically speaking).
+
+---
+
+## t-Test, homogenuous variances [4]
+
+Test for the comparison of the means of two samples.
+
+If the means do differ significantly, it is assumed that both samples come from different population (in the statistical sense).
+
+
+**requirements**: two independend normal distributed sample of a metric scaled variable with homogenous variances
+
+$H_0$ The populations of both samples have the same mean
+
+$H_1$ The populations of both samples have a different mean
+
+.tiny[
+```{r}
+t.test(length ~ site, data=blade_length, var.equal=T)
+```
+
+]
+
+**not significant**, we can not reject the null hypothesis
+
+---
+class: inverse
+
+## Excercise t-test
+
+Again the (logarithmic) sizes of ritual enclosures at the Society Islands
+(Example by Shennan)
+
+Given are the (logarithmic) sizes of ritual enclosures in two valleys at the Society Islands.
+
+Please check whether both valleys are different in respect to the mean sizes of the enclosures!
+
+**file**: `r xfun::embed_file('marae.csv', text = "marae.csv")`
+
+---
+
+## Welch-Test (t-Test for inhomogenous variances with welch correction)
+
+### If homogenity precondition is not fulfilled
+
+approximation of the results by correction of degrees of freedom
+
+`r xfun::embed_file('blade_length3.csv', text = "blade_length3.csv")`
+
+.pull-left[
+.tiny[
+```{r}
+blade_length3 <- read.csv("blade_length3.csv")
+
+var.test(length ~ site, data = blade_length3)
+```
+]
+]
+
+.pull-right[
+.tiny[
+```{r}
+t.test(length ~ site, data = blade_length3)
+```
+]
+]
+---
+
+## Welch-Test (t-Test for inhomogenous variances with welch correction)
+
+### Comparison of test power
+
+Tests with lesser preconditions to the data often have lesser power
+
+```{r}
+A <- rnorm(20)
+B <- rnorm(20) + 0.5
+```
+
+
+.pull-left[
+.tiny[
+```{r}
+t.test(A,B, var.equal=T)
+```
+]
+]
+
+.pull-right[
+.tiny[
+```{r}
+t.test(A,B, data=sim_data)
+```
+]
+]
+
+In most of the cases (with small sample size), the Welch test will be slightly more unsure to reject the null hypothesis.
+
+---
+
+## Multiple Tests [1]
+
+**The following is important for all statistical tests!**
+
+What, if one compares more than two groups?
+
+Given are the `r xfun::embed_file('marae.csv', text = "hypothetical sizes of TRB sites in Schleswig-Holstein by region and wetness")`.
+
+```{r}
+settlements <- read.csv("settlements.csv")
+{{settlements$wetness <- factor(settlements$wetness)}}
+head(settlements)
+```
+
+Question: Do the sizes of the settlements differ significantly in relation to the wetness?
+
+How to proceed?
+
+---
+
+## Multiple Tests [2]
+
+Intuitive, but problematic answer: We test all groups against each other if there is a significant difference.
+
+*Problem:* The more often we test, the more likely is a significant result 'by chance'.
+
+**Example:** We test 3 groups, therefore we need 3 tests:
+
+medium ↔ humid, humid ↔ arid, arid ↔ medium
+
+The probability, that the alternative hypothesis is wrong even with significant result, is with each test 0.05. With three tests, it becomes 0.15!
+
+With 100 tests, the expectation value becomes 5.0 (meaning, we expect 5 tests to show a wrong positive significance)!
+
+---
+
+## Multiple Tests [3]
+
+### Solution 1, valid for all tests: we correct the p-values, eg. with the Bonferroni correction
+
+The whole sequence of tests is regarded as one test. Therefore, the total p-value should be 0.05. Therefore, we devide for the individual tests the 0.05 by number of tests, to get the p-value for the individual tests.
+
+**Example:** We test 3 groups, therefore we need 3 tests:
+
+medium ↔ humid: p-value = $`r t.test(size~wetness, subset(settlements, wetness=="medium" | wetness=="humid"))$p.value `$
+humid ↔ arid: p-value = $`r t.test(size~wetness, subset(settlements, wetness=="arid" | wetness=="humid"))$p.value`$
+arid ↔ medium: p-value = $`r t.test(size~wetness, subset(settlements, wetness=="arid" | wetness=="medium"))$p.value`$
+
+```{r}
+p.adjust(c(0.2869584, 1.939408e-07, 3.436855e-05), method = "bonferroni")
+```
+
+The first result is not significant (admittedly, it was not before either).
+
+---
+class: middle, center
+
+## ANOVA
+
+---
+
+## Multiple Tests [4]
+
+### ANOVA: Comparison of multiple groups
+
+dependent variable: the variable to test (here size)
+
+independent variable: the grouping variable (here wetness)
+
+.pull-left[
+.tiny[
+```{r, fig.height=5}
+boxplot(size~wetness, data=settlements)
+```
+]
+]
+
+.pull-right[
+.tiny[
+```{r}
+summary(aov(size~wetness, data=settlements))
+```
+]
+
+There are significant differences, but where?
+
+]
+
+---
+
+## ANOVA [2]
+
+More detailled result:
+
+We analyse the result as linear model
+
+.tiny[
+```{r}
+summary.lm(aov(size~wetness, data=settlements))
+```
+]
+
+The first group (arid) is the control group. The others are compared to this. If we are interested in the differences between medium and other soils, we have to change the controll group to 'medium'.
+
+---
+
+## ANOVA [3]
+
+changing the control group:
+
+.tiny[
+```{r}
+wetness.new<-relevel(settlements$wetness, ref ="medium")
+summary.lm(aov(settlements$size~wetness.new))
+```
+]
+
+There is a significant difference between the control (medium) and arid soils.
+
+---
+
+## Site note: Overview with multiple t-tests (shortcut!)
+
+```{r}
+pairwise.t.test(settlements$size,settlements$wetness,
+p.adjust="bonferroni")
+```
+
+---
+
+## ANOVA [4]
+
+### two-factorial ANOVA
+
+.tiny[
+If we are interested in the influence of two grouping variables
+
+.pull-left[
+```{r}
+boxplot(size~regions, data=settlements)
+```
+]
+
+.pull-right[
+```{r}
+interaction.plot(settlements$wetness, settlements$regions,
+settlements$size)
+```
+
+]
+]
+---
+
+## ANOVA [5]
+
+```{r}
+summary(aov(size~wetness*regions, data=settlements))
+```
+
+**Notation in the formula**
+
+*: Interaction of the grouping variables are considered
+
++: grouping variables are considered as indipendent
+
+---
+
+## ANOVA [5]
+
+All the flavours of ANOVA
+
+### uni-factorial ANOVA
+one independent factor (grouping variable), one dependent variable (measurement)
+
+### two-/multi-factorial ANOVA
+two/multiple independent factor (grouping variable), one dependent variable (measurement)
+
+### multivariate ANOVA (MANOVA)
+two/multiple independent factor (grouping variable), multiple dependent variable (measurements)
+
