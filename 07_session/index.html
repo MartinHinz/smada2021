@@ -93,8 +93,8 @@ class: middle, center
 
 ## Possible test tree
 
-<div id="htmlwidget-416906d45f96ced8e4b4" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-416906d45f96ced8e4b4">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8f56a00dd4d4273a911f" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8f56a00dd4d4273a911f">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -522,13 +522,13 @@ t.test(A,B, var.equal=T)
 ## 	Two Sample t-test
 ## 
 ## data:  A and B
-## t = -1.5344, df = 38, p-value = 0.1332
+## t = -1.7675, df = 38, p-value = 0.08517
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9656279  0.1329675
+##  -1.2281221  0.0831989
 ## sample estimates:
 ##   mean of x   mean of y 
-## -0.05999625  0.35633399
+## -0.08246632  0.48999529
 ```
 ]
 ]
@@ -545,13 +545,13 @@ t.test(A,B, data=sim_data)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  A and B
-## t = -1.5344, df = 36.318, p-value = 0.1336
+## t = -1.7675, df = 35.995, p-value = 0.08562
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9664648  0.1338043
+##  -1.22932376  0.08440054
 ## sample estimates:
 ##   mean of x   mean of y 
-## -0.05999625  0.35633399
+## -0.08246632  0.48999529
 ```
 ]
 ]
@@ -566,7 +566,7 @@ In most of the cases (with small sample size), the Welch test will be slightly m
 
 What, if one compares more than two groups?
 
-Given are the <a href="data:text/csv;base64,c2l6ZSx2YWxsZXkKMi44NzEsdmFsbGV5MQoyLjUxNyx2YWxsZXkxCjIuMzQ2LHZhbGxleTEKMS40ODMsdmFsbGV5MQoxLjkyNCx2YWxsZXkxCjEuOTg4LHZhbGxleTEKMS44NDUsdmFsbGV5MQoyLjAwOSx2YWxsZXkxCjIuMTU4LHZhbGxleTEKMi41NTYsdmFsbGV5MQoxLjk1NCx2YWxsZXkxCjIuMDAzLHZhbGxleTEKMi4zNTMsdmFsbGV5MQoxLjg3LHZhbGxleTEKMS45NDIsdmFsbGV5MgoyLjE2OCx2YWxsZXkyCjIuMDQ2LHZhbGxleTIKMi4yMjEsdmFsbGV5MgoyLjMxMSx2YWxsZXkyCjIuMTQxLHZhbGxleTIKMS45NSx2YWxsZXkyCjIuNDAxLHZhbGxleTIKMi44MDcsdmFsbGV5MgoyLjc0LHZhbGxleTIK" download="marae.csv">hypothetical sizes of TRB sites in Schleswig-Holstein by region and wetness</a>.
+Given are the <a href="data:text/csv;base64,c2l6ZSxyZWdpb25zLHdldG5lc3MKNDEuMTYxLFN0ZWluYnVyZyxodW1pZAoyNi40OTcsS2llbCxodW1pZAozOS44OTQsRGl0aG1hcnNjaGVuLGh1bWlkCjE3Ljc4MyxOZXVtw7xuc3RlcixodW1pZAozNi4xNTgsUmVuZHNidXJnLUVja2VybmbDtnJkZSxodW1pZAoyNy4xODEsU3Rvcm1hcm4saHVtaWQKMjIuMjA4LFBsw7ZuLGh1bWlkCjIwLjE5NixTY2hsZXN3aWctRmxlbnNidXJnLGh1bWlkCjM2Ljc1LE9zdGhvbHN0ZWluLGh1bWlkCjMzLjQ0MixQbMO2bixodW1pZAozMi42NTQsTmV1bcO8bnN0ZXIsaHVtaWQKMzcuNTUsU3RlaW5idXJnLGh1bWlkCjI2Ljc0MixPc3Rob2xzdGVpbixodW1pZAoyNC4xMjEsSGVyem9ndHVtIExhdWVuYnVyZyxodW1pZAoyNC4yODEsT3N0aG9sc3RlaW4saHVtaWQKMzAuNjg4LERpdGhtYXJzY2hlbixtZWRpdW0KMTcuMjEyLEhlcnpvZ3R1bSBMYXVlbmJ1cmcsbWVkaXVtCjI4LjI2NCxOZXVtw7xuc3RlcixtZWRpdW0KMjEuMTY2LFNlZ2ViZXJnLG1lZGl1bQo5LjE3MSxQbMO2bixtZWRpdW0KMjkuOTc2LERpdGhtYXJzY2hlbixtZWRpdW0KMjkuMzgzLFN0b3JtYXJuLG1lZGl1bQozMC44OTUsSGVyem9ndHVtIExhdWVuYnVyZyxtZWRpdW0KMjkuMDE2LE5vcmRmcmllc2xhbmQsbWVkaXVtCjE3LjI5NSxGbGVuc2J1cmcsbWVkaXVtCjkuOTU2LFNjaGxlc3dpZy1GbGVuc2J1cmcsbWVkaXVtCjI3LjUwNCxOb3JkZnJpZXNsYW5kLG1lZGl1bQo0Ny41MTIsT3N0aG9sc3RlaW4sbWVkaXVtCjI4LjkzMSxPc3Rob2xzdGVpbixtZWRpdW0KMzcuMDU0LE9zdGhvbHN0ZWluLG1lZGl1bQoxMi4yOTQsU3Rvcm1hcm4sYXJpZAoxNi4wNjMsU2NobGVzd2lnLUZsZW5zYnVyZyxhcmlkCjAuNjUzLEZsZW5zYnVyZyxhcmlkCjExLjgxNixLaWVsLGFyaWQKMTQuNTc1LFBpbm5lYmVyZyxhcmlkCjAuNTk4LFN0b3JtYXJuLGFyaWQKMC40ODgsU2VnZWJlcmcsYXJpZAo5Ljc2OSxQaW5uZWJlcmcsYXJpZAo5LjI5NCxTZWdlYmVyZyxhcmlkCjI2LjE0OSxTZWdlYmVyZyxhcmlkCjIuMTM2LFBpbm5lYmVyZyxhcmlkCjI2LjQ3NyxOb3JkZnJpZXNsYW5kLGFyaWQKNC44ODEsRmxlbnNidXJnLGFyaWQKMy44OTMsRmxlbnNidXJnLGFyaWQKMS43MzUsTmV1bcO8bnN0ZXIsYXJpZAo=" download="settlements.csv">hypothetical sizes of TRB sites in Schleswig-Holstein by region and wetness</a>.
 
 
 ```r

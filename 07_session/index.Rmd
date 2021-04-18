@@ -497,7 +497,7 @@ In most of the cases (with small sample size), the Welch test will be slightly m
 
 What, if one compares more than two groups?
 
-Given are the `r xfun::embed_file('marae.csv', text = "hypothetical sizes of TRB sites in Schleswig-Holstein by region and wetness")`.
+Given are the `r xfun::embed_file('settlements.csv', text = "hypothetical sizes of TRB sites in Schleswig-Holstein by region and wetness")`.
 
 ```{r}
 settlements <- read.csv("settlements.csv")
