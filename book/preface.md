@@ -4176,10 +4176,10 @@ result
 ```
 
 ```
-## [1] 4.1
+## [1] 3.2
 ```
 
-Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can't implement a little script snippet here so that I can now state the result is 4.1. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let's try this out:
+Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can't implement a little script snippet here so that I can now state the result is 3.2. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let's try this out:
 
 
 ```r
@@ -4197,10 +4197,10 @@ result
 ```
 
 ```
-## [1] 3.48
+## [1] 3.32
 ```
 
-I am pretty optimistic that this time the value of 3.48 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.
+I am pretty optimistic that this time the value of 3.32 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.
 
 
 ```r
@@ -4218,10 +4218,10 @@ result
 ```
 
 ```
-## [1] 3.5143
+## [1] 3.5075
 ```
 
-The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.5143 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.
+The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.5075 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.
 
 **The relative frequency of the random results converges against the probability of the random result**
 
@@ -4815,8 +4815,8 @@ At last, nearly all parametric tests required variables that are metric scaled, 
 
 This means, that before we can apply an actual parametric test, often we have to determine whether our data quality is suitable for this test in the first place. And if this tests again have pre-requisites, this also might be necessarily checked with another test. From this, quite often cascades of tests emerge. Below, you can see a cascade for the application of the t-test.
 
-<!--html_preserve--><div id="htmlwidget-b9208c8c516d4caecc83" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b9208c8c516d4caecc83">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-8ee55bff2fa56c71f3be" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8ee55bff2fa56c71f3be">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 There are multiple versions of this kind of decision tree, and you find legions of them in the Internet or in the literature. We will start following the path from this decision tree, to end up with our t-test. At first, we will check for normality, then we will test our data, if the variances are homogeneous, and lastly we will apply the t-test to our data.
 
@@ -5434,13 +5434,13 @@ t.test(A,B, var.equal=T)
 ## 	Two Sample t-test
 ## 
 ## data:  A and B
-## t = -2.16, df = 38, p-value = 0.037
+## t = -0.774, df = 38, p-value = 0.44
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.446238 -0.045693
+##  -0.96078  0.42935
 ## sample estimates:
 ## mean of x mean of y 
-##  -0.20326   0.54271
+##   0.41493   0.68064
 ```
 
 
@@ -5453,13 +5453,13 @@ t.test(A,B, data=sim_data)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  A and B
-## t = -2.16, df = 33.7, p-value = 0.038
+## t = -0.774, df = 37.6, p-value = 0.44
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.449196 -0.042735
+##  -0.96100  0.42958
 ## sample estimates:
 ## mean of x mean of y 
-##  -0.20326   0.54271
+##   0.41493   0.68064
 ```
 
 In most of the cases (with small sample size), the Welch test will be slightly more unsure (the p-value will be slightly higher) to reject the null hypothesis. 

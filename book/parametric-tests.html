@@ -375,8 +375,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Especially in the case of the two sample test, often <strong>certain similarities between the two samples</strong> are required, so that the test can be applied. In the case of the ANOVA, variance homogenity is assumed, and it is necessary to contact this analyses in the correct way.</p>
 <p>At last, nearly all parametric tests required variables that are metric scaled, so interval or ratio scaled. The reason for this is that most parametric tests use actual calculated parametres from the data, and if these parameters cannot be calculated, because this is not possible with this data quality, of course they do not make any sense. When example here might be DF test, which is a test for variances. As the variance is defined as the deviation from the mean, it can only reasonably be expressed in situations where we can calculate the mean. As we have learnt earlier, the main can only be calculated with metric variables.</p>
 <p>This means, that before we can apply an actual parametric test, often we have to determine whether our data quality is suitable for this test in the first place. And if this tests again have pre-requisites, this also might be necessarily checked with another test. From this, quite often cascades of tests emerge. Below, you can see a cascade for the application of the t-test.</p>
-<div id="htmlwidget-b9208c8c516d4caecc83" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b9208c8c516d4caecc83">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8ee55bff2fa56c71f3be" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8ee55bff2fa56c71f3be">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>There are multiple versions of this kind of decision tree, and you find legions of them in the Internet or in the literature. We will start following the path from this decision tree, to end up with our t-test. At first, we will check for normality, then we will test our data, if the variances are homogeneous, and lastly we will apply the t-test to our data.</p>
 <hr />
 </div>
@@ -724,25 +724,25 @@ Solution
 ##  Two Sample t-test
 ## 
 ## data:  A and B
-## t = -2.16, df = 38, p-value = 0.037
+## t = -0.774, df = 38, p-value = 0.44
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.446238 -0.045693
+##  -0.96078  0.42935
 ## sample estimates:
 ## mean of x mean of y 
-##  -0.20326   0.54271</code></pre>
+##   0.41493   0.68064</code></pre>
 <div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="parametric-tests.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A,B, <span class="at">data=</span>sim_data)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  A and B
-## t = -2.16, df = 33.7, p-value = 0.038
+## t = -0.774, df = 37.6, p-value = 0.44
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.449196 -0.042735
+##  -0.96100  0.42958
 ## sample estimates:
 ## mean of x mean of y 
-##  -0.20326   0.54271</code></pre>
+##   0.41493   0.68064</code></pre>
 <p>In most of the cases (with small sample size), the Welch test will be slightly more unsure (the p-value will be slightly higher) to reject the null hypothesis.</p>
 </div>
 </div>
