@@ -52,6 +52,10 @@
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
 
 
 <style type="text/css">
@@ -303,6 +307,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7.2" data-path="basic-probability-theory.html"><a href="basic-probability-theory.html#sample-size"><i class="fa fa-check"></i><b>6.7.2</b> Sample size</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="parametric-tests.html"><a href="parametric-tests.html"><i class="fa fa-check"></i><b>7</b> Parametric tests</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="parametric-tests.html"><a href="parametric-tests.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="parametric-tests.html"><a href="parametric-tests.html#the-parametric-in-parametric-tests"><i class="fa fa-check"></i><b>7.2</b> The parametric in parametric tests</a></li>
+<li class="chapter" data-level="7.3" data-path="parametric-tests.html"><a href="parametric-tests.html#test-for-normal-distribution"><i class="fa fa-check"></i><b>7.3</b> Test for normal distribution</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="parametric-tests.html"><a href="parametric-tests.html#the-good-old-ks-test"><i class="fa fa-check"></i><b>7.3.1</b> The good old KS-Test</a></li>
+<li class="chapter" data-level="7.3.2" data-path="parametric-tests.html"><a href="parametric-tests.html#the-shapiro-wilk-test"><i class="fa fa-check"></i><b>7.3.2</b> The Shapiro Wilk test</a></li>
+<li class="chapter" data-level="7.3.3" data-path="parametric-tests.html"><a href="parametric-tests.html#visual-qq-plot"><i class="fa fa-check"></i><b>7.3.3</b> visual: QQ-plot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="parametric-tests.html"><a href="parametric-tests.html#f-test"><i class="fa fa-check"></i><b>7.4</b> F-Test</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="parametric-tests.html"><a href="parametric-tests.html#factsheet-f-test"><i class="fa fa-check"></i><b>7.4.1</b> Factsheet F Test</a></li>
+<li class="chapter" data-level="7.4.2" data-path="parametric-tests.html"><a href="parametric-tests.html#calculation-by-hand"><i class="fa fa-check"></i><b>7.4.2</b> Calculation by hand</a></li>
+<li class="chapter" data-level="7.4.3" data-path="parametric-tests.html"><a href="parametric-tests.html#f-test-in-r"><i class="fa fa-check"></i><b>7.4.3</b> F-Test in R</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="parametric-tests.html"><a href="parametric-tests.html#t-test"><i class="fa fa-check"></i><b>7.5</b> t-Test</a></li>
+<li class="chapter" data-level="7.6" data-path="parametric-tests.html"><a href="parametric-tests.html#facts-sheet-t-test-homogenuous-variances"><i class="fa fa-check"></i><b>7.6</b> Facts sheet t-Test (homogenuous variances)</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="parametric-tests.html"><a href="parametric-tests.html#calculation-by-hand-1"><i class="fa fa-check"></i><b>7.6.1</b> Calculation ‘by hand’</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="parametric-tests.html"><a href="parametric-tests.html#t-test-in-r"><i class="fa fa-check"></i><b>7.7</b> t-test in R</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="parametric-tests.html"><a href="parametric-tests.html#welch-test-t-test-for-inhomogenous-variances-with-welch-correction"><i class="fa fa-check"></i><b>7.7.1</b> Welch-Test (t-Test for inhomogenous variances with welch correction)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="parametric-tests.html"><a href="parametric-tests.html#multiple-tests"><i class="fa fa-check"></i><b>7.8</b> Multiple Tests</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="parametric-tests.html"><a href="parametric-tests.html#p-value-correction"><i class="fa fa-check"></i><b>7.8.1</b> p value correction</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="parametric-tests.html"><a href="parametric-tests.html#anova"><i class="fa fa-check"></i><b>7.9</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.9.1" data-path="parametric-tests.html"><a href="parametric-tests.html#facts-sheet-anova"><i class="fa fa-check"></i><b>7.9.1</b> Facts sheet ANOVA</a></li>
+<li class="chapter" data-level="7.9.2" data-path="parametric-tests.html"><a href="parametric-tests.html#doing-anova-by-hand"><i class="fa fa-check"></i><b>7.9.2</b> Doing Anova by hand</a></li>
+<li class="chapter" data-level="7.9.3" data-path="parametric-tests.html"><a href="parametric-tests.html#anova-in-r-more-advanced-topics"><i class="fa fa-check"></i><b>7.9.3</b> ANOVA in R, more advanced topics</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="parametric-tests.html"><a href="parametric-tests.html#summary"><i class="fa fa-check"></i><b>7.10</b> Summary</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -510,7 +551,7 @@ Solution
 ## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
 ## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
 ## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
-## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0 &quot;Special&quot;    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
 ## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
 ## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
 ## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
