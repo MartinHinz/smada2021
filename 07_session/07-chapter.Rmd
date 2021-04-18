@@ -301,7 +301,7 @@ From this, it becomes clear that the core of the data are distributed similarly 
 
 ## t-Test
 
-After going through this cascade of tests, finally we arrived at the test that we originally wanted to contact: the test for differences in mean of two samples:
+After going through this cascade of tests, finally we arrived at the test that we originally wanted to contact: the test for differences in mean of two samples. In the following, I will demonstrate how the t-test itself works. Be aware: formulas ahead! But don't fear! We will tame them together.
 
 ## Facts sheet t-Test (homogenuous variances)
 
@@ -320,99 +320,94 @@ If the means of both samples are within the standard error of the estimations of
 
 #### What do these facts mean
 
+The t-test is a test for difference in mean between two samples. But it is more than that. We assume in the first place, that the distribution of the values from our population is normally distributed. A ideal normal distribution has the mean and the mode at the same value, or at least very near. That means, that the main is also the most likely value. Lower and higher values are less likely. The more extreme the values get, the more unlikely they become. Such a distribution occur, when many small individual influences are present and shape the distribution of the values from a process. The resulting distribution function from such a situation result in the well-known bell shaped curve of a Gaussian or normal distribution.
+
+A normal distribution is defined by its mean and it's standard deviation, one can estimate with these values how likely value may result from such a distribution. And this comes handy, when one likes to compare two of these normal distributions in respect to their mean. The bigger the difference between the main values of two normal distributed population, the more unlikely it is that they can result from the same process. Or to put it simple: that they are the same.
 
 ![](../images/09_session/t_visualisation_1.png)
 .caption[source: I do not know any more...]
 
-
+But there is a second aspect to be considered: how much the distributions vary. With the same distance between the means, a differently large variability of the distributions can lead to differently accurate and reliable differentiation. If we have a small variability, then a small distance between the mean values is sufficient to reliably separate the two distributions. Conversely, if we have a very high variability, then the two distributions overlap considerably more. In this case, the distance between the mean values must be much greater in order to achieve a clear separation. Therefore, a test for the difference in mean values must take three parameters into account: the number of cases, the variability, and only then the actual distance between the mean values of the two samples.
 
 ![](../images/09_session/t_visualisation_2.png)
 .caption[source: I can not remember, either...]
 
+The number of cases and variability are covered by the standard error. If you have already read the advanced chapter on distributions, you know that the standard error is calculated by the standard deviation divided by the square root of the number of cases. This means that for the same variability, if the number of cases is large, the standard error becomes smaller. This is related to the law of large numbers. Mean values of populations, which is what we are concerned with, can be estimated with greater certainty by large samples. The standard error is expressed in the units of measurement. This is because the standard deviation is in the units of measurement, and is only divided by the unitless number of cases.
+
+From these considerations emerges the formula for the t-test: we relate the difference between the means (our signal for a difference) to the standard error (our measure for the noise in the data). If the difference between the means is large, the resulting value will also be large. Conversely, if the variability of the data is large, the will also be small. 
 
 ![](../images/09_session/t_visualisation_3.png)
 .caption[source: Guess what...]
 
----
-## t-Test, homogenuous variances [2]
+We can compare the resulting distribution with a theoretical distribution, the 'Student's t-distribution' (the name is only indirectly related to students, as the ' inventor' of this distribution has published it under the pseudonym ' Student'). Without a statistics programme, pre-calculated tables are used here, as we already know.
 
 ### Calculation 'by hand'
 
-example blade length
+Let's try this out by calculating it by hand. Here we again use the data set of the flint blades, for which we found in the F test that the variances do not differ significantly from each other. We have already calculated the mean values for the F test. They are `r mean(blade_length$length[blade_length$site == 'site1'])` with a number of cases of `r length(blade_length$length[blade_length$site == 'site1'])` for the first site, and `r mean(blade_length$length[blade_length$site == 'site2'])` at a case number of `r length(blade_length$length[blade_length$site == 'site2'])` for the second. Also, we have already calculated the variance for both cases: `r round(var(blade_length$length[blade_length$site == 'site1']),5)` for site 1 and `r round(var(blade_length$length[blade_length$site == 'site2']),5)` for site 2.
 
-site 1, site 2
-
-.pull-left[
 $n_1 = 20; \bar{x_1} = 20.015 ; s^2_1 = 40.20871$
+
 $n_2 = 25; \bar{x_2} = 20.492 ; s^2_2 = 33.0641$
+
+We start from our considerations and the resulting formula:
 
 $t = \frac{difference\ between\ group\ means}{variability\ of\ groups}$
 
 $t = \frac{\bar{x_1} - \bar{x_2}}{SE_{(\bar{x_1}-\bar{x_2})}}$
-]
 
-.pull-right[
+We have already calculated the mean values whose difference we want to assess. We now have to divide their difference by the standard error. To make it easier for us mathematically, we change the formula for the standard error so that we can calculate it from the variance. Since the variance is nothing other than the square of the standard deviation, we can replace the standard deviation with the variance when we pull it under the square root.
 
 $SE = \frac{s}{\sqrt{n}} = \sqrt{\frac{s^2}{n}}$
 
+Since we can assume that the variances are equal, we can use an averaged pooled variance. We have to estimate two means, so there result two standard errors for us (Once for the first sample, once for the second sample). We calculate only one variance. That is, we divide this variance by the number of cases in each sample, and add up both resulting standard errors.
+
 $SE_{(\bar{x_1}-\bar{x_2})} = \sqrt{\frac{S^2}{n_1} + \frac{S^2}{n_2}}$
 
+We now calculate the pooled variance by adding up the individual variances. Here we carry out a weighting: according to the number of cases of the individual samples, their variances are to be weighted more or less strongly. To do this, we multiply the respective variances by the number of cases, add them up, and then divide by the total number of cases. In all cases -1, since we are dealing with empirical data, and we normalise to the degrees of freedom.
+
 $S^2 = \frac{(n_1-1)*s_1^2 +  (n_2-1) * s_2^2}{n_1 + n_2 - 2}$
+
+With this, we have our entire toolbox together: we started from a general consideration (the difference in means must be normalised with respect to the variability of the groups). From this we derived a formula, which we then further specified piece by piece. In the end, we have three formulas, where we can insert our values into the last one (the formula for the weighted pooled variance). We then put the result into the formula for the standard error, and with its result we then calculate our t-value.
+
+Actually quite simple in each case, this procedure applies a rule that is very well known in computer science, and not completely foreign to archaeologists either: divide and conquer! When you have a complex problem, you try to divide it into simple problems, which you then solve individually. In the end, you put your puzzle pieces back together and get the complex overall result.
 
 $S^2 = \frac{(20-1)*40.20871 + (25-1)*33.0641}{20+25-2} = 36.22102$
 
 $SE_{(\bar{x_1}-\bar{x_2})} = \sqrt{\frac{36.22102}{20} + \frac{36.22102}{25}} = 1.805517$
 
-]
-
----
-## t-Test, homogenuous variances [3]
-
-### Calculation 'by hand'
-
 $t = \frac{20.015−20.492}{1.805517} = −0,26419$
+
+So, here we have our t-value. As already indicated above, this is to be compared with the 'Student's t-distribution' in order to determine significance. This is calculated via the number of degrees of freedom, and the distribution can then be used to read off the threshold value corresponding to a specific significance level. The number of our degrees of freedom is calculated by adding the number of cases, each -1.
 
 $df = (n_1 − 1) + (n_2 − 1) = n_1 + n_2 − 2 = 20 + 25 − 2= 43$
 
-Looking up in table (eg. Shennan): df = 43; sig. level = 0.05
+If we use R, then this value is calculated in R from the distribution. If we do it by hand, we again use the tables in which these values are pre-calculated, for example from the Stephen Shennan book. With the corresponding parameters (df = 43; sig. level = 0.05) we find the threshold value of 2.021. This means that our result is not significant.
 
-possible differences bigger - smaller, therefore two tailed question
+Note: for the comparison we use the absolute value of the difference, or the t-value. For the magnitude of the difference, it does not matter whether we subtract the larger from the smaller mean value or vice versa. Mathematically, swapping the samples makes no difference, except that the value becomes positive or negative. I have named the sample with the larger mean value as the second sample in order to make the result of our manual calculation equal to the value that is calculated in R.
 
-threshold: 2.021
+There is no significant difference in the means of both samples, which could originate from the same population (statistically speaking). However, this does not mean (even if it is boring by now, but repetition is a drag) that we have proven that they come from exactly the same population. Since the test result also depends on the number of cases, this only means that the difference is not large enough that this could not have happened by chance (with less than five percent probability).
 
-**not significant**, we can not reject the null hypothesis
+## t-test in R
 
-There is no significant difference in the means of both samples, the could originate from the same population (statistically speaking).
+As is often the case, after this rather long presentation of the background and the calculation by hand, the part showing how we perform this test in R will be quite short and unspectacular. Let's take another look at the core properties of the t-test:
 
----
-
-## t-Test, homogenuous variances [4]
-
-Test for the comparison of the means of two samples.
-
-If the means do differ significantly, it is assumed that both samples come from different population (in the statistical sense).
-
-
-**requirements**: two independend normal distributed sample of a metric scaled variable with homogenous variances
+**requirements**: two independent normal distributed sample of a metric scaled variable with homogenous variances
 
 $H_0$ The populations of both samples have the same mean
 
 $H_1$ The populations of both samples have a different mean
 
-.tiny[
+This is important in order to be able to interpret the bare number result of a statistical test correctly in R. Always make sure you are testing against the correct null hypothesis!
+
+The actual command for the test is now `t.test()`. This test understands the formula notation, and so we use it. We test the mean values of the lengths of the flint blades (column `length`) depending on where they were found (column `site`). Since the t-test in R (similar to what we already know from the Chi-square test) assumes worst case by default, we must explicitly state that we consider the variances to be equal. This is done specifying the parameter `var.equal=T`.
+
 ```{r}
 t.test(length ~ site, data=blade_length, var.equal=T)
 ```
 
-]
+In the result, we see that the p-value of 0.7929 is definitely not significant. In addition, we see many numbers again that we already know from our calculation by hand. On top of that, there is the 95 % confidence interval. This means that with a difference between -4.1 and +3.1 we could not determine a significant difference between the mean values (corresponding to our number of cases and the variance of the data).
 
-**not significant**, we can not reject the null hypothesis
-
----
-class: inverse
-
-## Excercise t-test
-
+:::{.exercise}
 Again the (logarithmic) sizes of ritual enclosures at the Society Islands
 (Example by Shennan)
 
@@ -421,225 +416,320 @@ Given are the (logarithmic) sizes of ritual enclosures in two valleys at the Soc
 Please check whether both valleys are different in respect to the mean sizes of the enclosures!
 
 **file**: `r xfun::embed_file('marae.csv', text = "marae.csv")`
+:::
 
----
+<details><summary>Solution</summary>
 
-## Welch-Test (t-Test for inhomogenous variances with welch correction)
+If we no longer have the data present in R, we have to reload the data set:
 
-### If homogenity precondition is not fulfilled
+```{r}
+marae <- read.csv("marae.csv")
+```
 
-approximation of the results by correction of degrees of freedom
+Now it is trivial: we execute the command for the t-test with the new data.
+
+```{r}
+t.test(size ~ valley, data = marae, var.equal = T)
+```
+
+As we have already seen from the box plot, these distributions are very similar. Consequently, the t-test cannot detect any significance differences with regard to the mean values.
+
+I take this opportunity to introduce a useful little feature of the box plot: the notches. These can be used to visually test for differences in this time the **medians** of both distributions (after McGill et al 1978, p. 16).
+
+```{r}
+boxplot(size ~ valley, data = marae, notch=T)
+```
+
+So we found that the mean (and median) values are not significantly different from each other.
+
+</details>
+
+
+### Welch-Test (t-Test for inhomogenous variances with welch correction)
+
+If the variances of the two distributions differ significantly from each other, then the normal t-test should not be used. Instead, one can use a variant known as the Welch test. In this case I will not go into the background, the mechanics are very similar to those of the normal test. In R, the differences are also marginal: we only have to omit the parameter for equality of variances.
+
+For demonstration purposes, we use a modified data set of the flint blades data where the variances are significantly different:
 
 `r xfun::embed_file('blade_length3.csv', text = "blade_length3.csv")`
 
-.pull-left[
-.tiny[
 ```{r}
 blade_length3 <- read.csv("blade_length3.csv")
 
 var.test(length ~ site, data = blade_length3)
 ```
-]
-]
 
-.pull-right[
-.tiny[
-```{r}
-t.test(length ~ site, data = blade_length3)
-```
-]
-]
----
+As a result, we do not obtain a significant result here either: also in the modified data set with unequal variances, no significant difference can be found between the mean values.
 
-## Welch-Test (t-Test for inhomogenous variances with welch correction)
+The Welch test is therefore more robust than the normal test, it makes fewer pre-assumptions. But this comes at a price (albeit a rather small one): the test strength is somewhat lower than with a t-test, which can assume equal variances. We can demonstrate this with a small simulation: We create two samples of the same size, both are randomly normally distributed. For the second sample we add 0.5 to the normally distributed random value. So we know that both samples should differ in terms of their mean values.
 
-### Comparison of test power
-
-Tests with lesser preconditions to the data often have lesser power
 
 ```{r}
 A <- rnorm(20)
 B <- rnorm(20) + 0.5
 ```
 
+Jetzt führen wir beide Testvarianten durch:
 
-.pull-left[
-.tiny[
 ```{r}
 t.test(A,B, var.equal=T)
 ```
-]
-]
 
-.pull-right[
-.tiny[
 ```{r}
 t.test(A,B, data=sim_data)
 ```
-]
-]
 
-In most of the cases (with small sample size), the Welch test will be slightly more unsure to reject the null hypothesis.
+In most of the cases (with small sample size), the Welch test will be slightly more unsure (the p-value will be slightly higher) to reject the null hypothesis. 
 
----
+## Multiple Tests
 
-## Multiple Tests [1]
+What I will discuss below is relevant to any kind of statistical test, in fact to any kind of statistical investigation that estimates a probability and comes up with a P value. It can be explained well in the context of parametric tests, but is not limited to them.
 
-**The following is important for all statistical tests!**
-
-What, if one compares more than two groups?
-
-Given are the `r xfun::embed_file('marae.csv', text = "hypothetical sizes of TRB sites in Schleswig-Holstein by region and wetness")`.
+Let us imagine that we do not want to compare two groups within a data set, but more. For example, three.  Given are the `r xfun::embed_file('settlements.csv', text = "hypothetical sizes of TRB sites in Schleswig-Holstein by region and wetness")`. One could hypothesise that the size of the settlement depends on environmental factors, for example the moisture of the subsoil. We know, for example, that in wet-soil conditions, at least in northern Germany, unlike in Switzerland, fewer normal settlements and rather, for example, hunting stations have been built. This hypothesis now needs to be tested with our data set (which, however, contains simulated data).
 
 ```{r}
 settlements <- read.csv("settlements.csv")
 {{settlements$wetness <- factor(settlements$wetness)}}
 head(settlements)
+
+table(settlements$wetness)
 ```
 
-Question: Do the sizes of the settlements differ significantly in relation to the wetness?
+Please note the highlighted line. With a recent update of R, a basic setting has changed when loading data. Data representing letters were previously automatically converted to factor variables. Since the update, this is no longer the case. Therefore, this line differs from the code snippet that appears in the practice video. Immediately here, this has no impact, but further down, when we deal with ANOVA and the re-factoring of data, this line is now crucial. In it, we explicitly convert the variable wetness into a factor variable.
 
-How to proceed?
+If we load and examine the data set, we will find that the category wetness has not two, but three classes (arid, humid, medium). How should we proceed if we want to determine whether the category has a significant influence on settlement size?
 
----
+The answer that may first come to mind is the following (I'm just assuming): we test for significant differences between the individual classes with a t-test. That is, we test arid against humid, humid against medium, and medium against arid. (Side note: we can easily calculate the number of tests needed by applying the combinatorics rules: we have three possible outcomes, n, and two draws, k, first and second category. The order does not matter. I.e., we would have to calculate the binomial coefficient. The result will be three. Never let an opportunity for a repetition go to waste).
 
-## Multiple Tests [2]
+The problem, however, is that each of these tests (with a significance level of 0.05) has an error probability of 5%. That is, we have a 95% chance of correctly rejecting the null hypothesis. Since the individual tests are to be considered independent events, we MUST multiply the individual probabilities to arrive at the overall probability that we do not incorrectly reject the null hypothesis for any of the tests. I.e.: $0.95 * 0.95 * 0.95 = `r round(0.95 * 0.95 * 0.95, 2)`$! (By the way, I explained this somewhat incorrectly in the presentation). If we turn that around, we only have a probability of $1-0.95 * 0.95 * 0.95 = `r round(1 - 0.95 * 0.95 * 0.95, 2)`$ oder $1-0.95 * 0.95 * 0.95 = `r round(1 - 0.95 * 0.95 * 0.95, 2) * 100`$% that any of the tests indicate statistical significance, although the null hypothesis should not actually be rejected.
 
-Intuitive, but problematic answer: We test all groups against each other if there is a significant difference.
+So what can we do to arrive at a correct result overall?
 
-*Problem:* The more often we test, the more likely is a significant result 'by chance'.
+### p value correction
+
+The simplest possibility is to correct the P values accordingly. There are various procedures for this, which are complex in different escalation levels. We limit ourselves here to the simplest variant, which is also the most conservative (i.e. we play it safe). In this variant, we set the overall probability of error for all tests on the same data set to 0.05, as we would also expect for the individual test. Now we relate this value to the number of tests we perform on this data set. This method is also called Bonferroni correction.
+
+There are only two ways to approach it: either you want to stick to a figure for the significance level of 0.05 for the individual tests. Then one multiplies the P values of the individual tests by the total number of tests performed.
+
+$p_i^* = p_i *n_{tests}$
+
+So if previously the test showed a p-value of 0.02, and we did three tests, we get a new p-value of 0.06. If previously the test had a significant result, it no longer has one when the problem of multiple testing is taken into account.
+
+However, instead of changing our P values, we could also adjust our significance level ($\alpha = 0.05$) according to the test configuration. Then we would not have to carry out three calculations for the individual P values, but only one, in which we calculate a new significance level, which now has to be undercut.
+
+$p_i^* < \frac{\alpha}{n_{tests}}$
+
+In both cases, the result is logically the same.
+
+In R ist, neben anderen Methoden, die Bahn für Ronny Korrektur in der ersten Variante implementiert. D.h., wir können einen Befehl benutzen, in denen wir unsere bisherigen Signifikanzwerte einfügen, und diese werden dann entsprechend der Zahl der Tests korrigiert.
+
+Solution 1, valid for all tests: we correct the p-values, eg. with the In R, among other methods, the Bonferroni correction is implemented in the first variant. That is, we can use a command in which we insert our previous significance values and these are then corrected according to the number of tests.
 
 **Example:** We test 3 groups, therefore we need 3 tests:
 
-medium ↔ humid, humid ↔ arid, arid ↔ medium
+* medium ↔ humid: p-value = $`r t.test(size~wetness, subset(settlements, wetness=="medium" | wetness=="humid"))$p.value `$
 
-The probability, that the alternative hypothesis is wrong even with significant result, is with each test 0.05. With three tests, it becomes 0.15!
+* humid ↔ arid: p-value = $`r t.test(size~wetness, subset(settlements, wetness=="arid" | wetness=="humid"))$p.value`$
 
-With 100 tests, the expectation value becomes 5.0 (meaning, we expect 5 tests to show a wrong positive significance)!
-
----
-
-## Multiple Tests [3]
-
-### Solution 1, valid for all tests: we correct the p-values, eg. with the Bonferroni correction
-
-The whole sequence of tests is regarded as one test. Therefore, the total p-value should be 0.05. Therefore, we devide for the individual tests the 0.05 by number of tests, to get the p-value for the individual tests.
-
-**Example:** We test 3 groups, therefore we need 3 tests:
-
-medium ↔ humid: p-value = $`r t.test(size~wetness, subset(settlements, wetness=="medium" | wetness=="humid"))$p.value `$
-humid ↔ arid: p-value = $`r t.test(size~wetness, subset(settlements, wetness=="arid" | wetness=="humid"))$p.value`$
-arid ↔ medium: p-value = $`r t.test(size~wetness, subset(settlements, wetness=="arid" | wetness=="medium"))$p.value`$
+* arid ↔ medium: p-value = $`r t.test(size~wetness, subset(settlements, wetness=="arid" | wetness=="medium"))$p.value`$
 
 ```{r}
 p.adjust(c(0.2869584, 1.939408e-07, 3.436855e-05), method = "bonferroni")
 ```
 
-The first result is not significant (admittedly, it was not before either).
+After we corrected the p-values that actually result from the individual t-tests, the first result is not significant (admittedly, it was not before either). This means that we can find statistical significance in the difference between humid and arid conditions and between arid and medium dry conditions. However, no statistically significant difference can be found between medium and humid.
 
----
-class: middle, center
+The whole thing can also be done within one run or one command, for which there is the so-called `pairwise.t.test()`. This command does nothing other than compare the individual groups with each other depending on the value of the factor variable, in our case wetness. In addition, you can directly specify a desired P value correction.
+
+```{r}
+pairwise.t.test(
+   settlements$size,
+   settlements$wetness,
+   p.adjust="bonferroni")
+```
+
+Another possibility is to use a test that is specifically designed for more than two possible groups. We will get to know such a test in the next section.
 
 ## ANOVA
 
----
+The idea of ANOVA (ANalysis Of VAriances) is very similar to that of the t-test. Here too, the variance within samples (groups) is compared with the variance between these groups. The variance between the groups is again determined by the mean value. An ANOVA can only be used if you have a metrically scaled target variable and a grouping variable with more than two values results in more than two samples.
 
-## Multiple Tests [4]
+### Facts sheet ANOVA
 
-### ANOVA: Comparison of multiple groups
+Analysis of the differences between the mean values of samples from different groups.
 
-dependent variable: the variable to test (here size)
+If the variance of the mean values of the groups is greater than the variance within the groups, then it can be assumed that the grouping has an influence on the mean values.
 
-independent variable: the grouping variable (here wetness)
+**requirements**: one metric scaled target variable (dependent) and one grouping variable (independent)
 
-.pull-left[
-.tiny[
-```{r, fig.height=5}
-boxplot(size~wetness, data=settlements)
+$H_0$ The populations of the samples have the same mean (within the group variance)
+
+$H_1$ The populations of the samples have a different mean (within the group variance)
+
+Basic idea: If the variance of the means of the samples is bigger than the variance within the sample to a certain degree, than the difference in mean is meaninful
+
+#### What do these facts mean
+
+From the basic description and the information on the key data of the test, it seems that it is very similar to the t-test. And that is no coincidence. The basic idea is definitely the same: the difference between the mean values of the individual samples in relation to the variability within the samples. The main distinction lies in the fact that we are not dealing directly with the difference between two mean values. This is mainly because with more than two values, a difference can no longer be meaningfully used as a measure of distinctness.
+
+$t = \frac{difference\ between\ group\ means}{variability\ of\ groups}$
+
+Instead, this test focuses very intensively on variance. This is where its name comes from. The summed variance within the groups is used as a measure of the variability of the groups themselves. However, the variance of the means of the individual groups in relation to the overall mean is used as the measure of distinctiveness.
+
+$t = \frac{variability\ of\ the\ group\ means}{variability\ of\ groups}$
+
+### Doing Anova by hand
+
+We remember: the variance is calculated by summing the squares of the deviations from the mean. If we are talking about a population mean, then the formula is simple:
+
+$S^2 = \frac{\sum_{i=1}^{n} (\bar x - x_i)^2}{N}$
+
+The upper part in the denominator is also called the sum of the squares, the whole mean sum of the squares (MSS). We will now calculate the mean sum of squares for the individual means of the groups, and divide by the mean sum of squares for the groups. The resulting test statistic is called the F statistic, and it is compared against the F distribution, just as in the F test.
+
+$F = \frac{MSS_{between}}{MSS_{within}}$
+
+Let's approach this with our data set. First we need the mean values. These look like this:
+
+```{r echo=FALSE}
+humid <- subset(settlements, wetness=="humid")$size
+arid <- subset(settlements, wetness=="arid")$size
+medium <- subset(settlements, wetness=="medium")$size
+
+m_h <- mean(humid)
+m_a <- mean(arid)
+m_m <- mean(medium)
+
+m_t <- mean(c(m_h,m_a,m_m))
+
+mssb <- ((m_t - m_h)^2*length(humid) + (m_t - m_a)^2*length(arid) + (m_t - m_m)^2*length(medium))/
+   2
+
+mssw <- sum((humid - m_h)^2 + (arid - m_a)^2 + (medium - m_m)^2)/
+   (nrow(settlements)-3)
 ```
-]
-]
 
-.pull-right[
-.tiny[
+* Humid $\mu_h$: `r round(m_h,2)`
+* Arid $\mu_a$: `r round(m_a,2)`
+* medium $\mu_m$: `r round(m_m,2)`
+
+Furthermore, we need the total mean value to be able to determine the variance of the group means:
+
+* Total mean $\mu_t$: `r round(m_t,2)`
+
+First, we calculate exactly this variance of the group means. To do this, we subtract the total mean value from each of our groups and square the result. Then we divide it by the sum of the degrees of freedom, since we are dealing with an empirical, estimated value and not with the value for the population.
+
+$MSS_{between} = \frac{\sum_{i=1}^{n} (\mu_i-\mu_t)^2}{n-1}$
+
+If we put in our values (df=2, because we have 3 mean values, less one), we get the following:
+
+$MSS_{between} = \frac{(\mu_h-\mu_t)^2 + (\mu_a-\mu_t)^2 + (\mu_m-\mu_t)^2}{3-1} = \frac{(`r round(m_h,2)`-`r round(m_t,2)`)^2 + (`r round(m_a,2)`-`r round(m_t,2)`)^2 + (`r round(m_m,2)` - `r round(m_t,2)`)^2}{3-1} = `r mssb`$
+
+Second, we need to calculate the mean sum of squares for the variability within the groups. Again for this we determine the mean of the individual variances, this time within the groups.
+
+$MSS_{within} = \frac{\sum_{j=1}^{n}\sum_{i=1}^{n_j} (x_i - \bar{x})^2}{n-n_j}$
+
+Wow, stop! Two sums of signs in a row! Don't panic, we'll quickly take that apart: we have three cases, and over these three cases we have to determine the variances in each case with respect to the means of each of these groups. This is done in the inner summation sign. In the outer sign, these variances are then added together. With three cases, the whole thing can also be written as follows without any problems:
+
+$MSS_{within} = \frac{\sum_{i=1}^{n_h} (h_i - \bar{h})^2 + \sum_{i=1}^{n_a} (a_i - \bar{a})^2 + \sum_{i=1}^{n_h} (m_i - \bar{m})^2}{45-3} = `r mssw`$
+
+Here h, a & m stand for our humid, arid and medium groups respectively. I will spare us all the trouble of writing out the individual measured values here. Practically, it just means that we subtract each individual value from the mean value for each group, square the result and add up the total for all entries. The degrees of freedom result from the total number of cases in our data set, minus the number 3, which stands for the three groups, or the mean values calculated from these groups.
+
+Now we have the mean sum of squares for the mean values of the groups, as a measure of the difference between the groups, and the mean sum of squares for the groups themselves, as a measure of the dispersion of the data as a whole. Now you can relate the two values by dividing the difference between the groups by the difference within the groups.
+
+$F = \frac{MSS_{between}}{MSS_{within}} = `r mssb/mssw`$
+
+With this we have calculated our F value for the Anova. By the way, the whole thing could look like this in R:
+
+```{r}
+# Subdivide the data set
+humid <- subset(settlements, wetness=="humid")$size
+arid <- subset(settlements, wetness=="arid")$size
+medium <- subset(settlements, wetness=="medium")$size
+
+# Calculate the group means
+m_h <- mean(humid)
+m_a <- mean(arid)
+m_m <- mean(medium)
+
+# Calculate the overall mean
+m_o <- mean(c(m_h,m_a,m_m))
+
+# Numerator, the Mean Sum of Squares of the Group Means
+mssb <- ((m_o - m_h)^2*length(humid) + (m_o - m_a)^2*length(arid) + (m_o - m_m)^2*length(medium))/
+   2
+# Denominator, the Mean Sum of Squares of the within the Groups
+mssw <- sum((humid - m_h)^2 + (arid - m_a)^2 + (medium - m_m)^2)/
+   (nrow(settlements)-3)
+
+# Final Result
+mssb/mssw
+```
+
+Well, of course it can also be much shorter in R:
+
 ```{r}
 summary(aov(size~wetness, data=settlements))
 ```
-]
 
-There are significant differences, but where?
+As you can see, we find here the values that we calculated by hand. We have not written out the square sums themselves, but we have determined the mean sum of the squares as well as the F value. The decisive factor is of course, as always, the P value, which is listed here under 'Pr(>F)'. We also see three stars at the end, which indicates that we are dealing with highly significant results.
 
-]
+Although there is no table for the ANOVA in Steven Shennan's book, one can be found, for example, [under this link](https://web.ma.utexas.edu/users/davis/375/popecol/tables/f005.html). This shows that with a degree of freedom of 1 (group means) = 2 and a degree of freedom of 2 (within groups) = 42, the threshold value is about 4.08. Our F value is much higher, so even without the computer, it is statistically significant. Admittedly, it is easier with R...
 
----
+### ANOVA in R, more advanced topics
 
-## ANOVA [2]
+#### More detailed output and changing the control group
 
-More detailled result:
+So now we know that humidity is a significant factor in the size of settlements. Let's look at the distribution of the data using a box plot:
 
-We analyse the result as linear model
+```{r, fig.height=5}
+boxplot(size~wetness, data=settlements)
+```
 
-.tiny[
+In fact, this should always be one of the first steps before starting the actual data analysis. It is important to look at the distribution of the data first. Es ist offensichtlich, dass arid hier den Ausreisser darstellt. Das hatte uns ja auch schon der korrigierte t-test gezeigt. Wie aber kommen wir jetzt zu einer Teststatistik, die uns auch das mit Hilfe der ANOVA vorweisen kann?
+
+To do this, you have to fit a model to the values and use it to do an analysis of variances. What exactly happens in the process, not to mention how it could be done by hand, is far beyond our course. It doesn't matter, because we will simply look at the result. To do this, we put the result of the ANOVA into the command `summary.lm'.
+
 ```{r}
 summary.lm(aov(size~wetness, data=settlements))
 ```
-]
 
-The first group (arid) is the control group. The others are compared to this. If we are interested in the differences between medium and other soils, we have to change the controll group to 'medium'.
+The first group (arid) is the so called control group. This means, that the others are compared to this group. Therefore, we only see humid and medium in the coefficients. And of the two, arid is obviously significantly different. If we are interested in the differences between medium and other soils, we have to change the control group to 'medium'. However, this is not a separate new test that would require a P value correction. We just run the same test again and change the perspective on the result.
 
----
+To change the control group, we can reassign the levels for the factor variable. This is done with the command `relevel()`. In this case, however, I do not actually overwrite the original variable, but move the result into the new variable. You don't have to do this, but it is an additional possibility. In the command itself, I enter the factor value that I want to use as the new control group as a parameter. All analyses are then carried out with reference to this group and its properties.
 
-## ANOVA [3]
-
-changing the control group:
-
-.tiny[
 ```{r}
 wetness.new<-relevel(settlements$wetness, ref ="medium")
 summary.lm(aov(settlements$size~wetness.new))
 ```
-]
 
-There is a significant difference between the control (medium) and arid soils.
+There is a significant difference between the control (medium) and arid soils. However, there is no significant difference compared to the "Humid" group.
 
----
+#### two-factorial ANOVA
 
-## Site note: Overview with multiple t-tests (shortcut!)
+The following can indeed only be a preview, intended to show you the direction in which one can go with ANOVA. Despite the basic simplicity of the procedure, it can be a very versatile tool. For example, one can also analyse the influence of two or more grouping variables, and in doing so, address mutual conditionalities of the variables.
 
-```{r}
-pairwise.t.test(settlements$size,settlements$wetness,
-p.adjust="bonferroni")
-```
+If we are interested in the influence of two grouping variables, we simply begin by visualising. The data set also has a regional allocation of the individual sites. We can also display this by means of a box plot. Since there are quite a lot of regions, this is quite confusing.
 
----
-
-## ANOVA [4]
-
-### two-factorial ANOVA
-
-.tiny[
-If we are interested in the influence of two grouping variables
-
-.pull-left[
 ```{r}
 boxplot(size~regions, data=settlements)
 ```
-]
 
-.pull-right[
+
+Eine Hypothese könnte ja sein, dass sich Feuchtigkeit in unterschiedlichen Regionen unterschiedlich stark ausprägt. An der Küste könnte ein feuchter Untergrund zu anderen Siedlungsprozesse und führen als zum Beispiel im Binnenland. Um das Zusammenspiel von zwei nominalen variablen darzustellen, eignet sich ein so genannter `interaction.plot()`.
+
 ```{r}
-interaction.plot(settlements$wetness, settlements$regions,
-settlements$size)
+interaction.plot(
+   settlements$wetness,
+   settlements$regions,
+   settlements$size)
 ```
 
-]
-]
----
+Here we have the mean values displayed in relation to the first category, and the second category is indicated, for example, by the line style. By looking at this plot, we can see, for example, whether the values are moving in the same direction in all regions, or whether there are regional differences. Again, admittedly, the amount of regional categories is too high to achieve a satisfactory representation. But one can draw conclusions from the basic arrangement: if the different categories had the same effect on settlement size everywhere, then the lines would all run more or less parallel.
 
-## ANOVA [5]
+A more detailed analysis allows the two-factor ANOVA. Instead of assuming the dependence of the size only for wetness, we now make the size dependent on wetness and region. Here we now start to think in terms of models. Let it be said that all modelling and are only more complex versions of this reasoning. Now we have to decide whether we assume that humidity and region influence each other or whether both factors are independent of each other. In our example it is clear that the humidity also depends on the region. Therefore, we connect both parameters with a timesign (*). If we assume that the variables are independent, then we only add up their influences and therefore they would be connected by a + in the formula.
 
 ```{r}
-summary(aov(size~wetness*regions, data=settlements))
+summary(aov(size ~ wetness * regions, data = settlements))
 ```
 
 **Notation in the formula**
@@ -648,18 +738,16 @@ summary(aov(size~wetness*regions, data=settlements))
 
 +: grouping variables are considered as indipendent
 
----
+The result of this analysis shows that size is dependent on wetness, but not on region. Also, the interaction of wetness and region has no significance in influence. This is pretty much the way I simulated this data.
 
-## ANOVA [5]
+But this is not all. There is a third variant of the ANOVA. In total, the following variants exist:
 
-All the flavours of ANOVA
+* **uni-factorial ANOVA**: one independent factor (grouping variable), one dependent variable (measurement). This is the variant that we calculated first and also by hand.
 
-### uni-factorial ANOVA
-one independent factor (grouping variable), one dependent variable (measurement)
+* **two-/multi-factorial ANOVA**: two/multiple independent factor (grouping variable), one dependent variable (measurement). This is the variant that I demonstrated just above.
 
-### two-/multi-factorial ANOVA
-two/multiple independent factor (grouping variable), one dependent variable (measurement)
+* **multivariate ANOVA (MANOVA)**: two/multiple independent factor (grouping variable), multiple dependent variable (measurements). Here we can check the effect of several grouping variables on several measured variables at the same time and find significant relationships. This can also be called a shotgun approach, because it is a way of trying to detect large numbers of statistically significant differences as quickly as possible. However, it must be noted that statistical significance is not necessarily scientific significance. Here, too, a significance level of 0.05 remains. Every 20th significant result is therefore a random effect (on statistical average...).
 
-### multivariate ANOVA (MANOVA)
-two/multiple independent factor (grouping variable), multiple dependent variable (measurements)
+## Summary
 
+We have seen a lot in this chapter. Starting with simple pre-tests for the parametric conditions of more advanced tests, we have come across the t-test and ANOVA, which are statistical tests that can show us differences between groups very well. This is the reason why both tests are workhorses of scientific research disciplines. At the end, ANOVA gave us a little insight into the world of modelling. We will continue with that. In the next chapter we will look at regression analysis. This means that we want to find out how two variables are related to each other. We will deal with simple linear modelling. But this already opens the door to a new world of possible research and analysis methods.
