@@ -1,3 +1,3 @@
-rmd_files: ["book.Rmd","02_session/02-chapter.Rmd","03_session/03-chapter.Rmd","04_session/04-chapter.Rmd","05_session/05-chapter.Rmd","06_session/06-chapter.Rmd"]
+rmd_files: ["book.Rmd","02_session/02-chapter.Rmd","03_session/03-chapter.Rmd","04_session/04-chapter.Rmd","05_session/05-chapter.Rmd","06_session/06-chapter.Rmd","07_session/07-chapter.Rmd"]
 output_dir: "book"
 download: [["preface.pdf", "PDF"]]
