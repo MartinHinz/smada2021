@@ -303,7 +303,7 @@ From this, it becomes clear that the core of the data are distributed similarly 
 
 After going through this cascade of tests, finally we arrived at the test that we originally wanted to contact: the test for differences in mean of two samples. In the following, I will demonstrate how the t-test itself works. Be aware: formulas ahead! But don't fear! We will tame them together.
 
-## Facts sheet t-Test (homogenuous variances)
+### Facts sheet t-Test (homogenuous variances)
 
 Test for the comparison of the means of two samples.
 
@@ -387,7 +387,7 @@ Note: for the comparison we use the absolute value of the difference, or the t-v
 
 There is no significant difference in the means of both samples, which could originate from the same population (statistically speaking). However, this does not mean (even if it is boring by now, but repetition is a drag) that we have proven that they come from exactly the same population. Since the test result also depends on the number of cases, this only means that the difference is not large enough that this could not have happened by chance (with less than five percent probability).
 
-## t-test in R
+### t-test in R
 
 As is often the case, after this rather long presentation of the background and the calculation by hand, the part showing how we perform this test in R will be quite short and unspectacular. Let's take another look at the core properties of the t-test:
 
@@ -482,6 +482,8 @@ t.test(A,B, data=sim_data)
 In most of the cases (with small sample size), the Welch test will be slightly more unsure (the p-value will be slightly higher) to reject the null hypothesis. 
 
 ## Multiple Tests
+
+### The Problem
 
 What I will discuss below is relevant to any kind of statistical test, in fact to any kind of statistical investigation that estimates a probability and comes up with a P value. It can be explained well in the context of parametric tests, but is not limited to them.
 
