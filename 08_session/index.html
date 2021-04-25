@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistical methods for archaeological data analysis I: Basic methods</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Martin Hinz" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
+    <link rel="stylesheet" href="../libs/default.css" type="text/css" />
+    <link rel="stylesheet" href="../libs/default-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../libs/customize.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: title-slide, center, middle
+
+
+
+#  Statistical methods for archaeological data analysis I: Basic methods
+
+##  08 - Regression and Correlation
+
+###  Martin Hinz
+
+####  Institut für Archäologische Wissenschaften, Universität Bern
+
+28.04.21
+---
+
+## Loading data for the following steps
+
+### Read the Data on Muensingen Fibulae
+
+<a href="data:text/csv;base64,O0dyYXZlO01ubztGTDtCSDtCRkE7RkE7Q0Q7QlJBO0VEO0ZFTDtDO0JXO0JUO0ZFVztDb2lscztMZW5ndGg7ZmlidWxhX3NjaGVtZQoxOzEyMTszNDg7Mjg7MTc7MTsxMDsxMDsyOzg7NjsyMDsyLDU7Miw2OzIsMjs0OzUzO0IKMjsxMzA7NTQ1OzI5OzE1OzM7ODs2OzM7NjsxMDsxNzsxMSw3OzMsOTs2LDQ7Njs0NztCCjM7MTMwOzU0OTsyMjsxNTszOzg7NzszOzEzOzE7MTc7NTs0LDY7Miw1OzEwOzQ3O0IKODsxNTc7ODU7MjM7MTM7Mzs4OzY7MjsxMDs3OzE1OzUsMjsyLDc7NSw0OzEyOzQxO0IKMTE7MTgxOzIxMjs5NDsxNTs3OzEwOzEyOzU7MTE7MzE7NTA7NCwzOzQsMztOQTs2OzEyODtDCjEyOzE5Mzs2MTE7Njg7MTg7Nzs5Ozk7NzszOzUwOzE4OzksMzs2LDU7TkE7NDsxMTA7QwoxMzsyMzs2NDM7MTU7MTg7MTsxMDsxMDsxOzU7MDsxNTszLDU7Myw1OzA7NDs0MDtBCjE0OzMxOzgxMjsyMzsyNjs0Ozc7OTs1OzEyOzE7MTY7NiwyOzcsNzsyLDg7NDs3NDtBCjE1OzQ0Ozc1MjsxMDsxMDsyOzEwOzY7MjsyO05BOzk7MjsyLDM7MiwyOzM7MjY7QQoxNjs0ODs3ODg7MTU7MTk7Mjs4Ozc7MzszOzQ7MTI7Myw3OzMsNTsxLDk7NDs1NjtCCjE3OzQ5Ozc5ODsyMDsyMzsyOzg7NzsxOzg7NTsxNjs3LDc7NSwyOzIsNjs2OzY4O0IKMTg7Njs2NzM7Mjc7MTU7Njs4Ozc7NTszOzExOzExOzMsNzszLDU7MSw4OzQ7NTU7QQoxOTs2MTs4MjE7MjA7MTM7NTs4OzU7MjsxMDs1OzEwOzQsNDs0LDQ7NSwxOzY7MzY7QgoyMDs2MTs4MzA7MjA7MTQ7MTs4OzY7MTszOzQ7MTQ7MTQsMzsxLDQ7MSw3OzY7NDQ7QgoyMTs2ODs1ODc7MjI7MTg7MTs4Ozc7MTs1Ozg7MTc7OCw4OzM7Miw0OzY7NTk7QgoyMjs4MDs1Mjk7MTI7MjI7MTs2Ozk7MTs5OzA7MTE7Niw4OzYsNDswOzQ7NDU7QgoyMzs5MTs0NjQ7MjA7MTU7Mjs3Ozc7Mzs2OzEwOzEyOzUsNTszLDg7Myw5OzY7NTA7Qgo=" download="muensingen_fib.csv">muensingen_fib.csv</a>
+
+
+```r
+muensingen &lt;- read.csv2("muensingen_fib.csv")
+head(muensingen)
+```
+
+```
+##    X Grave Mno FL BH BFA FA CD BRA ED FEL  C   BW  BT FEW Coils Length
+## 1  1   121 348 28 17   1 10 10   2  8   6 20  2.5 2.6 2.2     4     53
+## 2  2   130 545 29 15   3  8  6   3  6  10 17 11.7 3.9 6.4     6     47
+## 3  3   130 549 22 15   3  8  7   3 13   1 17  5.0 4.6 2.5    10     47
+## 4  8   157  85 23 13   3  8  6   2 10   7 15  5.2 2.7 5.4    12     41
+## 5 11   181 212 94 15   7 10 12   5 11  31 50  4.3 4.3  NA     6    128
+## 6 12   193 611 68 18   7  9  9   7  3  50 18  9.3 6.5  NA     4    110
+##   fibula_scheme
+## 1             B
+## 2             B
+## 3             B
+## 4             B
+## 5             C
+## 6             C
+```
+
+---
+## Scatterplot
+.pull-left[
+
+For 2 variables
+
+Used to display a variable in relation to another one.
+
+
+```r
+plot(muensingen$Length, muensingen$FL)
+abline(
+  lm(muensingen$FL~muensingen$Length),
+  col="red")
+```
+
+**Visible**: If one variable increases in size, the other variable increases as well.
+
+**Other visible properties**:
+* Direction of the relationship (greater-&gt; greater vs. greater -&gt; smaller)
+* Linearity of the relation (monotonous, not monotonous)
+* Strength of the relationship (points near vs. far from an imaginary line)
+
+]
+
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+]
+
+---
+![:width 90%](../images/10_session/regression_types.png)
+---
+
+## Direction and linearity of relationships
+
+### direction
+Indicates whether a variable increases (positive) or decreases (negative) with the other variable.
+
+Variables: possible cause (independent variable) and effect of interest (dependent variable)
+
+### linearity
+There are linear and non-linear regressions.
+
+Non-linear regressions, possible causes:
+
+Combination of different (linear?) influences: multiple regression analysis
+
+Influence factor has no linear effect: nonlinear model (square or higher polynomial, threshold systems etc.)
+
+---
+
+## Regression: Equation
+
+What we still know from school lessons...
+The formula for a linear equation consists of a slope (b) and an intercept (displacement constant a)
+
+`\(y=a + bx\)`
+
+`\(b = \frac{(y_2-y_1)}{(x_2 - x_1)}\)`
+
+`\(a = y_1 - b * x_1\)`
+
+Example: {1,3}, {2,5}, {3,7} ...
+
+`\(b = \frac{(5-3)}{(2 - 1)} = 2\)`
+
+`\(a = 3 - 2 * 1 = 1\)`
+
+`\(y = 1 + 2*x\)`
+
+But: this only works with perfect correlation, what with deviating (statistical) values?
+
+---
+
+## Regression: least-squares method (Methode der kleinsten Quadrate) [1]
+
+Estimation of the optimal approximation with the least-square method
+
+For values that do not correspond exactly to a straight line, an optimal approximation must be found.
+
+![:width 25%](../images/10_session/611px-Linear_least_squares_example2.svg.png)
+.caption[.tiny[https://commons.wikimedia.org/wiki/File:Linear_least_squares_example2.svg]]
+
+The absolute distance between the real y-value and the estimated y-value should be as small as possible, it applies:
+
+`\(min\sum_{i=1}^n (y_i - \hat{y})^2\)`
+
+---
+
+## Regression: least-squares Methode (Methode der kleinsten Quadrate) [2]
+.pull-left[
+### slope
+`\(min\sum_{i=1}^n (y_i - \hat{y})^2 = b_{min} = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}\)`
+
+upper part of the formula: `\(\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})\)` **covariance**
+
+This value increases when x and y vary in the same direction.
+
+lower part of the formula: `\(\sum_{i=1}^n(x_i - \bar{x})^2\)` **variance of X**
+
+normalizes the common variance to the variance of x
+
+Result: How does y vary in relation to x on average?
+]
+.pull-right[
+### intercept
+
+`\(a_{min} = \bar{y} - b_{min} * \bar{x}\)`
+
+given the slope, what is the displacement (intercept with the y-axis) in respect to the means of both variables
+]
+
+---
+
+## Regression: least-squares Methode (Methode der kleinsten Quadrate) [3]
+
+### Example
+
+
+.pull-left[
+.tiny[
+
+```r
+head(muensingen[,c("FL", "Length")])
+```
+
+```
+##   FL Length
+## 1 28     53
+## 2 29     47
+## 3 22     47
+## 4 23     41
+## 5 94    128
+## 6 68    110
+```
+
+```r
+colMeans(head(muensingen[,c("FL", "Length")]))
+```
+
+```
+##     FL Length 
+##     44     71
+```
+]
+]
+
+.pull-right[
+.tiny[
+`\(b_{min} = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}\)`
+
+
+|FL  |Length |FL - mean(FL) |Length - mean(Length) |covariance |var(L) |
+|:---|:------|:-------------|:---------------------|:----------|:------|
+|28  |53     |-16           |-18                   |288        |324    |
+|29  |47     |-15           |-24                   |360        |576    |
+|22  |47     |-22           |-24                   |528        |576    |
+|23  |41     |-21           |-30                   |630        |900    |
+|94  |128    |50            |57                    |2850       |3249   |
+|68  |110    |24            |39                    |936        |1521   |
+|sum |       |              |                      |5592       |7146   |
+
+`\(b_{min} = \frac{5592}{7146}\)`
+
+`\(b_{min} = 0.7825357\)`
+
+`\(a_{min} = \bar{y} - b_{min} * \bar{x}\)`
+
+`\(a_{min} = 44 - 0.7825357 * 71\)`
+
+`\(a_{min} = -11.5600336\)`
+]
+]
+
+---
+
+## Regression: least-squares Methode (Methode der kleinsten Quadrate) [4]
+
+.pull-left[
+.tiny[
+`\(b_{min} = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}\)`
+
+
+|FL  |Length |FL - mean(FL) |Length - mean(Length) |covariance |var(L) |
+|:---|:------|:-------------|:---------------------|:----------|:------|
+|28  |53     |-16           |-18                   |288        |324    |
+|29  |47     |-15           |-24                   |360        |576    |
+|22  |47     |-22           |-24                   |528        |576    |
+|23  |41     |-21           |-30                   |630        |900    |
+|94  |128    |50            |57                    |2850       |3249   |
+|68  |110    |24            |39                    |936        |1521   |
+|sum |       |              |                      |5592       |7146   |
+
+`\(b_{min} = \frac{5592}{7146}\)`
+
+`\(b_{min} = 0.7825357\)`
+
+`\(a_{min} = \bar{y} - b_{min} * \bar{x}\)`
+
+`\(a_{min} = 44 - 0.7825357 * 71\)`
+
+`\(a_{min} = -11.5600336\)`
+]
+]
+
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Regression: least-squares Methode (Methode der kleinsten Quadrate) [5]
+
+
+.pull-left[
+.tiny[
+`\(b_{min} = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})}\)`
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; FL &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Length &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; FL - mean(FL) &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Length - mean(Length) &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; covariance &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; var(L) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 53 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -18 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 288 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 324 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 29 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 47 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -15 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -24 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 360 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 576 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 22 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 47 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -22 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -24 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 528 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 576 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 41 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -21 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -30 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 630 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 900 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 94 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 128 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 57 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2850 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3249 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 68 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 39 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 936 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1521 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5592 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7146 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`\(b_{min} = \frac{5592}{7146}\)`
+
+`\(b_{min} = 0.7825357\)`
+
+`\(a_{min} = \bar{y} - b_{min} * \bar{x}\)`
+
+`\(a_{min} = 44 - 0.7825357 * 71\)`
+
+`\(a_{min} = -11.5600336\)`
+]
+]
+
+.pull-right[
+.tiny[
+
+```r
+mm &lt;- data.frame(head(muensingen))
+b.min &lt;- sum(
+  (mm$FL - mean(mm$FL)) * (mm$Length - mean(mm$Length))
+  ) / 
+  sum((mm$Length - mean(mm$Length))^2)
+b.min
+```
+
+```
+## [1] 0.7825357
+```
+
+```r
+a.min &lt;- mean(mm$FL) - b.min * mean(mm$Length)
+a.min
+```
+
+```
+## [1] -11.56003
+```
+
+Or shorter:
+
+
+```r
+lm(FL ~ Length, data=mm)
+```
+
+```
+## 
+## Call:
+## lm(formula = FL ~ Length, data = mm)
+## 
+## Coefficients:
+## (Intercept)       Length  
+##    -11.5600       0.7825
+```
+
+]
+]
+
+---
+class:inverse
+## Regression: least-squares method exercise
+
+Regression between number of millstones and number of cereal grains (Shennan example)
+
+The number of cereal grains and millstones is given in different Neolithic settlements. Plot the relationship and specify the described regression equation.
+
+File: <a href="data:text/csv;base64,IiI7Imdyb3VuZHN0b25lcyI7ImNlcmVhbHMiCiIxIjszOzE4MAoiMiI7NTsyNjAKIjMiOzc7MjUwCiI0Ijs0OzM4MAoiNSI7Njs0MDAKIjYiOzg7MzcwCiI3Ijs2OzQ2MAoiOCI7ODs0NTAKIjkiOzExOzQwMAoiMTAiOzg7NTgwCiIxMSI7MTE7NTgwCiIxMiI7MTM7NjUwCiIxMyI7MTI7NzAwCg==" download="cereal_processing.csv">cereal_processing.csv</a>
+
+---
+## Correlation: Correlation coefficient [1]
+
+### How well does my regression equation fit the data?
+
+.pull-left[
+
+Regression is only an optimal approximation, the quality of which depends on it. depends on how well the independent variable determines the dependent one.
+
+In reality, the data usually deviate from the ideal line.
+
+So how strong is the correlation?
+
+### Correlation coefficient:
+
+Measure of how much the data is distributed around the regression line,
+
+measure of how strongly the variables *covariate* in relation to their own variability
+
+]
+.pull-right[
+.tiny[
+
+```r
+data&lt;-read.csv2("cereal_processing.csv",row.names=1)
+plot(data$groundstones,data$cereals)
+abline(lm(data$cereals ~ data$groundstones))
+```
+
+![](index_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+]
+]
+---
+## Correlation: Correlation coefficient [2]
+
+### Correlation coefficient:
+
+.pull-left[
+Measure of how much the data is distributed around the regression line,
+
+measure of how strongly the variables *covariate* in relation to their own variability
+
+`\(r = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n(x_i - \bar{x})^2* \sum_{i=1}^n(y_i - \bar{y})^2}}\)`
+
+upper part of the formula: `\(\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})\)` covariance
+
+lower part of the formula: `\(\sqrt{\sum_{i=1}^n(x_i - \bar{x})^2* \sum_{i=1}^n(y_i - \bar{y})^2}\)` standardizes the covariance to both variances
+
+]
+.pull-right[
+.tiny[
+
+```r
+data&lt;-read.csv2("cereal_processing.csv",row.names=1)
+plot(data$groundstones,data$cereals)
+abline(lm(data$cereals ~ data$groundstones))
+```
+
+![](index_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+]
+]
+---
+## Correlation: Correlation coefficient [3]
+
+### Correlation coefficient:
+
+.pull-left[
+`\(r = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n(x_i - \bar{x})^2* \sum_{i=1}^n(y_i - \bar{y})^2}}\)`
+
+if the common variance is greater than the independent variances increases r
+
+if the common variance is smaller than the independent variances r decreases
+
+if all values lie on one line |r| = 1
+
+if x increases and y increases the value becomes positive
+
+if x increases and y decreases the value becomes negative
+
+]
+.pull-right[
+.tiny[
+
+```r
+data&lt;-read.csv2("cereal_processing.csv",row.names=1)
+plot(data$groundstones,data$cereals)
+abline(lm(data$cereals ~ data$groundstones))
+```
+
+![](index_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+]
+]
+
+---
+
+## Correlation: Correlation coefficient [4]
+
+.pull-left[
+![](index_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+]
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+]
+.center[
+![](index_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+]
+---
+## Correlation: Correlation coefficient [4]
+
+### in R:
+
+.pull-left[
+Measure of how much the data is distributed around the regression line,
+
+measure of how strongly the variables *covariate* in relation to their own variability
+
+`\(r = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n(x_i - \bar{x})^2* \sum_{i=1}^n(y_i - \bar{y})^2}}\)`
+
+upper part of the formula: `\(\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})\)` covariance
+
+lower part of the formula: `\(\sqrt{\sum_{i=1}^n(x_i - \bar{x})^2* \sum_{i=1}^n(y_i - \bar{y})^2}\)` standardizes the covariance to both variances
+]
+
+.pull-right[
+.tiny[
+
+```r
+cov(muensingen$FL, muensingen$Length) /
+  sqrt(var(muensingen$FL) * var(muensingen$Length))
+```
+
+```
+## [1] 0.9124495
+```
+]
+covariance (cov) / square root (sqrt) of Variance Footlength * variance Length
+
+or simpler:
+
+
+```r
+cor(muensingen$FL, muensingen$Length)
+```
+
+```
+## [1] 0.9124495
+```
+
+]
+
+---
+
+## Correlation: coefficient of determination [1]
+
+Specifies how much of the variation of the dependent variable is explained by the variation of the independent variable.
+
+Example: to what percentage is the foot length explained by the fibula length?
+
+Determination coefficient r²= r ^2 ;-)
+
+Our example: r = 0.9124495, r² = 0.832564
+
+83.2564018% of the variation in foot length is explained by the length of the fibula!
+
+Attention: "explained" does not necessarily mean causal connection! 
+
+---
+
+## Correlation test
+
+It correlates, but does it also correlate significantly?
+
+Test against a normally distributed error distribution with Pearson's correlation coefficient (the "normal" correlation coefficient)
+
+The variables should be distributed normally (check with ks.test or shapiro.test)
+.pull-left[
+.tiny[
+
+```r
+shapiro.test(muensingen$FL)
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  muensingen$FL
+## W = 0.63595, p-value = 2.37e-05
+```
+
+```r
+shapiro.test(muensingen$Length)
+```
+
+```
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  muensingen$Length
+## W = 0.80529, p-value = 0.0024
+```
+]
+]
+.pull-right[
+.tiny[
+
+```r
+# OK, in our example it is not the case.
+# If it would be, we could do:
+
+cor.test(muensingen$FL,muensingen$Length)
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  muensingen$FL and muensingen$Length
+## t = 8.6363, df = 15, p-value = 3.314e-07
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.7691077 0.9683922
+## sample estimates:
+##       cor 
+## 0.9124495
+```
+]
+]
+
+---
+class:inverse
+## Correlation: least-squares method exercise
+
+Correlation between number of millstones and number of cereal grains (Shennan example)
+
+The number of cereal grains and millstones is given in different Neolithic settlements. Indicate how strongly the variables correlate with each other, how much of the variation of the millstones is explained by the cereal grains and whether the correlation is significant!
+
+File: cereal_processing.csv
+
+---
+## Correlation of ordinally scaled variables
+
+If, as is often the case, we have no measurement data, or they are not normal distributed.
+
+Measures for the correlation of ordinally scaled data (rank correlation):
+
+Kendall's `\(\tau\)` (tau)
+
+Spearmans `\(\rho\)` (rho)
+
+Example according to Shennan: Size of settlement and quality of soil
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Kendall's `\(\tau\)` (tau) [1]
+
+Calculation over the ranks
+
+**Prerequisites**: Two at least ordinally scaled variables of a random sample
+
+**Idea**: With a perfect correlation, all large settlements are located on the good soils, all medium ones on the medium and all small ones on the bad.
+
+The calculation is based on possible pairings of values whose ranks are compared to each other.
+
+If both x and y values are smaller for a pairing than is the case at the comparison pair, the result is a concurrent pairing (with both have the same ranking).
+
+If the x value is greater for a pairing, but the y value is smaller, then it's a discordant pair.
+
+---
+## Kendall's `\(\tau\)` (tau) [2]
+
+Concurrent ranks
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;" &gt;15 (a)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (d) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 (g) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 (b) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;11 (e)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;4 (h)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (c) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;7 (f)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;8 (i)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+All settlements in cell (a) can be combined with all settlements in e,f,h,i so that both soil quality and settlement size are greater in a than in e,f,h,i.
+
+Pairings: a \* (e+f+h+i)= 15 \* (11+7+4+8)=450
+
+---
+
+## Kendall's `\(\tau\)` (tau) [3]
+
+Concurrent ranks
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15 (a) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (d) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 (g) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;" &gt;6 (b)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11 (e) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 (h) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (c) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;7 (f)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;8 (i)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+All settlements in cell b can be combined with all settlements in f,i, so that both soil quality and settlement size in a are greater than in f,i.
+
+Pairings: b\*(f+i)= 6\*(7+8)=90
+
+---
+
+## Kendall's `\(\tau\)` (tau) [4]
+
+Concurrent ranks
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15 (a) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;" &gt;7 (d)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 (g) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 (b) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11 (e) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;4 (h)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (c) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (f) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;8 (i)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+All settlements in cell d can be combined with all settlements in h,i, so that both soil quality and settlement size in a are greater than in h,i.
+
+Pairings: d\*(h+i)= 7\*(4+8)=84
+
+---
+
+## Kendall's `\(\tau\)` (tau) [5]
+
+Concurrent ranks
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15 (a) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (d) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 (g) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 (b) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;" &gt;11 (e)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 (h) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (c) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (f) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;8 (i)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+All settlements in cell e can be combined with all settlements in i, so that both soil quality and settlement size in a are greater than in i.
+
+pairings: e\*i= 11\*8=88
+
+---
+
+## Kendall's `\(\tau\)` (tau) [6]
+
+Concurrent ranks
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;" &gt;15 (a)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (d) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 (g) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 (b) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;11 (e)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;4 (h)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (c) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;7 (f)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;8 (i)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+The number of pairings with concurrent ranks is therefore the sum of the individual possible pairings.
+
+Pairs: C=450+90+84+88=712
+
+---
+## Kendall's `\(\tau\)` (tau) [7]
+
+Discordant Ranks
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15 (a) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (d) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;" &gt;2 (g)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;6 (b)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;11 (e)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 (h) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;7 (c)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;7 (f)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8 (i) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+All settlements in cell g can be combined with all settlements in b,c,e,f, so that soil quality is worse, but settlement size is larger than in b,c,e,f.
+
+Pairings: g\*(b+c+e+f)=2\*(6+11+7+7)=62
+
+---
+## Kendall's `\(\tau\)` (tau) [7]
+
+Discordant Ranks
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15 (a) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (d) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 (g) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 (b) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11 (e) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;" &gt;4 (h)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;7 (c)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;7 (f)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8 (i) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+All settlements in cell h can be combined with all settlements in c,f, so that soil quality is worse, but settlement size larger than in c,f.
+
+pairings: h\*(c+f)=4\*(7+7)=56
+
+---
+## Kendall's `\(\tau\)` (tau) [8]
+
+Discordant Ranks
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15 (a) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;" &gt;7 (d)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 (g) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;6 (b)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11 (e) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 (h) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;7 (c)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (f) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8 (i) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+All settlements in cell d can be combined with all settlements in b,c, so that soil quality is worse, but settlement size larger than in b,c.
+
+pairings: d\*(b+c)=7\*(6+7)=91
+---
+
+## Kendall's `\(\tau\)` (tau) [9]
+
+Discordant Ranks
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15 (a) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (d) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 (g) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 (b) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;" &gt;11 (e)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 (h) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;" &gt;7 (c)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 (f) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8 (i) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+All settlements in cell e can be combined with all settlements in c, so that soil quality is poorer, but settlement size is larger than in c.
+
+pairings: e\*c=11\*7=77
+---
+## Kendall's `\(\tau\)` (tau) [10]
+
+Discordant Ranks
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; poor &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; medium &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; good &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; big &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+The number of pairings with discordant ranks is therefore the sum of the individual possible pairings.
+
+Pairs: D=62+56+91+77=286
+
+---
+## Kendall's `\(\tau\)` (tau) [11]
+
+.pull-left[
+Calculating `\(\tau\)`:
+
+`\(\tau_c = \frac{C-D}{\frac12 * n^2 * \frac{m-1}{m}}\ with\ m=min(n_{row}, n_{col})\)`
+
+`\(n = 67; C=712; D = 286; m=3\)`
+
+`\(\tau_c = \frac{712-286}{\frac12 * 67^2 * \frac{3-1}{3}}\)`
+
+`\(\tau_c = \frac{426}{1496.3}\)`
+
+`\(\tau_c = 0.285\)`
+]
+.pull-right[
+in R:
+
+.tiny[
+
+```r
+soil &lt;- read.csv2("soilsites.csv", row.names = 1)
+cor.test(soil$size, soil$soil_quality, method = "kendall")
+```
+
+```
+## 
+## 	Kendall's rank correlation tau
+## 
+## data:  soil$size and soil$soil_quality
+## z = 2.6372, p-value = 0.008359
+## alternative hypothesis: true tau is not equal to 0
+## sample estimates:
+##       tau 
+## 0.2902363
+```
+]
+
+Attention: there is no calculation for Kendall's tau c, only for Kendall's tau b in R.
+Therefore, the data must be raw, not a contingency table.
+]
+
+---
+
+## To consider:
+
+Correlation is not automatically a causal relationship!
+
+Example: The well-known rattling stork example
+
+The decrease of storks correlates with the decrease of births in Switzerland... causal connection?
+
+Often it is hidden complex third variables that influence two correlating variables, e.g. the changes in modern society, which influence both the decline of storks and births.
+
+More funny correlations at http://www.tylervigen.com/spurious-correlations.
+
+.center[
+
+![:width 50%](../images/10_session/Storch_bringt_Baby.JPG)
+.caption[.tiny[https://commons.wikimedia.org/wiki/File:Storch_bringt_Baby.JPG]]
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../libs/remark-latest.min.js"></script>
+<script src="../libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"fig_caption": true,
+"ratio": "16:10"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

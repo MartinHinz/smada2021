@@ -1,0 +1,780 @@
+---
+title: "Statistical methods for archaeological data analysis I: Basic methods"
+subtitle: "08 - Regression and Correlation"
+author: "Martin Hinz"
+institute: "Institut für Archäologische Wissenschaften, Universität Bern"
+fontsize: 9pt
+date: "28.04.21"
+output:
+  xaringan::moon_reader:
+    chakra: "../libs/remark-latest.min.js"
+    css: ["../libs/default.css", "../libs/default-fonts.css", "../libs/customize.css"]
+    lib_dir: "libs"
+    seal: false
+    nature:
+      beforeInit: "../libs/macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      fig_caption: yes
+      ratio: "16:10"
+editor_options: 
+  chunk_output_type: console
+---
+class: title-slide, center, middle
+
+```{r setup, echo=F, error=FALSE, warning=F, message=F, results='hide'}
+rm(list = ls())
+#options(digits = 3)
+Sys.setlocale("LC_MESSAGES", "en_US.utf8")
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('# ', rmarkdown::metadata$title)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('## ', rmarkdown::metadata$subtitle)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('### ', rmarkdown::metadata$author)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('#### ', rmarkdown::metadata$institute)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat(rmarkdown::metadata$date)
+```
+---
+
+## Loading data for the following steps
+
+### Read the Data on Muensingen Fibulae
+
+`r xfun::embed_file('muensingen_fib.csv', text = "muensingen_fib.csv")`
+
+```{r}
+muensingen <- read.csv2("muensingen_fib.csv")
+head(muensingen)
+```
+
+---
+## Scatterplot
+.pull-left[
+
+For 2 variables
+
+Used to display a variable in relation to another one.
+
+```{r eval=F}
+plot(muensingen$Length, muensingen$FL)
+abline(
+  lm(muensingen$FL~muensingen$Length),
+  col="red")
+```
+
+**Visible**: If one variable increases in size, the other variable increases as well.
+
+**Other visible properties**:
+* Direction of the relationship (greater-> greater vs. greater -> smaller)
+* Linearity of the relation (monotonous, not monotonous)
+* Strength of the relationship (points near vs. far from an imaginary line)
+
+]
+
+.pull-right[
+```{r echo=F}
+plot(muensingen$Length, muensingen$FL)
+abline(
+  lm(muensingen$FL~muensingen$Length),
+  col="red")
+```
+]
+
+---
+![:width 90%](../images/10_session/regression_types.png)
+---
+
+## Direction and linearity of relationships
+
+### direction
+Indicates whether a variable increases (positive) or decreases (negative) with the other variable.
+
+Variables: possible cause (independent variable) and effect of interest (dependent variable)
+
+### linearity
+There are linear and non-linear regressions.
+
+Non-linear regressions, possible causes:
+
+Combination of different (linear?) influences: multiple regression analysis
+
+Influence factor has no linear effect: nonlinear model (square or higher polynomial, threshold systems etc.)
+
+---
+
+## Regression: Equation
+
+What we still know from school lessons...
+The formula for a linear equation consists of a slope (b) and an intercept (displacement constant a)
+
+$y=a + bx$
+
+$b = \frac{(y_2-y_1)}{(x_2 - x_1)}$
+
+$a = y_1 - b * x_1$
+
+Example: {1,3}, {2,5}, {3,7} ...
+
+$b = \frac{(5-3)}{(2 - 1)} = 2$
+
+$a = 3 - 2 * 1 = 1$
+
+$y = 1 + 2*x$
+
+But: this only works with perfect correlation, what with deviating (statistical) values?
+
+---
+
+## Regression: least-squares method (Methode der kleinsten Quadrate) [1]
+
+Estimation of the optimal approximation with the least-square method
+
+For values that do not correspond exactly to a straight line, an optimal approximation must be found.
+
+![:width 25%](../images/10_session/611px-Linear_least_squares_example2.svg.png)
+.caption[.tiny[https://commons.wikimedia.org/wiki/File:Linear_least_squares_example2.svg]]
+
+The absolute distance between the real y-value and the estimated y-value should be as small as possible, it applies:
+
+$min\sum_{i=1}^n (y_i - \hat{y})^2$
+
+---
+
+## Regression: least-squares Methode (Methode der kleinsten Quadrate) [2]
+.pull-left[
+### slope
+$min\sum_{i=1}^n (y_i - \hat{y})^2 = b_{min} = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}$
+
+upper part of the formula: $\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})$ **covariance**
+
+This value increases when x and y vary in the same direction.
+
+lower part of the formula: $\sum_{i=1}^n(x_i - \bar{x})^2$ **variance of X**
+
+normalizes the common variance to the variance of x
+
+Result: How does y vary in relation to x on average?
+]
+.pull-right[
+### intercept
+
+$a_{min} = \bar{y} - b_{min} * \bar{x}$
+
+given the slope, what is the displacement (intercept with the y-axis) in respect to the means of both variables
+]
+
+---
+
+## Regression: least-squares Methode (Methode der kleinsten Quadrate) [3]
+
+### Example
+```{r, echo=FALSE}
+hmuens <- head(muensingen[,c("FL", "Length")])
+var_x <- var(hmuens[,1])
+var_y <- var(hmuens[,2])
+```
+
+.pull-left[
+.tiny[
+```{r}
+head(muensingen[,c("FL", "Length")])
+colMeans(head(muensingen[,c("FL", "Length")]))
+```
+]
+]
+
+.pull-right[
+.tiny[
+$b_{min} = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}$
+
+```{r, echo=FALSE}
+hmuens <- head(muensingen[,c("FL", "Length")])
+hmuens$'FL - mean(FL)' <- hmuens$FL - mean(hmuens$FL)
+hmuens$'Length - mean(Length)' <- hmuens$Length - mean(hmuens$Length)
+hmuens$'covariance' <- hmuens$'FL - mean(FL)' * hmuens$'Length - mean(Length)'
+hmuens$'var(L)' <- (hmuens$Length - mean(hmuens$Length))^2
+sum_hmuens <- colSums(hmuens)
+sum_hmuens <- c("sum","","","", sum_hmuens[c(5,6)])
+knitr::kable(rbind(hmuens, sum_hmuens), format = "pipe")
+```
+
+$b_{min} = \frac{`r sum_hmuens[5]`}{`r sum_hmuens[6]`}$
+
+$b_{min} = `r (as.numeric(sum_hmuens[5]) / as.numeric(sum_hmuens[6]))`$
+
+$a_{min} = \bar{y} - b_{min} * \bar{x}$
+
+$a_{min} = 44 - `r (as.numeric(sum_hmuens[5]) / as.numeric(sum_hmuens[6]))` * 71$
+
+$a_{min} = `r 44 - (as.numeric(sum_hmuens[5]) / as.numeric(sum_hmuens[6])) * 71`$
+]
+]
+
+---
+
+## Regression: least-squares Methode (Methode der kleinsten Quadrate) [4]
+
+.pull-left[
+.tiny[
+$b_{min} = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}$
+
+```{r, echo=FALSE}
+knitr::kable(rbind(hmuens, sum_hmuens), format = "pipe")
+```
+
+$b_{min} = \frac{`r sum_hmuens[5]`}{`r sum_hmuens[6]`}$
+
+$b_{min} = `r (as.numeric(sum_hmuens[5]) / as.numeric(sum_hmuens[6]))`$
+
+$a_{min} = \bar{y} - b_{min} * \bar{x}$
+
+$a_{min} = 44 - `r (as.numeric(sum_hmuens[5]) / as.numeric(sum_hmuens[6]))` * 71$
+
+$a_{min} = `r 44 - (as.numeric(sum_hmuens[5]) / as.numeric(sum_hmuens[6])) * 71`$
+]
+]
+
+.pull-right[
+```{r echo=F}
+plot(FL~Length, data=data.frame(head(muensingen)), ylim = c(0,90), asp=1, xlim=c(0,130))
+abline(
+  lm(FL~Length, data=data.frame(head(muensingen))),
+  col="red")
+```
+]
+
+---
+
+## Regression: least-squares Methode (Methode der kleinsten Quadrate) [5]
+
+
+.pull-left[
+.tiny[
+$b_{min} = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})}$
+
+```{r, echo=FALSE}
+knitr::kable(rbind(hmuens, sum_hmuens), format = "html")
+```
+
+$b_{min} = \frac{`r sum_hmuens[5]`}{`r sum_hmuens[6]`}$
+
+$b_{min} = `r (as.numeric(sum_hmuens[5]) / as.numeric(sum_hmuens[6]))`$
+
+$a_{min} = \bar{y} - b_{min} * \bar{x}$
+
+$a_{min} = 44 - `r (as.numeric(sum_hmuens[5]) / as.numeric(sum_hmuens[6]))` * 71$
+
+$a_{min} = `r 44 - (as.numeric(sum_hmuens[5]) / as.numeric(sum_hmuens[6])) * 71`$
+]
+]
+
+.pull-right[
+.tiny[
+```{r}
+mm <- data.frame(head(muensingen))
+b.min <- sum(
+  (mm$FL - mean(mm$FL)) * (mm$Length - mean(mm$Length))
+  ) / 
+  sum((mm$Length - mean(mm$Length))^2)
+b.min
+a.min <- mean(mm$FL) - b.min * mean(mm$Length)
+a.min
+```
+
+Or shorter:
+
+```{r}
+lm(FL ~ Length, data=mm)
+```
+
+]
+]
+
+---
+class:inverse
+## Regression: least-squares method exercise
+
+Regression between number of millstones and number of cereal grains (Shennan example)
+
+The number of cereal grains and millstones is given in different Neolithic settlements. Plot the relationship and specify the described regression equation.
+
+File: `r xfun::embed_file('cereal_processing.csv', text = "cereal_processing.csv")`
+
+---
+## Correlation: Correlation coefficient [1]
+
+### How well does my regression equation fit the data?
+
+.pull-left[
+
+Regression is only an optimal approximation, the quality of which depends on it. depends on how well the independent variable determines the dependent one.
+
+In reality, the data usually deviate from the ideal line.
+
+So how strong is the correlation?
+
+### Correlation coefficient:
+
+Measure of how much the data is distributed around the regression line,
+
+measure of how strongly the variables *covariate* in relation to their own variability
+
+]
+.pull-right[
+.tiny[
+```{r}
+
+data<-read.csv2("cereal_processing.csv",row.names=1)
+plot(data$groundstones,data$cereals)
+abline(lm(data$cereals ~ data$groundstones))
+
+```
+]
+]
+---
+## Correlation: Correlation coefficient [2]
+
+### Correlation coefficient:
+
+.pull-left[
+Measure of how much the data is distributed around the regression line,
+
+measure of how strongly the variables *covariate* in relation to their own variability
+
+$r = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n(x_i - \bar{x})^2* \sum_{i=1}^n(y_i - \bar{y})^2}}$
+
+upper part of the formula: $\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})$ covariance
+
+lower part of the formula: $\sqrt{\sum_{i=1}^n(x_i - \bar{x})^2* \sum_{i=1}^n(y_i - \bar{y})^2}$ standardizes the covariance to both variances
+
+]
+.pull-right[
+.tiny[
+```{r}
+
+data<-read.csv2("cereal_processing.csv",row.names=1)
+plot(data$groundstones,data$cereals)
+abline(lm(data$cereals ~ data$groundstones))
+
+```
+]
+]
+---
+## Correlation: Correlation coefficient [3]
+
+### Correlation coefficient:
+
+.pull-left[
+$r = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n(x_i - \bar{x})^2* \sum_{i=1}^n(y_i - \bar{y})^2}}$
+
+if the common variance is greater than the independent variances increases r
+
+if the common variance is smaller than the independent variances r decreases
+
+if all values lie on one line |r| = 1
+
+if x increases and y increases the value becomes positive
+
+if x increases and y decreases the value becomes negative
+
+]
+.pull-right[
+.tiny[
+```{r}
+
+data<-read.csv2("cereal_processing.csv",row.names=1)
+plot(data$groundstones,data$cereals)
+abline(lm(data$cereals ~ data$groundstones))
+
+```
+]
+]
+
+---
+
+## Correlation: Correlation coefficient [4]
+
+.pull-left[
+```{r echo=F, fig.dim=c(4,3)}
+test <- data.frame(a = 1:10, b= 1:10)
+plot(test)
+abline(lm(a~b, data = test))
+text(8,2,labels = paste0("r = ", cor(test$a, test$b)))
+```
+
+]
+.pull-right[
+```{r echo=F, fig.dim=c(4,3)}
+test$b <- rev(test$b)
+plot(test)
+abline(lm(a~b, data = test))
+text(2,2,labels = paste0("r = ", cor(test$a, test$b)))
+```
+]
+.center[
+```{r echo=F, fig.dim=c(4,3)}
+plot(muensingen$FL ~ muensingen$Length)
+abline(lm(muensingen$FL ~ muensingen$Length))
+text(60,80,labels = paste0("r = ", cor(muensingen$FL, muensingen$Length)))
+```
+]
+---
+## Correlation: Correlation coefficient [4]
+
+### in R:
+
+.pull-left[
+Measure of how much the data is distributed around the regression line,
+
+measure of how strongly the variables *covariate* in relation to their own variability
+
+$r = \frac{\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n(x_i - \bar{x})^2* \sum_{i=1}^n(y_i - \bar{y})^2}}$
+
+upper part of the formula: $\sum_{i=1}^n(x_i - \bar{x})*(y_i - \bar{y})$ covariance
+
+lower part of the formula: $\sqrt{\sum_{i=1}^n(x_i - \bar{x})^2* \sum_{i=1}^n(y_i - \bar{y})^2}$ standardizes the covariance to both variances
+]
+
+.pull-right[
+.tiny[
+```{r}
+cov(muensingen$FL, muensingen$Length) /
+  sqrt(var(muensingen$FL) * var(muensingen$Length))
+```
+]
+covariance (cov) / square root (sqrt) of Variance Footlength * variance Length
+
+or simpler:
+
+```{r}
+cor(muensingen$FL, muensingen$Length)
+```
+
+]
+
+---
+
+## Correlation: coefficient of determination [1]
+
+Specifies how much of the variation of the dependent variable is explained by the variation of the independent variable.
+
+Example: to what percentage is the foot length explained by the fibula length?
+
+Determination coefficient r²= r ^2 ;-)
+
+Our example: r = `r cor(muensingen$FL, muensingen$Length)`, r² = `r cor(muensingen$FL, muensingen$Length)^2`
+
+`r cor(muensingen$FL, muensingen$Length)^2 * 100`% of the variation in foot length is explained by the length of the fibula!
+
+Attention: "explained" does not necessarily mean causal connection! 
+
+---
+
+## Correlation test
+
+It correlates, but does it also correlate significantly?
+
+Test against a normally distributed error distribution with Pearson's correlation coefficient (the "normal" correlation coefficient)
+
+The variables should be distributed normally (check with ks.test or shapiro.test)
+.pull-left[
+.tiny[
+```{r}
+shapiro.test(muensingen$FL)
+shapiro.test(muensingen$Length)
+```
+]
+]
+.pull-right[
+.tiny[
+```{r}
+# OK, in our example it is not the case.
+# If it would be, we could do:
+
+cor.test(muensingen$FL,muensingen$Length)
+```
+]
+]
+
+---
+class:inverse
+## Correlation: least-squares method exercise
+
+Correlation between number of millstones and number of cereal grains (Shennan example)
+
+The number of cereal grains and millstones is given in different Neolithic settlements. Indicate how strongly the variables correlate with each other, how much of the variation of the millstones is explained by the cereal grains and whether the correlation is significant!
+
+File: cereal_processing.csv
+
+---
+## Correlation of ordinally scaled variables
+
+If, as is often the case, we have no measurement data, or they are not normal distributed.
+
+Measures for the correlation of ordinally scaled data (rank correlation):
+
+Kendall's $\tau$ (tau)
+
+Spearmans $\rho$ (rho)
+
+Example according to Shennan: Size of settlement and quality of soil
+
+```{r echo=F}
+soil <- read.csv2("soilsites.csv", row.names = 1)
+soil$soil_quality <- factor(soil$soil_quality, labels = c("poor", "medium", "good"))
+soil$size <- factor(soil$size, labels = c("small", "medium", "big"))
+soil_table <- addmargins(table(soil$size,soil$soil_quality)) 
+knitr::kable(soil_table, format = "html")
+```
+
+---
+## Kendall's $\tau$ (tau) [1]
+
+Calculation over the ranks
+
+**Prerequisites**: Two at least ordinally scaled variables of a random sample
+
+**Idea**: With a perfect correlation, all large settlements are located on the good soils, all medium ones on the medium and all small ones on the bad.
+
+The calculation is based on possible pairings of values whose ranks are compared to each other.
+
+If both x and y values are smaller for a pairing than is the case at the comparison pair, the result is a concurrent pairing (with both have the same ranking).
+
+If the x value is greater for a pairing, but the y value is smaller, then it's a discordant pair.
+
+---
+## Kendall's $\tau$ (tau) [2]
+
+Concurrent ranks
+
+```{r echo=F, message=F}
+library(kableExtra)
+soil_table_out <- addmargins(table(soil$size,soil$soil_quality)) 
+soil_table_out[1:3,1:3] <- paste0(soil_table_out[1:3,1:3], " (", letters[1:9], ")")
+soil_table_out[1,1] <- cell_spec(soil_table_out[1, 1], "html", color = "red")
+soil_table_out[2:3,2:3] <- cell_spec(soil_table_out[2:3, 2:3], "html", color = "green")
+knitr::kable(soil_table_out, format = "html", escape = F)
+```
+
+All settlements in cell (a) can be combined with all settlements in e,f,h,i so that both soil quality and settlement size are greater in a than in e,f,h,i.
+
+Pairings: a \* (e+f+h+i)= 15 \* (11+7+4+8)=450
+
+---
+
+## Kendall's $\tau$ (tau) [3]
+
+Concurrent ranks
+
+```{r echo=F, message=F}
+soil_table_out <- addmargins(table(soil$size,soil$soil_quality)) 
+soil_table_out[1:3,1:3] <- paste0(soil_table_out[1:3,1:3], " (", letters[1:9], ")")
+soil_table_out[2,1] <- cell_spec(soil_table_out[2, 1], "html", color = "red")
+soil_table_out[3,2:3] <- cell_spec(soil_table_out[3, 2:3], "html", color = "green")
+knitr::kable(soil_table_out, format = "html", escape = F)
+```
+
+All settlements in cell b can be combined with all settlements in f,i, so that both soil quality and settlement size in a are greater than in f,i.
+
+Pairings: b\*(f+i)= 6\*(7+8)=90
+
+---
+
+## Kendall's $\tau$ (tau) [4]
+
+Concurrent ranks
+
+```{r echo=F, message=F}
+soil_table_out <- addmargins(table(soil$size,soil$soil_quality)) 
+soil_table_out[1:3,1:3] <- paste0(soil_table_out[1:3,1:3], " (", letters[1:9], ")")
+soil_table_out[1,2] <- cell_spec(soil_table_out[1,2], "html", color = "red")
+soil_table_out[2:3,3] <- cell_spec(soil_table_out[2:3,3], "html", color = "green")
+knitr::kable(soil_table_out, format = "html", escape = F)
+```
+
+All settlements in cell d can be combined with all settlements in h,i, so that both soil quality and settlement size in a are greater than in h,i.
+
+Pairings: d\*(h+i)= 7\*(4+8)=84
+
+---
+
+## Kendall's $\tau$ (tau) [5]
+
+Concurrent ranks
+
+```{r echo=F, message=F}
+soil_table_out <- addmargins(table(soil$size,soil$soil_quality)) 
+soil_table_out[1:3,1:3] <- paste0(soil_table_out[1:3,1:3], " (", letters[1:9], ")")
+soil_table_out[2,2] <- cell_spec(soil_table_out[2,2], "html", color = "red")
+soil_table_out[3,3] <- cell_spec(soil_table_out[3,3], "html", color = "green")
+knitr::kable(soil_table_out, format = "html", escape = F)
+```
+
+All settlements in cell e can be combined with all settlements in i, so that both soil quality and settlement size in a are greater than in i.
+
+pairings: e\*i= 11\*8=88
+
+---
+
+## Kendall's $\tau$ (tau) [6]
+
+Concurrent ranks
+
+```{r echo=F, message=F}
+library(kableExtra)
+soil_table_out <- addmargins(table(soil$size,soil$soil_quality)) 
+soil_table_out[1:3,1:3] <- paste0(soil_table_out[1:3,1:3], " (", letters[1:9], ")")
+soil_table_out[1,1] <- cell_spec(soil_table_out[1, 1], "html", color = "red")
+soil_table_out[2:3,2:3] <- cell_spec(soil_table_out[2:3, 2:3], "html", color = "green")
+knitr::kable(soil_table_out, format = "html", escape = F)
+```
+
+The number of pairings with concurrent ranks is therefore the sum of the individual possible pairings.
+
+Pairs: C=450+90+84+88=712
+
+---
+## Kendall's $\tau$ (tau) [7]
+
+Discordant Ranks
+
+```{r echo=F, message=F}
+soil_table_out <- addmargins(table(soil$size,soil$soil_quality)) 
+soil_table_out[1:3,1:3] <- paste0(soil_table_out[1:3,1:3], " (", letters[1:9], ")")
+soil_table_out[1,3] <- cell_spec(soil_table_out[1,3], "html", color = "red")
+soil_table_out[2:3,1:2] <- cell_spec(soil_table_out[2:3,1:2], "html", color = "green")
+knitr::kable(soil_table_out, format = "html", escape = F)
+```
+
+All settlements in cell g can be combined with all settlements in b,c,e,f, so that soil quality is worse, but settlement size is larger than in b,c,e,f.
+
+Pairings: g\*(b+c+e+f)=2\*(6+11+7+7)=62
+
+---
+## Kendall's $\tau$ (tau) [7]
+
+Discordant Ranks
+
+```{r echo=F, message=F}
+soil_table_out <- addmargins(table(soil$size,soil$soil_quality)) 
+soil_table_out[1:3,1:3] <- paste0(soil_table_out[1:3,1:3], " (", letters[1:9], ")")
+soil_table_out[2,3] <- cell_spec(soil_table_out[2,3], "html", color = "red")
+soil_table_out[3,1:2] <- cell_spec(soil_table_out[3,1:2], "html", color = "green")
+knitr::kable(soil_table_out, format = "html", escape = F)
+```
+
+All settlements in cell h can be combined with all settlements in c,f, so that soil quality is worse, but settlement size larger than in c,f.
+
+pairings: h\*(c+f)=4\*(7+7)=56
+
+---
+## Kendall's $\tau$ (tau) [8]
+
+Discordant Ranks
+
+```{r echo=F, message=F}
+soil_table_out <- addmargins(table(soil$size,soil$soil_quality)) 
+soil_table_out[1:3,1:3] <- paste0(soil_table_out[1:3,1:3], " (", letters[1:9], ")")
+soil_table_out[1,2] <- cell_spec(soil_table_out[1,2], "html", color = "red")
+soil_table_out[2:3,1] <- cell_spec(soil_table_out[2:3,1], "html", color = "green")
+knitr::kable(soil_table_out, format = "html", escape = F)
+```
+
+All settlements in cell d can be combined with all settlements in b,c, so that soil quality is worse, but settlement size larger than in b,c.
+
+pairings: d\*(b+c)=7\*(6+7)=91
+---
+
+## Kendall's $\tau$ (tau) [9]
+
+Discordant Ranks
+
+```{r echo=F, message=F}
+soil_table_out <- addmargins(table(soil$size,soil$soil_quality)) 
+soil_table_out[1:3,1:3] <- paste0(soil_table_out[1:3,1:3], " (", letters[1:9], ")")
+soil_table_out[2,2] <- cell_spec(soil_table_out[2,2], "html", color = "red")
+soil_table_out[3,1] <- cell_spec(soil_table_out[3,1], "html", color = "green")
+knitr::kable(soil_table_out, format = "html", escape = F)
+```
+
+All settlements in cell e can be combined with all settlements in c, so that soil quality is poorer, but settlement size is larger than in c.
+
+pairings: e\*c=11\*7=77
+---
+## Kendall's $\tau$ (tau) [10]
+
+Discordant Ranks
+
+```{r echo=F, message=F}
+knitr::kable(soil_table, format = "html")
+```
+
+
+The number of pairings with discordant ranks is therefore the sum of the individual possible pairings.
+
+Pairs: D=62+56+91+77=286
+
+---
+## Kendall's $\tau$ (tau) [11]
+
+.pull-left[
+Calculating $\tau$:
+
+$\tau_c = \frac{C-D}{\frac12 * n^2 * \frac{m-1}{m}}\ with\ m=min(n_{row}, n_{col})$
+
+$n = 67; C=712; D = 286; m=3$
+
+$\tau_c = \frac{712-286}{\frac12 * 67^2 * \frac{3-1}{3}}$
+
+$\tau_c = \frac{426}{1496.3}$
+
+$\tau_c = 0.285$
+]
+.pull-right[
+in R:
+
+.tiny[
+```{r}
+soil <- read.csv2("soilsites.csv", row.names = 1)
+cor.test(soil$size, soil$soil_quality, method = "kendall")
+```
+]
+
+Attention: there is no calculation for Kendall's tau c, only for Kendall's tau b in R.
+Therefore, the data must be raw, not a contingency table.
+]
+
+---
+
+## To consider:
+
+Correlation is not automatically a causal relationship!
+
+Example: The well-known rattling stork example
+
+The decrease of storks correlates with the decrease of births in Switzerland... causal connection?
+
+Often it is hidden complex third variables that influence two correlating variables, e.g. the changes in modern society, which influence both the decline of storks and births.
+
+More funny correlations at http://www.tylervigen.com/spurious-correlations.
+
+.center[
+
+![:width 50%](../images/10_session/Storch_bringt_Baby.JPG)
+.caption[.tiny[https://commons.wikimedia.org/wiki/File:Storch_bringt_Baby.JPG]]
+
+]
