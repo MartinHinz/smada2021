@@ -1,6 +1,6 @@
 ---
 title: "Statistical methods for archaeological data analysis I: Basic methods"
-subtitle: "07 - Parametric Tests Homework"
+subtitle: "08 - Regression and Correlation Homework"
 author: "Martin Hinz"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 fontsize: 9pt
