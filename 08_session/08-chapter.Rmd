@@ -10,8 +10,6 @@ The endeavour to cover regression analysis and correlation within the framework 
 
 ## What is a regression? Some Terms and Definitions
 
-### Regression
-
 Regression or regression analysis is a toolbox that contains various statistical procedures and methods with which the relationships between two or more variables can be examined. The basic form is the question of what influence one of the two variables, also called the independent or explanatory variable, has on a second variable, called the dependent or explained variable. Let us try to illustrate this with a diagram:
 
 ```{r, echo=FALSE}
@@ -53,7 +51,8 @@ So we have now got to know the concept of regression, and hopefully you have a b
 
 In the following we will stay with linear regression, be it positive or negative. First we will get to know a tool with which we can describe this relationship ourselves and with which we can calculate such a trend or regression line on our own. Then we will get to know measures and tests with which we can answer the question of how compelling a correlation between two variables is, i.e. correlation. Let's start with something I'm pretty sure you remember from your school days: the linear equation.
 
-## Linear Equation
+## Calculating the regression
+### Linear Equation
 
 You should still be familiar with the linear equation from school lessons. We can describe any straight line in a coordinate system by specifying a fixed point and the slope of the line with respect to that point. The easiest way to describe the point is in relation to the Y axis, by simply specifying the value of the Y coordinate of the point exactly where the X value is zero. This gives two parameters: the slope (b) and the value for y where the straight line crosses the y-axis, the intercept (a).
 
@@ -89,8 +88,8 @@ $y = 1 + 2*x$
 
 As already emphasised several times, this simple way is only viable if all points lie on one line. In reality, however, at least with regard to real measured values, this will hardly be the case. On the one hand, most processes are not in themselves so determinant that a perfect relationship will exist. Mostly, various disturbing influences have to be taken into account. In addition, even with an almost perfect relationship, we will have measurement inaccuracies, so that in reality we cannot simply pick out two points. Rather, we have to take all points into account in order to find a straight line that describes all points at the same time in the best possible way in the relationship of the two variables to each other. There are various ways and possibilities to achieve this. The simplest and certainly the most frequently used (apart from eyeballing and the arbitrary application of a ruler to the point cloud) is the method of least squares.
 
-## Least-squares method (Methode der kleinsten Quadrate)
-### Derivation
+### Least-squares method (Methode der kleinsten Quadrate)
+#### Derivation
 
 If we do not know the exact relationship of the two variables, we have to estimate it from our data points. Surely you have already read the term least squares method in various contexts. In the following we will illustrate how this method works.
 
@@ -226,7 +225,7 @@ $a_{min} = \bar{y} - b_{min} * \bar{x}$
 
 So now we can also calculate the point of intersection with the Y axis in addition to the slope. The second part was much easier than the first, wasn't it? But the effort was worth it! Now you can calculate a straight line for each point cloud that describes it as best as possible. You can set up a linear model. And you can do that with a piece of paper, a pencil, and a calculator. Perhaps it is fair to tell you now that R can do this much easier and faster, of course. But before I show you how, let's run through the whole thing again with a practical example, namely our Münsingen data set.
 
-## Practical example
+#### Practical example
 
 First we load the Münsingen dataset into our working environment. As usual, please save the dataset in your working directory and then load it.
 
@@ -397,7 +396,7 @@ par(op)
 
 The plots above should make this clear once again. On the left we see a perfect positive correlation, on the right a perfect negative correlation. Our example from the real world, the Münsingen data, show a strong correlation, but not a perfect one. The points scatter around the imaginary line.
 
-### Correlation coefficient in R
+#### Correlation coefficient in R
 
 Even if the part on correlation is not as long as the part on regression, the part on implementation in R will be much shorter. Again, we can reproduce the whole exercise in R in two ways: Either we rebuild the formula, or we use the built-in function. As always, we will do one first, and then the other.
 
@@ -424,7 +423,7 @@ cor(muensingen$FL, muensingen$Length)
 ```
 
 
-### Coefficient of determination R²
+#### Coefficient of determination R²
 
 The correlation coefficient itself is already a very practical tool. It gives us an indication of the strength and direction of a correlation. However, it is difficult to interpret. It is unitless, and a doubling of the correlation coefficient does not mean that the correlation has become twice as strong. That is because of the way it is calculated.
 
@@ -530,7 +529,7 @@ knitr::kable(soil_table, format = "pipe")
 ```
 
 
-## Kendall's $\tau$ (tau) Fact Sheet
+### Kendall's $\tau$ (tau) Fact Sheet
 
 Calculation of the correlation via the concordance of the rankings
 
@@ -540,7 +539,7 @@ Calculation of the correlation via the concordance of the rankings
 
 The calculation is based on possible pairings of values whose ranks are compared to each other. If both x and y values are smaller for a pairing than is the case at the comparison pair, the result is a concurrent pairing (with both have the same ranking). If the x value is greater for a pairing, but the y value is smaller, then it's a discordant pair. How this is to be understood is best demonstrated by a practical example.
 
-## Kendall's $\tau$ (tau) in pratice
+### Kendall's $\tau$ (tau) in pratice
 
 First, we determine the number of concordant ranks. The ranks of both variables for two data items concur if they are both higher than those of the comparison item. We start once with the settlements that are located on the poorest soil and that are the smallest. For these we now count how many others we can compare them with, so that both the soil and the settlement size have a lower rank. These are all other settlements that have at least a better soil and at the same time a larger settlement size. In this case, the ranks of the two variables concur in the comparison.
 
