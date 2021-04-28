@@ -32,7 +32,7 @@
   
 <link rel="prev" href="nonparametric-tests.html"/>
 <link rel="next" href="parametric-tests.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,7 +52,7 @@
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <script src="libs/viz-1.8.2/viz.js"></script>
 <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
@@ -62,7 +62,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -343,6 +342,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.8" data-path="parametric-tests.html"><a href="parametric-tests.html#summary"><i class="fa fa-check"></i><b>7.8</b> Summary</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html"><i class="fa fa-check"></i><b>8</b> Regression Analysis and Correlation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#what-is-a-regression-some-terms-and-definitions"><i class="fa fa-check"></i><b>8.1</b> What is a regression? Some Terms and Definitions</a></li>
+<li class="chapter" data-level="8.2" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#calculating-the-regression"><i class="fa fa-check"></i><b>8.2</b> Calculating the regression</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#linear-equation"><i class="fa fa-check"></i><b>8.2.1</b> Linear Equation</a></li>
+<li class="chapter" data-level="8.2.2" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#least-squares-method-methode-der-kleinsten-quadrate"><i class="fa fa-check"></i><b>8.2.2</b> Least-squares method (Methode der kleinsten Quadrate)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation"><i class="fa fa-check"></i><b>8.3</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation-coefficient-in-theory"><i class="fa fa-check"></i><b>8.3.1</b> Correlation coefficient in Theory</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation-test"><i class="fa fa-check"></i><b>8.4</b> Correlation test</a></li>
+<li class="chapter" data-level="8.5" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation-of-ordinally-scaled-variables"><i class="fa fa-check"></i><b>8.5</b> Correlation of ordinally scaled variables</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#kendalls-tau-tau-fact-sheet"><i class="fa fa-check"></i><b>8.5.1</b> Kendall’s <span class="math inline">\(\tau\)</span> (tau) Fact Sheet</a></li>
+<li class="chapter" data-level="8.5.2" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#kendalls-tau-tau-in-pratice"><i class="fa fa-check"></i><b>8.5.2</b> Kendall’s <span class="math inline">\(\tau\)</span> (tau) in pratice</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation-does-not-imply-causation"><i class="fa fa-check"></i><b>8.6</b> Correlation does not imply causation</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -608,8 +627,8 @@ or 1 - (1 out of 4): 1-0.25 = 0.75</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" /><!-- --></p>
 <div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="basic-probability-theory.html#cb329-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
 <span id="cb329-2"><a href="basic-probability-theory.html#cb329-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 3.2</code></pre>
-<p>Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can’t implement a little script snippet here so that I can now state the result is 3.2. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let’s try this out:</p>
+<pre><code>## [1] 3.4</code></pre>
+<p>Since this is a random experiment, at the time of writing I do not know what the result will be. But using the magic of R, I can’t implement a little script snippet here so that I can now state the result is 3.4. But still I do not know whether this number is close or far away from all theoretical value. What I know is that if we increase the number of dices, we will get closer. Let’s try this out:</p>
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="basic-probability-theory.html#cb331-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb331-2"><a href="basic-probability-theory.html#cb331-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
 <span id="cb331-3"><a href="basic-probability-theory.html#cb331-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
@@ -617,8 +636,8 @@ or 1 - (1 out of 4): 1-0.25 = 0.75</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" /><!-- --></p>
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="basic-probability-theory.html#cb332-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
 <span id="cb332-2"><a href="basic-probability-theory.html#cb332-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 3.32</code></pre>
-<p>I am pretty optimistic that this time the value of 3.32 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.</p>
+<pre><code>## [1] 3.67</code></pre>
+<p>I am pretty optimistic that this time the value of 3.67 is closer to the theoretical value then in the case above. But it does not need to be so. We increase the number of devices again, this time I am pretty sure that we will get close to 3.5.</p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="basic-probability-theory.html#cb334-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb334-2"><a href="basic-probability-theory.html#cb334-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample command is our random number generator, our dice</span></span>
 <span id="cb334-3"><a href="basic-probability-theory.html#cb334-3" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,n_dice, <span class="at">replace=</span>T) </span>
@@ -626,8 +645,8 @@ or 1 - (1 out of 4): 1-0.25 = 0.75</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-171-1.png" /><!-- --></p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="basic-probability-theory.html#cb335-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mean</span>(roll)</span>
 <span id="cb335-2"><a href="basic-probability-theory.html#cb335-2" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
-<pre><code>## [1] 3.5075</code></pre>
-<p>The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.5075 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.</p>
+<pre><code>## [1] 3.507</code></pre>
+<p>The more often one throws the dice experimentally, the more similar is the distribution of the sample to the population. There you have it: the value from 10,000 dices is3.507 therefore quite close to the theoretical value. Note also the histogram: the more often we throw the dice, the more regular the histogram will look like.</p>
 <p><strong>The relative frequency of the random results converges against the probability of the random result</strong></p>
 <p>We can visualise this using a slightly different simulation. This time we are not simulating a specific parameters of our distribution, but the relative frequency of an individual result. Theoretically, the probability of throwing a 6 is 1/6. No let’s watch how the frequency changes over time if we throw one dice after the other.</p>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="basic-probability-theory.html#cb337-1" aria-hidden="true" tabindex="-1"></a>n_dice <span class="ot">&lt;-</span> <span class="dv">10000</span></span>

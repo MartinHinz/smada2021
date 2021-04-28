@@ -31,8 +31,8 @@
   
   
 <link rel="prev" href="basic-probability-theory.html"/>
-
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<link rel="next" href="regression-analysis-and-correlation.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,7 +52,7 @@
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <script src="libs/viz-1.8.2/viz.js"></script>
 <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
@@ -62,7 +62,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -343,6 +342,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.8" data-path="parametric-tests.html"><a href="parametric-tests.html#summary"><i class="fa fa-check"></i><b>7.8</b> Summary</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html"><i class="fa fa-check"></i><b>8</b> Regression Analysis and Correlation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#what-is-a-regression-some-terms-and-definitions"><i class="fa fa-check"></i><b>8.1</b> What is a regression? Some Terms and Definitions</a></li>
+<li class="chapter" data-level="8.2" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#calculating-the-regression"><i class="fa fa-check"></i><b>8.2</b> Calculating the regression</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#linear-equation"><i class="fa fa-check"></i><b>8.2.1</b> Linear Equation</a></li>
+<li class="chapter" data-level="8.2.2" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#least-squares-method-methode-der-kleinsten-quadrate"><i class="fa fa-check"></i><b>8.2.2</b> Least-squares method (Methode der kleinsten Quadrate)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation"><i class="fa fa-check"></i><b>8.3</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation-coefficient-in-theory"><i class="fa fa-check"></i><b>8.3.1</b> Correlation coefficient in Theory</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation-test"><i class="fa fa-check"></i><b>8.4</b> Correlation test</a></li>
+<li class="chapter" data-level="8.5" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation-of-ordinally-scaled-variables"><i class="fa fa-check"></i><b>8.5</b> Correlation of ordinally scaled variables</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#kendalls-tau-tau-fact-sheet"><i class="fa fa-check"></i><b>8.5.1</b> Kendall’s <span class="math inline">\(\tau\)</span> (tau) Fact Sheet</a></li>
+<li class="chapter" data-level="8.5.2" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#kendalls-tau-tau-in-pratice"><i class="fa fa-check"></i><b>8.5.2</b> Kendall’s <span class="math inline">\(\tau\)</span> (tau) in pratice</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation-does-not-imply-causation"><i class="fa fa-check"></i><b>8.6</b> Correlation does not imply causation</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -375,8 +394,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Especially in the case of the two sample test, often <strong>certain similarities between the two samples</strong> are required, so that the test can be applied. In the case of the ANOVA, variance homogenity is assumed, and it is necessary to contact this analyses in the correct way.</p>
 <p>At last, nearly all parametric tests required variables that are metric scaled, so interval or ratio scaled. The reason for this is that most parametric tests use actual calculated parametres from the data, and if these parameters cannot be calculated, because this is not possible with this data quality, of course they do not make any sense. When example here might be DF test, which is a test for variances. As the variance is defined as the deviation from the mean, it can only reasonably be expressed in situations where we can calculate the mean. As we have learnt earlier, the main can only be calculated with metric variables.</p>
 <p>This means, that before we can apply an actual parametric test, often we have to determine whether our data quality is suitable for this test in the first place. And if this tests again have pre-requisites, this also might be necessarily checked with another test. From this, quite often cascades of tests emerge. Below, you can see a cascade for the application of the t-test.</p>
-<div id="htmlwidget-8ee55bff2fa56c71f3be" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8ee55bff2fa56c71f3be">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ea8c38903f52d82561e5" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ea8c38903f52d82561e5">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>There are multiple versions of this kind of decision tree, and you find legions of them in the Internet or in the literature. We will start following the path from this decision tree, to end up with our t-test. At first, we will check for normality, then we will test our data, if the variances are homogeneous, and lastly we will apply the t-test to our data.</p>
 <hr />
 </div>
@@ -392,7 +411,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb365-3"><a href="parametric-tests.html#cb365-3" aria-hidden="true" tabindex="-1"></a>                <span class="fl">26.5</span>, <span class="fl">11.1</span>, <span class="fl">15.2</span>, <span class="fl">20.6</span>, <span class="fl">20.1</span>, <span class="fl">25.1</span>)</span></code></pre></div>
 <p>No, we directly can run the Kolmogorov Smirnov test. In the two sample version we have seen that we have at first input the first sample, and as the second input the second sample. In the case of the one sample test, there is no second sample. Instead, here we can give the name of the distribution that you would like to test against. More precisely, here you name the density function of this distribution as you would do if you would like to compute it using R. So in case of the normal distribution, the string that is given a second parameter would be <code>"pnorm"</code>. Depending on the distribution, that is used in the goodness of fit test, further parameters might be necessary. These parameters are the same as you would use to calculate the density function in our. If you are unsure, you can look this up in the respective help files (in our example the help file for pnorm). Normal distribution is defined by the mean and the standard deviation. Of course, we would like to compare our specific sample to a dataset that has the same mean and standard deviation of our dataset (but follows a normal distribution). For this reason, we give us the mean for the normal distribution the mean of our sample, and likewise as the standard deviation for normal distribution the standard deviation of our sample. The resultant command would be this:</p>
 <div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="parametric-tests.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(blade_length,<span class="st">&quot;pnorm&quot;</span>,<span class="fu">mean</span>(blade_length),<span class="fu">sd</span>(blade_length))</span></code></pre></div>
-<pre><code>## Warning in ks.test(blade_length, &quot;pnorm&quot;, mean(blade_length), sd(blade_length)): ties should not be present for the Kolmogorov-Smirnov test</code></pre>
+<pre><code>## Warning in ks.test(blade_length, &quot;pnorm&quot;, mean(blade_length), sd(blade_length)): ties should not be present for the
+## Kolmogorov-Smirnov test</code></pre>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
@@ -526,7 +546,7 @@ s_1^2 = s_2^2;\ then\ \frac{s_1^2}{s_2^2} = 1
 <div id="f-test-in-r" class="section level3" number="7.4.3">
 <h3><span class="header-section-number">7.4.3</span> F-Test in R</h3>
 <p>You can now download the full blade length dataset using the following link:</p>
-<a href="data:text/csv;base64,bGVuZ3RoLHNpdGUKMTQuOSxzaXRlMQoyNCxzaXRlMQo4Ljcsc2l0ZTEKMjkuMyxzaXRlMQoyNS41LHNpdGUxCjIzLjksc2l0ZTEKMjIuNCxzaXRlMQoxMi43LHNpdGUxCjguNyxzaXRlMQoyNS4xLHNpdGUxCjI1LjYsc2l0ZTEKMTQuNyxzaXRlMQoyMyxzaXRlMQoyMy4yLHNpdGUxCjI2LjUsc2l0ZTEKMTEuMSxzaXRlMQoxNS4yLHNpdGUxCjIwLjYsc2l0ZTEKMjAuMSxzaXRlMQoyNS4xLHNpdGUxCjI1LjEsc2l0ZTIKMTQuMSxzaXRlMgo4LHNpdGUyCjIzLjYsc2l0ZTIKMTcuNixzaXRlMgoyNy41LHNpdGUyCjI5LjEsc2l0ZTIKMjUuMyxzaXRlMgoyMy4xLHNpdGUyCjEyLjcsc2l0ZTIKMTEsc2l0ZTIKMTUsc2l0ZTIKMjAuNSxzaXRlMgoxNC42LHNpdGUyCjI4LjEsc2l0ZTIKMjAuMSxzaXRlMgoyMy44LHNpdGUyCjE5LjEsc2l0ZTIKMjMuNSxzaXRlMgoxOS45LHNpdGUyCjI5LjMsc2l0ZTIKMjIuOCxzaXRlMgoyMy4zLHNpdGUyCjE4LjIsc2l0ZTIKMTcsc2l0ZTIK" download="blade_length.csv">blade_length.csv</a>
+<p><a href="data:text/csv;base64,bGVuZ3RoLHNpdGUKMTQuOSxzaXRlMQoyNCxzaXRlMQo4Ljcsc2l0ZTEKMjkuMyxzaXRlMQoyNS41LHNpdGUxCjIzLjksc2l0ZTEKMjIuNCxzaXRlMQoxMi43LHNpdGUxCjguNyxzaXRlMQoyNS4xLHNpdGUxCjI1LjYsc2l0ZTEKMTQuNyxzaXRlMQoyMyxzaXRlMQoyMy4yLHNpdGUxCjI2LjUsc2l0ZTEKMTEuMSxzaXRlMQoxNS4yLHNpdGUxCjIwLjYsc2l0ZTEKMjAuMSxzaXRlMQoyNS4xLHNpdGUxCjI1LjEsc2l0ZTIKMTQuMSxzaXRlMgo4LHNpdGUyCjIzLjYsc2l0ZTIKMTcuNixzaXRlMgoyNy41LHNpdGUyCjI5LjEsc2l0ZTIKMjUuMyxzaXRlMgoyMy4xLHNpdGUyCjEyLjcsc2l0ZTIKMTEsc2l0ZTIKMTUsc2l0ZTIKMjAuNSxzaXRlMgoxNC42LHNpdGUyCjI4LjEsc2l0ZTIKMjAuMSxzaXRlMgoyMy44LHNpdGUyCjE5LjEsc2l0ZTIKMjMuNSxzaXRlMgoxOS45LHNpdGUyCjI5LjMsc2l0ZTIKMjIuOCxzaXRlMgoyMy4zLHNpdGUyCjE4LjIsc2l0ZTIKMTcsc2l0ZTIK" download="blade_length.csv">blade_length.csv</a></p>
 <p>The rest is rather simple and straightforward in R. All you have to do is to use the command for the F test, which is <code>var.test()</code>. Here, you have the option to specify the two samples as to input vectors. But you also can use the formula notation which is in many cases much more intuitive and handy, once you have got accustomed to it. So in this case, we want to test the variances of the <code>length</code> from our dataset <code>blade_length</code> in relationship to the variable <code>site</code>. Here you go.</p>
 <div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="parametric-tests.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(length<span class="sc">~</span>site,<span class="at">data=</span>blade_length)</span></code></pre></div>
 <pre><code>## 
@@ -690,7 +710,8 @@ Solution
 <p>As we have already seen from the box plot, these distributions are very similar. Consequently, the t-test cannot detect any significance differences with regard to the mean values.</p>
 <p>I take this opportunity to introduce a useful little feature of the box plot: the notches. These can be used to visually test for differences in this time the <strong>medians</strong> of both distributions (after McGill et al 1978, p. 16).</p>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="parametric-tests.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size <span class="sc">~</span> valley, <span class="at">data =</span> marae, <span class="at">notch=</span>T)</span></code></pre></div>
-<pre><code>## Warning in bxp(list(stats = structure(c(1.483, 1.924, 2.006, 2.353, 2.871, : some notches went outside hinges (&#39;box&#39;): maybe set notch=FALSE</code></pre>
+<pre><code>## Warning in bxp(list(stats = structure(c(1.483, 1.924, 2.006, 2.353, 2.871, : some notches went outside hinges (&#39;box&#39;):
+## maybe set notch=FALSE</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-216-1.png" /><!-- --></p>
 <p>So we found that the mean (and median) values are not significantly different from each other.</p>
 </details>
@@ -699,7 +720,7 @@ Solution
 <h3><span class="header-section-number">7.5.4</span> Welch-Test (t-Test for inhomogenous variances with welch correction)</h3>
 <p>If the variances of the two distributions differ significantly from each other, then the normal t-test should not be used. Instead, one can use a variant known as the Welch test. In this case I will not go into the background, the mechanics are very similar to those of the normal test. In R, the differences are also marginal: we only have to omit the parameter for equality of variances.</p>
 <p>For demonstration purposes, we use a modified data set of the flint blades data where the variances are significantly different:</p>
-<a href="data:text/csv;base64,bGVuZ3RoLHNpdGUKMTQuOSxzaXRlMQoyNCxzaXRlMQo4Ljcsc2l0ZTEKMjkuMyxzaXRlMQoyNS41LHNpdGUxCjIzLjksc2l0ZTEKMjIuNCxzaXRlMQoxMi43LHNpdGUxCjguNyxzaXRlMQoyNS4xLHNpdGUxCjI1LjYsc2l0ZTEKMTQuNyxzaXRlMQoyMyxzaXRlMQoyMy4yLHNpdGUxCjI2LjUsc2l0ZTEKMTEuMSxzaXRlMQoxNS4yLHNpdGUxCjIwLjYsc2l0ZTEKMjAuMSxzaXRlMQoyNS4xLHNpdGUxCjI2LjUsc2l0ZTMKMTguNixzaXRlMwoyMi44LHNpdGUzCjI4LjMsc2l0ZTMKMjQuNSxzaXRlMwoyMC43LHNpdGUzCjE5Ljgsc2l0ZTMKMjEuNCxzaXRlMwoyMy41LHNpdGUzCjIyLjUsc2l0ZTMKMjAuMixzaXRlMwoyNS45LHNpdGUzCjI3LjEsc2l0ZTMKMjIuNyxzaXRlMwozMi4xLHNpdGUzCjIwLjIsc2l0ZTMKMTcuOCxzaXRlMwoyMCxzaXRlMwoxOS4zLHNpdGUzCjI3LHNpdGUzCg==" download="blade_length3.csv">blade_length3.csv</a>
+<p><a href="data:text/csv;base64,bGVuZ3RoLHNpdGUKMTQuOSxzaXRlMQoyNCxzaXRlMQo4Ljcsc2l0ZTEKMjkuMyxzaXRlMQoyNS41LHNpdGUxCjIzLjksc2l0ZTEKMjIuNCxzaXRlMQoxMi43LHNpdGUxCjguNyxzaXRlMQoyNS4xLHNpdGUxCjI1LjYsc2l0ZTEKMTQuNyxzaXRlMQoyMyxzaXRlMQoyMy4yLHNpdGUxCjI2LjUsc2l0ZTEKMTEuMSxzaXRlMQoxNS4yLHNpdGUxCjIwLjYsc2l0ZTEKMjAuMSxzaXRlMQoyNS4xLHNpdGUxCjI2LjUsc2l0ZTMKMTguNixzaXRlMwoyMi44LHNpdGUzCjI4LjMsc2l0ZTMKMjQuNSxzaXRlMwoyMC43LHNpdGUzCjE5Ljgsc2l0ZTMKMjEuNCxzaXRlMwoyMy41LHNpdGUzCjIyLjUsc2l0ZTMKMjAuMixzaXRlMwoyNS45LHNpdGUzCjI3LjEsc2l0ZTMKMjIuNyxzaXRlMwozMi4xLHNpdGUzCjIwLjIsc2l0ZTMKMTcuOCxzaXRlMwoyMCxzaXRlMwoxOS4zLHNpdGUzCjI3LHNpdGUzCg==" download="blade_length3.csv">blade_length3.csv</a></p>
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="parametric-tests.html#cb403-1" aria-hidden="true" tabindex="-1"></a>blade_length3 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;blade_length3.csv&quot;</span>)</span>
 <span id="cb403-2"><a href="parametric-tests.html#cb403-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb403-3"><a href="parametric-tests.html#cb403-3" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(length <span class="sc">~</span> site, <span class="at">data =</span> blade_length3)</span></code></pre></div>
@@ -724,25 +745,25 @@ Solution
 ##  Two Sample t-test
 ## 
 ## data:  A and B
-## t = -0.774, df = 38, p-value = 0.44
+## t = -2.89, df = 38, p-value = 0.0064
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.96078  0.42935
+##  -1.60825 -0.28257
 ## sample estimates:
 ## mean of x mean of y 
-##   0.41493   0.68064</code></pre>
+##  0.034923  0.980334</code></pre>
 <div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="parametric-tests.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A,B, <span class="at">data=</span>sim_data)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  A and B
-## t = -0.774, df = 37.6, p-value = 0.44
+## t = -2.89, df = 38, p-value = 0.0064
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.96100  0.42958
+##  -1.60826 -0.28257
 ## sample estimates:
 ## mean of x mean of y 
-##   0.41493   0.68064</code></pre>
+##  0.034923  0.980334</code></pre>
 <p>In most of the cases (with small sample size), the Welch test will be slightly more unsure (the p-value will be slightly higher) to reject the null hypothesis.</p>
 </div>
 </div>
@@ -990,8 +1011,8 @@ Solution
           </div>
         </div>
       </div>
-<a href="basic-probability-theory.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="basic-probability-theory.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-analysis-and-correlation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
