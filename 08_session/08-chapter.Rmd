@@ -1,5 +1,5 @@
 ```{r include=FALSE}
-#knitr::opts_knit$set(root.dir = '08_session/')
+knitr::opts_knit$set(root.dir = '08_session/')
 xfun::pkg_load2(c("htmltools", "mime"))
 remove(list = ls())
 ```
