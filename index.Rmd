@@ -50,7 +50,7 @@ cat(rmarkdown::metadata$date)
 | 6. | [Basic Probability Theory](06_session/index.html) | [Chapter](book/basic-probability-theory.html) | [Part 1](https://tube.switch.ch/videos/zOZVOQMqXg), [Part 2](https://tube.switch.ch/videos/TT1pe1qgUQ) | NA | 21.4.21 | 6 | [Homework](06_session/hausaufgabe_06.pdf) |
 | 7. | [Parametric Tests](07_session/index.html) | [Chapter](book/parametric-tests.html) | [Video](https://tube.switch.ch/videos/w9aPnpQxZX) | [25](https://tube.switch.ch/videos/59fee43c), [26](https://tube.switch.ch/videos/xSllWrdxaq), [27](https://tube.switch.ch/videos/pbBEzZY6rj) | 28.4.21 | 6 | [Homework](07_session/homework_07.html) |
 | 8. | [Regression & Correlation](08_session/index.html) | [Chapter](book/regression-analysis-and-correlation.html) | [Video 1](https://tube.switch.ch/videos/D3J9Kkg267), [Video 2](https://tube.switch.ch/videos/Pj2CZ7aiXN) | [Technical Video](https://tube.switch.ch/videos/osEd3QkfUd) | 5.5.21 | 8 |  [Homework](08_session/homework_08.html) |
-| 9. | Cluster Analysis | Chapter | Video | Technical Videos | 12.5.21 | 11 | Homework |
+| 9. | [Cluster Analysis](09_session/index.html) | [Chapter](book/cluster-analysis.html) | [Video 1](https://tube.switch.ch/videos/uT1txL7kPk), [Video 2](https://tube.switch.ch/videos/Q11YwloLPS) | Technical Videos | 12.5.21 | 11 | [Homework](09_session/homework_09.html) |
 | 10. | Correspondence Analysis | Chapter | Video | Technical Videos | 19.5.21 | 13 | Homework |
 | 12. | Repetition | Chapter | Video | Technical Videos | 26.5.21 | NA |
 | 11. | Test | Chapter | Video | Technical Videos | 2.6.21 | NA |
