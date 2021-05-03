@@ -4,8 +4,8 @@
     <title>Statistical methods for archaeological data analysis I: Basic methods</title>
     <meta charset="utf-8" />
     <meta name="author" content="Martin Hinz" />
-    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
-    <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
     <script src="libs/viz-1.8.2/viz.js"></script>
     <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
     <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
@@ -28,7 +28,7 @@ class: title-slide, center, middle
 
 ####  Institut für Archäologische Wissenschaften, Universität Bern
 
-05.05.2019
+05.05.2021
 ---
 
 ## Cluster Analysis: Idea and Basics
@@ -99,8 +99,8 @@ Example: **Hierarchical clustering**, e.g. according to the Ward method
 
 ---
 
-<div id="htmlwidget-df4510f699a05c2490df" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-df4510f699a05c2490df">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Start with\nfinest partition\"]\n      tab2 [label = \"Calculate initial\ndistance matrix\"]\n      tab3 [label = \"Search for the two\nObjects/Clusters with the\nleast distance\"]\n      tab4 [label = \"Combine the most similar\nObjects/Clusters\ninto one Cluster\"]\n      tab5 [label = \"Calculate new\ndistance matrix\"]\n      tab6 [label = \"Are all objects\njoint in one group?\", shape=diamond]\n      tab7 [label = \"Finished\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6;\n      tab6 -> tab7 [label=\"yes\"];\n      tab6 -> tab3 [label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-779016c5b7fc833777f4" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-779016c5b7fc833777f4">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Start with\nfinest partition\"]\n      tab2 [label = \"Calculate initial\ndistance matrix\"]\n      tab3 [label = \"Search for the two\nObjects/Clusters with the\nleast distance\"]\n      tab4 [label = \"Combine the most similar\nObjects/Clusters\ninto one Cluster\"]\n      tab5 [label = \"Calculate new\ndistance matrix\"]\n      tab6 [label = \"Are all objects\njoint in one group?\", shape=diamond]\n      tab7 [label = \"Finished\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6;\n      tab6 -> tab7 [label=\"yes\"];\n      tab6 -> tab3 [label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -318,7 +318,7 @@ The inventories of different (hypothetical) settlements are given.
 
 Calculate the appropriate distance matrix.
 
-File: <a href="data:text/csv;base64,IiI7InRhc3NlbiI7InNjaGFsZW4iOyJiZWNoZXIiOyJ0b2VwZmUiCiIxIjsxMTsyMDsxMTsyCiIyIjs3OzEwOzI3OzUKIjMiOzI0Ozg7MTM7MTMKIjQiOzI5OzIyOzI0OzI0CiI1IjsxNjsxNTsxMjs4CiI2IjsyNjsyOzY7MjgKIjciOzIwOzY7MTI7MQoiOCI7MjM7Mjg7MTI7NAoiOSI7Mjg7MTg7MjQ7NgoiMTAiOzIyOzk7MTsxMQoiMTEiOzI4Ozk7MTsyOQoiMTIiOzA7MjE7MzA7NwoiMTMiOzY7MTQ7MjI7MjMKIjE0IjsyMDsyMzsyMzs5CiIxNSI7MTM7Mzs4OzEKIjE2IjsyMDs2Ozk7MTgKIjE3Ijs0OzIwOzM7OAoiMTgiOzE5OzExOzA7NgoiMTkiOzEzOzI7MzA7MTAKIjIwIjsxOTsyMjsxNjszCiIyMSI7OTsxMzsxMjsyMwoiMjIiOzY7MTsxMjsxOQoiMjMiOzIzOzE0OzE3OzgKIjI0IjsxODs1OzMwOzUKIjI1IjsyMjsyMDsyMDsyCiIyNiI7MTk7MjE7NDsyNAoiMjciOzE0OzE2OzMwOzI0CiIyOCI7MzsxNjsyMzsyNwoiMjkiOzc7MTI7Mjg7MwoiMzAiOzEyOzIwOzI1OzYKIjMxIjszMDsxMjsxOzQKIjMyIjsxNjsxOzI4OzIKIjMzIjsxODsyODsyNjsyNwoiMzQiOzEyOzE5OzI7MTgK" download="inv_settlement.csv">inv_settlement.csv</a>
+File: <a href="data:text/csv;base64,IiI7ImN1cHMiOyJib3dscyI7ImJlYWtlciI7InBvdHMiCiIxIjswOzE7MDsxCiIyIjsxOzA7MTsxCiIzIjsxOzE7MDsxCiI0IjsxOzA7MTsxCiI1IjsxOzE7MTswCiI2IjswOzE7MTsxCiI3IjswOzA7MTsxCiI5IjswOzE7MTswCiIxMCI7MDswOzA7MQoiMTEiOzA7MDswOzEKIjEyIjsxOzE7MTsxCiIxMyI7MDsxOzE7MQoiMTQiOzA7MDswOzEKIjE2IjswOzE7MDsxCiIxNyI7MDsxOzA7MQoiMTgiOzA7MDsxOzAKIjE5IjsxOzE7MDsxCg==" download="inv_settlement.csv">inv_settlement.csv</a>
 
 ---
 

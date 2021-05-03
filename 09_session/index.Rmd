@@ -4,7 +4,7 @@ subtitle: "09 - Cluster Analysis"
 author: "Martin Hinz"
 institute: "Institut für Archäologische Wissenschaften, Universität Bern"
 fontsize: 9pt
-date: "05.05.2019"
+date: "05.05.2021"
 output:
   xaringan::moon_reader:
     chakra: "../libs/remark-latest.min.js"
