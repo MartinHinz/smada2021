@@ -362,6 +362,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="regression-analysis-and-correlation.html"><a href="regression-analysis-and-correlation.html#correlation-does-not-imply-causation"><i class="fa fa-check"></i><b>8.6</b> Correlation does not imply causation</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="cluster-analysis.html"><a href="cluster-analysis.html"><i class="fa fa-check"></i><b>9</b> Cluster Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#idea-and-basics"><i class="fa fa-check"></i><b>9.1</b> Idea and Basics</a></li>
+<li class="chapter" data-level="9.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#methods"><i class="fa fa-check"></i><b>9.2</b> Methods</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-approach"><i class="fa fa-check"></i><b>9.2.1</b> Hierarchical approach</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#partitioning-approach"><i class="fa fa-check"></i><b>9.2.2</b> Partitioning approach</a></li>
+<li class="chapter" data-level="9.2.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-and-partitioning-advantages-and-disadvantages"><i class="fa fa-check"></i><b>9.2.3</b> Hierarchical and partitioning: advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#distance-calculations"><i class="fa fa-check"></i><b>9.3</b> Distance calculations</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#how-the-crow-flies-euclidean-distance-metric-variables"><i class="fa fa-check"></i><b>9.3.1</b> How the crow flies (Euclidean distance (metric variables))</a></li>
+<li class="chapter" data-level="9.3.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#how-the-taxy-drives-manhattan-distance"><i class="fa fa-check"></i><b>9.3.2</b> How the taxy drives (Manhattan distance)</a></li>
+<li class="chapter" data-level="9.3.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#when-distances-can-no-longer-be-calculated-non-metric-variables-presenceabsence-matrices"><i class="fa fa-check"></i><b>9.3.3</b> When distances can no longer be calculated (non-metric variables, presence/absence matrices)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#distance-calculation-in-r"><i class="fa fa-check"></i><b>9.4</b> Distance calculation in R</a></li>
+<li class="chapter" data-level="9.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering"><i class="fa fa-check"></i><b>9.5</b> Hierarchical clustering</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#cluster-analysis-by-hand"><i class="fa fa-check"></i><b>9.5.1</b> Cluster analysis by hand</a></li>
+<li class="chapter" data-level="9.5.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#dendrogram"><i class="fa fa-check"></i><b>9.5.2</b> Dendrogram</a></li>
+<li class="chapter" data-level="9.5.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#other-methods"><i class="fa fa-check"></i><b>9.5.3</b> Other methods</a></li>
+<li class="chapter" data-level="9.5.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#praktische-durchführung-in-r"><i class="fa fa-check"></i><b>9.5.4</b> Praktische Durchführung in R</a></li>
+<li class="chapter" data-level="9.5.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#with-metric-data-distance-matrix"><i class="fa fa-check"></i><b>9.5.5</b> With metric data (Distance matrix)</a></li>
+<li class="chapter" data-level="9.5.6" data-path="cluster-analysis.html"><a href="cluster-analysis.html#with-nominal-data-dissimilarity-matrix"><i class="fa fa-check"></i><b>9.5.6</b> with nominal data (Dissimilarity matrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="cluster-analysis.html"><a href="cluster-analysis.html#number-of-clusters"><i class="fa fa-check"></i><b>9.6</b> Number of Clusters</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#tree-care-and-visualisation"><i class="fa fa-check"></i><b>9.6.1</b> Tree care and visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="cluster-analysis.html"><a href="cluster-analysis.html#non-hierarchical-clustering"><i class="fa fa-check"></i><b>9.7</b> Non-hierarchical clustering</a></li>
+<li class="chapter" data-level="9.8" data-path="cluster-analysis.html"><a href="cluster-analysis.html#schluss-und-überleitung"><i class="fa fa-check"></i><b>9.8</b> Schluss und Überleitung</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -394,8 +426,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Especially in the case of the two sample test, often <strong>certain similarities between the two samples</strong> are required, so that the test can be applied. In the case of the ANOVA, variance homogenity is assumed, and it is necessary to contact this analyses in the correct way.</p>
 <p>At last, nearly all parametric tests required variables that are metric scaled, so interval or ratio scaled. The reason for this is that most parametric tests use actual calculated parametres from the data, and if these parameters cannot be calculated, because this is not possible with this data quality, of course they do not make any sense. When example here might be DF test, which is a test for variances. As the variance is defined as the deviation from the mean, it can only reasonably be expressed in situations where we can calculate the mean. As we have learnt earlier, the main can only be calculated with metric variables.</p>
 <p>This means, that before we can apply an actual parametric test, often we have to determine whether our data quality is suitable for this test in the first place. And if this tests again have pre-requisites, this also might be necessarily checked with another test. From this, quite often cascades of tests emerge. Below, you can see a cascade for the application of the t-test.</p>
-<div id="htmlwidget-ea8c38903f52d82561e5" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ea8c38903f52d82561e5">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8d1295c883284c6fd8c1" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8d1295c883284c6fd8c1">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>There are multiple versions of this kind of decision tree, and you find legions of them in the Internet or in the literature. We will start following the path from this decision tree, to end up with our t-test. At first, we will check for normality, then we will test our data, if the variances are homogeneous, and lastly we will apply the t-test to our data.</p>
 <hr />
 </div>
@@ -745,25 +777,25 @@ Solution
 ##  Two Sample t-test
 ## 
 ## data:  A and B
-## t = -2.89, df = 38, p-value = 0.0064
+## t = -0.607, df = 38, p-value = 0.55
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.60825 -0.28257
+##  -0.87156  0.46953
 ## sample estimates:
 ## mean of x mean of y 
-##  0.034923  0.980334</code></pre>
+##  0.076204  0.277217</code></pre>
 <div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="parametric-tests.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A,B, <span class="at">data=</span>sim_data)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  A and B
-## t = -2.89, df = 38, p-value = 0.0064
+## t = -0.607, df = 37.9, p-value = 0.55
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.60826 -0.28257
+##  -0.87163  0.46961
 ## sample estimates:
 ## mean of x mean of y 
-##  0.034923  0.980334</code></pre>
+##  0.076204  0.277217</code></pre>
 <p>In most of the cases (with small sample size), the Welch test will be slightly more unsure (the p-value will be slightly higher) to reject the null hypothesis.</p>
 </div>
 </div>
