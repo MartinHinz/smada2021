@@ -1,0 +1,55 @@
+---
+title: "Statistical methods for archaeological data analysis I: Basic methods"
+subtitle: "09 - Cluster Analysis Homework"
+author: "Martin Hinz"
+institute: "Institut für Archäologische Wissenschaften, Universität Bern"
+fontsize: 9pt
+date: "12.05.2021"
+output:
+  xaringan::moon_reader:
+    chakra: "../libs/remark-latest.min.js"
+    css: ["../libs/default.css", "../libs/default-fonts.css", "../libs/customize.css"]
+    lib_dir: "libs"
+    seal: false
+    nature:
+      beforeInit: "../libs/macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      fig_caption: yes
+      ratio: "16:10"
+editor_options: 
+  chunk_output_type: console
+---
+class: title-slide
+
+```{r setup, echo=F, error=FALSE, warning=F, message=F}
+rm(list = ls())
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('### ', rmarkdown::metadata$title)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('###', rmarkdown::metadata$subtitle)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('', rmarkdown::metadata$author)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('', rmarkdown::metadata$institute)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat(rmarkdown::metadata$date)
+```
+
+[Assignment sheet](hausaufgabe_09.pdf)
+
+Please save the data for the questions using 'Save as...':
+
+* [Data for Question 1](./schirren_matrix.csv)
+* [Data for Question 2](./laender.csv)
