@@ -1,0 +1,53 @@
+number,leather/fur,animal,horizon,description,length,width,thickness
+513,leather,cattle,1b,straps,15.6,1.2,0.3
+610a,leather,goat,6,cut??,11.6,3.2,0.12
+610b,fur,goat,6,patch,8.3,5.6,0.1
+611a,fur,goat,1d,patch?,18.1,9.4,0.05
+611b,fur,goat,1d,patch?,9.3,8.7,0.07
+611c,fur,goat,1d,patch?,19.3,12.5,0.06
+611d,fur,goat,1d,fragment,7,3.8,0.1
+611e,fur,goat,1d,fragment,1.6,1.1,0.06
+611f,fur,goat,1d,fragment,1.3,1.1,0.05
+611g,fur,goat,1d,fragment,9.8,7.4,0.05
+611h,fur,goat,1d,patch?,13.9,9.6,0.07
+612,leather,goat,3,cut??,4.2,3.7,0.15
+613a,leather,cattle,stray find,straps,17.02,1.1,0.35
+613b,NA,cattle,stray find,straps,9.5,1.5,0.32
+614,fur,horse,stray find,cut??,6.7,3.3,0.08
+616,leather,goat,5,fragment,12.6,5,0.05
+617,fur,Schaf,4,fragment,12.5,4.7,0.07
+618a,fur,Schaf,2,cut??,12.2,6.9,0.07
+618b,fur,Schaf,2,cut??,11.1,10.2,0.07
+619,leather,goat,3,patch?,20.2,10.7,0.13
+620,fur,goat,1d,fragment,28,19.5,0.1
+621a,fur,goat,3,patch,43.1,8.6,0.17
+621b,fur,goat,3,patch?,33.8,6.7,0.17
+622a,leather,goat,3,clothes,23.7,4.9,0.08
+622b?,leather,NA,,straps,4.8,1.8,0.4
+622c?,leather,NA,,straps,6.3,1.8,0.35
+623,leather,goat,4,straps,67,1.7,0.45
+625a,fur,goat,6,patch,9.4,2.2,0.17
+625b,fur,goat,6,patch,8.1,2,0.15
+625c,fur,goat,6,straps,10.4,1.6,0.2
+625d,fur,goat,6,straps,9.3,4.3,0.1
+625e,fur,goat,6,patch,14,4.4,0.18
+626,leather,goat,1b,straps,13.7,1.4,0.35
+627,leather,goat,1d,straps,9.1,0.8,0.4
+629a,leather,cattle,5,cut??,9.2,5.4,0.25
+629b,leather,cattle,5,fragment,19.2,9.5,0.1
+630a,leather,goat,5,cut??,8.2,3.6,0.1
+630b,leather,goat,5,fragment,3.9,1.9,0.05
+630c,leather,goat,5,fragment,10.6,7.4,0.1
+631a,leather,goat,stray find,Suspension Tanning,12,8.4,0.15
+631b,leather,goat,stray find,patch,16.6,9,0.1
+632,fur,goat,6,fragment,20.2,8.5,0.1
+633a,leather,cattle,5,cut??,13.1,7.5,0.2
+633b,leather,cattle,5,Skin edge tanning,8,3.2,0.25
+633c,leather,cattle,5,Skin edge tanning,4.7,2,0.25
+634,leather,cattle,6,Suspension Tanning,13.8,5,0.2
+635a,leather,cattle,6,cut?,4.1,4,0.14
+635b,leather,cattle,6,cut?,9,2.1,0.14
+636,leather,cattle,5,straps,55,1.6,0.35
+637a,leather,cattle,6,cut??,14.7,8.1,0.3
+637b,fur,cattle,6,patch,13.3,9.4,0.25
+638,leather,cattle,stray find,cut??,15.5,7.1,0.25

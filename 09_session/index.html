@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistical methods for archaeological data analysis I: Basic methods</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Martin Hinz" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
+    <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+    <link rel="stylesheet" href="../libs/default.css" type="text/css" />
+    <link rel="stylesheet" href="../libs/default-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../libs/customize.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: title-slide, center, middle
+
+
+
+#  Statistical methods for archaeological data analysis I: Basic methods
+
+##  09 - Cluster Analysis
+
+###  Martin Hinz
+
+####  Institut für Archäologische Wissenschaften, Universität Bern
+
+05.05.2019
+---
+
+## Cluster Analysis: Idea and Basics
+
+### Similar things have similar characteristics...
+Group formation on the basis of characteristic attributes that (clearly?) distinguish them from other groups
+
+Intuitive basis of archaeological work
+
+With late 60s (New archaeology) request,
+- to uncouple criteria for forming groups from subjective decisions
+- enable processing of large, intuitively unmanageable amounts of data
+
+→ multivariate analyses
+
+### Cluster analysis
+1. measurement of a distance (of any kind) between data
+2. grouping data that is similar to each other and differentiating from data that are dissimilar 
+
+→ Classification
+
+---
+
+![:width 70%](../images/11_session/cluster_chart.png)
+
+---
+
+![:width 70%](../images/11_session/cluster_chart3d.png)
+
+---
+
+## Cluster Analysis: Methods [1]
+
+March separately, strike together... right?
+Hierarchical
+
+Which objects are most similar?
+
+Which objects are 2. most similar?
+
+Which objects are 3. most similar?
+...
+
+.pull-left[
+### agglomerative
+
+Starting from the smallest unit (individual objects)
+
+Combine the two most similar to one object (1st cluster)
+
+Combine the two most similar [Cluster|Objects].
+...
+]
+
+.pull-right[
+### divisive
+
+Start with the largest possible unit (all objects as 1 cluster)
+
+Divide them into two groups as dissimilar as possible
+
+Divide one of the groups into two groups that are as dissimilar as possible.
+...
+
+]
+
+Example: **Hierarchical clustering**, e.g. according to the Ward method
+
+---
+
+<div id="htmlwidget-df4510f699a05c2490df" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-df4510f699a05c2490df">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Start with\nfinest partition\"]\n      tab2 [label = \"Calculate initial\ndistance matrix\"]\n      tab3 [label = \"Search for the two\nObjects/Clusters with the\nleast distance\"]\n      tab4 [label = \"Combine the most similar\nObjects/Clusters\ninto one Cluster\"]\n      tab5 [label = \"Calculate new\ndistance matrix\"]\n      tab6 [label = \"Are all objects\njoint in one group?\", shape=diamond]\n      tab7 [label = \"Finished\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6;\n      tab6 -> tab7 [label=\"yes\"];\n      tab6 -> tab3 [label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+
+## Cluster Analysis: Methods [2]
+
+Divide and rule... or?
+
+Partitioning
+
+What is the best way to divide the data into n groups?
+
+Possible procedure:
+
+1. select n cluster centers randomly.
+2. combine data most similar to these cluster centers
+3. recalculate the cluster centers if necessary
+4. Does anything change?
+
+If yes, again to 2.
+
+Otherwise: ready!
+
+Example: **kmeans clustering**
+
+---
+.center[
+![:width 35%](../images/11_session/cluster_procedure_kmeans.png)
+]
+---
+
+## Cluster Analysis: Methods [3]
+
+### Hierarchical
+*Advantage*: No number of clusters is specified, hierarchies of clusters can be observed (representation in a dendrogram)
+
+*Disadvantage*: Once a solution has been found, it cannot be resolved again, even if the cluster is no longer optimal in a later step.
+
+### Partitioning
+*Advantage*: Clusters are still variable afterwards, i.e. if a better solution is found after a cluster cycle, this solution can be chosen.
+
+*Disadvantage*: A cluster number is specified.
+
+---
+
+## Distance calculations: Euclidean distance (metric variables)
+
+### How the crow flies
+
+The closer two points are to each other, whose position in a coordinate system is determined by the values of the respective variables, the more similar the data sets are.
+
+Calculation of the distance to each other:
+
+Theorem of Pythagoras...
+
+`\(a^2=b^2+c^2\)`
+
+The distance between two data with the variables x,y is thus:
+
+`\(d_{ij} = \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}\)`
+
+---
+
+![:width 75%](../images/11_session/euc_dist.png)
+
+---
+
+![:width 75%](../images/11_session/manhatt_distance.png)
+
+---
+
+## Distance calculations: City-Block Distance (or Manhattan metric) (metric variables)
+
+### How the taxi driver drives
+
+Representation of the absolute distance between two objects
+
+*Problem*: If the two variables are somehow interdependent, the resulting coordinate system is not rectangular.
+
+Therefore, distances would be over- or underestimated with Euclidean metrics.
+
+*Solution*: City block distance
+
+The distance between two data with the variables x,y is thus:
+
+`\(d_{ij} = |x_i - x_j| + |y_i -y_j|\)`
+
+---
+
+## Distance calculation: non-metric variables (presence/absence matrices) [1]
+
+### When distances can no longer be calculated
+
+With nominal or ordinal variables there are no more defined distances between the values (hopefully still known...)
+
+Therefore they can no longer be calculated in Euclidean space.
+
+Possible solutions: Calculation over similarity coefficients from contingency tables.
+
+Example burial inventories
+
+| Burial 1 | Burial 2 ||
+| - | - | - |
+|  | \+ | \- |
+| \+ | a | b |
+| \- | c | d |
+
+---
+
+## Distance calculation: non-metric variables (presence/absence matrices) [2]
+
+### Calculation of similarities over equal/different characteristics
+
+.pull-left[It is checked in how many cases the graves match (a,d) and in how many cases there are differences (b,c).]
+.pull-right[
+| Burial 1 | Burial 2 ||
+| - | - | - |
+|  | \+ | \- |
+| \+ | a | b |
+| \- | c | d |
+]
+
+.pull-left[
+| Types    | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+| -        | - | - | - | - | - | - | - | - | - |
+| Burial 1 | 1 | 1 | 0 | 1 | 0 | 0 | 1 | 1 | 1 |
+| Burial 2 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 |
+]
+
+.pull-right[
+| Burial 1 | Burial 2 ||
+| - | - | - |
+|  | \+ | \- |
+| \+ | 3 | 3 |
+| \- | 0 | 3 |
+]
+
+---
+
+## Distance calculation: non-metric variables (presence/absence matrices) [3]
+
+### Calculation of similarities over equal/different characteristics
+
+.pull-left[
+Various possibilities to calculate the distances:
+
+Tanimoto (Jaccard) `\(d = \frac{a}{a+b+c}\)`
+
+Simple Matching `\(d = \frac{a+d}{a+b+c+d}\)`
+
+Russel &amp; Rao (RR) `\(d = \frac{a}{a+b+c+d}\)`
+
+This example in Jaccard `\(d = \frac{3}{3+3+0} = 0.5\)`
+]
+
+.pull-right[
+| Burial 1 | Burial 2 ||
+| - | - | - |
+|  | \+ | \- |
+| \+ | 3 (a) | 3 (b) |
+| \- | 0 (c) | 3 (d)|
+]
+
+---
+
+## Distance calculation: non-metric variables (presence/absence matrices) [3]
+
+### in R:
+.tiny[
+
+File: <a href="data:text/csv;base64,bnVtYmVyLGxlYXRoZXIvZnVyLGFuaW1hbCxob3Jpem9uLGRlc2NyaXB0aW9uLGxlbmd0aCx3aWR0aCx0aGlja25lc3MKNTEzLGxlYXRoZXIsY2F0dGxlLDFiLHN0cmFwcywxNS42LDEuMiwwLjMKNjEwYSxsZWF0aGVyLGdvYXQsNixjdXQ/PywxMS42LDMuMiwwLjEyCjYxMGIsZnVyLGdvYXQsNixwYXRjaCw4LjMsNS42LDAuMQo2MTFhLGZ1cixnb2F0LDFkLHBhdGNoPywxOC4xLDkuNCwwLjA1CjYxMWIsZnVyLGdvYXQsMWQscGF0Y2g/LDkuMyw4LjcsMC4wNwo2MTFjLGZ1cixnb2F0LDFkLHBhdGNoPywxOS4zLDEyLjUsMC4wNgo2MTFkLGZ1cixnb2F0LDFkLGZyYWdtZW50LDcsMy44LDAuMQo2MTFlLGZ1cixnb2F0LDFkLGZyYWdtZW50LDEuNiwxLjEsMC4wNgo2MTFmLGZ1cixnb2F0LDFkLGZyYWdtZW50LDEuMywxLjEsMC4wNQo2MTFnLGZ1cixnb2F0LDFkLGZyYWdtZW50LDkuOCw3LjQsMC4wNQo2MTFoLGZ1cixnb2F0LDFkLHBhdGNoPywxMy45LDkuNiwwLjA3CjYxMixsZWF0aGVyLGdvYXQsMyxjdXQ/Pyw0LjIsMy43LDAuMTUKNjEzYSxsZWF0aGVyLGNhdHRsZSxzdHJheSBmaW5kLHN0cmFwcywxNy4wMiwxLjEsMC4zNQo2MTNiLE5BLGNhdHRsZSxzdHJheSBmaW5kLHN0cmFwcyw5LjUsMS41LDAuMzIKNjE0LGZ1cixob3JzZSxzdHJheSBmaW5kLGN1dD8/LDYuNywzLjMsMC4wOAo2MTYsbGVhdGhlcixnb2F0LDUsZnJhZ21lbnQsMTIuNiw1LDAuMDUKNjE3LGZ1cixTY2hhZiw0LGZyYWdtZW50LDEyLjUsNC43LDAuMDcKNjE4YSxmdXIsU2NoYWYsMixjdXQ/PywxMi4yLDYuOSwwLjA3CjYxOGIsZnVyLFNjaGFmLDIsY3V0Pz8sMTEuMSwxMC4yLDAuMDcKNjE5LGxlYXRoZXIsZ29hdCwzLHBhdGNoPywyMC4yLDEwLjcsMC4xMwo2MjAsZnVyLGdvYXQsMWQsZnJhZ21lbnQsMjgsMTkuNSwwLjEKNjIxYSxmdXIsZ29hdCwzLHBhdGNoLDQzLjEsOC42LDAuMTcKNjIxYixmdXIsZ29hdCwzLHBhdGNoPywzMy44LDYuNywwLjE3CjYyMmEsbGVhdGhlcixnb2F0LDMsY2xvdGhlcywyMy43LDQuOSwwLjA4CjYyMmI/LGxlYXRoZXIsTkEsLHN0cmFwcyw0LjgsMS44LDAuNAo2MjJjPyxsZWF0aGVyLE5BLCxzdHJhcHMsNi4zLDEuOCwwLjM1CjYyMyxsZWF0aGVyLGdvYXQsNCxzdHJhcHMsNjcsMS43LDAuNDUKNjI1YSxmdXIsZ29hdCw2LHBhdGNoLDkuNCwyLjIsMC4xNwo2MjViLGZ1cixnb2F0LDYscGF0Y2gsOC4xLDIsMC4xNQo2MjVjLGZ1cixnb2F0LDYsc3RyYXBzLDEwLjQsMS42LDAuMgo2MjVkLGZ1cixnb2F0LDYsc3RyYXBzLDkuMyw0LjMsMC4xCjYyNWUsZnVyLGdvYXQsNixwYXRjaCwxNCw0LjQsMC4xOAo2MjYsbGVhdGhlcixnb2F0LDFiLHN0cmFwcywxMy43LDEuNCwwLjM1CjYyNyxsZWF0aGVyLGdvYXQsMWQsc3RyYXBzLDkuMSwwLjgsMC40CjYyOWEsbGVhdGhlcixjYXR0bGUsNSxjdXQ/Pyw5LjIsNS40LDAuMjUKNjI5YixsZWF0aGVyLGNhdHRsZSw1LGZyYWdtZW50LDE5LjIsOS41LDAuMQo2MzBhLGxlYXRoZXIsZ29hdCw1LGN1dD8/LDguMiwzLjYsMC4xCjYzMGIsbGVhdGhlcixnb2F0LDUsZnJhZ21lbnQsMy45LDEuOSwwLjA1CjYzMGMsbGVhdGhlcixnb2F0LDUsZnJhZ21lbnQsMTAuNiw3LjQsMC4xCjYzMWEsbGVhdGhlcixnb2F0LHN0cmF5IGZpbmQsU3VzcGVuc2lvbiBUYW5uaW5nLDEyLDguNCwwLjE1CjYzMWIsbGVhdGhlcixnb2F0LHN0cmF5IGZpbmQscGF0Y2gsMTYuNiw5LDAuMQo2MzIsZnVyLGdvYXQsNixmcmFnbWVudCwyMC4yLDguNSwwLjEKNjMzYSxsZWF0aGVyLGNhdHRsZSw1LGN1dD8/LDEzLjEsNy41LDAuMgo2MzNiLGxlYXRoZXIsY2F0dGxlLDUsU2tpbiBlZGdlIHRhbm5pbmcsOCwzLjIsMC4yNQo2MzNjLGxlYXRoZXIsY2F0dGxlLDUsU2tpbiBlZGdlIHRhbm5pbmcsNC43LDIsMC4yNQo2MzQsbGVhdGhlcixjYXR0bGUsNixTdXNwZW5zaW9uIFRhbm5pbmcsMTMuOCw1LDAuMgo2MzVhLGxlYXRoZXIsY2F0dGxlLDYsY3V0Pyw0LjEsNCwwLjE0CjYzNWIsbGVhdGhlcixjYXR0bGUsNixjdXQ/LDksMi4xLDAuMTQKNjM2LGxlYXRoZXIsY2F0dGxlLDUsc3RyYXBzLDU1LDEuNiwwLjM1CjYzN2EsbGVhdGhlcixjYXR0bGUsNixjdXQ/PywxNC43LDguMSwwLjMKNjM3YixmdXIsY2F0dGxlLDYscGF0Y2gsMTMuMyw5LjQsMC4yNQo2MzgsbGVhdGhlcixjYXR0bGUsc3RyYXkgZmluZCxjdXQ/PywxNS41LDcuMSwwLjI1Cg==" download="leather.csv">leather.csv</a>
+
+
+```r
+leather &lt;- read.csv("leather.csv")
+dist(leather[,c("length","width","thickness")],method="euclid")
+dist(leather[,c("length","width","thickness")],method="manhattan")
+```
+
+File: <a href="data:text/csv;base64,LFYxLFYyLFYzLFY0LFY1LFY2LFY3LFY4LFY5CmJ1cmlhbDEsMSwxLDAsMSwwLDAsMSwxLDEKYnVyaWFsMiwxLDAsMCwwLDAsMCwxLDAsMQpidXJpYWwzLDAsMCwwLDEsMSwwLDAsMSwwCmJ1cmlhbDQsMCwxLDAsMCwxLDAsMSwxLDEKYnVyaWFsNSwxLDEsMCwwLDEsMSwwLDEsMApidXJpYWw2LDEsMSwwLDAsMCwxLDEsMCwwCmJ1cmlhbDcsMCwwLDEsMSwxLDEsMSwxLDAK" download="burial_pa.csv">burial_pa.csv</a>
+
+
+```r
+burials &lt;- read.csv("burial_pa.csv", row.names = 1)
+burials[1:2,]
+```
+
+```
+##         V1 V2 V3 V4 V5 V6 V7 V8 V9
+## burial1  1  1  0  1  0  0  1  1  1
+## burial2  1  0  0  0  0  0  1  0  1
+```
+
+```r
+library(vegan)
+vegdist(burials,method="jaccard")
+```
+
+```
+##           burial1   burial2   burial3   burial4   burial5   burial6
+## burial2 0.5000000                                                  
+## burial3 0.7142857 1.0000000                                        
+## burial4 0.4285714 0.6666667 0.6666667                              
+## burial5 0.6250000 0.8571429 0.6666667 0.5714286                    
+## burial6 0.5714286 0.6000000 1.0000000 0.7142857 0.5000000          
+## burial7 0.6666667 0.8750000 0.5000000 0.6250000 0.6250000 0.7500000
+```
+]
+---
+class:inverse
+
+## Distance calculations: exercise
+
+The inventories of different (hypothetical) settlements are given.
+
+Calculate the appropriate distance matrix.
+
+File: <a href="data:text/csv;base64,IiI7InRhc3NlbiI7InNjaGFsZW4iOyJiZWNoZXIiOyJ0b2VwZmUiCiIxIjsxMTsyMDsxMTsyCiIyIjs3OzEwOzI3OzUKIjMiOzI0Ozg7MTM7MTMKIjQiOzI5OzIyOzI0OzI0CiI1IjsxNjsxNTsxMjs4CiI2IjsyNjsyOzY7MjgKIjciOzIwOzY7MTI7MQoiOCI7MjM7Mjg7MTI7NAoiOSI7Mjg7MTg7MjQ7NgoiMTAiOzIyOzk7MTsxMQoiMTEiOzI4Ozk7MTsyOQoiMTIiOzA7MjE7MzA7NwoiMTMiOzY7MTQ7MjI7MjMKIjE0IjsyMDsyMzsyMzs5CiIxNSI7MTM7Mzs4OzEKIjE2IjsyMDs2Ozk7MTgKIjE3Ijs0OzIwOzM7OAoiMTgiOzE5OzExOzA7NgoiMTkiOzEzOzI7MzA7MTAKIjIwIjsxOTsyMjsxNjszCiIyMSI7OTsxMzsxMjsyMwoiMjIiOzY7MTsxMjsxOQoiMjMiOzIzOzE0OzE3OzgKIjI0IjsxODs1OzMwOzUKIjI1IjsyMjsyMDsyMDsyCiIyNiI7MTk7MjE7NDsyNAoiMjciOzE0OzE2OzMwOzI0CiIyOCI7MzsxNjsyMzsyNwoiMjkiOzc7MTI7Mjg7MwoiMzAiOzEyOzIwOzI1OzYKIjMxIjszMDsxMjsxOzQKIjMyIjsxNjsxOzI4OzIKIjMzIjsxODsyODsyNjsyNwoiMzQiOzEyOzE5OzI7MTgK" download="inv_settlement.csv">inv_settlement.csv</a>
+
+---
+
+## Hierarchical clustering [1]
+
+### When we have the distances...
+
+.pull-left[
+Example Backhaus et al: Magarine
+
+Euclidean Distance Matrix, Calculated from Versch. Factors
+
+The most similar:
+
+Flora and Rama.
+
+These form our first cluster at a distance of 4
+
+For the further steps there are different procedures to determine the value for the new cluster...
+
+clustering: {4}
+]
+
+.pull-right[
+|                  | Rama | Homa | Flora | SB | 
+|------------------| ---- | ---- | ----- | -- | 
+| Homa             | 6    |      |       |    |
+| Flora            | 4    | 6    |       |    |
+| SB               | 56   | 26   | 44    |    |
+| Weihnachtsbutter | 75   | 41   | 59    | 11 |
+]
+
+---
+
+## Hierarchical clustering [2]
+
+Positions of clusters, methods
+
+Single linkage process
+
+Nearest neighbour: The distance from the group {Rama,Flora} is determined by the smallest distance from this group to all other values.
+
+.pull-left[
+|                  | Rama | Homa | Flora | SB | 
+|------------------| ---- | ---- | ----- | -- | 
+| Homa             | **6**|      |         |    |
+| Flora            | **4**| 6    |         |    |
+| SB               | **56**| 26   | **44**|    |
+| Weihnachtsbutter | **75**| 41   | **59**| 11 |
+]
+
+.pull-right[
+|                  | Rama, Flora     | Homa | SB | 
+|------------------| --------------- | ---- | -- | 
+| Homa             | **6**           |      |    |
+| SB               | **44**          | 26   |    |
+| Weihnachtsbutter | **59**          | 41   | 11 |
+
+clustering: {4}
+
+]
+
+---
+
+## Hierarchical clustering [3]
+
+Positions of clusters, methods
+
+Single linkage process
+
+Nearest neighbour: The distance from the group {Rama,Flora, Homa} is determined by the smallest distance from this group to all other values.
+
+.pull-left[
+|                  | Rama, Flora     | Homa | SB | 
+|------------------| --------------- | ---- | -- | 
+| Homa             | **6**           |      |    |
+| SB               | **44**          | 26   |    |
+| Weihnachtsbutter | **59**          | 41   | 11 |
+]
+
+.pull-right[
+|                  | Rama, Flora, Homa | SB | 
+|------------------| --------------- | -- | 
+| SB               | **26**          |    |
+| Weihnachtsbutter | **41**          | 11 |
+
+clustering: {4, 6}
+
+]
+
+---
+
+## Hierarchical clustering [4]
+
+Positions of clusters, methods
+
+Single linkage process
+
+Nearest neighbour: The distance from the group {Rama,Flora, Homa} is determined by the smallest distance from this group to all other values.
+
+.pull-left[
+|                  | Rama, Flora, Homa | SB | 
+|------------------| --------------- | -- | 
+| SB               | **26**          |    |
+| Weihnachtsbutter | **41**          | 11 |
+]
+
+.pull-right[
+|                  | Rama, Flora, Homa |
+|------------------| --------------- |
+| SB, Weihnachtsbutter               | **26**          |
+
+clustering: {4, 6, 11} -&gt; clustering: {4, 6, 11, 26}
+
+]
+
+---
+
+## Hierarchical clustering [5]
+
+### Dendrogram
+
+Representation of the process of the cluster combination
+
+![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+clustering: {4, 6, 11, 26}
+
+---
+
+## Hierarchical clustering: Methods
+
+### Other methods
+
+**Complete linkage process:**
+
+The most distant neighbor is selected.
+
+**Average Linkage Procedure**
+
+The mean value of the paired distances of all data is selected.
+
+**Ward method**
+
+Those groups are united in which the combination least increases the variance within the group. Good (best?) procedure for determining clusters when distance measures (metric variables) are available.
+
+---
+
+![:width 70%](../images/11_session/cluster_chart.png)
+
+---
+## Single linkage
+
+.pull-left[
+![](../images/11_session/cluster_chart.png)
+]
+.pull-right[
+![](../images/11_session/single_result.png)
+]
+---
+
+## Average linkage
+.pull-left[
+![](../images/11_session/cluster_chart.png)
+]
+.pull-right[
+![](../images/11_session/average_result.png)
+]
+---
+
+## Ward
+.pull-left[
+![](../images/11_session/cluster_chart.png)
+]
+.pull-right[
+![](../images/11_session/ward_result.png)
+]
+---
+
+## Hierarchical clustering: Ward Method
+
+### Procedure when metric data is available
+.pull-left[
+The value is added to a cluster that causes the least increase in variance within the cluster.
+
+**Advantage**: usually finds "natural" groupings best.
+
+**Disadvantage**: is only applicable for metrically scaled variables [but: Jaccard distance can be processed].
+
+Poor in finding groups with small number of elements or stretched groups
+In R:
+.tiny[
+
+```r
+leather &lt;- read.csv("leather.csv")
+
+leather.dist &lt;- dist(leather[,c("length",
+                                "width",
+                                "thickness")],
+                     method="euclid")
+
+leather.hclust&lt;-hclust(leather.dist,method="ward")
+```
+
+```
+## The "ward" method has been renamed to "ward.D"; note new "ward.D2"
+```
+
+]
+]
+
+.pull-right[
+In R:
+.tiny[
+
+```r
+plot(leather.hclust)
+```
+
+![](index_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+]
+---
+
+## Hierarchical clustering: average linkage method
+
+### A procedure when only nominal data are available
+
+.pull-left[
+The new distance dimension is calculated from the average of all pairwise Comparisons of the distances of the members of two clusters calculated
+
+Advantage: can also be used with nominally scaled variables, takes into account all elements of a cluster when redetermining the distances
+
+Disadvantage: Not as well suited as Ward to create "natural" groups.
+
+In R:
+.tiny[
+
+```r
+burials &lt;- read.csv("burial_pa.csv", row.names = 1)
+
+burials.dist &lt;- vegdist(burials,
+                     method="jacc")
+
+burials.hclust&lt;-hclust(burials.dist,method="average")
+```
+
+]
+]
+
+.pull-right[
+
+```r
+plot(burials.hclust)
+```
+
+![](index_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+## Hierarchical Clustering: Number of Clusters
+.pull-left[
+How many groups are enough?
+
+* **content related considerations**
+
+How many groups do I expect? Do they make sense? Can I read it from the dendrogram?
+
+* **Elbow criterion**
+
+For ward clustering: If the variance within the clusters no longer increases significantly, good clustering is found.
+]
+
+.pull-right[
+In R:
+
+Display for the last 10 clusters:
+.tiny[
+
+```r
+plot(rev(leather.hclust$height)[1:10],type="l")
+```
+
+![](index_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+]
+
+"Elbow" at 5: 5 cluster solution seems to make sense
+]
+---
+
+## Hierarchical Clustering: Visualisation
+
+.pull-left[
+Dendrogram
+.tiny[
+
+```r
+plot(leather.hclust)
+```
+
+![](index_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+]
+]
+
+.pull-right[
+Using the cluster results for coloring plots:
+.tiny[
+
+```r
+leather$clusters &lt;- cutree(leather.hclust,5)
+plot(leather[,c("length", "width", "thickness")],
+     col=rainbow(5)[leather$clusters])
+```
+
+![](index_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+]
+]
+---
+class: inverse
+
+## Hierarchical Clustering: Excercise
+
+Ceramics with various decorative elements
+
+Given are ceramic artefacts with different properties.
+
+Determine which distance measure is appropriate, calculate the distance matrix and carry out a cluster analysis using a suitable method.
+
+Determine a good cluster solution and display the dendrogram.
+
+File: <a href="data:text/csv;base64,OyJHZWdlbnN0YWVuZGlnZSBLZXJiZW4iOyJzZW5rcmVjaHRlcyBGaXNjaGdyYWV0bXVzdGVyIjsiV2FhZ2VyZWNodGUgTGluaWVuIjsiSG9yaXpvbnRhbCBhbmdlb3JkbmV0ZSBSaXR6bGluaWVuIjsiVmVydGlrYWxlcyBMZWl0ZXJiYW5kbXVzdGVyIjsiSGFlbmdlbmRlIGhhbGJtb25kZm9lcm1pZ2UgTGluaWVuZnVlaHJ1bmciOyJnZXJpdHp0ZXMgS3JldXoiOyJXYWFncmVjaHRlIE9lc2VuIjsiU2NobGlja3JhdWh1bmciOyJoYWVuZ2VuZGUgZ2VmdWVsbHRlIERyZWllY2tlIjsidmVyZGlja3RlIFJhbmRsaXBwZSI7InBsYXN0aXNjaGUgWmllciIKMTsxOzE7MDswOzA7MTsxOzA7MTsxOzE7MAoyOzE7MTsxOzA7MDswOzE7MDswOzE7MTswCjM7MTsxOzE7MDswOzA7MTsxOzA7MTsxOzAKNDsxOzE7MDswOzE7MDsxOzA7MTsxOzE7MAo1OzA7MTsxOzE7MDswOzE7MDswOzE7MTswCjY7MDsxOzA7MDsxOzA7MDswOzA7MTswOzAKNzsxOzE7MTswOzE7MTswOzA7MDsxOzA7MAo4OzA7MTsxOzA7MDsxOzA7MDswOzE7MDswCjk7MDsxOzE7MTswOzA7MTswOzA7MTswOzAKMTA7MTsxOzE7MDswOzA7MTswOzA7MTswOzAKMTE7MTsxOzA7MDsxOzA7MDswOzE7MTswOzAKMTI7MDsxOzA7MDswOzE7MTsxOzA7MDswOzAKMTM7MTswOzA7MTswOzA7MDsxOzE7MDswOzEKMTQ7MDswOzE7MTswOzA7MDswOzA7MDsxOzEKMTU7MTsxOzA7MTswOzE7MDswOzE7MDsxOzEKMTY7MDswOzE7MTswOzA7MDswOzA7MDsxOzEKMTc7MDswOzE7MTswOzE7MDswOzA7MDsxOzEKMTg7MDsxOzA7MTsxOzA7MDswOzE7MDsxOzEKMTk7MTswOzA7MTswOzE7MDsxOzA7MTswOzEKMjA7MDswOzA7MTsxOzE7MDswOzE7MDsxOzEKMjE7MDswOzA7MTswOzA7MTswOzA7MDswOzEKMjI7MDswOzA7MTswOzA7MDswOzA7MDswOzEKMjM7MDsxOzA7MTsxOzA7MTswOzA7MDswOzEK" download="ceramics.csv">ceramics.csv</a>
+
+---
+
+## Non-hierarchical clustering [1]
+
+### If a cluster number can be assumed...
+
+In each step, the clusters are reassembled and new distances are calculated. If the solution is as optimal as possible, the procedure stops.
+
+Example kmeans:
+
+Possible procedure: identify the optimal cluster number with hierarchical method (Ward), then actual clustering with kmeans
+
+File: <a href="data:text/csv;base64,InNpdGUiOyJtYWl6ZSI7InNvbGFudW0iOyJjaGVub3BvZGl1bSI7ImxlZ3VtZXMiCiJUdW4gMSBjb20iOzg7MTc7MzE7MAoiVHVuIDEgZWxpdGUiOzIyOzI4OzU5OzE5CiJVbXAgMSBjb20iOzQzOzI1OzY2OzEzCiJVbXAgMSBlbGl0ZSI7NDQ7NDc7Nzg7NgoiSGF0IDEgY29tIjswOzA7MjA7MAoiSGF0IDEgbWl4ZWQiOzY3OzY7Njc7MAoiSGF0IDIgY29tIjs2MzsxMzs4MzswCiJIYXQgMiBlbGl0ZSI7NjI7MzM7NzQ7NwoiTWFyYyAyIGNvbSI7NjA7MjA7NTI7OAoiTWFyYyAyIGVsaXRlIjs3MTs3OzQzOzAK" download="andean_sites.csv">andean_sites.csv</a>
+
+---
+
+## Non-hierarchical clustering [2]
+
+### If a cluster number can be assumed...
+
+.pull-left[
+.tiny[
+
+```r
+andean &lt;- read.csv2("andean_sites.csv", row.names = 1)
+andean.hclust&lt;-hclust(dist(andean),method="ward")
+```
+
+```
+## The "ward" method has been renamed to "ward.D"; note new "ward.D2"
+```
+
+```r
+plot(rev(andean.hclust$height),type="l")
+```
+
+![](index_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+Ellbow at 3, so 3 clusters:
+]]
+
+.pull-right[
+.tiny[
+
+```r
+andean.kmeans&lt;-kmeans(andean,3)
+plot(andean,col=andean.kmeans$cluster)
+```
+
+![](index_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+]]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../libs/remark-latest.min.js"></script>
+<script src="../libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"fig_caption": true,
+"ratio": "16:10"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
