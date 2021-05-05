@@ -4,8 +4,8 @@
     <title>Statistical methods for archaeological data analysis I: Basic methods</title>
     <meta charset="utf-8" />
     <meta name="author" content="Martin Hinz" />
-    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
-    <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
     <script src="libs/viz-1.8.2/viz.js"></script>
     <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
     <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
@@ -29,6 +29,15 @@ class: title-slide, center, middle
 ####  Institut für Archäologische Wissenschaften, Universität Bern
 
 21.04.2021
+
+.footnote[
+.right[
+.tiny[
+You can download a [pdf of this presentation](smada07.pdf).
+]
+]
+]
+
 ---
 
 
@@ -93,8 +102,8 @@ class: middle, center
 
 ## Possible test tree
 
-<div id="htmlwidget-8f56a00dd4d4273a911f" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8f56a00dd4d4273a911f">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8d2431598ef46a00cc25" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8d2431598ef46a00cc25">{"x":{"diagram":"digraph {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"normal distributed?\nks.test; shapiro.test\", shape=\"diamond\"]\n      tab2 [label = \"homogenous variances?\nf.test\", shape=\"diamond\"]\n      tab3 [label = \"t.test\"]\n      tab4 [label = \"t.test with \n welch correction\"]\n      tab5 [label = \"Non-Parametric Tests\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2[label=\"yes\"];\n      tab2 -> tab3[label=\"yes\"];\n      tab2 -> tab4[label=\"no\"];\n      tab1 -> tab5[label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -522,13 +531,13 @@ t.test(A,B, var.equal=T)
 ## 	Two Sample t-test
 ## 
 ## data:  A and B
-## t = -1.7675, df = 38, p-value = 0.08517
+## t = -2.0888, df = 38, p-value = 0.04348
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.2281221  0.0831989
+##  -1.24546805 -0.01950578
 ## sample estimates:
-##   mean of x   mean of y 
-## -0.08246632  0.48999529
+##  mean of x  mean of y 
+## -0.1152408  0.5172461
 ```
 ]
 ]
@@ -545,13 +554,13 @@ t.test(A,B, data=sim_data)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  A and B
-## t = -1.7675, df = 35.995, p-value = 0.08562
+## t = -2.0888, df = 37.229, p-value = 0.04362
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.22932376  0.08440054
+##  -1.24588537 -0.01908846
 ## sample estimates:
-##   mean of x   mean of y 
-## -0.08246632  0.48999529
+##  mean of x  mean of y 
+## -0.1152408  0.5172461
 ```
 ]
 ]
