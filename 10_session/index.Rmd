@@ -1,0 +1,546 @@
+---
+title: "Statistical methods for archaeological data analysis I: Basic methods"
+subtitle: "10 - Correspondence Analysis"
+author: "Martin Hinz"
+institute: "Institut für Archäologische Wissenschaften, Universität Bern"
+fontsize: 9pt
+date: "19.05.2021"
+output:
+  xaringan::moon_reader:
+    chakra: "../libs/remark-latest.min.js"
+    css: ["../libs/default.css", "../libs/default-fonts.css", "../libs/customize.css"]
+    lib_dir: "libs"
+    seal: false
+    nature:
+      beforeInit: "../libs/macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      fig_caption: yes
+      ratio: "16:10"
+editor_options: 
+  chunk_output_type: console
+---
+class: title-slide, center, middle
+
+```{r setup, echo=F, error=FALSE, warning=F, message=F, results='hide'}
+rm(list = ls())
+#options(digits = 3)
+#Sys.setlocale("LC_MESSAGES", "en_US.utf8")
+library(rgl)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('# ', rmarkdown::metadata$title)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('## ', rmarkdown::metadata$subtitle)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('### ', rmarkdown::metadata$author)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat('#### ', rmarkdown::metadata$institute)
+```
+
+```{r, echo = FALSE, results="asis"}
+cat(rmarkdown::metadata$date)
+```
+---
+
+## Correspondence analysis: idea and basics [1]
+
+### Similar things have similar characteristics...[2]
+**Visual explorative/descriptive method**
+
+- Correspondence analysis does not work with significances, therefore it does not 'proof' anything
+- Visualization of contingency tables or presence/absence matrices
+
+**Idea**
+
+- Representation of items (*sites*) and properties (Variables, *species*) in a common space (coordinate system)
+- Data that is related to each other is more closely related represented next to each other
+- Similarities are calculated using chi-square methods
+
+**Prerequisites**
+
+A data matrix with at least nominally scaled variables, therefore especially suitable for archaeological questions
+
+---
+
+## Correspondence analysis: idea and basics [1]
+
+### Similar things have similar characteristics...
+
+**General procedure**
+- Standardizing the data to a comparable measure
+- "Projection" of the data into a multidimensional variable space
+- determining the vectors which stepwise contain most of the information (variability) of the data and are oriented perpendicular to each other
+- "Projection" of the data onto these vectors
+- Representation of the position of the data on these vectors in a diagram
+
+---
+.pull-left[
+### multidimentional data space
+
+![](../images/12_session/multi_space.png)
+.caption[.tiny[source: http://www.aapspharmscitech.org]]
+]
+
+.pull-right[
+
+### projection of points onto a plane
+![](../images/12_session/multi_projection.png)
+.caption[.tiny[source: http://www.cs.mcgill.ca]]
+]
+---
+
+## Correspondence Analysis: History
+
+### General information
+- Development in the field of biology and psychology
+- Algebrarian Foundations 1940s (Hartley/Guttman)
+- First explicit use by Benzéncri in the 1960s linguistic studies
+- Further development in various research groups → resulted in different versions and names of the procedure
+- 1984 Greenacre basic monograph on the method
+
+### In archaeology
+- First Seriation: Sir William Flinders-Petrie 1899
+- First major trials with seriating methods in Germany Goldman 1979 with reciprocal averaging.
+- Wide application of the procedure for chronological sorting of the Rhineland Linear Pottery
+- Continuation by institutes Cologne and Kiel (Zimmermann, Müller)
+
+---
+
+## Correspondence Analysis: Procedure
+
+### Preparation: contingency table, if necessary
+**Presence Absence Matrix**
+
+Notes the presence or absence of a characteristic for a unit, which is the most widely used base in archaeology
+
+|         | Pot | Cup | Fibula | Sum |
+|---------|-----|-----|--------|-----|
+| Burial1 | 1   | 1   | 0      | 2   |
+| Burial2 | 0   | 1   | 1      | 2   |
+| Burial3 | 1   | 1   | 1      | 3   |
+| Burial4 | 1   | 0   | 1      | 2   |
+| Sum     | 3   | 3   | 3      | 9   |
+
+Prerequisite: total number of filled cells per column at least 2, total per row at least 2
+
+---
+
+## Preparation: contingency table, if necessary
+### contingency table
+
+Notes the number of a characteristics for a unit or a group of units
+
+
+|             | Pot | Cup | Fibula | Sum |
+|-------------|-----|-----|--------|-----|
+| Settlements | 20  | 23  | 40     | 83  |
+| Hoards      | 23  | 10  | 6      | 39  |
+| Burials     | 10  | 56  | 4      | 70  |
+| Sum         | 53  | 89  | 50     | 192 |
+
+Also possible: Burt-Matrix, if you want, you can ask me for details after the lecture...
+
+---
+
+## Correspondence analysis: Procedure (using a presence/absence matrix)
+
+### Preparation: Standardising to relative frequency
+Calculation: Divide each cell by the total sum
+.tiny[
+.pull-left[
+```{r echo=F}
+my_data <- matrix(c(1, 1, 0, 0, 1, 1, 1, 1, 1,1, 0, 1), byrow = T,ncol=3)
+colnames(my_data) <- c("pot", "cup", "fibula")
+rownames(my_data) <- paste0("burial",1:4)
+write.csv(my_data, file = "burials.csv")
+my_m_table <- addmargins(my_data)
+knitr::kable(my_m_table, format = "html")
+```
+]
+
+.pull-right[
+```{r echo=F}
+p <- my_data/sum(my_data)
+my_prop_mtable <- addmargins(p)
+knitr::kable(round(my_prop_mtable,2), format = "html")
+```
+]
+]
+
+Margins of the table stored for calculation of expectation values and scaling the result later on:
+
+.tiny[
+Row profile:
+```{r echo=F}
+round(my_prop_mtable[1:nrow(my_data),ncol(my_prop_mtable)],2)
+```
+
+Column profile:
+```{r echo=F}
+round(t(my_prop_mtable)[1:ncol(my_data),nrow(my_prop_mtable)],2)
+```
+]
+
+---
+
+## Correspondence analysis: Procedure (using a presence/absence matrix)
+
+### Preparation: Calculation of expected values
+
+.pull-left[
+```{r echo=F}
+knitr::kable(round(my_prop_mtable,2), format = "html")
+```
+]
+.pull-right[
+```{r echo=F}
+e <- rowSums(my_data) %*% t(colSums(my_data)) / sum(my_data)^2
+knitr::kable(round(addmargins(e),2), format="html")
+```
+]
+
+---
+
+## Correspondence analysis: Procedure (using a presence/absence matrix)
+
+.pull-left[
+### Preparation: Calculation of standardised values
+
+$\chi^2=\sum_{i=1}^n \frac{(O_i - E_i)^2}{E_i}$
+
+$z_{ij}=\frac{(O_i - E_i)}{\sqrt{E_i}}$
+
+```{r echo=F}
+z <- (p - e)/sqrt(e)
+write.csv2(z, file = "burial_z.csv")
+knitr::kable(round(addmargins(z),2), format="html")
+```
+]
+
+.pull-right[
+### Inertia
+
+Measurement for the spread of the data in relation to the number of cases
+
+$I = \frac{\chi^2}{n} = \sum_i \sum_j z_{ij}^2$
+
+Inertia here: `r sum(z^2)`
+]
+
+---
+
+```{r echo=FALSE}
+plot3d(z[,1], z[,2], z[,3], type="s", size=1, lit=TRUE)
+text3d(z[,1], z[,2], z[,3], rownames(z))
+rglwidget()
+```
+
+---
+
+.pull-left[
+### multidimentional data space
+
+![](../images/12_session/multi_space.png)
+.caption[.tiny[source: http://www.aapspharmscitech.org]]
+]
+
+.pull-right[
+
+### projection of points onto a plane
+![](../images/12_session/multi_projection.png)
+.caption[.tiny[source: http://www.cs.mcgill.ca]]
+]
+---
+
+## Correspondence analysis: Procedure (using a presence/absence matrix)
+
+### Extraction of dimensions
+**SVD**
+
+**S**ingular **v**alue **d**ecomposition, method for dimensional reduction with minimal loss of information
+
+
+$Z=U∗S∗V'$
+.tiny[
+Z : Matrix with the standardized data
+
+U : Matrix for the row elements
+
+V : Matrix for the column elements
+
+S : Diagonal matrix with the singular values
+]
+
+![Gene Golub’s license plate, photographed by Professor P. M. Kroonenberg of Leiden University.](../images/12_session/prof_svd.gif)
+.caption[.tiny[Gene Golub’s license plate, photographed by Professor P. M. Kroonenberg of Leiden University.]]
+
+---
+## Correspondence analysis: Procedure (using a presence/absence matrix)
+
+### Extraction of dimensions
+
+**SVD in R**
+.tiny[
+```{r}
+burial.z<-read.csv2("burial_z.csv",row.names=1)
+burial.svd<-svd(burial.z)
+burial.svd
+```
+]
+
+---
+SVD and Inertia
+The singular values (eigenvalues) represent the inertia.
+The eigenvalues
+```{r}
+burial.svd$d
+```
+
+The squared eigenvalues are the inertia of the individual dimensions
+```{r}
+burial.svd$d^2
+```
+
+The sum of the squared eigenvalues is equal to the total of the intertia.
+```{r}
+sum(burial.svd$d^2)
+```
+
+If the inertia of the individual dimensions is divided by the total inertia, the (eigenvalue) proportion of the dimensions is obtained.
+
+```{r}
+burial.svd$d^2/sum(burial.svd$d^2)
+```
+
+---
+## Correspondence analysis: Procedure (using a presence/absence matrix)
+
+### Normalization of coordinates
+Scaling of the coordinates in such a way that
+
+The dimensions are weighted according to their proportion of the total inertia.
+
+The rows/columns are weighted according to their proportion of the mass.
+
+.pull-left[
+
+Row (*sites*) Points: $r_{ik} = \frac{u_{ik}*\sqrt{s_k}}{\sqrt{p_i}}$
+
+]
+.pull-right[
+
+Column (*species*) Points: $c_{jk} = \frac{v_{jk}*\sqrt{s_k}}{\sqrt{p_j}}$
+
+]
+
+$u$, $v$ → Matrices of rows/columns from the SVD
+
+$s_k$ → Diagonal matrix
+
+$p_i$ , $p_j$ → Masses of rows/columns from the relative frequency
+
+---
+
+## Correspondence analysis: Procedure (using a presence/absence matrix)
+
+Everything in R:
+
+.pull-left[
+```{r eval=F}
+library(vegan)
+
+burial <- read.csv("burials.csv",
+                   row.names = 1)
+burial.cca <- cca(burial)
+plot(burial.cca, scaling=3)
+
+```
+scaling=3: by default R normalizes only the species (types)
+
+- scaling = 1 : Normalization of sites
+
+- scaling = 2 : Normalization of the Species
+
+- scaling = 3 : Symmetrical normalization of sites and species
+
+- scaling = 0 : No normalization
+]
+
+.pull-right[
+```{r echo=F, message=F}
+library(vegan)
+
+burial <- read.csv("burials.csv", row.names = 1)
+burial.cca <- cca(burial)
+plot(burial.cca, scaling=3)
+
+```
+]
+
+---
+
+## Correspondence analysis: Real World case
+
+### Münsingen Burial Site
+
+.pull-left[
+.small[
+```{r eval=F, message=F}
+muensingen <- read.csv("muensingen_ideal.csv",
+                       row.names = 1)
+muensingen.cca <- cca(muensingen)
+plot(muensingen.cca, scaling=3)
+```
+]
+]
+
+.pull-right[
+```{r echo=F, message=F}
+muensingen <- read.csv("muensingen_ideal.csv", row.names = 1)
+muensingen.cca <- cca(muensingen)
+plot(muensingen.cca, scaling=3)
+```
+]
+
+---
+
+## Correspondence analysis: Real World case
+
+### Münsingen Burial Site
+
+.pull-left[
+.tiny[
+```{r message=F}
+scores(muensingen.cca, display = "sites")
+```
+]
+]
+
+.pull-right[
+.tiny[
+```{r message=F}
+scores(muensingen.cca, display = "species")
+```
+]
+]
+---
+## Correspondence analysis: Real World case
+
+### Münsingen Burial Site
+
+.pull-left[
+.tiny[
+```{r message=F}
+plot(muensingen.cca, display = "sites")
+```
+]
+]
+
+.pull-right[
+.tiny[
+```{r message=F}
+plot(muensingen.cca, display = "species")
+```
+]
+]
+---
+## Correspondence analysis: Real World case
+
+### Münsingen Burial Site
+
+.pull-left[
+.tiny[
+```{r message=F}
+plot(muensingen.cca, choices = c(1,2))
+```
+]
+]
+
+.pull-right[
+.tiny[
+```{r message=F}
+plot(muensingen.cca, choices = c(1,3))
+```
+]
+]
+
+---
+## Correspondence analysis: Real World case
+
+### Münsingen Burial Site
+
+.pull-left[
+.tiny[
+```{r eval=F, message=F}
+library(ggplot2)
+library(ggrepel)
+
+muensingen.species <- data.frame(
+  scores(muensingen.cca)$species
+  )
+ggplot(muensingen.species,
+       aes(x=CA1,
+           y=CA2,
+           label=rownames(muensingen.species))) +
+  geom_point() + geom_text_repel(size=2)
+```
+]
+]
+
+.pull-right[
+```{r echo=F, message=F}
+library(ggplot2)
+library(ggrepel)
+
+muensingen.species <- data.frame(scores(muensingen.cca)$species)
+ggplot(muensingen.species,aes(x=CA1,y=CA2,label=rownames(muensingen.species))) + geom_point() + geom_text_repel(size=2)
+```
+]
+
+---
+## Correspondence analysis: Real World case
+
+### Münsingen Burial Site
+
+.pull-left[
+![](../images/12_session/tosca.png)
+]
+
+.pull-right[
+![](../images/12_session/tosca_seriation.png)
+]
+
+[http://tosca.archaeological.science](http://tosca.archaeological.science)
+---
+
+## Correspondence Analysis: Interpretation
+
+### Guttman effect (horseshoe, parabola)
+
+.pull-left[
+In archaeology, this is often regarded as evidence of a temporal orientation.
+
+The Guttman effect occurs when a process affects the data on multiple levels.
+
+The largest influencing factor, given a longer runtime, is mostly the time, but:
+
+This does not always have to be the case.
+
+Check against other information necessary.
+]
+
+.pull-right[
+```{r echo=F, message=F}
+muensingen.sites <- data.frame(scores(muensingen.cca)$sites)
+ggplot(muensingen.sites,aes(x=CA1,y=CA2,label=rownames(muensingen.sites))) + geom_point()
+```
+]
