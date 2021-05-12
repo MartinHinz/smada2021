@@ -29,6 +29,15 @@ class: title-slide, center, middle
 ####  Institut für Archäologische Wissenschaften, Universität Bern
 
 05.05.2021
+
+.footnote[
+.right[
+.tiny[
+You can download a [pdf of this presentation](smada09.pdf).
+]
+]
+]
+
 ---
 
 ## Cluster Analysis: Idea and Basics
@@ -99,8 +108,8 @@ Example: **Hierarchical clustering**, e.g. according to the Ward method
 
 ---
 
-<div id="htmlwidget-779016c5b7fc833777f4" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-779016c5b7fc833777f4">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Start with\nfinest partition\"]\n      tab2 [label = \"Calculate initial\ndistance matrix\"]\n      tab3 [label = \"Search for the two\nObjects/Clusters with the\nleast distance\"]\n      tab4 [label = \"Combine the most similar\nObjects/Clusters\ninto one Cluster\"]\n      tab5 [label = \"Calculate new\ndistance matrix\"]\n      tab6 [label = \"Are all objects\njoint in one group?\", shape=diamond]\n      tab7 [label = \"Finished\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6;\n      tab6 -> tab7 [label=\"yes\"];\n      tab6 -> tab3 [label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9b383cb9cc9f45439efe" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9b383cb9cc9f45439efe">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Start with\nfinest partition\"]\n      tab2 [label = \"Calculate initial\ndistance matrix\"]\n      tab3 [label = \"Search for the two\nObjects/Clusters with the\nleast distance\"]\n      tab4 [label = \"Combine the most similar\nObjects/Clusters\ninto one Cluster\"]\n      tab5 [label = \"Calculate new\ndistance matrix\"]\n      tab6 [label = \"Are all objects\njoint in one group?\", shape=diamond]\n      tab7 [label = \"Finished\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6;\n      tab6 -> tab7 [label=\"yes\"];\n      tab6 -> tab3 [label=\"no\"];\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
