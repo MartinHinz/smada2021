@@ -49,6 +49,14 @@ cat('#### ', rmarkdown::metadata$institute)
 ```{r, echo = FALSE, results="asis"}
 cat(rmarkdown::metadata$date)
 ```
+
+.footnote[
+.right[
+.tiny[
+You can download a [pdf of this presentation](smada10.pdf).
+]
+]
+]
 ---
 
 ## Correspondence analysis: idea and basics [1]
