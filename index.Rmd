@@ -51,9 +51,9 @@ cat(rmarkdown::metadata$date)
 | 7. | [Parametric Tests](07_session/index.html) | [Chapter](book/parametric-tests.html) | [Video](https://tube.switch.ch/videos/w9aPnpQxZX) | [25](https://tube.switch.ch/videos/59fee43c), [26](https://tube.switch.ch/videos/xSllWrdxaq), [27](https://tube.switch.ch/videos/pbBEzZY6rj) | 28.4.21 | 6 | [Homework](07_session/homework_07.html) |
 | 8. | [Regression & Correlation](08_session/index.html) | [Chapter](book/regression-analysis-and-correlation.html) | [Video 1](https://tube.switch.ch/videos/D3J9Kkg267), [Video 2](https://tube.switch.ch/videos/Pj2CZ7aiXN) | [Technical Video](https://tube.switch.ch/videos/osEd3QkfUd) | 5.5.21 | 8 |  [Homework](08_session/homework_08.html) |
 | 9. | [Cluster Analysis](09_session/index.html) | [Chapter](book/cluster-analysis.html) | [Video 1](https://tube.switch.ch/videos/uT1txL7kPk), [Video 2](https://tube.switch.ch/videos/Q11YwloLPS) | [Technical Videos](https://tube.switch.ch/videos/xjsq1qRWzG) | 12.5.21 | 11 | [Homework](09_session/homework_09.html) |
-| 10. | [Correspondence Analysis](10_session/index.html) | Chapter | [Video](https://tube.switch.ch/videos/fWlcOJqBtI) | [Correspondence Analysis](https://tube.switch.ch/videos/ItsSZ7GQzs) [Seriation](https://tube.switch.ch/videos/U9wsKUmAPa) | 19.5.21 | 13 | Homework |
+| 10. | [Correspondence Analysis](10_session/index.html) | Chapter | [Video](https://tube.switch.ch/videos/fWlcOJqBtI) | [Correspondence Analysis](https://tube.switch.ch/videos/ItsSZ7GQzs) [Seriation](https://tube.switch.ch/videos/U9wsKUmAPa) | 19.5.21 | 13 | [Homework](10_session/homework_10.html) |
 | 12. | Repetition | Chapter | Video | Technical Videos | 26.5.21 | NA |
-| 11. | Test | Chapter | Video | Technical Videos | 2.6.21 | NA |
+| 11. | Test |  |  |  | 2.6.21 | NA |
 ]
 </details>
 
