@@ -466,6 +466,8 @@ plot(burial.cca, scaling=3)
 
 ### Münsingen Burial Site
 
+File: `r xfun::embed_file('muensingen_ideal.csv', text = "muensingen_ideal.csv")`
+
 .pull-left[
 .small[
 ```{r eval=F, message=F}
