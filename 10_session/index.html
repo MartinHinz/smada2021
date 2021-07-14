@@ -4,12 +4,24 @@
     <title>Statistical methods for archaeological data analysis I: Basic methods</title>
     <meta charset="utf-8" />
     <meta name="author" content="Martin Hinz" />
-    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
-    <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
     <script src="libs/rglWebGL-binding-0.106.8/rglWebGL.js"></script>
     <link href="libs/rglwidgetClass-0.106.8/rgl.css" rel="stylesheet" />
-    <script src="libs/rglwidgetClass-0.106.8/rglClass.min.js"></script>
-    <script src="libs/CanvasMatrix4-0.106.8/CanvasMatrix.min.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/rglClass.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/utils.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/subscenes.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/shaders.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/textures.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/projection.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/mouse.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/init.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/pieces.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/draw.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/controls.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/selection.src.js"></script>
+    <script src="libs/rglwidgetClass-0.106.8/rglTimer.src.js"></script>
+    <script src="libs/CanvasMatrix4-0.106.8/CanvasMatrix.src.js"></script>
     <link rel="stylesheet" href="../libs/default.css" type="text/css" />
     <link rel="stylesheet" href="../libs/default-fonts.css" type="text/css" />
     <link rel="stylesheet" href="../libs/customize.css" type="text/css" />
@@ -30,6 +42,14 @@ class: title-slide, center, middle
 ####  Institut für Archäologische Wissenschaften, Universität Bern
 
 19.05.2021
+
+.footnote[
+.right[
+.tiny[
+You can download a [pdf of this presentation](smada10.pdf).
+]
+]
+]
 ---
 
 ## Correspondence analysis: idea and basics [1]
@@ -438,8 +458,70 @@ Inertia here: 0.3333333
 
 ---
 
-<div id="rgl2864" style="width:504px;height:504px;" class="rglWebGL html-widget"></div>
-<script type="application/json" data-for="rgl2864">{"x":{"material":{"color":"#000000","alpha":1,"lit":true,"ambient":"#000000","specular":"#FFFFFF","emission":"#000000","shininess":50,"smooth":true,"front":"filled","back":"filled","size":3,"lwd":1,"fog":true,"point_antialias":false,"line_antialias":false,"texture":null,"textype":"rgb","texmipmap":false,"texminfilter":"linear","texmagfilter":"linear","texenvmap":false,"depth_mask":true,"depth_test":"less","isTransparent":false,"polygon_offset":[0,0]},"rootSubscene":7,"objects":{"13":{"id":13,"type":"spheres","material":{},"vertices":[[0.136082768440247,0.136082768440247,-0.272165536880493],[-0.272165536880493,0.136082768440247,0.136082768440247],[0,0,0],[0.136082768440247,-0.272165536880493,0.136082768440247]],"colors":[[0,0,0,1]],"radii":[[0.00680413795635104]],"centers":[[0.136082768440247,0.136082768440247,-0.272165536880493],[-0.272165536880493,0.136082768440247,0.136082768440247],[0,0,0],[0.136082768440247,-0.272165536880493,0.136082768440247]],"ignoreExtent":false,"fastTransparency":true,"flags":32771},"15":{"id":15,"type":"text","material":{"lit":false},"vertices":[[-0.0680413842201233,-0.35047435760498,-0.35047435760498]],"colors":[[0,0,0,1]],"texts":[["z[, 1]"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.0680413842201233,-0.35047435760498,-0.35047435760498]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"16":{"id":16,"type":"text","material":{"lit":false},"vertices":[[-0.35047435760498,-0.0680413842201233,-0.35047435760498]],"colors":[[0,0,0,1]],"texts":[["z[, 2]"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.35047435760498,-0.0680413842201233,-0.35047435760498]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"17":{"id":17,"type":"text","material":{"lit":false},"vertices":[[-0.35047435760498,-0.35047435760498,-0.0680413842201233]],"colors":[[0,0,0,1]],"texts":[["z[, 3]"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.35047435760498,-0.35047435760498,-0.0680413842201233]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"18":{"id":18,"type":"text","material":{"lit":false},"vertices":[[0.136082768440247,0.136082768440247,-0.272165536880493],[-0.272165536880493,0.136082768440247,0.136082768440247],[0,0,0],[0.136082768440247,-0.272165536880493,0.136082768440247]],"colors":[[0,0,0,1]],"texts":[["burial1"],["burial2"],["burial3"],["burial4"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[0.136082768440247,0.136082768440247,-0.272165536880493],[-0.272165536880493,0.136082768440247,0.136082768440247],[0,0,0],[0.136082768440247,-0.272165536880493,0.136082768440247]],"family":[["sans"]],"font":[[1]],"ignoreExtent":false,"flags":33808},"11":{"id":11,"type":"light","vertices":[[0,0,1]],"colors":[[1,1,1,1],[1,1,1,1],[1,1,1,1]],"viewpoint":true,"finite":false},"10":{"id":10,"type":"background","material":{},"colors":[[0.298039227724075,0.298039227724075,0.298039227724075,1]],"centers":[[0,0,0]],"sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"12":{"id":12,"type":"background","material":{"lit":false,"back":"lines"},"colors":[[1,1,1,1]],"centers":[[0,0,0]],"sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"14":{"id":14,"type":"bboxdeco","material":{"front":"lines","back":"lines"},"vertices":[[-0.200000002980232,"NA","NA"],[-0.100000001490116,"NA","NA"],[0,"NA","NA"],[0.100000001490116,"NA","NA"],["NA",-0.200000002980232,"NA"],["NA",-0.100000001490116,"NA"],["NA",0,"NA"],["NA",0.100000001490116,"NA"],["NA","NA",-0.200000002980232],["NA","NA",-0.100000001490116],["NA","NA",0],["NA","NA",0.100000001490116]],"colors":[[0,0,0,1]],"draw_front":true,"newIds":[26,27,28,29,30,31,32]},"7":{"id":7,"type":"subscene","par3d":{"antialias":4,"FOV":30,"ignoreExtent":false,"listeners":7,"mouseMode":{"left":"trackball","right":"zoom","middle":"fov","wheel":"pull"},"observer":[0,0,1.78797578811646],"modelMatrix":[[1,0,0,0.0680413916707039],[0,0.342020153999329,0.939692616462708,0.0872095227241516],[0,-0.939692616462708,0.342020153999329,-1.82864224910736],[0,0,0,1]],"projMatrix":[[3.73205089569092,0,0,0],[0,3.73205089569092,0,0],[0,0,-3.86370325088501,-6.4454460144043],[0,0,-1,0]],"skipRedraw":false,"userMatrix":[[1,0,0,0],[0,0.342020143325668,0.939692620785909,0],[0,-0.939692620785909,0.342020143325668,0],[0,0,0,1]],"userProjection":[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],"scale":[1,1,1],"viewport":{"x":0,"y":0,"width":1,"height":1},"zoom":1,"bbox":[-0.278969675302505,0.142886906862259,-0.278969675302505,0.142886906862259,-0.278969675302505,0.142886906862259],"windowRect":[0,44,256,300],"family":"sans","font":1,"cex":1,"useFreeType":true,"fontname":"/Users/martin/Library/R/4.0/library/rgl/fonts/FreeSans.ttf","maxClipPlanes":6,"glVersion":2.1,"activeSubscene":0},"embeddings":{"viewport":"replace","projection":"replace","model":"replace","mouse":"replace"},"objects":[12,14,13,15,16,17,18,11,26,27,28,29,30,31,32],"subscenes":[],"flags":34131},"26":{"id":26,"type":"lines","material":{"lit":false},"vertices":[[-0.200000002980232,-0.285297513008118,-0.285297513008118],[0.100000001490116,-0.285297513008118,-0.285297513008118],[-0.200000002980232,-0.285297513008118,-0.285297513008118],[-0.200000002980232,-0.296160340309143,-0.296160340309143],[-0.100000001490116,-0.285297513008118,-0.285297513008118],[-0.100000001490116,-0.296160340309143,-0.296160340309143],[0,-0.285297513008118,-0.285297513008118],[0,-0.296160340309143,-0.296160340309143],[0.100000001490116,-0.285297513008118,-0.285297513008118],[0.100000001490116,-0.296160340309143,-0.296160340309143]],"colors":[[0,0,0,1]],"centers":[[-0.0500000007450581,-0.285297513008118,-0.285297513008118],[-0.200000002980232,-0.29072892665863,-0.29072892665863],[-0.100000001490116,-0.29072892665863,-0.29072892665863],[0,-0.29072892665863,-0.29072892665863],[0.100000001490116,-0.29072892665863,-0.29072892665863]],"ignoreExtent":true,"origId":14,"flags":32832},"27":{"id":27,"type":"text","material":{"lit":false},"vertices":[[-0.200000002980232,-0.317885935306549,-0.317885935306549],[-0.100000001490116,-0.317885935306549,-0.317885935306549],[0,-0.317885935306549,-0.317885935306549],[0.100000001490116,-0.317885935306549,-0.317885935306549]],"colors":[[0,0,0,1]],"texts":[["-0.2"],["-0.1"],["0"],["0.1"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.200000002980232,-0.317885935306549,-0.317885935306549],[-0.100000001490116,-0.317885935306549,-0.317885935306549],[0,-0.317885935306549,-0.317885935306549],[0.100000001490116,-0.317885935306549,-0.317885935306549]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":14,"flags":33808},"28":{"id":28,"type":"lines","material":{"lit":false},"vertices":[[-0.285297513008118,-0.200000002980232,-0.285297513008118],[-0.285297513008118,0.100000001490116,-0.285297513008118],[-0.285297513008118,-0.200000002980232,-0.285297513008118],[-0.296160340309143,-0.200000002980232,-0.296160340309143],[-0.285297513008118,-0.100000001490116,-0.285297513008118],[-0.296160340309143,-0.100000001490116,-0.296160340309143],[-0.285297513008118,0,-0.285297513008118],[-0.296160340309143,0,-0.296160340309143],[-0.285297513008118,0.100000001490116,-0.285297513008118],[-0.296160340309143,0.100000001490116,-0.296160340309143]],"colors":[[0,0,0,1]],"centers":[[-0.285297513008118,-0.0500000007450581,-0.285297513008118],[-0.29072892665863,-0.200000002980232,-0.29072892665863],[-0.29072892665863,-0.100000001490116,-0.29072892665863],[-0.29072892665863,0,-0.29072892665863],[-0.29072892665863,0.100000001490116,-0.29072892665863]],"ignoreExtent":true,"origId":14,"flags":32832},"29":{"id":29,"type":"text","material":{"lit":false},"vertices":[[-0.317885935306549,-0.200000002980232,-0.317885935306549],[-0.317885935306549,-0.100000001490116,-0.317885935306549],[-0.317885935306549,0,-0.317885935306549],[-0.317885935306549,0.100000001490116,-0.317885935306549]],"colors":[[0,0,0,1]],"texts":[["-0.2"],["-0.1"],["0"],["0.1"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.317885935306549,-0.200000002980232,-0.317885935306549],[-0.317885935306549,-0.100000001490116,-0.317885935306549],[-0.317885935306549,0,-0.317885935306549],[-0.317885935306549,0.100000001490116,-0.317885935306549]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":14,"flags":33808},"30":{"id":30,"type":"lines","material":{"lit":false},"vertices":[[-0.285297513008118,-0.285297513008118,-0.200000002980232],[-0.285297513008118,-0.285297513008118,0.100000001490116],[-0.285297513008118,-0.285297513008118,-0.200000002980232],[-0.296160340309143,-0.296160340309143,-0.200000002980232],[-0.285297513008118,-0.285297513008118,-0.100000001490116],[-0.296160340309143,-0.296160340309143,-0.100000001490116],[-0.285297513008118,-0.285297513008118,0],[-0.296160340309143,-0.296160340309143,0],[-0.285297513008118,-0.285297513008118,0.100000001490116],[-0.296160340309143,-0.296160340309143,0.100000001490116]],"colors":[[0,0,0,1]],"centers":[[-0.285297513008118,-0.285297513008118,-0.0500000007450581],[-0.29072892665863,-0.29072892665863,-0.200000002980232],[-0.29072892665863,-0.29072892665863,-0.100000001490116],[-0.29072892665863,-0.29072892665863,0],[-0.29072892665863,-0.29072892665863,0.100000001490116]],"ignoreExtent":true,"origId":14,"flags":32832},"31":{"id":31,"type":"text","material":{"lit":false},"vertices":[[-0.317885935306549,-0.317885935306549,-0.200000002980232],[-0.317885935306549,-0.317885935306549,-0.100000001490116],[-0.317885935306549,-0.317885935306549,0],[-0.317885935306549,-0.317885935306549,0.100000001490116]],"colors":[[0,0,0,1]],"texts":[["-0.2"],["-0.1"],["0"],["0.1"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.317885935306549,-0.317885935306549,-0.200000002980232],[-0.317885935306549,-0.317885935306549,-0.100000001490116],[-0.317885935306549,-0.317885935306549,0],[-0.317885935306549,-0.317885935306549,0.100000001490116]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":14,"flags":33808},"32":{"id":32,"type":"lines","material":{"lit":false},"vertices":[[-0.285297513008118,-0.285297513008118,-0.285297513008118],[-0.285297513008118,0.149214759469032,-0.285297513008118],[-0.285297513008118,-0.285297513008118,0.149214759469032],[-0.285297513008118,0.149214759469032,0.149214759469032],[-0.285297513008118,-0.285297513008118,-0.285297513008118],[-0.285297513008118,-0.285297513008118,0.149214759469032],[-0.285297513008118,0.149214759469032,-0.285297513008118],[-0.285297513008118,0.149214759469032,0.149214759469032],[-0.285297513008118,-0.285297513008118,-0.285297513008118],[0.149214759469032,-0.285297513008118,-0.285297513008118],[-0.285297513008118,-0.285297513008118,0.149214759469032],[0.149214759469032,-0.285297513008118,0.149214759469032],[-0.285297513008118,0.149214759469032,-0.285297513008118],[0.149214759469032,0.149214759469032,-0.285297513008118],[-0.285297513008118,0.149214759469032,0.149214759469032],[0.149214759469032,0.149214759469032,0.149214759469032],[0.149214759469032,-0.285297513008118,-0.285297513008118],[0.149214759469032,0.149214759469032,-0.285297513008118],[0.149214759469032,-0.285297513008118,0.149214759469032],[0.149214759469032,0.149214759469032,0.149214759469032],[0.149214759469032,-0.285297513008118,-0.285297513008118],[0.149214759469032,-0.285297513008118,0.149214759469032],[0.149214759469032,0.149214759469032,-0.285297513008118],[0.149214759469032,0.149214759469032,0.149214759469032]],"colors":[[0,0,0,1]],"centers":[[-0.285297513008118,-0.0680413767695427,-0.285297513008118],[-0.285297513008118,-0.0680413767695427,0.149214759469032],[-0.285297513008118,-0.285297513008118,-0.0680413767695427],[-0.285297513008118,0.149214759469032,-0.0680413767695427],[-0.0680413767695427,-0.285297513008118,-0.285297513008118],[-0.0680413767695427,-0.285297513008118,0.149214759469032],[-0.0680413767695427,0.149214759469032,-0.285297513008118],[-0.0680413767695427,0.149214759469032,0.149214759469032],[0.149214759469032,-0.0680413767695427,-0.285297513008118],[0.149214759469032,-0.0680413767695427,0.149214759469032],[0.149214759469032,-0.285297513008118,-0.0680413767695427],[0.149214759469032,0.149214759469032,-0.0680413767695427]],"ignoreExtent":true,"origId":14,"flags":32832}},"crosstalk":{"key":[],"group":[],"id":[],"options":[]},"width":504,"height":504,"context":{"shiny":false,"rmarkdown":"xaringan::moon_reader"},"players":[],"webGLoptions":{"preserveDrawingBuffer":true}},"evals":[],"jsHooks":[]}</script>
+<div id="rgl31574" style="width:504px;height:504px;" class="rglWebGL html-widget"></div>
+<script type="application/json" data-for="rgl31574">{"x":{"material":{"color":"#000000","alpha":1,"lit":true,"ambient":"#000000","specular":"#FFFFFF","emission":"#000000","shininess":50,"smooth":true,"front":"filled","back":"filled","size":3,"lwd":1,"fog":true,"point_antialias":false,"line_antialias":false,"texture":null,"textype":"rgb","texmipmap":false,"texminfilter":"linear","texmagfilter":"linear","texenvmap":false,"depth_mask":true,"depth_test":"less","isTransparent":false,"polygon_offset":[0,0]},"rootSubscene":7,"objects":{"13":{"id":13,"type":"spheres","material":{},"vertices":[[0.136082768440247,0.136082768440247,-0.272165536880493],[-0.272165536880493,0.136082768440247,0.136082768440247],[0,0,0],[0.136082768440247,-0.272165536880493,0.136082768440247]],"colors":[[0,0,0,1]],"radii":[[0.00680413795635104]],"centers":[[0.136082768440247,0.136082768440247,-0.272165536880493],[-0.272165536880493,0.136082768440247,0.136082768440247],[0,0,0],[0.136082768440247,-0.272165536880493,0.136082768440247]],"ignoreExtent":false,"fastTransparency":true,"flags":32771},"15":{"id":15,"type":"text","material":{"lit":false},"vertices":[[-0.0680413842201233,-0.35047435760498,-0.35047435760498]],"colors":[[0,0,0,1]],"texts":[["z[, 1]"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.0680413842201233,-0.35047435760498,-0.35047435760498]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"16":{"id":16,"type":"text","material":{"lit":false},"vertices":[[-0.35047435760498,-0.0680413842201233,-0.35047435760498]],"colors":[[0,0,0,1]],"texts":[["z[, 2]"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.35047435760498,-0.0680413842201233,-0.35047435760498]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"17":{"id":17,"type":"text","material":{"lit":false},"vertices":[[-0.35047435760498,-0.35047435760498,-0.0680413842201233]],"colors":[[0,0,0,1]],"texts":[["z[, 3]"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.35047435760498,-0.35047435760498,-0.0680413842201233]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":33808},"18":{"id":18,"type":"text","material":{"lit":false},"vertices":[[0.136082768440247,0.136082768440247,-0.272165536880493],[-0.272165536880493,0.136082768440247,0.136082768440247],[0,0,0],[0.136082768440247,-0.272165536880493,0.136082768440247]],"colors":[[0,0,0,1]],"texts":[["burial1"],["burial2"],["burial3"],["burial4"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[0.136082768440247,0.136082768440247,-0.272165536880493],[-0.272165536880493,0.136082768440247,0.136082768440247],[0,0,0],[0.136082768440247,-0.272165536880493,0.136082768440247]],"family":[["sans"]],"font":[[1]],"ignoreExtent":false,"flags":33808},"11":{"id":11,"type":"light","vertices":[[0,0,1]],"colors":[[1,1,1,1],[1,1,1,1],[1,1,1,1]],"viewpoint":true,"finite":false},"10":{"id":10,"type":"background","material":{},"colors":[[0.298039227724075,0.298039227724075,0.298039227724075,1]],"centers":[[0,0,0]],"sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"12":{"id":12,"type":"background","material":{"lit":false,"back":"lines"},"colors":[[1,1,1,1]],"centers":[[0,0,0]],"sphere":false,"fogtype":"none","fogscale":1,"flags":32768},"14":{"id":14,"type":"bboxdeco","material":{"front":"lines","back":"lines"},"vertices":[[-0.200000002980232,"NA","NA"],[-0.100000001490116,"NA","NA"],[0,"NA","NA"],[0.100000001490116,"NA","NA"],["NA",-0.200000002980232,"NA"],["NA",-0.100000001490116,"NA"],["NA",0,"NA"],["NA",0.100000001490116,"NA"],["NA","NA",-0.200000002980232],["NA","NA",-0.100000001490116],["NA","NA",0],["NA","NA",0.100000001490116]],"colors":[[0,0,0,1]],"draw_front":true,"newIds":[26,27,28,29,30,31,32]},"7":{"id":7,"type":"subscene","par3d":{"antialias":8,"FOV":30,"ignoreExtent":false,"listeners":7,"mouseMode":{"left":"trackball","right":"zoom","middle":"fov","wheel":"pull"},"observer":[0,0,1.78797578811646],"modelMatrix":[[1,0,0,0.0680413916707039],[0,0.342020153999329,0.939692616462708,0.0872095227241516],[0,-0.939692616462708,0.342020153999329,-1.82864224910736],[0,0,0,1]],"projMatrix":[[3.73205089569092,0,0,0],[0,3.73205089569092,0,0],[0,0,-3.86370325088501,-6.4454460144043],[0,0,-1,0]],"skipRedraw":false,"userMatrix":[[1,0,0,0],[0,0.342020143325668,0.939692620785909,0],[0,-0.939692620785909,0.342020143325668,0],[0,0,0,1]],"userProjection":[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],"scale":[1,1,1],"viewport":{"x":0,"y":0,"width":1,"height":1},"zoom":1,"bbox":[-0.278969675302505,0.142886906862259,-0.278969675302505,0.142886906862259,-0.278969675302505,0.142886906862259],"windowRect":[1984,117,2240,373],"family":"sans","font":1,"cex":1,"useFreeType":true,"fontname":"/home/martin/R/x86_64-pc-linux-gnu-library/4.0/rgl/fonts/FreeSans.ttf","maxClipPlanes":8,"glVersion":4.6,"activeSubscene":0},"embeddings":{"viewport":"replace","projection":"replace","model":"replace","mouse":"replace"},"objects":[12,14,13,15,16,17,18,11,26,27,28,29,30,31,32],"subscenes":[],"flags":34131},"26":{"id":26,"type":"lines","material":{"lit":false},"vertices":[[-0.200000002980232,-0.285297513008118,-0.285297513008118],[0.100000001490116,-0.285297513008118,-0.285297513008118],[-0.200000002980232,-0.285297513008118,-0.285297513008118],[-0.200000002980232,-0.296160340309143,-0.296160340309143],[-0.100000001490116,-0.285297513008118,-0.285297513008118],[-0.100000001490116,-0.296160340309143,-0.296160340309143],[0,-0.285297513008118,-0.285297513008118],[0,-0.296160340309143,-0.296160340309143],[0.100000001490116,-0.285297513008118,-0.285297513008118],[0.100000001490116,-0.296160340309143,-0.296160340309143]],"colors":[[0,0,0,1]],"centers":[[-0.0500000007450581,-0.285297513008118,-0.285297513008118],[-0.200000002980232,-0.29072892665863,-0.29072892665863],[-0.100000001490116,-0.29072892665863,-0.29072892665863],[0,-0.29072892665863,-0.29072892665863],[0.100000001490116,-0.29072892665863,-0.29072892665863]],"ignoreExtent":true,"origId":14,"flags":32832},"27":{"id":27,"type":"text","material":{"lit":false},"vertices":[[-0.200000002980232,-0.317885935306549,-0.317885935306549],[-0.100000001490116,-0.317885935306549,-0.317885935306549],[0,-0.317885935306549,-0.317885935306549],[0.100000001490116,-0.317885935306549,-0.317885935306549]],"colors":[[0,0,0,1]],"texts":[["-0.2"],["-0.1"],["0"],["0.1"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.200000002980232,-0.317885935306549,-0.317885935306549],[-0.100000001490116,-0.317885935306549,-0.317885935306549],[0,-0.317885935306549,-0.317885935306549],[0.100000001490116,-0.317885935306549,-0.317885935306549]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":14,"flags":33808},"28":{"id":28,"type":"lines","material":{"lit":false},"vertices":[[-0.285297513008118,-0.200000002980232,-0.285297513008118],[-0.285297513008118,0.100000001490116,-0.285297513008118],[-0.285297513008118,-0.200000002980232,-0.285297513008118],[-0.296160340309143,-0.200000002980232,-0.296160340309143],[-0.285297513008118,-0.100000001490116,-0.285297513008118],[-0.296160340309143,-0.100000001490116,-0.296160340309143],[-0.285297513008118,0,-0.285297513008118],[-0.296160340309143,0,-0.296160340309143],[-0.285297513008118,0.100000001490116,-0.285297513008118],[-0.296160340309143,0.100000001490116,-0.296160340309143]],"colors":[[0,0,0,1]],"centers":[[-0.285297513008118,-0.0500000007450581,-0.285297513008118],[-0.29072892665863,-0.200000002980232,-0.29072892665863],[-0.29072892665863,-0.100000001490116,-0.29072892665863],[-0.29072892665863,0,-0.29072892665863],[-0.29072892665863,0.100000001490116,-0.29072892665863]],"ignoreExtent":true,"origId":14,"flags":32832},"29":{"id":29,"type":"text","material":{"lit":false},"vertices":[[-0.317885935306549,-0.200000002980232,-0.317885935306549],[-0.317885935306549,-0.100000001490116,-0.317885935306549],[-0.317885935306549,0,-0.317885935306549],[-0.317885935306549,0.100000001490116,-0.317885935306549]],"colors":[[0,0,0,1]],"texts":[["-0.2"],["-0.1"],["0"],["0.1"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.317885935306549,-0.200000002980232,-0.317885935306549],[-0.317885935306549,-0.100000001490116,-0.317885935306549],[-0.317885935306549,0,-0.317885935306549],[-0.317885935306549,0.100000001490116,-0.317885935306549]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":14,"flags":33808},"30":{"id":30,"type":"lines","material":{"lit":false},"vertices":[[-0.285297513008118,-0.285297513008118,-0.200000002980232],[-0.285297513008118,-0.285297513008118,0.100000001490116],[-0.285297513008118,-0.285297513008118,-0.200000002980232],[-0.296160340309143,-0.296160340309143,-0.200000002980232],[-0.285297513008118,-0.285297513008118,-0.100000001490116],[-0.296160340309143,-0.296160340309143,-0.100000001490116],[-0.285297513008118,-0.285297513008118,0],[-0.296160340309143,-0.296160340309143,0],[-0.285297513008118,-0.285297513008118,0.100000001490116],[-0.296160340309143,-0.296160340309143,0.100000001490116]],"colors":[[0,0,0,1]],"centers":[[-0.285297513008118,-0.285297513008118,-0.0500000007450581],[-0.29072892665863,-0.29072892665863,-0.200000002980232],[-0.29072892665863,-0.29072892665863,-0.100000001490116],[-0.29072892665863,-0.29072892665863,0],[-0.29072892665863,-0.29072892665863,0.100000001490116]],"ignoreExtent":true,"origId":14,"flags":32832},"31":{"id":31,"type":"text","material":{"lit":false},"vertices":[[-0.317885935306549,-0.317885935306549,-0.200000002980232],[-0.317885935306549,-0.317885935306549,-0.100000001490116],[-0.317885935306549,-0.317885935306549,0],[-0.317885935306549,-0.317885935306549,0.100000001490116]],"colors":[[0,0,0,1]],"texts":[["-0.2"],["-0.1"],["0"],["0.1"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.317885935306549,-0.317885935306549,-0.200000002980232],[-0.317885935306549,-0.317885935306549,-0.100000001490116],[-0.317885935306549,-0.317885935306549,0],[-0.317885935306549,-0.317885935306549,0.100000001490116]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":14,"flags":33808},"32":{"id":32,"type":"lines","material":{"lit":false},"vertices":[[-0.285297513008118,-0.285297513008118,-0.285297513008118],[-0.285297513008118,0.149214759469032,-0.285297513008118],[-0.285297513008118,-0.285297513008118,0.149214759469032],[-0.285297513008118,0.149214759469032,0.149214759469032],[-0.285297513008118,-0.285297513008118,-0.285297513008118],[-0.285297513008118,-0.285297513008118,0.149214759469032],[-0.285297513008118,0.149214759469032,-0.285297513008118],[-0.285297513008118,0.149214759469032,0.149214759469032],[-0.285297513008118,-0.285297513008118,-0.285297513008118],[0.149214759469032,-0.285297513008118,-0.285297513008118],[-0.285297513008118,-0.285297513008118,0.149214759469032],[0.149214759469032,-0.285297513008118,0.149214759469032],[-0.285297513008118,0.149214759469032,-0.285297513008118],[0.149214759469032,0.149214759469032,-0.285297513008118],[-0.285297513008118,0.149214759469032,0.149214759469032],[0.149214759469032,0.149214759469032,0.149214759469032],[0.149214759469032,-0.285297513008118,-0.285297513008118],[0.149214759469032,0.149214759469032,-0.285297513008118],[0.149214759469032,-0.285297513008118,0.149214759469032],[0.149214759469032,0.149214759469032,0.149214759469032],[0.149214759469032,-0.285297513008118,-0.285297513008118],[0.149214759469032,-0.285297513008118,0.149214759469032],[0.149214759469032,0.149214759469032,-0.285297513008118],[0.149214759469032,0.149214759469032,0.149214759469032]],"colors":[[0,0,0,1]],"centers":[[-0.285297513008118,-0.0680413767695427,-0.285297513008118],[-0.285297513008118,-0.0680413767695427,0.149214759469032],[-0.285297513008118,-0.285297513008118,-0.0680413767695427],[-0.285297513008118,0.149214759469032,-0.0680413767695427],[-0.0680413767695427,-0.285297513008118,-0.285297513008118],[-0.0680413767695427,-0.285297513008118,0.149214759469032],[-0.0680413767695427,0.149214759469032,-0.285297513008118],[-0.0680413767695427,0.149214759469032,0.149214759469032],[0.149214759469032,-0.0680413767695427,-0.285297513008118],[0.149214759469032,-0.0680413767695427,0.149214759469032],[0.149214759469032,-0.285297513008118,-0.0680413767695427],[0.149214759469032,0.149214759469032,-0.0680413767695427]],"ignoreExtent":true,"origId":14,"flags":32832}},"crosstalk":{"key":[],"group":[],"id":[],"options":[]},"width":504,"height":504,"context":{"shiny":false,"rmarkdown":"xaringan::moon_reader"},"players":[],"webGLoptions":{"preserveDrawingBuffer":true}},"evals":[],"jsHooks":[]}</script>
+
+---
+### Data normalisation in R
+
+<a href="data:text/csv;base64,IiIsInBvdCIsImN1cCIsImZpYnVsYSIKImJ1cmlhbDEiLDEsMSwwCiJidXJpYWwyIiwwLDEsMQoiYnVyaWFsMyIsMSwxLDEKImJ1cmlhbDQiLDEsMCwxCg==" download="burials.csv">burials.csv</a>
+
+
+```r
+burials &lt;- read.csv("burials.csv", row.names = 1)
+
+burials.rel_freq &lt;- burials / sum(burials)
+burials.rel_freq
+```
+
+```
+##               pot       cup    fibula
+## burial1 0.1111111 0.1111111 0.0000000
+## burial2 0.0000000 0.1111111 0.1111111
+## burial3 0.1111111 0.1111111 0.1111111
+## burial4 0.1111111 0.0000000 0.1111111
+```
+---
+
+### Expectation Values in R
+
+Multiply the margins and divide the result by the total number
+
+
+```r
+burials.rel_freq.rows &lt;- rowSums(burials.rel_freq)
+burials.rel_freq.columns &lt;- colSums(burials.rel_freq)
+burials.e &lt;- burials.rel_freq.rows %*% t(burials.rel_freq.columns) /
+  sum(burials.rel_freq)^2
+burials.e
+```
+
+```
+##             pot        cup     fibula
+## [1,] 0.07407407 0.07407407 0.07407407
+## [2,] 0.07407407 0.07407407 0.07407407
+## [3,] 0.11111111 0.11111111 0.11111111
+## [4,] 0.07407407 0.07407407 0.07407407
+```
+---
+
+### z-values in R
+
+`\(z_{ij}=\frac{(O_i - E_i)}{\sqrt{E_i}}\)`
+
+
+```r
+burials.z &lt;- ( burials.rel_freq - burials.e)/sqrt(burials.e)
+burials.z
+```
+
+```
+##                pot        cup     fibula
+## burial1  0.1360828  0.1360828 -0.2721655
+## burial2 -0.2721655  0.1360828  0.1360828
+## burial3  0.0000000  0.0000000  0.0000000
+## burial4  0.1360828 -0.2721655  0.1360828
+```
 
 ---
 
@@ -489,27 +571,26 @@ S : Diagonal matrix with the singular values
 .tiny[
 
 ```r
-burial.z&lt;-read.csv2("burial_z.csv",row.names=1)
-burial.svd&lt;-svd(burial.z)
-burial.svd
+burials.svd&lt;-svd(burials.z)
+burials.svd
 ```
 
 ```
 ## $d
-## [1] 4.082483e-01 4.082483e-01 9.733772e-16
+## [1] 4.082483e-01 4.082483e-01 5.376365e-17
 ## 
 ## $u
-##            [,1]       [,2]      [,3]
-## [1,]  0.7071068  0.4082483 0.5773503
-## [2,]  0.0000000 -0.8164966 0.5773503
-## [3,]  0.0000000  0.0000000 0.0000000
-## [4,] -0.7071068  0.4082483 0.5773503
+##               [,1]       [,2]       [,3]
+## [1,] -7.071068e-01 -0.4082483 -0.5773503
+## [2,]  5.551115e-17  0.8164966 -0.5773503
+## [3,]  0.000000e+00  0.0000000  0.0000000
+## [4,]  7.071068e-01 -0.4082483 -0.5773503
 ## 
 ## $v
-##            [,1]       [,2]       [,3]
-## [1,]  0.0000000  0.8164966 -0.5773503
-## [2,]  0.7071068 -0.4082483 -0.5773503
-## [3,] -0.7071068 -0.4082483 -0.5773503
+##               [,1]       [,2]      [,3]
+## [1,]  1.044525e-16 -0.8164966 0.5773503
+## [2,] -7.071068e-01  0.4082483 0.5773503
+## [3,]  7.071068e-01  0.4082483 0.5773503
 ```
 ]
 
@@ -519,27 +600,27 @@ The singular values (eigenvalues) represent the inertia.
 The eigenvalues
 
 ```r
-burial.svd$d
+burials.svd$d
 ```
 
 ```
-## [1] 4.082483e-01 4.082483e-01 9.733772e-16
+## [1] 4.082483e-01 4.082483e-01 5.376365e-17
 ```
 
 The squared eigenvalues are the inertia of the individual dimensions
 
 ```r
-burial.svd$d^2
+burials.svd$d^2
 ```
 
 ```
-## [1] 1.666667e-01 1.666667e-01 9.474632e-31
+## [1] 1.666667e-01 1.666667e-01 2.890530e-33
 ```
 
 The sum of the squared eigenvalues is equal to the total of the intertia.
 
 ```r
-sum(burial.svd$d^2)
+sum(burials.svd$d^2)
 ```
 
 ```
@@ -550,11 +631,11 @@ If the inertia of the individual dimensions is divided by the total inertia, the
 
 
 ```r
-burial.svd$d^2/sum(burial.svd$d^2)
+burials.svd$d^2/sum(burials.svd$d^2)
 ```
 
 ```
-## [1] 5.00000e-01 5.00000e-01 2.84239e-30
+## [1] 5.00000e-01 5.00000e-01 8.67159e-33
 ```
 
 ---
@@ -586,6 +667,55 @@ Column (*species*) Points: `\(c_{jk} = \frac{v_{jk}*\sqrt{s_k}}{\sqrt{p_j}}\)`
 
 ---
 
+### Normalization of coordinates in R
+Scaling of the coordinates in such a way that
+
+The dimensions are weighted according to their proportion of the total inertia.
+
+The rows/columns are weighted according to their proportion of the mass.
+
+.tiny[
+.pull-left[
+
+Row (*sites*) Points: `\(r_{ik} = \frac{u_{ik}*\sqrt{s_k}}{\sqrt{p_i}}\)`
+
+```r
+rows.scaled &lt;-
+  burials.svd$u * sqrt(burials.svd$d) /
+  sqrt(burials.rel_freq.rows)
+rows.scaled
+```
+
+```
+##               [,1]          [,2]          [,3]
+## [1,] -9.584147e-01 -5.533410e-01 -8.980283e-09
+## [2,]  7.523998e-17  1.270004e-08 -7.825423e-01
+## [3,]  0.000000e+00  0.000000e+00  0.000000e+00
+## [4,]  9.584147e-01 -5.533410e-01 -8.980283e-09
+```
+]
+.pull-right[
+
+Column (*species*) Points: `\(c_{jk} = \frac{v_{jk}*\sqrt{s_k}}{\sqrt{p_j}}\)`
+
+```r
+columns.scaled &lt;-
+  burials.svd$v * sqrt(burials.svd$d) /
+  sqrt(burials.rel_freq.columns)
+columns.scaled
+```
+
+```
+##               [,1]          [,2]         [,3]
+## [1,]  1.155957e-16 -9.036020e-01 6.389431e-01
+## [2,] -7.825423e-01  4.518010e-01 6.389431e-01
+## [3,]  8.980283e-09  5.184769e-09 7.332370e-09
+```
+]
+]
+
+---
+
 ## Correspondence analysis: Procedure (using a presence/absence matrix)
 
 Everything in R:
@@ -612,7 +742,7 @@ scaling=3: by default R normalizes only the species (types)
 ]
 
 .pull-right[
-![](index_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -620,6 +750,8 @@ scaling=3: by default R normalizes only the species (types)
 ## Correspondence analysis: Real World case
 
 ### Münsingen Burial Site
+
+File: <a href="data:text/csv;base64,IkdyYWIgTnIuICIsIkxUIEEgRmliZWwiLCJIYWxzcmluZyBlaW5mYWNoL2dlcml0enQsIFZvbGxndXNzIiwiQXJtL0Z1c3NyaW5nIGVpbmYuLCB2b2xsZyBsb2NoL1N0ZWNrdi4iLCJBcm0tL0Z1c3NyaW5nIGVpbmZhY2gvZ2VyaXR6dCwgaG9obCIsIkdsYXNwZXJsZW4iLCJCZXJuc3RlaW5rZXR0ZSIsIkFybS0vRnVzc3JpbmcgZ2VyaXBwdCB2b2xsZ3VzcyIsIkhpcnNjaGdld2VpaCIsIkhhbHNyaW5nIG0uIE11ZmZlbiIsIkFybXJpbmcgbWl0IE11ZmZlbiIsIkRyYWh0LUZpbmdlcnJpbmcgcnVuZGVyIFFTIiwiQXJtLS9GdXNzcmluZyB2b2xsZ3VzcyBtYXNzaXYiLCJIYWxzcmluZyBwbGFzdGlzY2gsIHZvbGxndXNzIiwiSGFsc3JpbmcgaG9obGJsZWNoLCBnZXJpdHp0IiwiQXJtLS9GdXNzcmluZ2UgZ2VyaXBwdCBkaWNodCIsIkNlcnRvc2FmaWJlbCIsIlNjaHdlcnQiLCJLZXR0ZSIsIkxhbnplIiwiTFQgQjEgRmliZWwiLCJBcm1yZWlmIG1pdCBLb3JhbGxlbmF1ZmxhZ2UiLCJGaW5nZXJyaW5nIGZsYWNoYmxlY2giLCJTY2hhdWtlbGZpbmdlcnJpbmdlIiwiQXJtLS9GdXNzcmluZyBwbGFzdGlzY2ggZ2VyaXBwdCIsIkxUIEIyIEZpYmVsIiwiQXJtLS9GdXNzcmluZyBnZW5vcHB0LyBwbGFzdGlzY2gsIFZvbGxndXNzIiwiUmluZy8gRnVzcy0vQXJtcmluZyBCbGVjaCB1bSBFaXNlbi9Ub24iLCJIb2hsYnVja2VsYXJtcmluZ2UiLCJGaW5nZXJyaW5nIG1laHJmYWNoIGdld2lja2VsdC9wbGFzdGlzY2giLCJMVCBDMSBGaWJlbCIsIkdsYXNhcm1yaW5nIGdlcmlwcHQiLCJHbGFzYXJtcmluZyBnZW5vcHB0IiwiR2xhc2FybXJpbmcgRmFkZW5hdWZsYWdlIiwiR8O8cnRlbGtldHRlIiwiTFQgQzIgRmliZWwiCjMyLDEsMiw0LDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMAozMSwyLDAsMCwyLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAKIjhiIiwyLDAsMiwwLDUsMSwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAKMTIsMywwLDAsMiwxLDEsMiwxLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwCiI4YSIsMiwwLDAsNCwwLDAsMCwwLDEsMiwxLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwCjYsNCwwLDIsNCw2LDAsMCwxLDEsMCwyLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwCjksMiwxLDAsMiwwLDAsMiwwLDAsMCwyLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwCjIzLDMsMSwwLDIsMCwxLDAsMCwwLDAsMCwyLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMAo0NCwyLDAsMCwwLDAsMCwwLDAsMCwwLDAsNCwxLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAKNTEsMSwwLDMsMSwwLDAsMCwwLDAsMCwyLDAsMSwwLDAsMSwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwCjQwLDIsMCwwLDQsMCwwLDAsMCwwLDAsMCwwLDAsMSwyLDAsMCwwLDAsMiwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMAoyOCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsNCwwLDAsMCwxLDEsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAKNjIsMCwwLDAsMCw1LDEsMCwwLDAsMCwxLDQsMCwwLDIsMiwwLDEsMCw2LDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwCjkxLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMSwwLDEsMiwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMAo3MiwwLDAsMCwwLDAsMCwwLDAsMCwwLDIsMCwwLDAsMCwwLDEsMCwxLDIsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAKODAsMCwwLDAsMCwwLDAsMCwwLDAsMCwyLDAsMCwwLDAsMCwxLDAsMCwxLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwCjQ2LDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCw0LDEsMCwwLDAsMywwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMAo0OCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsNCwxLDAsMCwwLDMsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAKNDksMCwwLDAsMCwwLDAsMCwwLDAsMCwxLDAsMCwwLDMsMCwwLDAsMCwzLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwCjY4LDAsMCwwLDAsMCwwLDAsMCwwLDAsMCw0LDAsMCwwLDAsMCwwLDAsNiwxLDEsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMAo3OSwwLDAsMCwwLDAsMCwwLDAsMCwwLDIsMCwwLDAsMCwwLDEsMCwxLDEsMCwwLDEsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAKNjEsMCwwLDAsMiwwLDAsMCwwLDAsMCwxLDAsMCwwLDAsMCwwLDAsMCw3LDEsMSwwLDIsNCwwLDAsMCwwLDAsMCwwLDAsMCwwCjEwMiwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMSwwLDAsMCwwLDcsMCwyLDIsMiwyLDAsMCwwLDAsMCwwLDAsMCwwLDAKODEsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDEsMCwwLDAsMCwwLDAsMCw0LDAsMCwwLDQsMywxLDAsMCwwLDAsMCwwLDAsMCwwCjg0LDAsMCwwLDAsMCwwLDAsMCwwLDAsMSwxLDAsMCwwLDAsMCwwLDAsNSwwLDEsMSw0LDIsMSwwLDAsMCwwLDAsMCwwLDAsMAo4NiwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMiwwLDAsMCwwLDEsMCwxLDIsMCwwLDAsMCwyLDAsMCwwLDAsMCwwLDAsMCwwLDAKMTMwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMiwwLDAsMCw0LDgsMSwwLDAsMCwwLDAsMCwwLDAsMAoxMzYsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwxLDAsMCwxLDQsMiwwLDAsMCwwLDAsMCwwLDAsMCwwCjE0MCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDEsMCwxLDEsNCw1LDEsMCwwLDAsMCwwLDAsMCwwLDAKMTM1LDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwxLDAsMSw0LDIsMSwwLDAsMCwwLDAsMCwwLDAsMAoxMjEsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDEsMCwwLDAsMCwwLDAsMCw2LDEsMSwwLDQsMywwLDAsMCwwLDAsMCwwLDAsMCwwCjE0NSwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMSwwLDAsMCwwLDAsMCwwLDAsMCwwLDEsMSwzLDAsMCwxLDAsMCwwLDAsMCwwLDAKNzUsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwxLDAsMCwxLDQsNywwLDEsMSwwLDAsMCwwLDAsMCwwCjk4LDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMSwwLDEsMCwwLDAsMCwwLDIsMCwwLDAsMCwwLDAsMCwwLDAsMAoxMzQsMCwwLDAsMCwxLDEsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDEsMCwwLDAsMSwwLDQsMywxLDAsMCwwLDAsMCwwLDAsMCwwCjE1NywwLDAsMCwwLDAsMCwwLDAsMCwwLDEsMSwwLDAsMCwwLDAsMCwwLDAsMCwxLDIsNCwxMywwLDAsMSwxLDAsMCwwLDAsMCwwCjE2MSwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMSwwLDAsMCwwLDAsMSwwLDAsMCwxLDAsMCw1LDEsMCwwLDEsNiwwLDAsMCwwLDAKMTcxLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMiwwLDksMCwwLDAsMCwxLDAsMCwwLDAsMAoxODAsMCwwLDAsMCwwLDAsMCwwLDAsMCwxLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwxLDEsMiwwLDAsMCwwCjE4MSwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDQsNSwwLDEsMCwwLDAKMTY0LDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMSw1LDAsMCwxLDEsMAoxNjgsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDEsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMiwwLDAsMCwwLDEsMCwwLDIsMSwwCjE0OSwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDQsNCwxNSwwLDEsMiwwLDEsMCwwLDAsMSwwCjE4NCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDEsMCwxLDAsMCwwLDMsMjEsMCwwLDAsMSwwCjIxMSwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwxLDAsMCwwLDEKMjEyLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDEsMQoxOTMsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwxCjIxNCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDEK" download="muensingen_ideal.csv">muensingen_ideal.csv</a>
 
 .pull-left[
 .small[
@@ -634,7 +766,7 @@ plot(muensingen.cca, scaling=3)
 ]
 
 .pull-right[
-![](index_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -763,7 +895,7 @@ scores(muensingen.cca, display = "species")
 plot(muensingen.cca, display = "sites")
 ```
 
-![](index_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
 ]
 ]
 
@@ -774,7 +906,7 @@ plot(muensingen.cca, display = "sites")
 plot(muensingen.cca, display = "species")
 ```
 
-![](index_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
 ]
 ]
 ---
@@ -789,7 +921,7 @@ plot(muensingen.cca, display = "species")
 plot(muensingen.cca, choices = c(1,2))
 ```
 
-![](index_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
 ]
 ]
 
@@ -800,7 +932,7 @@ plot(muensingen.cca, choices = c(1,2))
 plot(muensingen.cca, choices = c(1,3))
 ```
 
-![](index_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
 ]
 ]
 
@@ -829,7 +961,13 @@ ggplot(muensingen.species,
 ]
 
 .pull-right[
-![](index_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+
+```
+## Warning: ggrepel: 13 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps
+```
+
+![](index_files/figure-html/unnamed-chunk-35-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -865,7 +1003,7 @@ Check against other information necessary.
 ]
 
 .pull-right[
-![](index_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
 ]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

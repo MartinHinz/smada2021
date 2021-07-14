@@ -49,6 +49,14 @@ cat('#### ', rmarkdown::metadata$institute)
 ```{r, echo = FALSE, results="asis"}
 cat(rmarkdown::metadata$date)
 ```
+
+.footnote[
+.right[
+.tiny[
+You can download a [pdf of this presentation](smada10.pdf).
+]
+]
+]
 ---
 
 ## Correspondence analysis: idea and basics [1]
@@ -245,6 +253,41 @@ rglwidget()
 ```
 
 ---
+### Data normalisation in R
+
+`r xfun::embed_file('burials.csv', text = "burials.csv")`
+
+```{r}
+burials <- read.csv("burials.csv", row.names = 1)
+
+burials.rel_freq <- burials / sum(burials)
+burials.rel_freq
+```
+---
+
+### Expectation Values in R
+
+Multiply the margins and divide the result by the total number
+
+```{r}
+burials.rel_freq.rows <- rowSums(burials.rel_freq)
+burials.rel_freq.columns <- colSums(burials.rel_freq)
+burials.e <- burials.rel_freq.rows %*% t(burials.rel_freq.columns) /
+  sum(burials.rel_freq)^2
+burials.e
+```
+---
+
+### z-values in R
+
+$z_{ij}=\frac{(O_i - E_i)}{\sqrt{E_i}}$
+
+```{r}
+burials.z <- ( burials.rel_freq - burials.e)/sqrt(burials.e)
+burials.z
+```
+
+---
 
 .pull-left[
 ### multidimentional data space
@@ -291,9 +334,8 @@ S : Diagonal matrix with the singular values
 **SVD in R**
 .tiny[
 ```{r}
-burial.z<-read.csv2("burial_z.csv",row.names=1)
-burial.svd<-svd(burial.z)
-burial.svd
+burials.svd<-svd(burials.z)
+burials.svd
 ```
 ]
 
@@ -302,23 +344,23 @@ SVD and Inertia
 The singular values (eigenvalues) represent the inertia.
 The eigenvalues
 ```{r}
-burial.svd$d
+burials.svd$d
 ```
 
 The squared eigenvalues are the inertia of the individual dimensions
 ```{r}
-burial.svd$d^2
+burials.svd$d^2
 ```
 
 The sum of the squared eigenvalues is equal to the total of the intertia.
 ```{r}
-sum(burial.svd$d^2)
+sum(burials.svd$d^2)
 ```
 
 If the inertia of the individual dimensions is divided by the total inertia, the (eigenvalue) proportion of the dimensions is obtained.
 
 ```{r}
-burial.svd$d^2/sum(burial.svd$d^2)
+burials.svd$d^2/sum(burials.svd$d^2)
 ```
 
 ---
@@ -347,6 +389,38 @@ $u$, $v$ → Matrices of rows/columns from the SVD
 $s_k$ → Diagonal matrix
 
 $p_i$ , $p_j$ → Masses of rows/columns from the relative frequency
+
+---
+
+### Normalization of coordinates in R
+Scaling of the coordinates in such a way that
+
+The dimensions are weighted according to their proportion of the total inertia.
+
+The rows/columns are weighted according to their proportion of the mass.
+
+.tiny[
+.pull-left[
+
+Row (*sites*) Points: $r_{ik} = \frac{u_{ik}*\sqrt{s_k}}{\sqrt{p_i}}$
+```{r}
+rows.scaled <-
+  burials.svd$u * sqrt(burials.svd$d) /
+  sqrt(burials.rel_freq.rows)
+rows.scaled
+```
+]
+.pull-right[
+
+Column (*species*) Points: $c_{jk} = \frac{v_{jk}*\sqrt{s_k}}{\sqrt{p_j}}$
+```{r}
+columns.scaled <-
+  burials.svd$v * sqrt(burials.svd$d) /
+  sqrt(burials.rel_freq.columns)
+columns.scaled
+```
+]
+]
 
 ---
 
@@ -391,6 +465,8 @@ plot(burial.cca, scaling=3)
 ## Correspondence analysis: Real World case
 
 ### Münsingen Burial Site
+
+File: `r xfun::embed_file('muensingen_ideal.csv', text = "muensingen_ideal.csv")`
 
 .pull-left[
 .small[
